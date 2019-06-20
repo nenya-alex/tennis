@@ -1,0 +1,106 @@
+package ua.tennis.service.dto;
+
+
+import java.io.Serializable;
+import java.math.BigDecimal;
+import java.util.HashSet;
+import java.util.Set;
+import java.util.Objects;
+
+/**
+ * A DTO for the Sett entity.
+ */
+public class SettDTO implements Serializable {
+
+    private Long id;
+
+    private Integer homeScore;
+
+    private Integer awayScore;
+
+    private BigDecimal probabilityHome;
+
+    private BigDecimal probabilityAway;
+
+    private Long matchId;
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public Integer getHomeScore() {
+        return homeScore;
+    }
+
+    public void setHomeScore(Integer homeScore) {
+        this.homeScore = homeScore;
+    }
+
+    public Integer getAwayScore() {
+        return awayScore;
+    }
+
+    public void setAwayScore(Integer awayScore) {
+        this.awayScore = awayScore;
+    }
+
+    public BigDecimal getProbabilityHome() {
+        return probabilityHome;
+    }
+
+    public void setProbabilityHome(BigDecimal probabilityHome) {
+        this.probabilityHome = probabilityHome;
+    }
+
+    public BigDecimal getProbabilityAway() {
+        return probabilityAway;
+    }
+
+    public void setProbabilityAway(BigDecimal probabilityAway) {
+        this.probabilityAway = probabilityAway;
+    }
+
+    public Long getMatchId() {
+        return matchId;
+    }
+
+    public void setMatchId(Long matchId) {
+        this.matchId = matchId;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+
+        SettDTO settDTO = (SettDTO) o;
+        if(settDTO.getId() == null || getId() == null) {
+            return false;
+        }
+        return Objects.equals(getId(), settDTO.getId());
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hashCode(getId());
+    }
+
+    @Override
+    public String toString() {
+        return "SettDTO{" +
+            "id=" + getId() +
+            ", homeScore=" + getHomeScore() +
+            ", awayScore=" + getAwayScore() +
+            ", probabilityHome=" + getProbabilityHome() +
+            ", probabilityAway=" + getProbabilityAway() +
+            "}";
+    }
+}

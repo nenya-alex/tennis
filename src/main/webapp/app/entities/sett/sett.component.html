@@ -1,0 +1,70 @@
+<div>
+    <h2>
+        <span>Setts</span>
+        <button class="btn btn-primary float-right jh-create-entity create-sett" [routerLink]="['/', { outlets: { popup: ['sett-new'] } }]">
+            <span class="fa fa-plus"></span>
+            <span >
+            Create new Sett
+            </span>
+        </button>
+    </h2>
+    <jhi-alert></jhi-alert>
+    <div class="row">
+    </div>
+    <br/>
+    <div class="table-responsive" *ngIf="setts">
+        <table class="table table-striped">
+            <thead>
+            <tr>
+            <th><span>ID</span></th>
+            <th><span>Home Score</span></th>
+            <th><span>Away Score</span></th>
+            <th><span>Probability Home</span></th>
+            <th><span>Probability Away</span></th>
+            <th><span>Match</span></th>
+            <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let sett of setts ;trackBy: trackId">
+                <td><a [routerLink]="['../sett', sett.id ]">{{sett.id}}</a></td>
+                <td>{{sett.homeScore}}</td>
+                <td>{{sett.awayScore}}</td>
+                <td>{{sett.probabilityHome}}</td>
+                <td>{{sett.probabilityAway}}</td>
+                <td>
+                    <div *ngIf="sett.matchId">
+                        <a [routerLink]="['../match', sett.matchId  ]" >{{sett.matchId}}</a>
+                    </div>
+                </td>
+                <td class="text-right">
+                    <div class="btn-group flex-btn-group-container">
+                        <button type="submit"
+                                [routerLink]="['../sett', sett.id ]"
+                                class="btn btn-info btn-sm">
+                            <span class="fa fa-eye"></span>
+                            <span class="d-none d-md-inline">View</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', { outlets: { popup: 'sett/'+ sett.id + '/edit'} }]"
+                                replaceUrl="true"
+                                queryParamsHandling="merge"
+                                class="btn btn-primary btn-sm">
+                            <span class="fa fa-pencil"></span>
+                            <span class="d-none d-md-inline">Edit</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', { outlets: { popup: 'sett/'+ sett.id + '/delete'} }]"
+                                replaceUrl="true"
+                                queryParamsHandling="merge"
+                                class="btn btn-danger btn-sm">
+                            <span class="fa fa-remove"></span>
+                            <span class="d-none d-md-inline">Delete</span>
+                        </button>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

@@ -1,0 +1,44 @@
+
+<div *ngIf="sett">
+    <h2><span>Sett</span> {{sett.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="row-md jh-entity-details">
+        <dt><span>Home Score</span></dt>
+        <dd>
+            <span>{{sett.homeScore}}</span>
+        </dd>
+        <dt><span>Away Score</span></dt>
+        <dd>
+            <span>{{sett.awayScore}}</span>
+        </dd>
+        <dt><span>Probability Home</span></dt>
+        <dd>
+            <span>{{sett.probabilityHome}}</span>
+        </dd>
+        <dt><span>Probability Away</span></dt>
+        <dd>
+            <span>{{sett.probabilityAway}}</span>
+        </dd>
+        <dt><span>Match</span></dt>
+        <dd>
+            <div *ngIf="sett.matchId">
+                <a [routerLink]="['/match', sett.matchId]">{{sett.matchId}}</a>
+            </div>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            (click)="previousState()"
+            class="btn btn-info">
+        <span class="fa fa-arrow-left"></span>&nbsp;<span> Back</span>
+    </button>
+
+    <button type="button"
+            [routerLink]="['/', { outlets: { popup: 'sett/'+ sett.id + '/edit'} }]"
+            replaceUrl="true"
+            queryParamsHandling="merge"
+            class="btn btn-primary">
+        <span class="fa fa-pencil"></span>&nbsp;<span> Edit</span>
+    </button>
+</div>

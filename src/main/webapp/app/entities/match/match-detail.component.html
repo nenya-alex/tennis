@@ -1,0 +1,46 @@
+
+<div *ngIf="match">
+    <h2><span>Match</span> {{match.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="row-md jh-entity-details">
+        <dt><span>Identifier</span></dt>
+        <dd>
+            <span>{{match.identifier}}</span>
+        </dd>
+        <dt><span>Home Name</span></dt>
+        <dd>
+            <span>{{match.homeName}}</span>
+        </dd>
+        <dt><span>Away Name</span></dt>
+        <dd>
+            <span>{{match.awayName}}</span>
+        </dd>
+        <dt><span>Home Score</span></dt>
+        <dd>
+            <span>{{match.homeScore}}</span>
+        </dd>
+        <dt><span>Away Score</span></dt>
+        <dd>
+            <span>{{match.awayScore}}</span>
+        </dd>
+        <dt><span>Start Date</span></dt>
+        <dd>
+            <span>{{match.startDate | date:'medium'}}</span>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            (click)="previousState()"
+            class="btn btn-info">
+        <span class="fa fa-arrow-left"></span>&nbsp;<span> Back</span>
+    </button>
+
+    <button type="button"
+            [routerLink]="['/', { outlets: { popup: 'match/'+ match.id + '/edit'} }]"
+            replaceUrl="true"
+            queryParamsHandling="merge"
+            class="btn btn-primary">
+        <span class="fa fa-pencil"></span>&nbsp;<span> Edit</span>
+    </button>
+</div>

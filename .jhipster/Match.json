@@ -1,0 +1,43 @@
+{
+    "fluentMethods": true,
+    "relationships": [
+        {
+            "relationshipName": "sett",
+            "otherEntityName": "sett",
+            "relationshipType": "one-to-many",
+            "otherEntityRelationshipName": "match"
+        }
+    ],
+    "fields": [
+        {
+            "fieldName": "identifier",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "homeName",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "awayName",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "homeScore",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "awayScore",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "startDate",
+            "fieldType": "Instant"
+        }
+    ],
+    "changelogDate": "20190609131945",
+    "dto": "mapstruct",
+    "service": "serviceClass",
+    "entityTableName": "match",
+    "jpaMetamodelFiltering": false,
+    "pagination": "no"
+}

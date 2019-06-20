@@ -1,0 +1,36 @@
+
+<div *ngIf="game">
+    <h2><span>Game</span> {{game.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="row-md jh-entity-details">
+        <dt><span>Probability Home</span></dt>
+        <dd>
+            <span>{{game.probabilityHome}}</span>
+        </dd>
+        <dt><span>Probability Away</span></dt>
+        <dd>
+            <span>{{game.probabilityAway}}</span>
+        </dd>
+        <dt><span>Sett</span></dt>
+        <dd>
+            <div *ngIf="game.settId">
+                <a [routerLink]="['/sett', game.settId]">{{game.settId}}</a>
+            </div>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            (click)="previousState()"
+            class="btn btn-info">
+        <span class="fa fa-arrow-left"></span>&nbsp;<span> Back</span>
+    </button>
+
+    <button type="button"
+            [routerLink]="['/', { outlets: { popup: 'game/'+ game.id + '/edit'} }]"
+            replaceUrl="true"
+            queryParamsHandling="merge"
+            class="btn btn-primary">
+        <span class="fa fa-pencil"></span>&nbsp;<span> Edit</span>
+    </button>
+</div>

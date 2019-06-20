@@ -1,0 +1,56 @@
+
+<div *ngIf="set">
+    <h2><span>Set</span> {{set.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="row-md jh-entity-details">
+        <dt><span>Home Score</span></dt>
+        <dd>
+            <span>{{set.homeScore}}</span>
+        </dd>
+        <dt><span>Away Score</span></dt>
+        <dd>
+            <span>{{set.awayScore}}</span>
+        </dd>
+        <dt><span>Probability Home</span></dt>
+        <dd>
+            <span>{{set.probabilityHome}}</span>
+        </dd>
+        <dt><span>Probability Away</span></dt>
+        <dd>
+            <span>{{set.probabilityAway}}</span>
+        </dd>
+        <dt><span>Match</span></dt>
+        <dd>
+            <div *ngIf="set.matchId">
+                <a [routerLink]="['/match', set.matchId]">{{set.matchId}}</a>
+            </div>
+        </dd>
+        <dt><span>Match</span></dt>
+        <dd>
+            <div *ngIf="set.matchId">
+                <a [routerLink]="['/match', set.matchId]">{{set.matchId}}</a>
+            </div>
+        </dd>
+        <dt><span>Match</span></dt>
+        <dd>
+            <div *ngIf="set.matchId">
+                <a [routerLink]="['/match', set.matchId]">{{set.matchId}}</a>
+            </div>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            (click)="previousState()"
+            class="btn btn-info">
+        <span class="fa fa-arrow-left"></span>&nbsp;<span> Back</span>
+    </button>
+
+    <button type="button"
+            [routerLink]="['/', { outlets: { popup: 'set/'+ set.id + '/edit'} }]"
+            replaceUrl="true"
+            queryParamsHandling="merge"
+            class="btn btn-primary">
+        <span class="fa fa-pencil"></span>&nbsp;<span> Edit</span>
+    </button>
+</div>

@@ -1,0 +1,41 @@
+{
+    "fluentMethods": true,
+    "relationships": [
+        {
+            "relationshipName": "game",
+            "otherEntityName": "game",
+            "relationshipType": "one-to-many",
+            "otherEntityRelationshipName": "sett"
+        },
+        {
+            "relationshipName": "match",
+            "otherEntityName": "match",
+            "relationshipType": "many-to-one",
+            "otherEntityField": "id"
+        }
+    ],
+    "fields": [
+        {
+            "fieldName": "homeScore",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "awayScore",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "probabilityHome",
+            "fieldType": "BigDecimal"
+        },
+        {
+            "fieldName": "probabilityAway",
+            "fieldType": "BigDecimal"
+        }
+    ],
+    "changelogDate": "20190609135140",
+    "dto": "mapstruct",
+    "service": "serviceClass",
+    "entityTableName": "sett",
+    "jpaMetamodelFiltering": false,
+    "pagination": "no"
+}
