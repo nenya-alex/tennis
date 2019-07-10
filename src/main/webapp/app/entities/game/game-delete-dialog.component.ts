@@ -1,12 +1,12 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import {Component, OnDestroy, OnInit} from "@angular/core";
+import {ActivatedRoute} from "@angular/router";
 
-import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
-import { JhiEventManager } from 'ng-jhipster';
+import {NgbActiveModal} from "@ng-bootstrap/ng-bootstrap";
+import {JhiEventManager} from "ng-jhipster";
 
-import { Game } from './game.model';
-import { GamePopupService } from './game-popup.service';
-import { GameService } from './game.service';
+import {Game} from "./game.model";
+import {GamePopupService} from "./game-popup.service";
+import {GameService} from "./game.service";
 
 @Component({
     selector: 'jhi-game-delete-dialog',

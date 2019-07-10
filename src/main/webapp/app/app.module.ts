@@ -1,31 +1,31 @@
-import './vendor.ts';
+import "./vendor.ts";
 
-import { NgModule, Injector } from '@angular/core';
-import { BrowserModule } from '@angular/platform-browser';
-import { HTTP_INTERCEPTORS } from '@angular/common/http';
-import { Ng2Webstorage, LocalStorageService, SessionStorageService  } from 'ngx-webstorage';
-import { JhiEventManager } from 'ng-jhipster';
+import {Injector, NgModule} from "@angular/core";
+import {BrowserModule} from "@angular/platform-browser";
+import {HTTP_INTERCEPTORS} from "@angular/common/http";
+import {LocalStorageService, Ng2Webstorage, SessionStorageService} from "ngx-webstorage";
+import {JhiEventManager} from "ng-jhipster";
 
-import { AuthInterceptor } from './blocks/interceptor/auth.interceptor';
-import { AuthExpiredInterceptor } from './blocks/interceptor/auth-expired.interceptor';
-import { ErrorHandlerInterceptor } from './blocks/interceptor/errorhandler.interceptor';
-import { NotificationInterceptor } from './blocks/interceptor/notification.interceptor';
-import { TennisSharedModule, UserRouteAccessService } from './shared';
-import { TennisAppRoutingModule} from './app-routing.module';
-import { TennisHomeModule } from './home/home.module';
-import { TennisAdminModule } from './admin/admin.module';
-import { TennisAccountModule } from './account/account.module';
-import { TennisEntityModule } from './entities/entity.module';
-import { PaginationConfig } from './blocks/config/uib-pagination.config';
+import {AuthInterceptor} from "./blocks/interceptor/auth.interceptor";
+import {AuthExpiredInterceptor} from "./blocks/interceptor/auth-expired.interceptor";
+import {ErrorHandlerInterceptor} from "./blocks/interceptor/errorhandler.interceptor";
+import {NotificationInterceptor} from "./blocks/interceptor/notification.interceptor";
+import {TennisSharedModule, UserRouteAccessService} from "./shared";
+import {TennisAppRoutingModule} from "./app-routing.module";
+import {TennisHomeModule} from "./home/home.module";
+import {TennisAdminModule} from "./admin/admin.module";
+import {TennisAccountModule} from "./account/account.module";
+import {TennisEntityModule} from "./entities/entity.module";
+import {PaginationConfig} from "./blocks/config/uib-pagination.config";
 // jhipster-needle-angular-add-module-import JHipster will add new module here
 import {
+    ErrorComponent,
+    FooterComponent,
     JhiMainComponent,
     NavbarComponent,
-    FooterComponent,
-    ProfileService,
     PageRibbonComponent,
-    ErrorComponent
-} from './layouts';
+    ProfileService
+} from "./layouts";
 
 @NgModule({
     imports: [

@@ -1,9 +1,5 @@
 package ua.tennis.security;
 
-import ua.tennis.TennisApp;
-import ua.tennis.domain.User;
-import ua.tennis.repository.UserRepository;
-
 import org.apache.commons.lang3.RandomStringUtils;
 import org.junit.Before;
 import org.junit.Test;
@@ -14,6 +10,9 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.transaction.annotation.Transactional;
+import ua.tennis.TennisApp;
+import ua.tennis.domain.User;
+import ua.tennis.repository.UserRepository;
 
 import java.util.Locale;
 

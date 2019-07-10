@@ -1,12 +1,12 @@
 package ua.tennis.service;
 
-import ua.tennis.config.audit.AuditEventConverter;
-import ua.tennis.repository.PersistenceAuditEventRepository;
 import org.springframework.boot.actuate.audit.AuditEvent;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import ua.tennis.config.audit.AuditEventConverter;
+import ua.tennis.repository.PersistenceAuditEventRepository;
 
 import java.time.Instant;
 import java.util.Optional;

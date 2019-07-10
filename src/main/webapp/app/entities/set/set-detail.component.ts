@@ -1,11 +1,11 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
-import { HttpResponse } from '@angular/common/http';
-import { Subscription } from 'rxjs/Subscription';
-import { JhiEventManager } from 'ng-jhipster';
+import {Component, OnDestroy, OnInit} from "@angular/core";
+import {ActivatedRoute} from "@angular/router";
+import {HttpResponse} from "@angular/common/http";
+import {Subscription} from "rxjs/Subscription";
+import {JhiEventManager} from "ng-jhipster";
 
-import { Set } from './set.model';
-import { SetService } from './set.service';
+import {Set} from "./set.model";
+import {SetService} from "./set.service";
 
 @Component({
     selector: 'jhi-set-detail',

@@ -1,9 +1,9 @@
-import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+import {CUSTOM_ELEMENTS_SCHEMA, NgModule} from "@angular/core";
 
-import { TennisGameModule } from './game/game.module';
-import { TennisSetModule } from './set/set.module';
-import { TennisMatchModule } from './match/match.module';
-import { TennisSettModule } from './sett/sett.module';
+import {TennisGameModule} from "./game/game.module";
+import {TennisSetModule} from "./set/set.module";
+import {TennisMatchModule} from "./match/match.module";
+import {TennisSettModule} from "./sett/sett.module";
 /* jhipster-needle-add-entity-module-import - JHipster will add entity modules imports here */
 
 @NgModule({

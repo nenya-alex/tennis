@@ -1,20 +1,6 @@
 package ua.tennis.web.rest;
 
-import ua.tennis.config.Constants;
-import ua.tennis.TennisApp;
-import ua.tennis.domain.Authority;
-import ua.tennis.domain.User;
-import ua.tennis.repository.AuthorityRepository;
-import ua.tennis.repository.UserRepository;
-import ua.tennis.security.AuthoritiesConstants;
-import ua.tennis.service.MailService;
-import ua.tennis.service.dto.UserDTO;
-import ua.tennis.web.rest.errors.ExceptionTranslator;
-import ua.tennis.web.rest.vm.KeyAndPasswordVM;
-import ua.tennis.web.rest.vm.ManagedUserVM;
-import ua.tennis.service.UserService;
 import org.apache.commons.lang3.RandomStringUtils;
-
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -30,13 +16,27 @@ import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.transaction.annotation.Transactional;
-import java.time.Instant;
-import java.time.LocalDate;
+import ua.tennis.TennisApp;
+import ua.tennis.config.Constants;
+import ua.tennis.domain.Authority;
+import ua.tennis.domain.User;
+import ua.tennis.repository.AuthorityRepository;
+import ua.tennis.repository.UserRepository;
+import ua.tennis.security.AuthoritiesConstants;
+import ua.tennis.service.MailService;
+import ua.tennis.service.UserService;
+import ua.tennis.service.dto.UserDTO;
+import ua.tennis.web.rest.errors.ExceptionTranslator;
+import ua.tennis.web.rest.vm.KeyAndPasswordVM;
+import ua.tennis.web.rest.vm.ManagedUserVM;
 
-import java.util.*;
+import java.time.Instant;
+import java.util.Collections;
+import java.util.HashSet;
+import java.util.Optional;
+import java.util.Set;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.hamcrest.Matchers.hasItem;
 import static org.mockito.Matchers.anyObject;
 import static org.mockito.Mockito.doNothing;
 import static org.mockito.Mockito.when;

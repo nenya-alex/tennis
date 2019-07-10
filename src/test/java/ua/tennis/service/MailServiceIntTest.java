@@ -1,8 +1,5 @@
 package ua.tennis.service;
-import ua.tennis.config.Constants;
 
-import ua.tennis.TennisApp;
-import ua.tennis.domain.User;
 import io.github.jhipster.config.JHipsterProperties;
 import org.junit.Before;
 import org.junit.Test;
@@ -18,6 +15,9 @@ import org.springframework.mail.MailSendException;
 import org.springframework.mail.javamail.JavaMailSenderImpl;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.thymeleaf.spring4.SpringTemplateEngine;
+import ua.tennis.TennisApp;
+import ua.tennis.config.Constants;
+import ua.tennis.domain.User;
 
 import javax.mail.Multipart;
 import javax.mail.internet.MimeBodyPart;

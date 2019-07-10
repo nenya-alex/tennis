@@ -1,15 +1,15 @@
 /* tslint:disable max-line-length */
-import { ComponentFixture, TestBed, async, inject, fakeAsync, tick } from '@angular/core/testing';
-import { HttpResponse } from '@angular/common/http';
-import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
-import { Observable } from 'rxjs/Observable';
-import { JhiEventManager } from 'ng-jhipster';
+import {async, ComponentFixture, fakeAsync, inject, TestBed, tick} from "@angular/core/testing";
+import {HttpResponse} from "@angular/common/http";
+import {NgbActiveModal} from "@ng-bootstrap/ng-bootstrap";
+import {Observable} from "rxjs/Observable";
+import {JhiEventManager} from "ng-jhipster";
 
-import { TennisTestModule } from '../../../test.module';
-import { SetDialogComponent } from '../../../../../../main/webapp/app/entities/set/set-dialog.component';
-import { SetService } from '../../../../../../main/webapp/app/entities/set/set.service';
-import { Set } from '../../../../../../main/webapp/app/entities/set/set.model';
-import { MatchService } from '../../../../../../main/webapp/app/entities/match';
+import {TennisTestModule} from "../../../test.module";
+import {SetDialogComponent} from "../../../../../../main/webapp/app/entities/set/set-dialog.component";
+import {SetService} from "../../../../../../main/webapp/app/entities/set/set.service";
+import {Set} from "../../../../../../main/webapp/app/entities/set/set.model";
+import {MatchService} from "../../../../../../main/webapp/app/entities/match";
 
 describe('Component Tests', () => {
 

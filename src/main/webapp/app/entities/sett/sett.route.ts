@@ -1,10 +1,10 @@
-import { Routes } from '@angular/router';
+import {Routes} from "@angular/router";
 
-import { UserRouteAccessService } from '../../shared';
-import { SettComponent } from './sett.component';
-import { SettDetailComponent } from './sett-detail.component';
-import { SettPopupComponent } from './sett-dialog.component';
-import { SettDeletePopupComponent } from './sett-delete-dialog.component';
+import {UserRouteAccessService} from "../../shared";
+import {SettComponent} from "./sett.component";
+import {SettDetailComponent} from "./sett-detail.component";
+import {SettPopupComponent} from "./sett-dialog.component";
+import {SettDeletePopupComponent} from "./sett-delete-dialog.component";
 
 export const settRoute: Routes = [
     {

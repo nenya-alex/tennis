@@ -1,9 +1,5 @@
 package ua.tennis.repository;
 
-import ua.tennis.config.Constants;
-import ua.tennis.config.audit.AuditEventConverter;
-import ua.tennis.domain.PersistentAuditEvent;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.boot.actuate.audit.AuditEvent;
@@ -11,6 +7,9 @@ import org.springframework.boot.actuate.audit.AuditEventRepository;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
+import ua.tennis.config.Constants;
+import ua.tennis.config.audit.AuditEventConverter;
+import ua.tennis.domain.PersistentAuditEvent;
 
 import java.util.Date;
 import java.util.HashMap;

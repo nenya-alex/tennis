@@ -1,13 +1,13 @@
 package ua.tennis.service;
 
-import ua.tennis.domain.Match;
-import ua.tennis.repository.MatchRepository;
-import ua.tennis.service.dto.MatchDTO;
-import ua.tennis.service.mapper.MatchMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import ua.tennis.domain.Match;
+import ua.tennis.repository.MatchRepository;
+import ua.tennis.service.dto.MatchDTO;
+import ua.tennis.service.mapper.MatchMapper;
 
 import java.util.LinkedList;
 import java.util.List;

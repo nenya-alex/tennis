@@ -1,11 +1,11 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
-import { HttpResponse, HttpErrorResponse } from '@angular/common/http';
-import { Subscription } from 'rxjs/Subscription';
-import { JhiEventManager, JhiAlertService } from 'ng-jhipster';
+import {Component, OnDestroy, OnInit} from "@angular/core";
+import {HttpErrorResponse, HttpResponse} from "@angular/common/http";
+import {Subscription} from "rxjs/Subscription";
+import {JhiAlertService, JhiEventManager} from "ng-jhipster";
 
-import { Sett } from './sett.model';
-import { SettService } from './sett.service';
-import { Principal } from '../../shared';
+import {Sett} from "./sett.model";
+import {SettService} from "./sett.service";
+import {Principal} from "../../shared";
 
 @Component({
     selector: 'jhi-sett',

@@ -1,6 +1,7 @@
 package ua.tennis.web.rest.vm;
 
 import ua.tennis.service.dto.UserDTO;
+
 import javax.validation.constraints.Size;
 
 /**

@@ -1,9 +1,8 @@
 package ua.tennis.service.mapper;
 
+import org.mapstruct.*;
 import ua.tennis.domain.*;
 import ua.tennis.service.dto.GameDTO;
-
-import org.mapstruct.*;
 
 /**
  * Mapper for the entity Game and its DTO GameDTO.

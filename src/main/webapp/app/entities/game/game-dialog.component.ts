@@ -1,15 +1,15 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
-import { HttpResponse, HttpErrorResponse } from '@angular/common/http';
+import {Component, OnDestroy, OnInit} from "@angular/core";
+import {ActivatedRoute} from "@angular/router";
+import {HttpErrorResponse, HttpResponse} from "@angular/common/http";
 
-import { Observable } from 'rxjs/Observable';
-import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
-import { JhiEventManager, JhiAlertService } from 'ng-jhipster';
+import {Observable} from "rxjs/Observable";
+import {NgbActiveModal} from "@ng-bootstrap/ng-bootstrap";
+import {JhiAlertService, JhiEventManager} from "ng-jhipster";
 
-import { Game } from './game.model';
-import { GamePopupService } from './game-popup.service';
-import { GameService } from './game.service';
-import { Sett, SettService } from '../sett';
+import {Game} from "./game.model";
+import {GamePopupService} from "./game-popup.service";
+import {GameService} from "./game.service";
+import {Sett, SettService} from "../sett";
 
 @Component({
     selector: 'jhi-game-dialog',

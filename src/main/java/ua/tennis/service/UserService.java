@@ -1,15 +1,5 @@
 package ua.tennis.service;
 
-import ua.tennis.domain.Authority;
-import ua.tennis.domain.User;
-import ua.tennis.repository.AuthorityRepository;
-import ua.tennis.config.Constants;
-import ua.tennis.repository.UserRepository;
-import ua.tennis.security.AuthoritiesConstants;
-import ua.tennis.security.SecurityUtils;
-import ua.tennis.service.util.RandomUtil;
-import ua.tennis.service.dto.UserDTO;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.data.domain.Page;
@@ -18,10 +8,22 @@ import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import ua.tennis.config.Constants;
+import ua.tennis.domain.Authority;
+import ua.tennis.domain.User;
+import ua.tennis.repository.AuthorityRepository;
+import ua.tennis.repository.UserRepository;
+import ua.tennis.security.AuthoritiesConstants;
+import ua.tennis.security.SecurityUtils;
+import ua.tennis.service.dto.UserDTO;
+import ua.tennis.service.util.RandomUtil;
 
 import java.time.Instant;
 import java.time.temporal.ChronoUnit;
-import java.util.*;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Optional;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 /**

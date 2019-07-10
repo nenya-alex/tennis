@@ -1,9 +1,5 @@
 package ua.tennis.repository;
 
-import ua.tennis.TennisApp;
-import ua.tennis.config.Constants;
-import ua.tennis.config.audit.AuditEventConverter;
-import ua.tennis.domain.PersistentAuditEvent;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -15,6 +11,10 @@ import org.springframework.mock.web.MockHttpSession;
 import org.springframework.security.web.authentication.WebAuthenticationDetails;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.transaction.annotation.Transactional;
+import ua.tennis.TennisApp;
+import ua.tennis.config.Constants;
+import ua.tennis.config.audit.AuditEventConverter;
+import ua.tennis.domain.PersistentAuditEvent;
 
 import javax.servlet.http.HttpSession;
 import java.time.Instant;

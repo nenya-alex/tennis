@@ -1,13 +1,9 @@
-import { NgModule, LOCALE_ID } from '@angular/core';
-import { Title } from '@angular/platform-browser';
-import { registerLocaleData } from '@angular/common';
-import locale from '@angular/common/locales/en';
+import {LOCALE_ID, NgModule} from "@angular/core";
+import {Title} from "@angular/platform-browser";
+import {registerLocaleData} from "@angular/common";
+import locale from "@angular/common/locales/en";
 
-import {
-    TennisSharedLibsModule,
-    JhiAlertComponent,
-    JhiAlertErrorComponent
-} from './';
+import {JhiAlertComponent, JhiAlertErrorComponent, TennisSharedLibsModule} from "./";
 
 @NgModule({
     imports: [

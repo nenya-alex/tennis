@@ -1,13 +1,13 @@
 package ua.tennis.service;
 
-import ua.tennis.domain.Game;
-import ua.tennis.repository.GameRepository;
-import ua.tennis.service.dto.GameDTO;
-import ua.tennis.service.mapper.GameMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import ua.tennis.domain.Game;
+import ua.tennis.repository.GameRepository;
+import ua.tennis.service.dto.GameDTO;
+import ua.tennis.service.mapper.GameMapper;
 
 import java.util.LinkedList;
 import java.util.List;

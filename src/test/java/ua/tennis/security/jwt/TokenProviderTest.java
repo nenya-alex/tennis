@@ -1,6 +1,5 @@
 package ua.tennis.security.jwt;
 
-import ua.tennis.security.AuthoritiesConstants;
 import io.github.jhipster.config.JHipsterProperties;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
@@ -12,6 +11,7 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.test.util.ReflectionTestUtils;
+import ua.tennis.security.AuthoritiesConstants;
 
 import java.util.ArrayList;
 import java.util.Collection;

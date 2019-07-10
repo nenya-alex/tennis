@@ -1,12 +1,12 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import {Component, OnDestroy, OnInit} from "@angular/core";
+import {ActivatedRoute} from "@angular/router";
 
-import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
-import { JhiEventManager } from 'ng-jhipster';
+import {NgbActiveModal} from "@ng-bootstrap/ng-bootstrap";
+import {JhiEventManager} from "ng-jhipster";
 
-import { Sett } from './sett.model';
-import { SettPopupService } from './sett-popup.service';
-import { SettService } from './sett.service';
+import {Sett} from "./sett.model";
+import {SettPopupService} from "./sett-popup.service";
+import {SettService} from "./sett.service";
 
 @Component({
     selector: 'jhi-sett-delete-dialog',

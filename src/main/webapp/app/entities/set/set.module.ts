@@ -1,19 +1,19 @@
-import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
-import { RouterModule } from '@angular/router';
+import {CUSTOM_ELEMENTS_SCHEMA, NgModule} from "@angular/core";
+import {RouterModule} from "@angular/router";
 
-import { TennisSharedModule } from '../../shared';
+import {TennisSharedModule} from "../../shared";
 import {
-    SetService,
-    SetPopupService,
     SetComponent,
+    SetDeleteDialogComponent,
+    SetDeletePopupComponent,
     SetDetailComponent,
     SetDialogComponent,
     SetPopupComponent,
-    SetDeletePopupComponent,
-    SetDeleteDialogComponent,
-    setRoute,
     setPopupRoute,
-} from './';
+    SetPopupService,
+    setRoute,
+    SetService
+} from "./";
 
 const ENTITY_STATES = [
     ...setRoute,

@@ -1,12 +1,12 @@
 /* tslint:disable max-line-length */
-import { ComponentFixture, TestBed, async } from '@angular/core/testing';
-import { HttpResponse } from '@angular/common/http';
-import { Observable } from 'rxjs/Observable';
+import {async, ComponentFixture, TestBed} from "@angular/core/testing";
+import {HttpResponse} from "@angular/common/http";
+import {Observable} from "rxjs/Observable";
 
-import { TennisTestModule } from '../../../test.module';
-import { GameDetailComponent } from '../../../../../../main/webapp/app/entities/game/game-detail.component';
-import { GameService } from '../../../../../../main/webapp/app/entities/game/game.service';
-import { Game } from '../../../../../../main/webapp/app/entities/game/game.model';
+import {TennisTestModule} from "../../../test.module";
+import {GameDetailComponent} from "../../../../../../main/webapp/app/entities/game/game-detail.component";
+import {GameService} from "../../../../../../main/webapp/app/entities/game/game.service";
+import {Game} from "../../../../../../main/webapp/app/entities/game/game.model";
 
 describe('Component Tests', () => {
 

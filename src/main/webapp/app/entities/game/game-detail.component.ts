@@ -1,11 +1,11 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
-import { HttpResponse } from '@angular/common/http';
-import { Subscription } from 'rxjs/Subscription';
-import { JhiEventManager } from 'ng-jhipster';
+import {Component, OnDestroy, OnInit} from "@angular/core";
+import {ActivatedRoute} from "@angular/router";
+import {HttpResponse} from "@angular/common/http";
+import {Subscription} from "rxjs/Subscription";
+import {JhiEventManager} from "ng-jhipster";
 
-import { Game } from './game.model';
-import { GameService } from './game.service';
+import {Game} from "./game.model";
+import {GameService} from "./game.service";
 
 @Component({
     selector: 'jhi-game-detail',

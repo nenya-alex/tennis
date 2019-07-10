@@ -1,10 +1,10 @@
-import { ComponentFixture, TestBed, async, inject, tick, fakeAsync } from '@angular/core/testing';
-import { Observable } from 'rxjs/Observable';
+import {async, ComponentFixture, fakeAsync, inject, TestBed, tick} from "@angular/core/testing";
+import {Observable} from "rxjs/Observable";
 
-import { TennisTestModule } from '../../../test.module';
-import { EMAIL_ALREADY_USED_TYPE, LOGIN_ALREADY_USED_TYPE } from '../../../../../../main/webapp/app/shared';
-import { Register } from '../../../../../../main/webapp/app/account/register/register.service';
-import { RegisterComponent } from '../../../../../../main/webapp/app/account/register/register.component';
+import {TennisTestModule} from "../../../test.module";
+import {EMAIL_ALREADY_USED_TYPE, LOGIN_ALREADY_USED_TYPE} from "../../../../../../main/webapp/app/shared";
+import {Register} from "../../../../../../main/webapp/app/account/register/register.service";
+import {RegisterComponent} from "../../../../../../main/webapp/app/account/register/register.component";
 
 describe('Component Tests', () => {
 

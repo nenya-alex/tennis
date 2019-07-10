@@ -1,9 +1,9 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
-import { HttpResponse } from '@angular/common/http';
-import { ActivatedRoute, Router } from '@angular/router';
-import { JhiEventManager, JhiParseLinks, JhiAlertService } from 'ng-jhipster';
+import {Component, OnDestroy, OnInit} from "@angular/core";
+import {HttpResponse} from "@angular/common/http";
+import {ActivatedRoute, Router} from "@angular/router";
+import {JhiAlertService, JhiEventManager, JhiParseLinks} from "ng-jhipster";
 
-import { ITEMS_PER_PAGE, Principal, User, UserService } from '../../shared';
+import {ITEMS_PER_PAGE, Principal, User, UserService} from "../../shared";
 
 @Component({
     selector: 'jhi-user-mgmt',

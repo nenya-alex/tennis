@@ -1,12 +1,10 @@
 package ua.tennis.service.dto;
 
-import ua.tennis.config.Constants;
-
-import ua.tennis.domain.Authority;
-import ua.tennis.domain.User;
-
 import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.NotBlank;
+import ua.tennis.config.Constants;
+import ua.tennis.domain.Authority;
+import ua.tennis.domain.User;
 
 import javax.validation.constraints.*;
 import java.time.Instant;

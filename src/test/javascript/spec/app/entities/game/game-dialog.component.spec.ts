@@ -1,15 +1,15 @@
 /* tslint:disable max-line-length */
-import { ComponentFixture, TestBed, async, inject, fakeAsync, tick } from '@angular/core/testing';
-import { HttpResponse } from '@angular/common/http';
-import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
-import { Observable } from 'rxjs/Observable';
-import { JhiEventManager } from 'ng-jhipster';
+import {async, ComponentFixture, fakeAsync, inject, TestBed, tick} from "@angular/core/testing";
+import {HttpResponse} from "@angular/common/http";
+import {NgbActiveModal} from "@ng-bootstrap/ng-bootstrap";
+import {Observable} from "rxjs/Observable";
+import {JhiEventManager} from "ng-jhipster";
 
-import { TennisTestModule } from '../../../test.module';
-import { GameDialogComponent } from '../../../../../../main/webapp/app/entities/game/game-dialog.component';
-import { GameService } from '../../../../../../main/webapp/app/entities/game/game.service';
-import { Game } from '../../../../../../main/webapp/app/entities/game/game.model';
-import { SettService } from '../../../../../../main/webapp/app/entities/sett';
+import {TennisTestModule} from "../../../test.module";
+import {GameDialogComponent} from "../../../../../../main/webapp/app/entities/game/game-dialog.component";
+import {GameService} from "../../../../../../main/webapp/app/entities/game/game.service";
+import {Game} from "../../../../../../main/webapp/app/entities/game/game.model";
+import {SettService} from "../../../../../../main/webapp/app/entities/sett";
 
 describe('Component Tests', () => {
 

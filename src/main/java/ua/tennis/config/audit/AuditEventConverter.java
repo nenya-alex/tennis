@@ -1,10 +1,9 @@
 package ua.tennis.config.audit;
 
-import ua.tennis.domain.PersistentAuditEvent;
-
 import org.springframework.boot.actuate.audit.AuditEvent;
 import org.springframework.security.web.authentication.WebAuthenticationDetails;
 import org.springframework.stereotype.Component;
+import ua.tennis.domain.PersistentAuditEvent;
 
 import java.util.*;
 

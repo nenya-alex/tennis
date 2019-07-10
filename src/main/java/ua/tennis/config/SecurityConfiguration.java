@@ -1,8 +1,5 @@
 package ua.tennis.config;
 
-import ua.tennis.security.*;
-import ua.tennis.security.jwt.*;
-
 import org.springframework.beans.factory.BeanInitializationException;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -21,6 +18,8 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.web.filter.CorsFilter;
 import org.zalando.problem.spring.web.advice.security.SecurityProblemSupport;
+import ua.tennis.security.*;
+import ua.tennis.security.jwt.*;
 
 import javax.annotation.PostConstruct;
 

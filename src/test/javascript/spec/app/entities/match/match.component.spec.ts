@@ -1,12 +1,12 @@
 /* tslint:disable max-line-length */
-import { ComponentFixture, TestBed, async } from '@angular/core/testing';
-import { Observable } from 'rxjs/Observable';
-import { HttpHeaders, HttpResponse } from '@angular/common/http';
+import {async, ComponentFixture, TestBed} from "@angular/core/testing";
+import {Observable} from "rxjs/Observable";
+import {HttpHeaders, HttpResponse} from "@angular/common/http";
 
-import { TennisTestModule } from '../../../test.module';
-import { MatchComponent } from '../../../../../../main/webapp/app/entities/match/match.component';
-import { MatchService } from '../../../../../../main/webapp/app/entities/match/match.service';
-import { Match } from '../../../../../../main/webapp/app/entities/match/match.model';
+import {TennisTestModule} from "../../../test.module";
+import {MatchComponent} from "../../../../../../main/webapp/app/entities/match/match.component";
+import {MatchService} from "../../../../../../main/webapp/app/entities/match/match.service";
+import {Match} from "../../../../../../main/webapp/app/entities/match/match.model";
 
 describe('Component Tests', () => {
 

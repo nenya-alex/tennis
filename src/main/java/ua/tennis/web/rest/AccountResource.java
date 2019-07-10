@@ -1,7 +1,11 @@
 package ua.tennis.web.rest;
 
 import com.codahale.metrics.annotation.Timed;
-
+import org.apache.commons.lang3.StringUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.*;
 import ua.tennis.domain.User;
 import ua.tennis.repository.UserRepository;
 import ua.tennis.security.SecurityUtils;
@@ -12,15 +16,9 @@ import ua.tennis.web.rest.errors.*;
 import ua.tennis.web.rest.vm.KeyAndPasswordVM;
 import ua.tennis.web.rest.vm.ManagedUserVM;
 
-import org.apache.commons.lang3.StringUtils;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.springframework.http.HttpStatus;
-import org.springframework.web.bind.annotation.*;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
-import java.util.*;
+import java.util.Optional;
 
 /**
  * REST controller for managing the current user's account.

@@ -1,10 +1,10 @@
-import { Routes } from '@angular/router';
+import {Routes} from "@angular/router";
 
-import { UserRouteAccessService } from '../../shared';
-import { SetComponent } from './set.component';
-import { SetDetailComponent } from './set-detail.component';
-import { SetPopupComponent } from './set-dialog.component';
-import { SetDeletePopupComponent } from './set-delete-dialog.component';
+import {UserRouteAccessService} from "../../shared";
+import {SetComponent} from "./set.component";
+import {SetDetailComponent} from "./set-detail.component";
+import {SetPopupComponent} from "./set-dialog.component";
+import {SetDeletePopupComponent} from "./set-delete-dialog.component";
 
 export const setRoute: Routes = [
     {

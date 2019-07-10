@@ -1,12 +1,12 @@
-import { Injectable } from '@angular/core';
-import { HttpClient, HttpResponse } from '@angular/common/http';
-import { Observable } from 'rxjs/Observable';
-import { SERVER_API_URL } from '../../app.constants';
+import {Injectable} from "@angular/core";
+import {HttpClient, HttpResponse} from "@angular/common/http";
+import {Observable} from "rxjs/Observable";
+import {SERVER_API_URL} from "../../app.constants";
 
-import { JhiDateUtils } from 'ng-jhipster';
+import {JhiDateUtils} from "ng-jhipster";
 
-import { Match } from './match.model';
-import { createRequestOption } from '../../shared';
+import {Match} from "./match.model";
+import {createRequestOption} from "../../shared";
 
 export type EntityResponseType = HttpResponse<Match>;
 

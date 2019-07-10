@@ -1,15 +1,15 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
-import { HttpResponse, HttpErrorResponse } from '@angular/common/http';
+import {Component, OnDestroy, OnInit} from "@angular/core";
+import {ActivatedRoute} from "@angular/router";
+import {HttpErrorResponse, HttpResponse} from "@angular/common/http";
 
-import { Observable } from 'rxjs/Observable';
-import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
-import { JhiEventManager, JhiAlertService } from 'ng-jhipster';
+import {Observable} from "rxjs/Observable";
+import {NgbActiveModal} from "@ng-bootstrap/ng-bootstrap";
+import {JhiAlertService, JhiEventManager} from "ng-jhipster";
 
-import { Sett } from './sett.model';
-import { SettPopupService } from './sett-popup.service';
-import { SettService } from './sett.service';
-import { Match, MatchService } from '../match';
+import {Sett} from "./sett.model";
+import {SettPopupService} from "./sett-popup.service";
+import {SettService} from "./sett.service";
+import {Match, MatchService} from "../match";
 
 @Component({
     selector: 'jhi-sett-dialog',

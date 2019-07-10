@@ -1,10 +1,5 @@
 package ua.tennis.web.rest;
 
-import ua.tennis.TennisApp;
-import ua.tennis.config.audit.AuditEventConverter;
-import ua.tennis.domain.PersistentAuditEvent;
-import ua.tennis.repository.PersistenceAuditEventRepository;
-import ua.tennis.service.AuditEventService;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -19,9 +14,13 @@ import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.transaction.annotation.Transactional;
+import ua.tennis.TennisApp;
+import ua.tennis.config.audit.AuditEventConverter;
+import ua.tennis.domain.PersistentAuditEvent;
+import ua.tennis.repository.PersistenceAuditEventRepository;
+import ua.tennis.service.AuditEventService;
 
 import java.time.Instant;
-import java.time.format.DateTimeFormatter;
 
 import static org.hamcrest.Matchers.hasItem;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;

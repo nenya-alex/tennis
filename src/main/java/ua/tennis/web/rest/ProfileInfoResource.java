@@ -1,11 +1,9 @@
 package ua.tennis.web.rest;
 
-import ua.tennis.config.DefaultProfileUtil;
-
 import io.github.jhipster.config.JHipsterProperties;
-
 import org.springframework.core.env.Environment;
 import org.springframework.web.bind.annotation.*;
+import ua.tennis.config.DefaultProfileUtil;
 
 import java.util.ArrayList;
 import java.util.Arrays;

@@ -1,9 +1,8 @@
 package ua.tennis.repository;
 
-import ua.tennis.domain.Game;
-import org.springframework.stereotype.Repository;
-
 import org.springframework.data.jpa.repository.*;
+import org.springframework.stereotype.Repository;
+import ua.tennis.domain.Game;
 
 
 /**

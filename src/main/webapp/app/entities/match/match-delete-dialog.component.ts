@@ -1,12 +1,12 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import {Component, OnDestroy, OnInit} from "@angular/core";
+import {ActivatedRoute} from "@angular/router";
 
-import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
-import { JhiEventManager } from 'ng-jhipster';
+import {NgbActiveModal} from "@ng-bootstrap/ng-bootstrap";
+import {JhiEventManager} from "ng-jhipster";
 
-import { Match } from './match.model';
-import { MatchPopupService } from './match-popup.service';
-import { MatchService } from './match.service';
+import {Match} from "./match.model";
+import {MatchPopupService} from "./match-popup.service";
+import {MatchService} from "./match.service";
 
 @Component({
     selector: 'jhi-match-delete-dialog',

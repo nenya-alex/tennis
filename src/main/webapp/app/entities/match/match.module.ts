@@ -1,19 +1,19 @@
-import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
-import { RouterModule } from '@angular/router';
+import {CUSTOM_ELEMENTS_SCHEMA, NgModule} from "@angular/core";
+import {RouterModule} from "@angular/router";
 
-import { TennisSharedModule } from '../../shared';
+import {TennisSharedModule} from "../../shared";
 import {
-    MatchService,
-    MatchPopupService,
     MatchComponent,
+    MatchDeleteDialogComponent,
+    MatchDeletePopupComponent,
     MatchDetailComponent,
     MatchDialogComponent,
     MatchPopupComponent,
-    MatchDeletePopupComponent,
-    MatchDeleteDialogComponent,
-    matchRoute,
     matchPopupRoute,
-} from './';
+    MatchPopupService,
+    matchRoute,
+    MatchService
+} from "./";
 
 const ENTITY_STATES = [
     ...matchRoute,

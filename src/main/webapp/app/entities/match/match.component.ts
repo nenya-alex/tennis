@@ -1,11 +1,11 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
-import { HttpResponse, HttpErrorResponse } from '@angular/common/http';
-import { Subscription } from 'rxjs/Subscription';
-import { JhiEventManager, JhiAlertService } from 'ng-jhipster';
+import {Component, OnDestroy, OnInit} from "@angular/core";
+import {HttpErrorResponse, HttpResponse} from "@angular/common/http";
+import {Subscription} from "rxjs/Subscription";
+import {JhiAlertService, JhiEventManager} from "ng-jhipster";
 
-import { Match } from './match.model';
-import { MatchService } from './match.service';
-import { Principal } from '../../shared';
+import {Match} from "./match.model";
+import {MatchService} from "./match.service";
+import {Principal} from "../../shared";
 
 @Component({
     selector: 'jhi-match',

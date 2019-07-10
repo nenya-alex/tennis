@@ -1,8 +1,5 @@
 package ua.tennis.web.rest;
 
-import ua.tennis.service.AuditEventService;
-import ua.tennis.web.rest.util.PaginationUtil;
-
 import io.github.jhipster.web.util.ResponseUtil;
 import org.springframework.boot.actuate.audit.AuditEvent;
 import org.springframework.data.domain.Page;
@@ -11,6 +8,8 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import ua.tennis.service.AuditEventService;
+import ua.tennis.web.rest.util.PaginationUtil;
 
 import java.time.LocalDate;
 import java.time.ZoneId;

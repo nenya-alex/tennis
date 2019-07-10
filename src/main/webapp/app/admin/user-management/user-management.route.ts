@@ -1,14 +1,14 @@
-import { Injectable } from '@angular/core';
-import { Resolve, ActivatedRouteSnapshot, RouterStateSnapshot, Routes, CanActivate } from '@angular/router';
+import {Injectable} from "@angular/core";
+import {ActivatedRouteSnapshot, CanActivate, Resolve, RouterStateSnapshot, Routes} from "@angular/router";
 
-import { JhiPaginationUtil } from 'ng-jhipster';
+import {JhiPaginationUtil} from "ng-jhipster";
 
-import { UserMgmtComponent } from './user-management.component';
-import { UserMgmtDetailComponent } from './user-management-detail.component';
-import { UserDialogComponent } from './user-management-dialog.component';
-import { UserDeleteDialogComponent } from './user-management-delete-dialog.component';
+import {UserMgmtComponent} from "./user-management.component";
+import {UserMgmtDetailComponent} from "./user-management-detail.component";
+import {UserDialogComponent} from "./user-management-dialog.component";
+import {UserDeleteDialogComponent} from "./user-management-delete-dialog.component";
 
-import { Principal } from '../../shared';
+import {Principal} from "../../shared";
 
 @Injectable()
 export class UserResolve implements CanActivate {

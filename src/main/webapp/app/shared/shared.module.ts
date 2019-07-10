@@ -1,20 +1,20 @@
-import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
-import { DatePipe } from '@angular/common';
+import {CUSTOM_ELEMENTS_SCHEMA, NgModule} from "@angular/core";
+import {DatePipe} from "@angular/common";
 
 import {
-    TennisSharedLibsModule,
-    TennisSharedCommonModule,
-    CSRFService,
-    AuthServerProvider,
     AccountService,
-    UserService,
-    StateStorageService,
-    LoginService,
-    LoginModalService,
-    JhiLoginModalComponent,
-    Principal,
+    AuthServerProvider,
+    CSRFService,
     HasAnyAuthorityDirective,
-} from './';
+    JhiLoginModalComponent,
+    LoginModalService,
+    LoginService,
+    Principal,
+    StateStorageService,
+    TennisSharedCommonModule,
+    TennisSharedLibsModule,
+    UserService
+} from "./";
 
 @NgModule({
     imports: [

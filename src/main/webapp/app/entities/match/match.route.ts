@@ -1,10 +1,10 @@
-import { Routes } from '@angular/router';
+import {Routes} from "@angular/router";
 
-import { UserRouteAccessService } from '../../shared';
-import { MatchComponent } from './match.component';
-import { MatchDetailComponent } from './match-detail.component';
-import { MatchPopupComponent } from './match-dialog.component';
-import { MatchDeletePopupComponent } from './match-delete-dialog.component';
+import {UserRouteAccessService} from "../../shared";
+import {MatchComponent} from "./match.component";
+import {MatchDetailComponent} from "./match-detail.component";
+import {MatchPopupComponent} from "./match-dialog.component";
+import {MatchDeletePopupComponent} from "./match-delete-dialog.component";
 
 export const matchRoute: Routes = [
     {

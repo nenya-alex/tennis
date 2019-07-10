@@ -1,6 +1,5 @@
 package ua.tennis.security.jwt;
 
-import ua.tennis.security.AuthoritiesConstants;
 import io.github.jhipster.config.JHipsterProperties;
 import org.junit.Before;
 import org.junit.Test;
@@ -12,6 +11,7 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.test.util.ReflectionTestUtils;
+import ua.tennis.security.AuthoritiesConstants;
 
 import java.util.Collections;
 

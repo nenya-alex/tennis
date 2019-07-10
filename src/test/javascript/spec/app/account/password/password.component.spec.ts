@@ -1,12 +1,12 @@
-import { ComponentFixture, TestBed, async } from '@angular/core/testing';
-import { HttpResponse } from '@angular/common/http';
-import { Observable } from 'rxjs/Observable';
+import {async, ComponentFixture, TestBed} from "@angular/core/testing";
+import {HttpResponse} from "@angular/common/http";
+import {Observable} from "rxjs/Observable";
 
-import { TennisTestModule } from '../../../test.module';
-import { PasswordComponent } from '../../../../../../main/webapp/app/account/password/password.component';
-import { PasswordService } from '../../../../../../main/webapp/app/account/password/password.service';
-import { Principal } from '../../../../../../main/webapp/app/shared/auth/principal.service';
-import { AccountService } from '../../../../../../main/webapp/app/shared/auth/account.service';
+import {TennisTestModule} from "../../../test.module";
+import {PasswordComponent} from "../../../../../../main/webapp/app/account/password/password.component";
+import {PasswordService} from "../../../../../../main/webapp/app/account/password/password.service";
+import {Principal} from "../../../../../../main/webapp/app/shared/auth/principal.service";
+import {AccountService} from "../../../../../../main/webapp/app/shared/auth/account.service";
 
 describe('Component Tests', () => {
 

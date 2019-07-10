@@ -1,14 +1,5 @@
 package ua.tennis.web.rest;
 
-import ua.tennis.TennisApp;
-
-import ua.tennis.domain.Match;
-import ua.tennis.repository.MatchRepository;
-import ua.tennis.service.MatchService;
-import ua.tennis.service.dto.MatchDTO;
-import ua.tennis.service.mapper.MatchMapper;
-import ua.tennis.web.rest.errors.ExceptionTranslator;
-
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -22,17 +13,24 @@ import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.transaction.annotation.Transactional;
+import ua.tennis.TennisApp;
+import ua.tennis.domain.Match;
+import ua.tennis.repository.MatchRepository;
+import ua.tennis.service.MatchService;
+import ua.tennis.service.dto.MatchDTO;
+import ua.tennis.service.mapper.MatchMapper;
+import ua.tennis.web.rest.errors.ExceptionTranslator;
 
 import javax.persistence.EntityManager;
 import java.time.Instant;
 import java.time.temporal.ChronoUnit;
 import java.util.List;
 
-import static ua.tennis.web.rest.TestUtil.createFormattingConversionService;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.hamcrest.Matchers.hasItem;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
+import static ua.tennis.web.rest.TestUtil.createFormattingConversionService;
 
 /**
  * Test class for the MatchResource REST controller.

@@ -1,9 +1,8 @@
 package ua.tennis.security;
 
-import ua.tennis.config.Constants;
-
 import org.springframework.data.domain.AuditorAware;
 import org.springframework.stereotype.Component;
+import ua.tennis.config.Constants;
 
 /**
  * Implementation of AuditorAware based on Spring Security.

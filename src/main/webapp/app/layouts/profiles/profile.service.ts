@@ -1,8 +1,8 @@
-import { Injectable } from '@angular/core';
-import { HttpClient, HttpResponse } from '@angular/common/http';
+import {Injectable} from "@angular/core";
+import {HttpClient, HttpResponse} from "@angular/common/http";
 
-import { SERVER_API_URL } from '../../app.constants';
-import { ProfileInfo } from './profile-info.model';
+import {SERVER_API_URL} from "../../app.constants";
+import {ProfileInfo} from "./profile-info.model";
 
 @Injectable()
 export class ProfileService {

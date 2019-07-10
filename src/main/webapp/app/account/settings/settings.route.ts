@@ -1,7 +1,7 @@
-import { Route } from '@angular/router';
+import {Route} from "@angular/router";
 
-import { UserRouteAccessService } from '../../shared';
-import { SettingsComponent } from './settings.component';
+import {UserRouteAccessService} from "../../shared";
+import {SettingsComponent} from "./settings.component";
 
 export const settingsRoute: Route = {
     path: 'settings',

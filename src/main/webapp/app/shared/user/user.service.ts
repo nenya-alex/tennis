@@ -1,10 +1,10 @@
-import { Injectable } from '@angular/core';
-import { HttpClient, HttpResponse } from '@angular/common/http';
-import { Observable } from 'rxjs/Observable';
+import {Injectable} from "@angular/core";
+import {HttpClient, HttpResponse} from "@angular/common/http";
+import {Observable} from "rxjs/Observable";
 
-import { SERVER_API_URL } from '../../app.constants';
-import { User } from './user.model';
-import { createRequestOption } from '../model/request-util';
+import {SERVER_API_URL} from "../../app.constants";
+import {User} from "./user.model";
+import {createRequestOption} from "../model/request-util";
 
 @Injectable()
 export class UserService {

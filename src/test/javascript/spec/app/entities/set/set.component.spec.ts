@@ -1,12 +1,12 @@
 /* tslint:disable max-line-length */
-import { ComponentFixture, TestBed, async } from '@angular/core/testing';
-import { Observable } from 'rxjs/Observable';
-import { HttpHeaders, HttpResponse } from '@angular/common/http';
+import {async, ComponentFixture, TestBed} from "@angular/core/testing";
+import {Observable} from "rxjs/Observable";
+import {HttpHeaders, HttpResponse} from "@angular/common/http";
 
-import { TennisTestModule } from '../../../test.module';
-import { SetComponent } from '../../../../../../main/webapp/app/entities/set/set.component';
-import { SetService } from '../../../../../../main/webapp/app/entities/set/set.service';
-import { Set } from '../../../../../../main/webapp/app/entities/set/set.model';
+import {TennisTestModule} from "../../../test.module";
+import {SetComponent} from "../../../../../../main/webapp/app/entities/set/set.component";
+import {SetService} from "../../../../../../main/webapp/app/entities/set/set.service";
+import {Set} from "../../../../../../main/webapp/app/entities/set/set.model";
 
 describe('Component Tests', () => {
 
