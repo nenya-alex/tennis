@@ -15,6 +15,7 @@ public class ProbabilityService {
         Game game = new Game().awayProbability(1.0).homeProbability(0.7);
         Sett set = new Sett().addGame(game).awayScore(1).homeScore(2).awayProbability(0.5)
             .homeProbability(0.33);
+
         result.add(set);
         return result;
     }
