@@ -141,3 +141,6 @@ Desktop.ini
 # ESLint
 ######################
 .eslintcache
+.idea
+.gradle
+.jhipster
