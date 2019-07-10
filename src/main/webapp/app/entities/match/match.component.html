@@ -23,6 +23,8 @@
             <th><span>Home Score</span></th>
             <th><span>Away Score</span></th>
             <th><span>Start Date</span></th>
+            <th><span>Name</span></th>
+            <th><span>Open Date</span></th>
             <th></th>
             </tr>
             </thead>
@@ -35,6 +37,8 @@
                 <td>{{match.homeScore}}</td>
                 <td>{{match.awayScore}}</td>
                 <td>{{match.startDate | date:'medium'}}</td>
+                <td>{{match.name}}</td>
+                <td>{{match.openDate | date:'medium'}}</td>
                 <td class="text-right">
                     <div class="btn-group flex-btn-group-container">
                         <button type="submit"

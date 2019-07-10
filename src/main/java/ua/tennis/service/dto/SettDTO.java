@@ -2,7 +2,6 @@ package ua.tennis.service.dto;
 
 
 import java.io.Serializable;
-import java.math.BigDecimal;
 import java.util.HashSet;
 import java.util.Set;
 import java.util.Objects;
@@ -18,9 +17,9 @@ public class SettDTO implements Serializable {
 
     private Integer awayScore;
 
-    private BigDecimal probabilityHome;
+    private Double homeProbability;
 
-    private BigDecimal probabilityAway;
+    private Double awayProbability;
 
     private Long matchId;
 
@@ -48,20 +47,20 @@ public class SettDTO implements Serializable {
         this.awayScore = awayScore;
     }
 
-    public BigDecimal getProbabilityHome() {
-        return probabilityHome;
+    public Double getHomeProbability() {
+        return homeProbability;
     }
 
-    public void setProbabilityHome(BigDecimal probabilityHome) {
-        this.probabilityHome = probabilityHome;
+    public void setHomeProbability(Double homeProbability) {
+        this.homeProbability = homeProbability;
     }
 
-    public BigDecimal getProbabilityAway() {
-        return probabilityAway;
+    public Double getAwayProbability() {
+        return awayProbability;
     }
 
-    public void setProbabilityAway(BigDecimal probabilityAway) {
-        this.probabilityAway = probabilityAway;
+    public void setAwayProbability(Double awayProbability) {
+        this.awayProbability = awayProbability;
     }
 
     public Long getMatchId() {
@@ -99,8 +98,8 @@ public class SettDTO implements Serializable {
             "id=" + getId() +
             ", homeScore=" + getHomeScore() +
             ", awayScore=" + getAwayScore() +
-            ", probabilityHome=" + getProbabilityHome() +
-            ", probabilityAway=" + getProbabilityAway() +
+            ", homeProbability=" + getHomeProbability() +
+            ", awayProbability=" + getAwayProbability() +
             "}";
     }
 }

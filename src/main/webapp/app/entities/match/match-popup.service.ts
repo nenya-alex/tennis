@@ -33,6 +33,8 @@ export class MatchPopupService {
                         const match: Match = matchResponse.body;
                         match.startDate = this.datePipe
                             .transform(match.startDate, 'yyyy-MM-ddTHH:mm:ss');
+                        match.openDate = this.datePipe
+                            .transform(match.openDate, 'yyyy-MM-ddTHH:mm:ss');
                         this.ngbModalRef = this.matchModalRef(component, match);
                         resolve(this.ngbModalRef);
                     });

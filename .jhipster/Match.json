@@ -32,6 +32,14 @@
         {
             "fieldName": "startDate",
             "fieldType": "Instant"
+        },
+        {
+            "fieldName": "name",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "openDate",
+            "fieldType": "Instant"
         }
     ],
     "changelogDate": "20190609131945",

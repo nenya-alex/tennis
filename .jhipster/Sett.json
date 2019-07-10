@@ -24,12 +24,12 @@
             "fieldType": "Integer"
         },
         {
-            "fieldName": "probabilityHome",
-            "fieldType": "BigDecimal"
+            "fieldName": "homeProbability",
+            "fieldType": "Double"
         },
         {
-            "fieldName": "probabilityAway",
-            "fieldType": "BigDecimal"
+            "fieldName": "awayProbability",
+            "fieldType": "Double"
         }
     ],
     "changelogDate": "20190609135140",

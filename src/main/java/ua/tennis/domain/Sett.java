@@ -5,7 +5,6 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import javax.persistence.*;
 
 import java.io.Serializable;
-import java.math.BigDecimal;
 import java.util.HashSet;
 import java.util.Set;
 import java.util.Objects;
@@ -30,17 +29,17 @@ public class Sett implements Serializable {
     @Column(name = "away_score")
     private Integer awayScore;
 
-    @Column(name = "probability_home", precision=10, scale=2)
-    private BigDecimal probabilityHome;
+    @Column(name = "home_probability")
+    private Double homeProbability;
 
-    @Column(name = "probability_away", precision=10, scale=2)
-    private BigDecimal probabilityAway;
+    @Column(name = "away_probability")
+    private Double awayProbability;
 
     @OneToMany(mappedBy = "sett")
+    @JsonIgnore
     private Set<Game> games = new HashSet<>();
 
     @ManyToOne
-    @JsonIgnore
     private Match match;
 
     // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
@@ -78,30 +77,30 @@ public class Sett implements Serializable {
         this.awayScore = awayScore;
     }
 
-    public BigDecimal getProbabilityHome() {
-        return probabilityHome;
+    public Double getHomeProbability() {
+        return homeProbability;
     }
 
-    public Sett probabilityHome(BigDecimal probabilityHome) {
-        this.probabilityHome = probabilityHome;
+    public Sett homeProbability(Double homeProbability) {
+        this.homeProbability = homeProbability;
         return this;
     }
 
-    public void setProbabilityHome(BigDecimal probabilityHome) {
-        this.probabilityHome = probabilityHome;
+    public void setHomeProbability(Double homeProbability) {
+        this.homeProbability = homeProbability;
     }
 
-    public BigDecimal getProbabilityAway() {
-        return probabilityAway;
+    public Double getAwayProbability() {
+        return awayProbability;
     }
 
-    public Sett probabilityAway(BigDecimal probabilityAway) {
-        this.probabilityAway = probabilityAway;
+    public Sett awayProbability(Double awayProbability) {
+        this.awayProbability = awayProbability;
         return this;
     }
 
-    public void setProbabilityAway(BigDecimal probabilityAway) {
-        this.probabilityAway = probabilityAway;
+    public void setAwayProbability(Double awayProbability) {
+        this.awayProbability = awayProbability;
     }
 
     public Set<Game> getGames() {
@@ -169,8 +168,8 @@ public class Sett implements Serializable {
             "id=" + getId() +
             ", homeScore=" + getHomeScore() +
             ", awayScore=" + getAwayScore() +
-            ", probabilityHome=" + getProbabilityHome() +
-            ", probabilityAway=" + getProbabilityAway() +
+            ", homeProbability=" + getHomeProbability() +
+            ", awayProbability=" + getAwayProbability() +
             "}";
     }
 }

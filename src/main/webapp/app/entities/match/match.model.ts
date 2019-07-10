@@ -9,6 +9,8 @@ export class Match implements BaseEntity {
         public homeScore?: number,
         public awayScore?: number,
         public startDate?: any,
+        public name?: string,
+        public openDate?: any,
         public setts?: BaseEntity[],
     ) {
     }

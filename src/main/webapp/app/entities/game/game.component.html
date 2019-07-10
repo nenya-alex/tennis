@@ -17,8 +17,10 @@
             <thead>
             <tr>
             <th><span>ID</span></th>
-            <th><span>Probability Home</span></th>
-            <th><span>Probability Away</span></th>
+            <th><span>Home Score</span></th>
+            <th><span>Away Score</span></th>
+            <th><span>Home Probability</span></th>
+            <th><span>Away Probability</span></th>
             <th><span>Sett</span></th>
             <th></th>
             </tr>
@@ -26,8 +28,10 @@
             <tbody>
             <tr *ngFor="let game of games ;trackBy: trackId">
                 <td><a [routerLink]="['../game', game.id ]">{{game.id}}</a></td>
-                <td>{{game.probabilityHome}}</td>
-                <td>{{game.probabilityAway}}</td>
+                <td>{{game.homeScore}}</td>
+                <td>{{game.awayScore}}</td>
+                <td>{{game.homeProbability}}</td>
+                <td>{{game.awayProbability}}</td>
                 <td>
                     <div *ngIf="game.settId">
                         <a [routerLink]="['../sett', game.settId  ]" >{{game.settId}}</a>

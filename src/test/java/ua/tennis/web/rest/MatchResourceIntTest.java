@@ -61,6 +61,12 @@ public class MatchResourceIntTest {
     private static final Instant DEFAULT_START_DATE = Instant.ofEpochMilli(0L);
     private static final Instant UPDATED_START_DATE = Instant.now().truncatedTo(ChronoUnit.MILLIS);
 
+    private static final String DEFAULT_NAME = "AAAAAAAAAA";
+    private static final String UPDATED_NAME = "BBBBBBBBBB";
+
+    private static final Instant DEFAULT_OPEN_DATE = Instant.ofEpochMilli(0L);
+    private static final Instant UPDATED_OPEN_DATE = Instant.now().truncatedTo(ChronoUnit.MILLIS);
+
     @Autowired
     private MatchRepository matchRepository;
 
@@ -110,7 +116,9 @@ public class MatchResourceIntTest {
             .awayName(DEFAULT_AWAY_NAME)
             .homeScore(DEFAULT_HOME_SCORE)
             .awayScore(DEFAULT_AWAY_SCORE)
-            .startDate(DEFAULT_START_DATE);
+            .startDate(DEFAULT_START_DATE)
+            .name(DEFAULT_NAME)
+            .openDate(DEFAULT_OPEN_DATE);
         return match;
     }
 
@@ -141,6 +149,8 @@ public class MatchResourceIntTest {
         assertThat(testMatch.getHomeScore()).isEqualTo(DEFAULT_HOME_SCORE);
         assertThat(testMatch.getAwayScore()).isEqualTo(DEFAULT_AWAY_SCORE);
         assertThat(testMatch.getStartDate()).isEqualTo(DEFAULT_START_DATE);
+        assertThat(testMatch.getName()).isEqualTo(DEFAULT_NAME);
+        assertThat(testMatch.getOpenDate()).isEqualTo(DEFAULT_OPEN_DATE);
     }
 
     @Test
@@ -179,7 +189,9 @@ public class MatchResourceIntTest {
             .andExpect(jsonPath("$.[*].awayName").value(hasItem(DEFAULT_AWAY_NAME.toString())))
             .andExpect(jsonPath("$.[*].homeScore").value(hasItem(DEFAULT_HOME_SCORE)))
             .andExpect(jsonPath("$.[*].awayScore").value(hasItem(DEFAULT_AWAY_SCORE)))
-            .andExpect(jsonPath("$.[*].startDate").value(hasItem(DEFAULT_START_DATE.toString())));
+            .andExpect(jsonPath("$.[*].startDate").value(hasItem(DEFAULT_START_DATE.toString())))
+            .andExpect(jsonPath("$.[*].name").value(hasItem(DEFAULT_NAME.toString())))
+            .andExpect(jsonPath("$.[*].openDate").value(hasItem(DEFAULT_OPEN_DATE.toString())));
     }
 
     @Test
@@ -198,7 +210,9 @@ public class MatchResourceIntTest {
             .andExpect(jsonPath("$.awayName").value(DEFAULT_AWAY_NAME.toString()))
             .andExpect(jsonPath("$.homeScore").value(DEFAULT_HOME_SCORE))
             .andExpect(jsonPath("$.awayScore").value(DEFAULT_AWAY_SCORE))
-            .andExpect(jsonPath("$.startDate").value(DEFAULT_START_DATE.toString()));
+            .andExpect(jsonPath("$.startDate").value(DEFAULT_START_DATE.toString()))
+            .andExpect(jsonPath("$.name").value(DEFAULT_NAME.toString()))
+            .andExpect(jsonPath("$.openDate").value(DEFAULT_OPEN_DATE.toString()));
     }
 
     @Test
@@ -226,7 +240,9 @@ public class MatchResourceIntTest {
             .awayName(UPDATED_AWAY_NAME)
             .homeScore(UPDATED_HOME_SCORE)
             .awayScore(UPDATED_AWAY_SCORE)
-            .startDate(UPDATED_START_DATE);
+            .startDate(UPDATED_START_DATE)
+            .name(UPDATED_NAME)
+            .openDate(UPDATED_OPEN_DATE);
         MatchDTO matchDTO = matchMapper.toDto(updatedMatch);
 
         restMatchMockMvc.perform(put("/api/matches")
@@ -244,6 +260,8 @@ public class MatchResourceIntTest {
         assertThat(testMatch.getHomeScore()).isEqualTo(UPDATED_HOME_SCORE);
         assertThat(testMatch.getAwayScore()).isEqualTo(UPDATED_AWAY_SCORE);
         assertThat(testMatch.getStartDate()).isEqualTo(UPDATED_START_DATE);
+        assertThat(testMatch.getName()).isEqualTo(UPDATED_NAME);
+        assertThat(testMatch.getOpenDate()).isEqualTo(UPDATED_OPEN_DATE);
     }
 
     @Test

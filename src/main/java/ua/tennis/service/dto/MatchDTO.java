@@ -26,6 +26,10 @@ public class MatchDTO implements Serializable {
 
     private Instant startDate;
 
+    private String name;
+
+    private Instant openDate;
+
     public Long getId() {
         return id;
     }
@@ -82,6 +86,22 @@ public class MatchDTO implements Serializable {
         this.startDate = startDate;
     }
 
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public Instant getOpenDate() {
+        return openDate;
+    }
+
+    public void setOpenDate(Instant openDate) {
+        this.openDate = openDate;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) {
@@ -113,6 +133,8 @@ public class MatchDTO implements Serializable {
             ", homeScore=" + getHomeScore() +
             ", awayScore=" + getAwayScore() +
             ", startDate='" + getStartDate() + "'" +
+            ", name='" + getName() + "'" +
+            ", openDate='" + getOpenDate() + "'" +
             "}";
     }
 }

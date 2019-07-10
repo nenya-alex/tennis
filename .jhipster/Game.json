@@ -10,12 +10,20 @@
     ],
     "fields": [
         {
-            "fieldName": "probabilityHome",
-            "fieldType": "BigDecimal"
+            "fieldName": "homeScore",
+            "fieldType": "Integer"
         },
         {
-            "fieldName": "probabilityAway",
-            "fieldType": "BigDecimal"
+            "fieldName": "awayScore",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "homeProbability",
+            "fieldType": "Double"
+        },
+        {
+            "fieldName": "awayProbability",
+            "fieldType": "Double"
         }
     ],
     "changelogDate": "20190609120107",

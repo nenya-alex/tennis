@@ -24,7 +24,6 @@ import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityManager;
-import java.math.BigDecimal;
 import java.util.List;
 
 import static ua.tennis.web.rest.TestUtil.createFormattingConversionService;
@@ -48,11 +47,11 @@ public class SettResourceIntTest {
     private static final Integer DEFAULT_AWAY_SCORE = 1;
     private static final Integer UPDATED_AWAY_SCORE = 2;
 
-    private static final BigDecimal DEFAULT_PROBABILITY_HOME = new BigDecimal(1);
-    private static final BigDecimal UPDATED_PROBABILITY_HOME = new BigDecimal(2);
+    private static final Double DEFAULT_HOME_PROBABILITY = 1D;
+    private static final Double UPDATED_HOME_PROBABILITY = 2D;
 
-    private static final BigDecimal DEFAULT_PROBABILITY_AWAY = new BigDecimal(1);
-    private static final BigDecimal UPDATED_PROBABILITY_AWAY = new BigDecimal(2);
+    private static final Double DEFAULT_AWAY_PROBABILITY = 1D;
+    private static final Double UPDATED_AWAY_PROBABILITY = 2D;
 
     @Autowired
     private SettRepository settRepository;
@@ -100,8 +99,8 @@ public class SettResourceIntTest {
         Sett sett = new Sett()
             .homeScore(DEFAULT_HOME_SCORE)
             .awayScore(DEFAULT_AWAY_SCORE)
-            .probabilityHome(DEFAULT_PROBABILITY_HOME)
-            .probabilityAway(DEFAULT_PROBABILITY_AWAY);
+            .homeProbability(DEFAULT_HOME_PROBABILITY)
+            .awayProbability(DEFAULT_AWAY_PROBABILITY);
         return sett;
     }
 
@@ -128,8 +127,8 @@ public class SettResourceIntTest {
         Sett testSett = settList.get(settList.size() - 1);
         assertThat(testSett.getHomeScore()).isEqualTo(DEFAULT_HOME_SCORE);
         assertThat(testSett.getAwayScore()).isEqualTo(DEFAULT_AWAY_SCORE);
-        assertThat(testSett.getProbabilityHome()).isEqualTo(DEFAULT_PROBABILITY_HOME);
-        assertThat(testSett.getProbabilityAway()).isEqualTo(DEFAULT_PROBABILITY_AWAY);
+        assertThat(testSett.getHomeProbability()).isEqualTo(DEFAULT_HOME_PROBABILITY);
+        assertThat(testSett.getAwayProbability()).isEqualTo(DEFAULT_AWAY_PROBABILITY);
     }
 
     @Test
@@ -165,8 +164,8 @@ public class SettResourceIntTest {
             .andExpect(jsonPath("$.[*].id").value(hasItem(sett.getId().intValue())))
             .andExpect(jsonPath("$.[*].homeScore").value(hasItem(DEFAULT_HOME_SCORE)))
             .andExpect(jsonPath("$.[*].awayScore").value(hasItem(DEFAULT_AWAY_SCORE)))
-            .andExpect(jsonPath("$.[*].probabilityHome").value(hasItem(DEFAULT_PROBABILITY_HOME.intValue())))
-            .andExpect(jsonPath("$.[*].probabilityAway").value(hasItem(DEFAULT_PROBABILITY_AWAY.intValue())));
+            .andExpect(jsonPath("$.[*].homeProbability").value(hasItem(DEFAULT_HOME_PROBABILITY.doubleValue())))
+            .andExpect(jsonPath("$.[*].awayProbability").value(hasItem(DEFAULT_AWAY_PROBABILITY.doubleValue())));
     }
 
     @Test
@@ -182,8 +181,8 @@ public class SettResourceIntTest {
             .andExpect(jsonPath("$.id").value(sett.getId().intValue()))
             .andExpect(jsonPath("$.homeScore").value(DEFAULT_HOME_SCORE))
             .andExpect(jsonPath("$.awayScore").value(DEFAULT_AWAY_SCORE))
-            .andExpect(jsonPath("$.probabilityHome").value(DEFAULT_PROBABILITY_HOME.intValue()))
-            .andExpect(jsonPath("$.probabilityAway").value(DEFAULT_PROBABILITY_AWAY.intValue()));
+            .andExpect(jsonPath("$.homeProbability").value(DEFAULT_HOME_PROBABILITY.doubleValue()))
+            .andExpect(jsonPath("$.awayProbability").value(DEFAULT_AWAY_PROBABILITY.doubleValue()));
     }
 
     @Test
@@ -208,8 +207,8 @@ public class SettResourceIntTest {
         updatedSett
             .homeScore(UPDATED_HOME_SCORE)
             .awayScore(UPDATED_AWAY_SCORE)
-            .probabilityHome(UPDATED_PROBABILITY_HOME)
-            .probabilityAway(UPDATED_PROBABILITY_AWAY);
+            .homeProbability(UPDATED_HOME_PROBABILITY)
+            .awayProbability(UPDATED_AWAY_PROBABILITY);
         SettDTO settDTO = settMapper.toDto(updatedSett);
 
         restSettMockMvc.perform(put("/api/setts")
@@ -223,8 +222,8 @@ public class SettResourceIntTest {
         Sett testSett = settList.get(settList.size() - 1);
         assertThat(testSett.getHomeScore()).isEqualTo(UPDATED_HOME_SCORE);
         assertThat(testSett.getAwayScore()).isEqualTo(UPDATED_AWAY_SCORE);
-        assertThat(testSett.getProbabilityHome()).isEqualTo(UPDATED_PROBABILITY_HOME);
-        assertThat(testSett.getProbabilityAway()).isEqualTo(UPDATED_PROBABILITY_AWAY);
+        assertThat(testSett.getHomeProbability()).isEqualTo(UPDATED_HOME_PROBABILITY);
+        assertThat(testSett.getAwayProbability()).isEqualTo(UPDATED_AWAY_PROBABILITY);
     }
 
     @Test

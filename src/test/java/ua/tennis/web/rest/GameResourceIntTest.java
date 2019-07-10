@@ -24,7 +24,6 @@ import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityManager;
-import java.math.BigDecimal;
 import java.util.List;
 
 import static ua.tennis.web.rest.TestUtil.createFormattingConversionService;
@@ -42,11 +41,17 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @SpringBootTest(classes = TennisApp.class)
 public class GameResourceIntTest {
 
-    private static final BigDecimal DEFAULT_PROBABILITY_HOME = new BigDecimal(1);
-    private static final BigDecimal UPDATED_PROBABILITY_HOME = new BigDecimal(2);
+    private static final Integer DEFAULT_HOME_SCORE = 1;
+    private static final Integer UPDATED_HOME_SCORE = 2;
 
-    private static final BigDecimal DEFAULT_PROBABILITY_AWAY = new BigDecimal(1);
-    private static final BigDecimal UPDATED_PROBABILITY_AWAY = new BigDecimal(2);
+    private static final Integer DEFAULT_AWAY_SCORE = 1;
+    private static final Integer UPDATED_AWAY_SCORE = 2;
+
+    private static final Double DEFAULT_HOME_PROBABILITY = 1D;
+    private static final Double UPDATED_HOME_PROBABILITY = 2D;
+
+    private static final Double DEFAULT_AWAY_PROBABILITY = 1D;
+    private static final Double UPDATED_AWAY_PROBABILITY = 2D;
 
     @Autowired
     private GameRepository gameRepository;
@@ -92,8 +97,10 @@ public class GameResourceIntTest {
      */
     public static Game createEntity(EntityManager em) {
         Game game = new Game()
-            .probabilityHome(DEFAULT_PROBABILITY_HOME)
-            .probabilityAway(DEFAULT_PROBABILITY_AWAY);
+            .homeScore(DEFAULT_HOME_SCORE)
+            .awayScore(DEFAULT_AWAY_SCORE)
+            .homeProbability(DEFAULT_HOME_PROBABILITY)
+            .awayProbability(DEFAULT_AWAY_PROBABILITY);
         return game;
     }
 
@@ -118,8 +125,10 @@ public class GameResourceIntTest {
         List<Game> gameList = gameRepository.findAll();
         assertThat(gameList).hasSize(databaseSizeBeforeCreate + 1);
         Game testGame = gameList.get(gameList.size() - 1);
-        assertThat(testGame.getProbabilityHome()).isEqualTo(DEFAULT_PROBABILITY_HOME);
-        assertThat(testGame.getProbabilityAway()).isEqualTo(DEFAULT_PROBABILITY_AWAY);
+        assertThat(testGame.getHomeScore()).isEqualTo(DEFAULT_HOME_SCORE);
+        assertThat(testGame.getAwayScore()).isEqualTo(DEFAULT_AWAY_SCORE);
+        assertThat(testGame.getHomeProbability()).isEqualTo(DEFAULT_HOME_PROBABILITY);
+        assertThat(testGame.getAwayProbability()).isEqualTo(DEFAULT_AWAY_PROBABILITY);
     }
 
     @Test
@@ -153,8 +162,10 @@ public class GameResourceIntTest {
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
             .andExpect(jsonPath("$.[*].id").value(hasItem(game.getId().intValue())))
-            .andExpect(jsonPath("$.[*].probabilityHome").value(hasItem(DEFAULT_PROBABILITY_HOME.intValue())))
-            .andExpect(jsonPath("$.[*].probabilityAway").value(hasItem(DEFAULT_PROBABILITY_AWAY.intValue())));
+            .andExpect(jsonPath("$.[*].homeScore").value(hasItem(DEFAULT_HOME_SCORE)))
+            .andExpect(jsonPath("$.[*].awayScore").value(hasItem(DEFAULT_AWAY_SCORE)))
+            .andExpect(jsonPath("$.[*].homeProbability").value(hasItem(DEFAULT_HOME_PROBABILITY.doubleValue())))
+            .andExpect(jsonPath("$.[*].awayProbability").value(hasItem(DEFAULT_AWAY_PROBABILITY.doubleValue())));
     }
 
     @Test
@@ -168,8 +179,10 @@ public class GameResourceIntTest {
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
             .andExpect(jsonPath("$.id").value(game.getId().intValue()))
-            .andExpect(jsonPath("$.probabilityHome").value(DEFAULT_PROBABILITY_HOME.intValue()))
-            .andExpect(jsonPath("$.probabilityAway").value(DEFAULT_PROBABILITY_AWAY.intValue()));
+            .andExpect(jsonPath("$.homeScore").value(DEFAULT_HOME_SCORE))
+            .andExpect(jsonPath("$.awayScore").value(DEFAULT_AWAY_SCORE))
+            .andExpect(jsonPath("$.homeProbability").value(DEFAULT_HOME_PROBABILITY.doubleValue()))
+            .andExpect(jsonPath("$.awayProbability").value(DEFAULT_AWAY_PROBABILITY.doubleValue()));
     }
 
     @Test
@@ -192,8 +205,10 @@ public class GameResourceIntTest {
         // Disconnect from session so that the updates on updatedGame are not directly saved in db
         em.detach(updatedGame);
         updatedGame
-            .probabilityHome(UPDATED_PROBABILITY_HOME)
-            .probabilityAway(UPDATED_PROBABILITY_AWAY);
+            .homeScore(UPDATED_HOME_SCORE)
+            .awayScore(UPDATED_AWAY_SCORE)
+            .homeProbability(UPDATED_HOME_PROBABILITY)
+            .awayProbability(UPDATED_AWAY_PROBABILITY);
         GameDTO gameDTO = gameMapper.toDto(updatedGame);
 
         restGameMockMvc.perform(put("/api/games")
@@ -205,8 +220,10 @@ public class GameResourceIntTest {
         List<Game> gameList = gameRepository.findAll();
         assertThat(gameList).hasSize(databaseSizeBeforeUpdate);
         Game testGame = gameList.get(gameList.size() - 1);
-        assertThat(testGame.getProbabilityHome()).isEqualTo(UPDATED_PROBABILITY_HOME);
-        assertThat(testGame.getProbabilityAway()).isEqualTo(UPDATED_PROBABILITY_AWAY);
+        assertThat(testGame.getHomeScore()).isEqualTo(UPDATED_HOME_SCORE);
+        assertThat(testGame.getAwayScore()).isEqualTo(UPDATED_AWAY_SCORE);
+        assertThat(testGame.getHomeProbability()).isEqualTo(UPDATED_HOME_PROBABILITY);
+        assertThat(testGame.getAwayProbability()).isEqualTo(UPDATED_AWAY_PROBABILITY);
     }
 
     @Test

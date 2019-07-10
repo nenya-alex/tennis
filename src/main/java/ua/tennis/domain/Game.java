@@ -1,12 +1,9 @@
 package ua.tennis.domain;
 
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-
 import javax.persistence.*;
 
 import java.io.Serializable;
-import java.math.BigDecimal;
 import java.util.Objects;
 
 /**
@@ -23,14 +20,19 @@ public class Game implements Serializable {
     @SequenceGenerator(name = "sequenceGenerator")
     private Long id;
 
-    @Column(name = "probability_home", precision=10, scale=2)
-    private BigDecimal probabilityHome;
+    @Column(name = "home_score")
+    private Integer homeScore;
 
-    @Column(name = "probability_away", precision=10, scale=2)
-    private BigDecimal probabilityAway;
+    @Column(name = "away_score")
+    private Integer awayScore;
+
+    @Column(name = "home_probability")
+    private Double homeProbability;
+
+    @Column(name = "away_probability")
+    private Double awayProbability;
 
     @ManyToOne
-    @JsonIgnore
     private Sett sett;
 
     // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
@@ -42,30 +44,56 @@ public class Game implements Serializable {
         this.id = id;
     }
 
-    public BigDecimal getProbabilityHome() {
-        return probabilityHome;
+    public Integer getHomeScore() {
+        return homeScore;
     }
 
-    public Game probabilityHome(BigDecimal probabilityHome) {
-        this.probabilityHome = probabilityHome;
+    public Game homeScore(Integer homeScore) {
+        this.homeScore = homeScore;
         return this;
     }
 
-    public void setProbabilityHome(BigDecimal probabilityHome) {
-        this.probabilityHome = probabilityHome;
+    public void setHomeScore(Integer homeScore) {
+        this.homeScore = homeScore;
     }
 
-    public BigDecimal getProbabilityAway() {
-        return probabilityAway;
+    public Integer getAwayScore() {
+        return awayScore;
     }
 
-    public Game probabilityAway(BigDecimal probabilityAway) {
-        this.probabilityAway = probabilityAway;
+    public Game awayScore(Integer awayScore) {
+        this.awayScore = awayScore;
         return this;
     }
 
-    public void setProbabilityAway(BigDecimal probabilityAway) {
-        this.probabilityAway = probabilityAway;
+    public void setAwayScore(Integer awayScore) {
+        this.awayScore = awayScore;
+    }
+
+    public Double getHomeProbability() {
+        return homeProbability;
+    }
+
+    public Game homeProbability(Double homeProbability) {
+        this.homeProbability = homeProbability;
+        return this;
+    }
+
+    public void setHomeProbability(Double homeProbability) {
+        this.homeProbability = homeProbability;
+    }
+
+    public Double getAwayProbability() {
+        return awayProbability;
+    }
+
+    public Game awayProbability(Double awayProbability) {
+        this.awayProbability = awayProbability;
+        return this;
+    }
+
+    public void setAwayProbability(Double awayProbability) {
+        this.awayProbability = awayProbability;
     }
 
     public Sett getSett() {
@@ -106,8 +134,10 @@ public class Game implements Serializable {
     public String toString() {
         return "Game{" +
             "id=" + getId() +
-            ", probabilityHome=" + getProbabilityHome() +
-            ", probabilityAway=" + getProbabilityAway() +
+            ", homeScore=" + getHomeScore() +
+            ", awayScore=" + getAwayScore() +
+            ", homeProbability=" + getHomeProbability() +
+            ", awayProbability=" + getAwayProbability() +
             "}";
     }
 }

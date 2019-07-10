@@ -42,6 +42,12 @@ public class Match implements Serializable {
     @Column(name = "start_date")
     private Instant startDate;
 
+    @Column(name = "name")
+    private String name;
+
+    @Column(name = "open_date")
+    private Instant openDate;
+
     @OneToMany(mappedBy = "match")
     @JsonIgnore
     private Set<Sett> setts = new HashSet<>();
@@ -133,6 +139,32 @@ public class Match implements Serializable {
         this.startDate = startDate;
     }
 
+    public String getName() {
+        return name;
+    }
+
+    public Match name(String name) {
+        this.name = name;
+        return this;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public Instant getOpenDate() {
+        return openDate;
+    }
+
+    public Match openDate(Instant openDate) {
+        this.openDate = openDate;
+        return this;
+    }
+
+    public void setOpenDate(Instant openDate) {
+        this.openDate = openDate;
+    }
+
     public Set<Sett> getSetts() {
         return setts;
     }
@@ -189,6 +221,8 @@ public class Match implements Serializable {
             ", homeScore=" + getHomeScore() +
             ", awayScore=" + getAwayScore() +
             ", startDate='" + getStartDate() + "'" +
+            ", name='" + getName() + "'" +
+            ", openDate='" + getOpenDate() + "'" +
             "}";
     }
 }

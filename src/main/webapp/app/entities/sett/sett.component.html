@@ -19,8 +19,8 @@
             <th><span>ID</span></th>
             <th><span>Home Score</span></th>
             <th><span>Away Score</span></th>
-            <th><span>Probability Home</span></th>
-            <th><span>Probability Away</span></th>
+            <th><span>Home Probability</span></th>
+            <th><span>Away Probability</span></th>
             <th><span>Match</span></th>
             <th></th>
             </tr>
@@ -30,8 +30,8 @@
                 <td><a [routerLink]="['../sett', sett.id ]">{{sett.id}}</a></td>
                 <td>{{sett.homeScore}}</td>
                 <td>{{sett.awayScore}}</td>
-                <td>{{sett.probabilityHome}}</td>
-                <td>{{sett.probabilityAway}}</td>
+                <td>{{sett.homeProbability}}</td>
+                <td>{{sett.awayProbability}}</td>
                 <td>
                     <div *ngIf="sett.matchId">
                         <a [routerLink]="['../match', sett.matchId  ]" >{{sett.matchId}}</a>

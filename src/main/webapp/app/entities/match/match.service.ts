@@ -65,6 +65,8 @@ export class MatchService {
         const copy: Match = Object.assign({}, match);
         copy.startDate = this.dateUtils
             .convertDateTimeFromServer(match.startDate);
+        copy.openDate = this.dateUtils
+            .convertDateTimeFromServer(match.openDate);
         return copy;
     }
 
@@ -75,6 +77,8 @@ export class MatchService {
         const copy: Match = Object.assign({}, match);
 
         copy.startDate = this.dateUtils.toDate(match.startDate);
+
+        copy.openDate = this.dateUtils.toDate(match.openDate);
         return copy;
     }
 }

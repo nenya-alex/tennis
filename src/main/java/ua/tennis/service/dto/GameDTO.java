@@ -2,7 +2,6 @@ package ua.tennis.service.dto;
 
 
 import java.io.Serializable;
-import java.math.BigDecimal;
 import java.util.HashSet;
 import java.util.Set;
 import java.util.Objects;
@@ -14,9 +13,13 @@ public class GameDTO implements Serializable {
 
     private Long id;
 
-    private BigDecimal probabilityHome;
+    private Integer homeScore;
 
-    private BigDecimal probabilityAway;
+    private Integer awayScore;
+
+    private Double homeProbability;
+
+    private Double awayProbability;
 
     private Long settId;
 
@@ -28,20 +31,36 @@ public class GameDTO implements Serializable {
         this.id = id;
     }
 
-    public BigDecimal getProbabilityHome() {
-        return probabilityHome;
+    public Integer getHomeScore() {
+        return homeScore;
     }
 
-    public void setProbabilityHome(BigDecimal probabilityHome) {
-        this.probabilityHome = probabilityHome;
+    public void setHomeScore(Integer homeScore) {
+        this.homeScore = homeScore;
     }
 
-    public BigDecimal getProbabilityAway() {
-        return probabilityAway;
+    public Integer getAwayScore() {
+        return awayScore;
     }
 
-    public void setProbabilityAway(BigDecimal probabilityAway) {
-        this.probabilityAway = probabilityAway;
+    public void setAwayScore(Integer awayScore) {
+        this.awayScore = awayScore;
+    }
+
+    public Double getHomeProbability() {
+        return homeProbability;
+    }
+
+    public void setHomeProbability(Double homeProbability) {
+        this.homeProbability = homeProbability;
+    }
+
+    public Double getAwayProbability() {
+        return awayProbability;
+    }
+
+    public void setAwayProbability(Double awayProbability) {
+        this.awayProbability = awayProbability;
     }
 
     public Long getSettId() {
@@ -77,8 +96,10 @@ public class GameDTO implements Serializable {
     public String toString() {
         return "GameDTO{" +
             "id=" + getId() +
-            ", probabilityHome=" + getProbabilityHome() +
-            ", probabilityAway=" + getProbabilityAway() +
+            ", homeScore=" + getHomeScore() +
+            ", awayScore=" + getAwayScore() +
+            ", homeProbability=" + getHomeProbability() +
+            ", awayProbability=" + getAwayProbability() +
             "}";
     }
 }
