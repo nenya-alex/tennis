@@ -1,0 +1,41 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="odds">
+            <h2><span>Odds</span> {{odds.id}}</h2>
+            <hr>
+            <jhi-alert-error></jhi-alert-error>
+            <dl class="row-md jh-entity-details">
+                <dt><span>Home Odds</span></dt>
+                <dd>
+                    <span>{{odds.homeOdds}}</span>
+                </dd>
+                <dt><span>Away Odds</span></dt>
+                <dd>
+                    <span>{{odds.awayOdds}}</span>
+                </dd>
+                <dt><span>Check Date</span></dt>
+                <dd>
+                    <span>{{odds.checkDate}}</span>
+                </dd>
+                <dt><span>Match</span></dt>
+                <dd>
+                    <div *ngIf="odds.matchId">
+                        <a [routerLink]="['/match', odds.matchId, 'view']">{{odds.matchId}}</a>
+                    </div>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon [icon]="'arrow-left'"></fa-icon>&nbsp;<span> Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/odds', odds.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span> Edit</span>
+            </button>
+        </div>
+    </div>
+</div>
