@@ -57,6 +57,10 @@ public class Match implements Serializable {
     @JsonIgnore
     private Set<Sett> setts = new HashSet<>();
 
+    @OneToMany(mappedBy = "match")
+    @JsonIgnore
+    private Set<Odds> odds = new HashSet<>();
+
     // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
     public Long getId() {
         return id;
@@ -211,6 +215,15 @@ public class Match implements Serializable {
         this.setts = setts;
     }
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here, do not remove
+
+
+    public Set<Odds> getOdds() {
+        return odds;
+    }
+
+    public void setOdds(Set<Odds> odds) {
+        this.odds = odds;
+    }
 
     @Override
     public boolean equals(Object o) {
