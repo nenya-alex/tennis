@@ -47,6 +47,12 @@ public class Match implements Serializable {
     @Column(name = "open_date")
     private Instant openDate;
 
+    @Column(name = "league_name")
+    private String leagueName;
+
+    @Column(name = "league_id")
+    private Long leagueId;
+
     @OneToMany(mappedBy = "match")
     @JsonIgnore
     private Set<Sett> setts = new HashSet<>();
@@ -162,6 +168,22 @@ public class Match implements Serializable {
 
     public void setOpenDate(Instant openDate) {
         this.openDate = openDate;
+    }
+
+    public String getLeagueName() {
+        return leagueName;
+    }
+
+    public void setLeagueName(String leagueName) {
+        this.leagueName = leagueName;
+    }
+
+    public Long getLeagueId() {
+        return leagueId;
+    }
+
+    public void setLeagueId(Long leagueId) {
+        this.leagueId = leagueId;
     }
 
     public Set<Sett> getSetts() {

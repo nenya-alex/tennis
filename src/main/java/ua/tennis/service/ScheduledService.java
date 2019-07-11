@@ -44,6 +44,7 @@ public class ScheduledService {
         Map tennisData = (Map) ((Map) ((Map) upcomingMatches.get("response")).get("groupedEvents")).get("5");
         List<GroupDTO> groups = getGroups((Map<String, Map>) tennisData.get("groups"));
         List<MatchDTO> matchDTOs = scheduledRepository.getMatches(groups, (List<Map>) tennisData.get("events"), false);
+
     }
 
     private List<GroupDTO> getGroups(Map<String, Map> groups) {
