@@ -28,6 +28,49 @@ public class MatchDTO implements Serializable {
 
     private Instant openDate;
 
+    private Integer prematchEventId;
+
+    private double homeOdds;
+
+    private double awayOdds;
+
+    private Instant checkedDate;
+
+    private String leagueName;
+
+    private Long leagueId;
+
+    public MatchDTO() {
+    }
+
+    public MatchDTO(Long id,
+                    String identifier,
+                    Integer prematchEventId,
+                    String name,
+                    double homeOdds,
+                    double awayOdds,
+                    Instant openDate,
+                    Instant startDate,
+                    String homeName,
+                    String awayName,
+                    Instant checkedDate,
+                    String leagueName,
+                    Long leagueId) {
+        this.id = id;
+        this.identifier = identifier;
+        this.homeName = homeName;
+        this.awayName = awayName;
+        this.startDate = startDate;
+        this.name = name;
+        this.openDate = openDate;
+        this.prematchEventId = prematchEventId;
+        this.homeOdds = homeOdds;
+        this.awayOdds = awayOdds;
+        this.checkedDate = checkedDate;
+        this.leagueName = leagueName;
+        this.leagueId = leagueId;
+    }
+
     public Long getId() {
         return id;
     }
@@ -98,6 +141,54 @@ public class MatchDTO implements Serializable {
 
     public void setOpenDate(Instant openDate) {
         this.openDate = openDate;
+    }
+
+    public Integer getPrematchEventId() {
+        return prematchEventId;
+    }
+
+    public void setPrematchEventId(Integer prematchEventId) {
+        this.prematchEventId = prematchEventId;
+    }
+
+    public double getHomeOdds() {
+        return homeOdds;
+    }
+
+    public void setHomeOdds(double homeOdds) {
+        this.homeOdds = homeOdds;
+    }
+
+    public double getAwayOdds() {
+        return awayOdds;
+    }
+
+    public void setAwayOdds(double awayOdds) {
+        this.awayOdds = awayOdds;
+    }
+
+    public Instant getCheckedDate() {
+        return checkedDate;
+    }
+
+    public void setCheckedDate(Instant checkedDate) {
+        this.checkedDate = checkedDate;
+    }
+
+    public String getLeagueName() {
+        return leagueName;
+    }
+
+    public void setLeagueName(String leagueName) {
+        this.leagueName = leagueName;
+    }
+
+    public Long getLeagueId() {
+        return leagueId;
+    }
+
+    public void setLeagueId(Long leagueId) {
+        this.leagueId = leagueId;
     }
 
     @Override

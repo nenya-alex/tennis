@@ -10,6 +10,7 @@ import org.springframework.boot.autoconfigure.liquibase.LiquibaseProperties;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.core.env.Environment;
+import org.springframework.scheduling.annotation.EnableScheduling;
 import ua.tennis.config.ApplicationProperties;
 import ua.tennis.config.DefaultProfileUtil;
 
@@ -22,6 +23,7 @@ import java.util.Collection;
 @ComponentScan
 @EnableAutoConfiguration(exclude = {MetricFilterAutoConfiguration.class, MetricRepositoryAutoConfiguration.class})
 @EnableConfigurationProperties({LiquibaseProperties.class, ApplicationProperties.class})
+@EnableScheduling
 public class TennisApp {
 
     private static final Logger log = LoggerFactory.getLogger(TennisApp.class);
