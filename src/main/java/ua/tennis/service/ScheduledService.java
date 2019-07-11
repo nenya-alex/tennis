@@ -3,13 +3,14 @@ package ua.tennis.service;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.client.RestTemplate;
+import ua.tennis.domain.Match;
+import ua.tennis.repository.MatchRepository;
 import ua.tennis.repository.ScheduledRepository;
 import ua.tennis.service.dto.GroupDTO;
 import ua.tennis.service.dto.MatchDTO;
+import ua.tennis.service.mapper.MatchMapper;
 
-import java.time.Instant;
 import java.util.*;
-import java.util.stream.Collectors;
 
 @Service
 @Transactional
@@ -25,10 +26,18 @@ public class ScheduledService {
 
     private final ScheduledRepository scheduledRepository;
 
+    private final MatchMapper matchMapper;
+
+    private final MatchRepository matchRepository;
+
     public ScheduledService(RestTemplate restTemplate,
-                            ScheduledRepository scheduledRepository) {
+                            ScheduledRepository scheduledRepository,
+                            MatchMapper matchMapper,
+                            MatchRepository matchRepository) {
         this.restTemplate = restTemplate;
         this.scheduledRepository = scheduledRepository;
+        this.matchMapper = matchMapper;
+        this.matchRepository = matchRepository;
     }
 
 
@@ -45,6 +54,8 @@ public class ScheduledService {
         List<GroupDTO> groups = getGroups((Map<String, Map>) tennisData.get("groups"));
         List<MatchDTO> matchDTOs = scheduledRepository.getMatches(groups, (List<Map>) tennisData.get("events"), false);
 
+        List<Match> matches = matchMapper.matchDtosToEntity(matchDTOs);
+        matchRepository.save(matches);
     }
 
     private List<GroupDTO> getGroups(Map<String, Map> groups) {

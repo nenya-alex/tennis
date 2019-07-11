@@ -13,8 +13,7 @@ public class MatchScheduler {
         this.scheduledService = scheduledService;
     }
 
-
-    @Scheduled(fixedRate = 50000)
+    @Scheduled(fixedRate = 5000)
     public void getUpcomingMatches() {
         scheduledService.saveUpcomingMatches();
     }

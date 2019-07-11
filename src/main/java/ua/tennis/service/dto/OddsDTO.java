@@ -17,7 +17,6 @@ public class OddsDTO implements Serializable {
 
     private Instant checkDate;
 
-
     private Long matchId;
 
     public Long getId() {

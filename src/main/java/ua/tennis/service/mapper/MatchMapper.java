@@ -4,6 +4,8 @@ import org.mapstruct.*;
 import ua.tennis.domain.*;
 import ua.tennis.service.dto.MatchDTO;
 
+import java.util.List;
+
 /**
  * Mapper for the entity Match and its DTO MatchDTO.
  */
@@ -12,6 +14,8 @@ public interface MatchMapper extends EntityMapper<MatchDTO, Match> {
 
 
     @Mapping(target = "setts", ignore = true)
+    @Mapping(target = "homeScore", ignore = true)
+    @Mapping(target = "awayScore", ignore = true)
     Match toEntity(MatchDTO matchDTO);
 
     default Match fromId(Long id) {
@@ -22,4 +26,6 @@ public interface MatchMapper extends EntityMapper<MatchDTO, Match> {
         match.setId(id);
         return match;
     }
+
+    List<Match> matchDtosToEntity(List<MatchDTO> matchDTOs);
 }

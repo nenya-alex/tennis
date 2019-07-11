@@ -69,8 +69,8 @@ public class OddsService {
     @Transactional(readOnly = true)
     public Optional<OddsDTO> findOne(Long id) {
         log.debug("Request to get Odds : {}", id);
-        return oddsRepository.findById(id)
-            .map(oddsMapper::toDto);
+        Odds odds = oddsRepository.findOne(id);
+        return Optional.ofNullable(oddsMapper.toDto(odds));
     }
 
     /**
@@ -80,6 +80,6 @@ public class OddsService {
      */
     public void delete(Long id) {
         log.debug("Request to delete Odds : {}", id);
-        oddsRepository.deleteById(id);
+        oddsRepository.delete(id);
     }
 }
