@@ -2,9 +2,7 @@ package ua.tennis.service.dto;
 
 import java.io.Serializable;
 import java.time.Instant;
-import java.util.HashSet;
-import java.util.Objects;
-import java.util.Set;
+import java.util.*;
 
 /**
  * A DTO for the Match entity.
@@ -35,7 +33,13 @@ public class MatchDTO implements Serializable {
 
     private Long leagueId;
 
-    private Set<OddsDTO> odds = new HashSet<>();
+    private String gameMode;
+
+    private Integer numberOfSetsToWin;
+
+    private List<OddsDTO> odds = new ArrayList<>();
+
+    private List<SettDTO> setts = new ArrayList<>();
 
     public MatchDTO() {
     }
@@ -49,8 +53,7 @@ public class MatchDTO implements Serializable {
                     String homeName,
                     String awayName,
                     String leagueName,
-                    Long leagueId,
-                    Set<OddsDTO> odds) {
+                    Long leagueId) {
         this.id = id;
         this.identifier = identifier;
         this.homeName = homeName;
@@ -61,7 +64,6 @@ public class MatchDTO implements Serializable {
         this.prematchEventId = prematchEventId;
         this.leagueName = leagueName;
         this.leagueId = leagueId;
-        this.odds = odds;
     }
 
     public Long getId() {
@@ -160,12 +162,36 @@ public class MatchDTO implements Serializable {
         this.leagueId = leagueId;
     }
 
-    public Set<OddsDTO> getOdds() {
+    public List<OddsDTO> getOdds() {
         return odds;
     }
 
-    public void setOdds(Set<OddsDTO> odds) {
+    public void setOdds(List<OddsDTO> odds) {
         this.odds = odds;
+    }
+
+    public List<SettDTO> getSetts() {
+        return setts;
+    }
+
+    public void setSetts(List<SettDTO> setts) {
+        this.setts = setts;
+    }
+
+    public String getGameMode() {
+        return gameMode;
+    }
+
+    public void setGameMode(String gameMode) {
+        this.gameMode = gameMode;
+    }
+
+    public Integer getNumberOfSetsToWin() {
+        return numberOfSetsToWin;
+    }
+
+    public void setNumberOfSetsToWin(Integer numberOfSetsToWin) {
+        this.numberOfSetsToWin = numberOfSetsToWin;
     }
 
     @Override

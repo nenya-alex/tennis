@@ -21,6 +21,15 @@ public class GameDTO implements Serializable {
 
     private Long settId;
 
+    public GameDTO() {
+    }
+
+    public GameDTO(Integer homeScore, Integer awayScore, Double homeProbability) {
+        this.homeScore = homeScore;
+        this.awayScore = awayScore;
+        this.homeProbability = homeProbability;
+    }
+
     public Long getId() {
         return id;
     }
