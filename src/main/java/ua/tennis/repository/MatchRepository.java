@@ -4,6 +4,8 @@ import org.springframework.data.jpa.repository.*;
 import org.springframework.stereotype.Repository;
 import ua.tennis.domain.Match;
 
+import java.util.Optional;
+
 
 /**
  * Spring Data JPA repository for the Match entity.
@@ -12,4 +14,5 @@ import ua.tennis.domain.Match;
 @Repository
 public interface MatchRepository extends JpaRepository<Match, Long> {
 
+    Optional<Match> findByIdentifier(String identifier);
 }

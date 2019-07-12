@@ -3,6 +3,7 @@ package ua.tennis.repository;
 import org.springframework.stereotype.Repository;
 import ua.tennis.service.dto.GroupDTO;
 import ua.tennis.service.dto.MatchDTO;
+import ua.tennis.service.dto.OddsDTO;
 
 import java.time.Instant;
 import java.util.*;
@@ -23,34 +24,32 @@ public class ScheduledRepository {
         List<MatchDTO> matchDTOs = new ArrayList<>();
         matches.forEach(match ->
             {
-                Map<String, Double> odds = getOdds(groups, (Map) match.get("markets"));
+                Long matchId = ((Integer) match.get("id")).longValue();
+                Set<OddsDTO> odds = getOdds(groups, (Map) match.get("markets"), matchId);
                 String name = (String) match.get("name");
-                Integer id = (Integer) match.get("id");
                 String leagueName = (String) ((Map) match.get("league")).get("name");
                 Long leagueId = ((Integer) ((Map) match.get("league")).get("id")).longValue();
                 matchDTOs.add(
                     new MatchDTO(
-                        id.longValue(),
-                        id.toString(),
+                        matchId,
+                        matchId.toString(),
                         (Integer) match.get("prematchEventId"),
                         name,
-                        odds.get("homeOdds"),
-                        odds.get("awayOdds"),
                         Instant.parse((String) match.get("openDate")),
                         Instant.parse((String) match.get("startDate")),
                         name.substring(0, name.indexOf("-") - 1),
                         name.substring(name.indexOf("-") + 2),
-                        Instant.now(),
                         leagueName,
-                        leagueId
+                        leagueId,
+                        odds
                     ));
             }
         );
         return matchDTOs;
     }
 
-    private Map<String, Double> getOdds(List<GroupDTO> groups, Map markets) {
-        Map<String, Double> odds = new HashMap<>();
+    private Set<OddsDTO> getOdds(List<GroupDTO> groups, Map markets, Long matchId) {
+        Set<OddsDTO> odds = new HashSet<>();
         String neededGroupId = groups.stream().filter(group -> group.getName().equals("2way - Who will win?"))
             .findAny().get().getId();
         List<Map> options = (List) ((Map) ((Map) markets.values().stream().filter(market ->
@@ -61,8 +60,13 @@ public class ScheduledRepository {
         ).findAny().get()).get("options")).values().stream()
             .sorted(Comparator.comparingInt(option -> (int) ((Map) option).get("order"))).collect(Collectors.toList());
 
-        odds.put("homeOdds", (Double) options.get(0).get("odds"));
-        odds.put("awayOdds", (Double) options.get(1).get("odds"));
+        OddsDTO oddsDTO = new OddsDTO();
+        oddsDTO.setHomeOdds((Double) options.get(0).get("odds"));
+        oddsDTO.setAwayOdds((Double) options.get(1).get("odds"));
+        oddsDTO.setCheckDate(Instant.now());
+        oddsDTO.setMatchId(matchId);
+
+        odds.add(oddsDTO);
 
         return odds;
     }

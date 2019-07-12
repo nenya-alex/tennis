@@ -53,7 +53,7 @@ public class Match implements Serializable {
     @Column(name = "league_id")
     private Long leagueId;
 
-    @OneToMany(mappedBy = "match")
+    @OneToMany(mappedBy = "match", cascade = CascadeType.ALL)
     @JsonIgnore
     private Set<Sett> setts = new HashSet<>();
 

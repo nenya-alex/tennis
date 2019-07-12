@@ -4,7 +4,9 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.client.RestTemplate;
 import ua.tennis.domain.Match;
+import ua.tennis.domain.Odds;
 import ua.tennis.repository.MatchRepository;
+import ua.tennis.repository.OddsRepository;
 import ua.tennis.repository.ScheduledRepository;
 import ua.tennis.service.dto.GroupDTO;
 import ua.tennis.service.dto.MatchDTO;
@@ -30,14 +32,18 @@ public class ScheduledService {
 
     private final MatchRepository matchRepository;
 
+    private final OddsRepository oddsRepository;
+
     public ScheduledService(RestTemplate restTemplate,
                             ScheduledRepository scheduledRepository,
                             MatchMapper matchMapper,
-                            MatchRepository matchRepository) {
+                            MatchRepository matchRepository,
+                            OddsRepository oddsRepository) {
         this.restTemplate = restTemplate;
         this.scheduledRepository = scheduledRepository;
         this.matchMapper = matchMapper;
         this.matchRepository = matchRepository;
+        this.oddsRepository = oddsRepository;
     }
 
 
@@ -55,7 +61,19 @@ public class ScheduledService {
         List<MatchDTO> matchDTOs = scheduledRepository.getMatches(groups, (List<Map>) tennisData.get("events"), false);
 
         List<Match> matches = matchMapper.matchDtosToEntity(matchDTOs);
-        matchRepository.save(matches);
+        for (Match match : matches) {
+            Optional<Match> excitedMatch = matchRepository.findByIdentifier(match.getIdentifier());
+            if (excitedMatch.isPresent()) {
+                Odds excitedOdds = oddsRepository.findLastByMatchIdOrderByCheckDate(excitedMatch.get().getId());
+                Odds odds = new ArrayList<>(match.getOdds()).get(0);
+                if (!odds.getHomeOdds().equals(excitedOdds.getHomeOdds())
+                    || !odds.getAwayOdds().equals(excitedOdds.getAwayOdds())) {
+                    oddsRepository.save(odds);
+                }
+            } else {
+                matchRepository.save(match);
+            }
+        }
     }
 
     private List<GroupDTO> getGroups(Map<String, Map> groups) {

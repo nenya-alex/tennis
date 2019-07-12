@@ -1,9 +1,10 @@
 package ua.tennis.service.dto;
 
-
 import java.io.Serializable;
 import java.time.Instant;
+import java.util.HashSet;
 import java.util.Objects;
+import java.util.Set;
 
 /**
  * A DTO for the Match entity.
@@ -30,15 +31,11 @@ public class MatchDTO implements Serializable {
 
     private Integer prematchEventId;
 
-    private double homeOdds;
-
-    private double awayOdds;
-
-    private Instant checkedDate;
-
     private String leagueName;
 
     private Long leagueId;
+
+    private Set<OddsDTO> odds = new HashSet<>();
 
     public MatchDTO() {
     }
@@ -47,15 +44,13 @@ public class MatchDTO implements Serializable {
                     String identifier,
                     Integer prematchEventId,
                     String name,
-                    double homeOdds,
-                    double awayOdds,
                     Instant openDate,
                     Instant startDate,
                     String homeName,
                     String awayName,
-                    Instant checkedDate,
                     String leagueName,
-                    Long leagueId) {
+                    Long leagueId,
+                    Set<OddsDTO> odds) {
         this.id = id;
         this.identifier = identifier;
         this.homeName = homeName;
@@ -64,11 +59,9 @@ public class MatchDTO implements Serializable {
         this.name = name;
         this.openDate = openDate;
         this.prematchEventId = prematchEventId;
-        this.homeOdds = homeOdds;
-        this.awayOdds = awayOdds;
-        this.checkedDate = checkedDate;
         this.leagueName = leagueName;
         this.leagueId = leagueId;
+        this.odds = odds;
     }
 
     public Long getId() {
@@ -149,30 +142,6 @@ public class MatchDTO implements Serializable {
 
     public void setPrematchEventId(Integer prematchEventId) {
         this.prematchEventId = prematchEventId;
-    }
-
-    public double getHomeOdds() {
-        return homeOdds;
-    }
-
-    public void setHomeOdds(double homeOdds) {
-        this.homeOdds = homeOdds;
-    }
-
-    public double getAwayOdds() {
-        return awayOdds;
-    }
-
-    public void setAwayOdds(double awayOdds) {
-        this.awayOdds = awayOdds;
-    }
-
-    public Instant getCheckedDate() {
-        return checkedDate;
-    }
-
-    public void setCheckedDate(Instant checkedDate) {
-        this.checkedDate = checkedDate;
     }
 
     public String getLeagueName() {
