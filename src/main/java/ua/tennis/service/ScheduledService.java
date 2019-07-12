@@ -50,21 +50,21 @@ public class ScheduledService {
     public List<MatchDTO> getLiveMatches() {
         Map liveMatches = restTemplate.getForObject(LIVE_MATCHES_URL, Map.class);
         List<Map> tennisData = (List<Map>) ((Map) ((Map) liveMatches.get("response")).get("events")).values();
-        List<GroupDTO> groups = getGroups((Map) ((Map) liveMatches.get("response")).get("groups"));
+        List<GroupDTO> groups = scheduledRepository.getGroups((Map) ((Map) liveMatches.get("response")).get("groups"));
         return scheduledRepository.getMatches(groups, tennisData, true);
     }
 
     public void saveUpcomingMatches() {
         Map upcomingMatches = restTemplate.getForObject(UPCOMING_MATCHES_URL, Map.class);
         Map tennisData = (Map) ((Map) ((Map) upcomingMatches.get("response")).get("groupedEvents")).get("5");
-        List<GroupDTO> groups = getGroups((Map<String, Map>) tennisData.get("groups"));
+        List<GroupDTO> groups = scheduledRepository.getGroups((Map<String, Map>) tennisData.get("groups"));
         List<MatchDTO> matchDTOs = scheduledRepository.getMatches(groups, (List<Map>) tennisData.get("events"), false);
 
         List<Match> matches = matchMapper.matchDtosToEntity(matchDTOs);
         for (Match match : matches) {
             Optional<Match> excitedMatch = matchRepository.findByIdentifier(match.getIdentifier());
             if (excitedMatch.isPresent()) {
-                Odds excitedOdds = oddsRepository.findLastByMatchIdOrderByCheckDate(excitedMatch.get().getId());
+                Odds excitedOdds = oddsRepository.findTopByMatchIdOrderByCheckDateDesc(excitedMatch.get().getId());
                 Odds odds = new ArrayList<>(match.getOdds()).get(0);
                 if (!odds.getHomeOdds().equals(excitedOdds.getHomeOdds())
                     || !odds.getAwayOdds().equals(excitedOdds.getAwayOdds())) {
@@ -76,11 +76,4 @@ public class ScheduledService {
         }
     }
 
-    private List<GroupDTO> getGroups(Map<String, Map> groups) {
-        List<GroupDTO> groupDTOs = new ArrayList<>();
-        groups.forEach((key, value) ->
-            groupDTOs.add(new GroupDTO((String) value.get("id"), (String) value.get("name")))
-        );
-        return groupDTOs;
-    }
 }

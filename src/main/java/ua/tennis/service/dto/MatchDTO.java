@@ -160,6 +160,14 @@ public class MatchDTO implements Serializable {
         this.leagueId = leagueId;
     }
 
+    public Set<OddsDTO> getOdds() {
+        return odds;
+    }
+
+    public void setOdds(Set<OddsDTO> odds) {
+        this.odds = odds;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) {

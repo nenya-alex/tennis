@@ -70,4 +70,12 @@ public class ScheduledRepository {
 
         return odds;
     }
+
+    public List<GroupDTO> getGroups(Map<String, Map> groups) {
+        List<GroupDTO> groupDTOs = new ArrayList<>();
+        groups.forEach((key, value) ->
+            groupDTOs.add(new GroupDTO((String) value.get("id"), (String) value.get("name")))
+        );
+        return groupDTOs;
+    }
 }

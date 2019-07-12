@@ -19,8 +19,8 @@ public class Match implements Serializable {
     private static final long serialVersionUID = 1L;
 
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "sequenceGenerator")
-    @SequenceGenerator(name = "sequenceGenerator")
+//    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "sequenceGenerator")
+//    @SequenceGenerator(name = "sequenceGenerator")
     private Long id;
 
     @Column(name = "identifier")
@@ -53,12 +53,10 @@ public class Match implements Serializable {
     @Column(name = "league_id")
     private Long leagueId;
 
-    @OneToMany(mappedBy = "match", cascade = CascadeType.ALL)
-    @JsonIgnore
+    @OneToMany(mappedBy = "match")
     private Set<Sett> setts = new HashSet<>();
 
-    @OneToMany(mappedBy = "match")
-    @JsonIgnore
+    @OneToMany(mappedBy = "match", cascade = CascadeType.ALL)
     private Set<Odds> odds = new HashSet<>();
 
     // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove

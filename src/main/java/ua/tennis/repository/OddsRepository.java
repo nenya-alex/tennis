@@ -12,5 +12,8 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface OddsRepository extends JpaRepository<Odds, Long> {
 
-    Odds findLastByMatchIdOrderByCheckDate(Long id);
+    Odds findTopByMatchIdOrderByCheckDateDesc(Long id);
+
+    Odds findByMatchId(Long id);
+
 }
