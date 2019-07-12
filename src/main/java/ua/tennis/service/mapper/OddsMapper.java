@@ -5,6 +5,8 @@ import ua.tennis.service.dto.OddsDTO;
 
 import org.mapstruct.*;
 
+import java.util.Set;
+
 /**
  * Mapper for the entity {@link Odds} and its DTO {@link OddsDTO}.
  */
@@ -25,4 +27,6 @@ public interface OddsMapper extends EntityMapper<OddsDTO, Odds> {
         odds.setId(id);
         return odds;
     }
+
+    Set<Odds> oddsDtosToEntities(Set<OddsDTO> oddsDTOs);
 }
