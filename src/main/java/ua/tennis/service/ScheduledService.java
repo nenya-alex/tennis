@@ -8,8 +8,11 @@ import ua.tennis.domain.Odds;
 import ua.tennis.repository.MatchRepository;
 import ua.tennis.repository.OddsRepository;
 import ua.tennis.repository.ScheduledRepository;
+import ua.tennis.service.dto.GameDTO;
 import ua.tennis.service.dto.GroupDTO;
 import ua.tennis.service.dto.MatchDTO;
+import ua.tennis.service.enums.MatchStatus;
+import ua.tennis.service.enums.MatchWinner;
 import ua.tennis.service.mapper.MatchMapper;
 
 import java.util.*;
@@ -18,11 +21,13 @@ import java.util.*;
 @Transactional
 public class ScheduledService {
 
-    private static final String LIVE_MATCHES_URL = "https://bcdapi.itsfogo.com/v1/BettingOffer/Grid/liveBestsellerEvents"
-        + "?x-bwin-accessId=NzdmNThmYTAtNTlkMC00MDBlLTgwNmUtYTdiYmNlNGE2ZjNl&sportId=5";
-
     private static final String UPCOMING_MATCHES_URL = "https://bcdapi.itsfogo.com/v1/bettingoffer/grid/upcomingEventsBySport"
         + "?x-bwin-accessId=YjU5ZGYwOTMtOWRjNS00Y2M0LWJmZjktMDNhN2FhNGY3NDkw&sportId=5";
+
+    private static final String LIVE_MATCHES_URL = "https://bcdapi.itsfogo.com/v1/bettingoffer/grid/liveOverviewEvents" +
+        "?x-bwin-accessId=YjU5ZGYwOTMtOWRjNS00Y2M0LWJmZjktMDNhN2FhNGY3NDkw&sportId=5";
+
+    private static final double MULTIPLIER = 1.1;
 
     private final RestTemplate restTemplate;
 
@@ -47,19 +52,62 @@ public class ScheduledService {
     }
 
 
-    public List<MatchDTO> getLiveMatches() {
+    public void saveLiveMatches() {
         Map liveMatches = restTemplate.getForObject(LIVE_MATCHES_URL, Map.class);
-        List<Map> tennisData = (List<Map>) ((Map) ((Map) liveMatches.get("response")).get("events")).values();
-        List<GroupDTO> groups = scheduledRepository.getGroups((Map) ((Map) liveMatches.get("response")).get("groups"));
-        return scheduledRepository.getMatches(groups, tennisData, true);
+
+        Map<MatchStatus, List<MatchDTO>> result = new HashMap<>();
+        result.put(MatchStatus.NOT_STARTED, new ArrayList<>());
+        result.put(MatchStatus.LIVE, new ArrayList<>());
+        result.put(MatchStatus.FINISHED, new ArrayList<>());
+        result.put(MatchStatus.SUSPENDED, new ArrayList<>());
+
+        scheduledRepository.fillResultByMatches(liveMatches, true, result);
+
+        saveMatches(result.get(MatchStatus.NOT_STARTED));
+
+        placeBet(result.get(MatchStatus.LIVE));
+
+        updateAccountForFinishedMatches(result.get(MatchStatus.FINISHED));
+
+    }
+
+    private void placeBet(List<MatchDTO> matchDTOs) {
+        for (MatchDTO matchDTO: matchDTOs) {
+            GameDTO gameDTO = matchDTO.getSetts().get(0).getGames().get(0);
+            double homeOdds = gameDTO.getOddsDTO().getHomeOdds();
+            double awayOdds = gameDTO.getOddsDTO().getAwayOdds();
+            double bookmakersHomeProbability = awayOdds / (homeOdds + awayOdds);
+
+            if (gameDTO.getHomeProbability() > bookmakersHomeProbability * MULTIPLIER) {
+                place(matchDTO.getId(), homeOdds, MatchWinner.HOME);
+            } else if ((1 - gameDTO.getHomeProbability()) > (1 - bookmakersHomeProbability) * MULTIPLIER) {
+                place(matchDTO.getId(), awayOdds, MatchWinner.AWAY);
+            }
+        }
+    }
+
+    private void place(Long matchId, double homeOdds, MatchWinner home) {
+
+    }
+
+
+    private void updateAccountForFinishedMatches(List<MatchDTO> matchDTOs) {
+
     }
 
     public void saveUpcomingMatches() {
-        Map upcomingMatches = restTemplate.getForObject(UPCOMING_MATCHES_URL, Map.class);
-        Map tennisData = (Map) ((Map) ((Map) upcomingMatches.get("response")).get("groupedEvents")).get("5");
-        List<GroupDTO> groups = scheduledRepository.getGroups((Map<String, Map>) tennisData.get("groups"));
-        List<MatchDTO> matchDTOs = scheduledRepository.getMatches(groups, (List<Map>) tennisData.get("events"), false);
 
+        Map upcomingMatches = restTemplate.getForObject(UPCOMING_MATCHES_URL, Map.class);
+
+        Map<MatchStatus, List<MatchDTO>> result = new HashMap<>();
+        result.put(MatchStatus.UPCOMING, new ArrayList<>());
+
+        scheduledRepository.fillResultByMatches(upcomingMatches, false, result);
+
+        saveMatches(result.get(MatchStatus.UPCOMING));
+    }
+
+    private void saveMatches(List<MatchDTO> matchDTOs) {
         List<Match> matches = matchMapper.matchDtosToEntity(matchDTOs);
         for (Match match : matches) {
             Optional<Match> excitedMatch = matchRepository.findByIdentifier(match.getIdentifier());

@@ -1,5 +1,8 @@
 package ua.tennis.service;
 
+import org.springframework.stereotype.Component;
+
+@Component
 public class GameProbabilityCalculatorForTwoSets implements GameProbabilityCalculator {
 
     @Override

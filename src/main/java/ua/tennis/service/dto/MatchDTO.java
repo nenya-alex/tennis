@@ -1,12 +1,12 @@
 package ua.tennis.service.dto;
 
+import ua.tennis.service.enums.MatchStatus;
+import ua.tennis.service.enums.MatchWinner;
+
 import java.io.Serializable;
 import java.time.Instant;
 import java.util.*;
 
-/**
- * A DTO for the Match entity.
- */
 public class MatchDTO implements Serializable {
 
     private Long id;
@@ -29,6 +29,8 @@ public class MatchDTO implements Serializable {
 
     private Integer prematchEventId;
 
+    private Instant checkedDate;
+
     private String leagueName;
 
     private Long leagueId;
@@ -36,6 +38,14 @@ public class MatchDTO implements Serializable {
     private String gameMode;
 
     private Integer numberOfSetsToWin;
+
+    private String period;
+
+    private double homeMatchProbability;
+
+    private MatchStatus status;
+
+    MatchWinner winner;
 
     private List<OddsDTO> odds = new ArrayList<>();
 
@@ -64,6 +74,11 @@ public class MatchDTO implements Serializable {
         this.prematchEventId = prematchEventId;
         this.leagueName = leagueName;
         this.leagueId = leagueId;
+    }
+
+    public MatchDTO(double homeMatchProbability, List<SettDTO> setts) {
+        this.homeMatchProbability = homeMatchProbability;
+        this.setts = setts;
     }
 
     public Long getId() {
@@ -146,6 +161,14 @@ public class MatchDTO implements Serializable {
         this.prematchEventId = prematchEventId;
     }
 
+    public Instant getCheckedDate() {
+        return checkedDate;
+    }
+
+    public void setCheckedDate(Instant checkedDate) {
+        this.checkedDate = checkedDate;
+    }
+
     public String getLeagueName() {
         return leagueName;
     }
@@ -160,6 +183,22 @@ public class MatchDTO implements Serializable {
 
     public void setLeagueId(Long leagueId) {
         this.leagueId = leagueId;
+    }
+
+    public String getGameMode() {
+        return gameMode;
+    }
+
+    public void setGameMode(String gameMode) {
+        this.gameMode = gameMode;
+    }
+
+    public Integer getNumberOfSetsToWin() {
+        return numberOfSetsToWin;
+    }
+
+    public void setNumberOfSetsToWin(Integer numberOfSetsToWin) {
+        this.numberOfSetsToWin = numberOfSetsToWin;
     }
 
     public List<OddsDTO> getOdds() {
@@ -178,20 +217,36 @@ public class MatchDTO implements Serializable {
         this.setts = setts;
     }
 
-    public String getGameMode() {
-        return gameMode;
+    public String getPeriod() {
+        return period;
     }
 
-    public void setGameMode(String gameMode) {
-        this.gameMode = gameMode;
+    public void setPeriod(String period) {
+        this.period = period;
     }
 
-    public Integer getNumberOfSetsToWin() {
-        return numberOfSetsToWin;
+    public double getHomeMatchProbability() {
+        return homeMatchProbability;
     }
 
-    public void setNumberOfSetsToWin(Integer numberOfSetsToWin) {
-        this.numberOfSetsToWin = numberOfSetsToWin;
+    public void setHomeMatchProbability(double homeMatchProbability) {
+        this.homeMatchProbability = homeMatchProbability;
+    }
+
+    public MatchStatus getStatus() {
+        return status;
+    }
+
+    public void setStatus(MatchStatus status) {
+        this.status = status;
+    }
+
+    public MatchWinner getWinner() {
+        return winner;
+    }
+
+    public void setWinner(MatchWinner winner) {
+        this.winner = winner;
     }
 
     @Override

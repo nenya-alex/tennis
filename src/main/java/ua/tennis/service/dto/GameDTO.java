@@ -4,9 +4,6 @@ package ua.tennis.service.dto;
 import java.io.Serializable;
 import java.util.Objects;
 
-/**
- * A DTO for the Game entity.
- */
 public class GameDTO implements Serializable {
 
     private Long id;
@@ -21,13 +18,15 @@ public class GameDTO implements Serializable {
 
     private Long settId;
 
-    public GameDTO() {
-    }
+    private OddsDTO oddsDTO;
 
     public GameDTO(Integer homeScore, Integer awayScore, Double homeProbability) {
         this.homeScore = homeScore;
         this.awayScore = awayScore;
         this.homeProbability = homeProbability;
+    }
+
+    public GameDTO() {
     }
 
     public Long getId() {
@@ -76,6 +75,14 @@ public class GameDTO implements Serializable {
 
     public void setSettId(Long settId) {
         this.settId = settId;
+    }
+
+    public OddsDTO getOddsDTO() {
+        return oddsDTO;
+    }
+
+    public void setOddsDTO(OddsDTO oddsDTO) {
+        this.oddsDTO = oddsDTO;
     }
 
     @Override

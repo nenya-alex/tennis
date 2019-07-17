@@ -20,19 +20,26 @@ public class CalculatorService {
     private static final int NUMBER_OF_GAMES_TO_WIN = 6;
     private static final int SCALE = 3;
 
+    private final GameProbabilityCalculatorForTwoSets gameProbabilityCalculatorForTwoSets;
+
+    private final GameProbabilityCalculatorForThreeSets gameProbabilityCalculatorForThreeSets;
+
+    public CalculatorService(GameProbabilityCalculatorForTwoSets gameProbabilityCalculatorForTwoSets,
+                             GameProbabilityCalculatorForThreeSets gameProbabilityCalculatorForThreeSets) {
+        this.gameProbabilityCalculatorForTwoSets = gameProbabilityCalculatorForTwoSets;
+        this.gameProbabilityCalculatorForThreeSets = gameProbabilityCalculatorForThreeSets;
+    }
+
     public List<SettDTO> getGameProbabilities(double homeMatchProbability, int numberOfSetsToWin) {
         double homeSetProbability = getSetProbability(homeMatchProbability, numberOfSetsToWin);
-//        System.out.println("homeSetProbability = " + homeSetProbability);
 
         return getAllSetsProbabilities(homeSetProbability, numberOfSetsToWin);
     }
 
     private List<SettDTO> getAllSetsProbabilities(double homeSetProbability, int numberOfSetsToWin) {
         double homeGameProbability = getGameProbability(homeSetProbability);
-//        System.out.println("homeGameProbability = " + homeGameProbability);
 
         Map<String, GameDTO> games = getGames(homeGameProbability);
-//        System.out.println("Games = " + games);
 
         List<SettDTO> result = new ArrayList<>();
         for (int i = 0; i <= numberOfSetsToWin; i++) {
@@ -55,11 +62,11 @@ public class CalculatorService {
             getRoundedDoubleNumber(getWinProbability(homeSetProbability, homeScoreLeft, awayScoreLeft), SCALE));
 
         if (numberOfSetsToWin == 2) {
-            fillSetByGames(games, homeSetProbability, sett, new GameProbabilityCalculatorForTwoSets(), numberOfSetsToWin);
+            fillSetByGames(games, homeSetProbability, sett, gameProbabilityCalculatorForTwoSets, numberOfSetsToWin);
         }
 
         if (numberOfSetsToWin == 3) {
-            fillSetByGames(games, homeSetProbability, sett, new GameProbabilityCalculatorForThreeSets(), numberOfSetsToWin);
+            fillSetByGames(games, homeSetProbability, sett, gameProbabilityCalculatorForThreeSets, numberOfSetsToWin);
         }
 
         return sett;
@@ -163,7 +170,11 @@ public class CalculatorService {
         return getRoundedDoubleNumber(root, 3);
     }
 
-    private double getRoundedDoubleNumber(double number, int scale) {
+    public double getRoundedDoubleNumber(double number, int scale) {
         return new BigDecimal(number).setScale(scale, RoundingMode.HALF_EVEN).doubleValue();
+    }
+
+    public int getSCALE() {
+        return SCALE;
     }
 }

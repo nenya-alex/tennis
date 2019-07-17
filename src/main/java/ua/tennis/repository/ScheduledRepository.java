@@ -1,9 +1,12 @@
 package ua.tennis.repository;
 
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Repository;
 import ua.tennis.service.CalculatorService;
 import ua.tennis.service.MatchCache;
 import ua.tennis.service.dto.*;
+import ua.tennis.service.enums.MatchStatus;
+import ua.tennis.service.enums.MatchWinner;
 
 import java.time.Instant;
 import java.util.*;
@@ -12,99 +15,175 @@ import java.util.stream.Collectors;
 @Repository
 public class ScheduledRepository {
 
-    private static final String SUSPENDED = "Suspended";
-
-    private static final String FINISHED = "Finished";
-
-
     private final MatchCache matchCache;
 
-    private final CalculatorService calculator;
+    private final CalculatorService calculatorService;
 
-    public ScheduledRepository(MatchCache matchCache,
-                               CalculatorService calculator) {
+    public ScheduledRepository(MatchCache matchCache, CalculatorService calculatorService) {
         this.matchCache = matchCache;
-        this.calculator = calculator;
+        this.calculatorService = calculatorService;
     }
 
-    public List<MatchDTO> getMatches(List<GroupDTO> groups, List<Map> matches, boolean isLiveMatches) {
-
-        List<MatchDTO> matchDTOs = new ArrayList<>();
-
+    public void fillResultByMatches(Map rawMatches,
+                                    boolean isLiveMatches,
+                                    Map<MatchStatus, List<MatchDTO>> result) {
+        List<GroupDTO> groups = getGroups(rawMatches, isLiveMatches);
+        List<Map> matches = getMatches(rawMatches, isLiveMatches);
         matches.forEach(match ->
             {
-                Long matchId = ((Integer) match.get("id")).longValue();
-                List<OddsDTO> odds = getOdds(groups, (Map) match.get("markets"), matchId);
-                String name = (String) match.get("name");
-                String leagueName = (String) ((Map) match.get("league")).get("name");
-                Long leagueId = ((Integer) ((Map) match.get("league")).get("id")).longValue();
-                MatchDTO matchDTO = getMatchDTO(match, matchId, name, leagueName, leagueId);
+                MatchDTO matchDTO = getMatchDTO(match);
+                List<OddsDTO> odds = getOdds(groups, (Map) match.get("markets"), matchDTO.getId());
+                matchDTO.setOdds(odds);
                 if (isLiveMatches) {
                     Map scoreboardSlim = (Map) match.get("scoreboardSlim");
                     String period = (String) scoreboardSlim.get("period");
-                    if (!SUSPENDED.equals(period) && !FINISHED.equals(period)) {
-
-                        //TODO take homeMatchProbability from DB!!!!!!!!!!
-                        double homeMatchProbability = 0.544;
-
-                        String gameMode = (String) scoreboardSlim.get("gameMode");
-                        Integer numberOfSetsToWin = (Integer.valueOf(gameMode.substring(gameMode.length() - 1)) - 3) / 2 + 2;
-                        matchCache.addToCache(matchId, calculator.getGameProbabilities(homeMatchProbability, numberOfSetsToWin));
-
-                        matchDTO.setGameMode(gameMode);
-                        matchDTO.setNumberOfSetsToWin(numberOfSetsToWin);
-
-                        List<String> points = (List<String>) scoreboardSlim.get("points");
-                        Integer setNumber = Integer.valueOf(period.substring(0, 1));
-                        List<List<String>> sets = (List<List<String>>) scoreboardSlim.get("sets");
-                        List<String> homeSets = sets.get(0);
-                        List<String> awaySets = sets.get(1);
-
-                        List<Integer> scoresInMatch = getScoresInMatch(homeSets, awaySets, setNumber);
-
-                        Integer homeScoreInMatch = scoresInMatch.get(0);
-                        Integer awayScoreInMatch = scoresInMatch.get(1);
-
-                        matchDTO.setHomeScore(homeScoreInMatch);
-                        matchDTO.setAwayScore(awayScoreInMatch);
-
-                        if ("0".equals(points.get(0)) && "0".equals(points.get(1))) {
-
-                            Integer homeScoreInSett = Integer.valueOf(homeSets.get(setNumber - 1));
-                            Integer awayScoreInSett = Integer.valueOf(awaySets.get(setNumber - 1));
-
-                            List<SettDTO> cachedSets = matchCache.getCachedMatch(matchId);
-
-                            SettDTO cachedSettDTO = getCachedSettDTO(cachedSets, homeScoreInMatch, awayScoreInMatch);
-                            GameDTO cachedGameDTO = getCachedGameDTO(cachedSettDTO.getGames(), homeScoreInSett, awayScoreInSett);
-
-                            SettDTO clonedSettDTO = cloneSettDTO(cachedSettDTO, matchId, odds);
-                            GameDTO clonedGameDTO = cloneGameDTO(cachedGameDTO);
-
-                            clonedSettDTO.getGames().add(clonedGameDTO);
-                            matchDTO.getSetts().add(clonedSettDTO);
-                        }
+                    matchDTO.setPeriod(period);
+                    if (MatchStatus.NOT_STARTED.getName().equals(period)) {
+                        matchDTO.setStatus(MatchStatus.NOT_STARTED);
+                        result.get(MatchStatus.NOT_STARTED).add(matchDTO);
+                    } else if (MatchStatus.FINISHED.getName().equals(period)) {
+                        matchDTO.setStatus(MatchStatus.FINISHED);
+                        workWithFinishedMatch(matchDTO, scoreboardSlim);
+                        result.get(MatchStatus.FINISHED).add(matchDTO);
+                    } else if (period.endsWith("Set")) {
+                        matchDTO.setStatus(MatchStatus.LIVE);
+                        fillCachedMatchByProbabilities(matchDTO, scoreboardSlim);
+                        workWithLiveMatch(matchDTO, scoreboardSlim, period, result);
+                    } else if (MatchStatus.SUSPENDED.getName().equals(period)) {
+                        matchDTO.setStatus(MatchStatus.SUSPENDED);
+                        result.get(MatchStatus.SUSPENDED).add(matchDTO);
                     }
-
+                } else {
+                    matchDTO.setStatus(MatchStatus.UPCOMING);
+                    result.get(MatchStatus.UPCOMING).add(matchDTO);
                 }
-
-                matchDTO.setOdds(odds);
-                matchDTOs.add(matchDTO);
             }
         );
-        return matchDTOs;
+    }
+
+    private void fillCachedMatchByProbabilities(MatchDTO matchDTO, Map scoreboardSlim) {
+        String gameMode = (String) scoreboardSlim.get("gameMode");
+        Integer numberOfSetsToWin = (Integer.valueOf(gameMode.substring(gameMode.length() - 1)) - 3) / 2 + 2;
+
+        //TODO take homeMatchProbability from DB!!!!!!!!!!
+        double homeMatchProbability = 0.544;
+
+        matchCache.addToCache(matchDTO.getId(),
+            new MatchDTO(homeMatchProbability, calculatorService.getGameProbabilities(homeMatchProbability, numberOfSetsToWin)));
+
+        matchDTO.setGameMode(gameMode);
+        matchDTO.setNumberOfSetsToWin(numberOfSetsToWin);
+    }
+
+    private void workWithFinishedMatch(MatchDTO matchDTO, Map scoreboardSlim) {
+        List<List<String>> sets = (List<List<String>>) scoreboardSlim.get("sets");
+        List<String> homeSets = sets.get(0);
+        List<String> awaySets = sets.get(1);
+
+        List<Integer> scoresInMatch = getScoresInMatch(homeSets, awaySets);
+
+        Integer homeScoreInMatch = scoresInMatch.get(0);
+        Integer awayScoreInMatch = scoresInMatch.get(1);
+        matchDTO.setHomeScore(homeScoreInMatch);
+        matchDTO.setAwayScore(awayScoreInMatch);
+
+        if (homeScoreInMatch.compareTo(awayScoreInMatch) > 0){
+            matchDTO.setWinner(MatchWinner.HOME);
+        }else if (homeScoreInMatch.compareTo(awayScoreInMatch) < 0){
+            matchDTO.setWinner(MatchWinner.AWAY);
+        }
+        matchCache.deleteFromCache(matchDTO.getId());
+    }
+
+    private void workWithLiveMatch(MatchDTO matchDTO,
+                                   Map scoreboardSlim,
+                                   String period,
+                                   Map<MatchStatus, List<MatchDTO>> result) {
+
+        List<List<String>> sets = (List<List<String>>) scoreboardSlim.get("sets");
+        List<String> homeSets = sets.get(0);
+        List<String> awaySets = sets.get(1);
+
+        if (!"0".equals(homeSets.get(0)) || !"0".equals(awaySets.get(0))){
+            List<Integer> scoresInMatch = getScoresInMatch(homeSets, awaySets);
+
+            Integer homeScoreInMatch = scoresInMatch.get(0);
+            Integer awayScoreInMatch = scoresInMatch.get(1);
+
+            matchDTO.setHomeScore(homeScoreInMatch);
+            matchDTO.setAwayScore(awayScoreInMatch);
+
+            List<String> points = (List<String>) scoreboardSlim.get("points");
+            if ("0".equals(points.get(0)) && "0".equals(points.get(1))) {
+
+                Integer setNumber = Integer.valueOf(period.substring(0, 1));
+                prepareMatchDtoForPlacingBet(matchDTO, Integer.valueOf(homeSets.get(setNumber - 1)),
+                    Integer.valueOf(awaySets.get(setNumber - 1)));
+
+                result.get(MatchStatus.LIVE).add(matchDTO);
+            }
+        }
+    }
+
+    private void prepareMatchDtoForPlacingBet(MatchDTO matchDTO,
+                                              Integer homeScoreInSett,
+                                              Integer awayScoreInSett) {
+
+        List<SettDTO> cachedSets = matchCache.getCachedMatch(matchDTO.getId()).getSetts();
+
+        SettDTO cachedSettDTO = getCachedSettDTO(cachedSets, matchDTO.getHomeScore(), matchDTO.getAwayScore());
+        GameDTO cachedGameDTO = getCachedGameDTO(cachedSettDTO.getGames(), homeScoreInSett, awayScoreInSett);
+
+        SettDTO clonedSettDTO = cloneSettDTO(cachedSettDTO, matchDTO.getId(), matchDTO.getOdds());
+        GameDTO clonedGameDTO = cloneGameDTO(cachedGameDTO);
+        clonedGameDTO.setOddsDTO(matchDTO.getOdds().get(0));
+
+        clonedSettDTO.getGames().add(clonedGameDTO);
+        matchDTO.getSetts().add(clonedSettDTO);
+    }
+
+    private List<Integer> getScoresInMatch(List<String> homeSets, List<String> awaySets) {
+        List<Integer> result = new ArrayList<>();
+        Integer homeScoreResult = 0;
+        Integer awayScoreResult = 0;
+
+        for (int i = 0; i < homeSets.size(); i++) {
+            if (StringUtils.isNumeric(homeSets.get(i)) && StringUtils.isNumeric(awaySets.get(i))){
+                Integer homeScore =  Integer.valueOf(homeSets.get(i));
+                Integer awayScore =  Integer.valueOf(awaySets.get(i));
+                if (homeScore.equals(6) || awayScore.equals(6)){
+                    if (homeScore.compareTo(awayScore) > 0){
+                        homeScoreResult = homeScoreResult + 1;
+                    }else{
+                        awayScoreResult = awayScoreResult + 1;
+                    }
+                }
+            }
+        }
+
+        result.add(homeScoreResult);
+        result.add(awayScoreResult);
+        return result;
     }
 
     private SettDTO getCachedSettDTO(List<SettDTO> cachedSets, Integer homeScoreInMatch, Integer awayScoreInMatch) {
-        return cachedSets.stream().filter(set ->
+        return cachedSets.stream().filter( set ->
             set.getHomeScore().equals(homeScoreInMatch) && set.getAwayScore().equals(awayScoreInMatch))
             .collect(Collectors.toList()).get(0);
     }
 
     private GameDTO getCachedGameDTO(List<GameDTO> cachedGames, Integer homeScoreInSett, Integer awayScoreInSett) {
-        return cachedGames.stream().filter(game ->
-            game.getHomeScore().equals(homeScoreInSett) && game.getAwayScore().equals(awayScoreInSett))
-            .collect(Collectors.toList()).get(0);
+        GameDTO gameDTO;
+
+        if (cachedGames.isEmpty()){
+            gameDTO = new GameDTO();
+        }else{
+            gameDTO = cachedGames.stream().filter( game ->
+                game.getHomeScore().equals(homeScoreInSett) && game.getAwayScore().equals(awayScoreInSett))
+                .collect(Collectors.toList()).get(0);
+        }
+
+        return gameDTO;
     }
 
     private GameDTO cloneGameDTO(GameDTO gameDTO) {
@@ -120,29 +199,11 @@ public class ScheduledRepository {
             matchId);
     }
 
-    private List<Integer> getScoresInMatch(List<String> homeSets, List<String> awaySets, Integer setNumber) {
-        List<Integer> result = new ArrayList<>();
-        Integer homeScoreResult = 0;
-        Integer awayScoreResult = 0;
-        for (int i = 0; i < setNumber - 1; i++) {
-            Integer homeScore = Integer.valueOf(homeSets.get(i));
-            Integer awayScore = Integer.valueOf(awaySets.get(i));
-            if (homeScore.equals(6) || awayScore.equals(6)) {
-                if (homeScore.compareTo(awayScore) > 0) {
-                    homeScoreResult = homeScoreResult + 1;
-                } else {
-                    awayScoreResult = awayScoreResult + 1;
-                }
-            }
-
-        }
-
-        result.add(homeScoreResult);
-        result.add(awayScoreResult);
-        return result;
-    }
-
-    private MatchDTO getMatchDTO(Map match, Long matchId, String name, String leagueName, Long leagueId) {
+    private MatchDTO getMatchDTO(Map match) {
+        Long matchId = ((Integer) match.get("id")).longValue();
+        String name = (String) match.get("name");
+        String leagueName = (String) ((Map) match.get("league")).get("name");
+        Long leagueId = ((Integer) ((Map) match.get("league")).get("id")).longValue();
         return new MatchDTO(
             matchId,
             matchId.toString(),
@@ -150,68 +211,64 @@ public class ScheduledRepository {
             name,
             Instant.parse((String) match.get("openDate")),
             Instant.parse((String) match.get("startDate")),
-            name.substring(0, name.indexOf("-") - 1),
-            name.substring(name.indexOf("-") + 2),
+            name.substring(0, name.indexOf(" - ")),
+            name.substring(name.indexOf(" - ") + 3),
             leagueName,
             leagueId
         );
     }
 
-//    private List<MatchDTO> getUpcomingMatches(List<GroupDTO> groups, List<Map> matches) {
-//        List<MatchDTO> matchDTOs = new ArrayList<>();
-//        matches.forEach(match ->
-//            {
-//                Long matchId = ((Integer) match.get("id")).longValue();
-//                Set<OddsDTO> odds = getOdds(groups, (Map) match.get("markets"), matchId);
-//                String name = (String) match.get("name");
-//                String leagueName = (String) ((Map) match.get("league")).get("name");
-//                Long leagueId = ((Integer) ((Map) match.get("league")).get("id")).longValue();
-//                matchDTOs.add(
-//                    new MatchDTO(
-//                        matchId,
-//                        matchId.toString(),
-//                        (Integer) match.get("prematchEventId"),
-//                        name,
-//                        Instant.parse((String) match.get("openDate")),
-//                        Instant.parse((String) match.get("startDate")),
-//                        name.substring(0, name.indexOf("-") - 1),
-//                        name.substring(name.indexOf("-") + 2),
-//                        leagueName,
-//                        leagueId,
-//                        odds
-//                    ));
-//            }
-//        );
-//        return matchDTOs;
-//    }
-
     private List<OddsDTO> getOdds(List<GroupDTO> groups, Map markets, Long matchId) {
         List<OddsDTO> odds = new ArrayList<>();
-        String neededGroupId = groups.stream().filter(group -> group.getName().equals("2way - Who will win?"))
-            .findAny().get().getId();
-        List<Map> options = (List) ((Map) ((Map) markets.values().stream().filter(market ->
-            {
-                String groupId = (String) ((Map) market).get("groupId");
-                return groupId.equals(neededGroupId);
-            }
-        ).findAny().get()).get("options")).values().stream()
-            .sorted(Comparator.comparingInt(option -> (int) ((Map) option).get("order"))).collect(Collectors.toList());
 
-        OddsDTO oddsDTO = new OddsDTO();
-        oddsDTO.setHomeOdds((Double) options.get(0).get("odds"));
-        oddsDTO.setAwayOdds((Double) options.get(1).get("odds"));
-        oddsDTO.setCheckDate(Instant.now());
-        oddsDTO.setMatchId(matchId);
+        if (!markets.isEmpty()) {
+            //
 
-        odds.add(oddsDTO);
+            String neededGroupId = groups.stream().filter(group -> group.getName().equals("2way - Who will win?"))
+                .findAny().get().getId();
+            List<Map> options = (List) ((Map) ((Map) markets.values().stream().filter(market ->
+                {
+                    String groupId = (String) ((Map) market).get("groupId");
+                    return groupId.equals(neededGroupId);
+                }
+            ).findAny().get()).get("options")).values().stream()
+                .sorted(Comparator.comparingInt(option -> (int) ((Map) option).get("order"))).collect(Collectors.toList());
+
+            OddsDTO oddsDTO = new OddsDTO();
+            oddsDTO.setHomeOdds((Double) options.get(0).get("odds"));
+            oddsDTO.setAwayOdds((Double) options.get(1).get("odds"));
+            oddsDTO.setCheckDate(Instant.now());
+            oddsDTO.setMatchId(matchId);
+
+            odds.add(oddsDTO);
+        }
         return odds;
     }
 
-    public List<GroupDTO> getGroups(Map<String, Map> groups) {
+    private List<GroupDTO> getGroups(Map rawMatches, boolean isLiveMatches){
+        Map<String, Map> groups;
+        if (isLiveMatches) {
+            groups = (Map) ((Map) rawMatches.get("response")).get("groups");
+        }else{
+            Map tennisData = (Map) ((Map) ((Map) rawMatches.get("response")).get("groupedEvents")).get("5");
+            groups = (Map<String, Map>) tennisData.get("groups");
+        }
         List<GroupDTO> groupDTOs = new ArrayList<>();
         groups.forEach((key, value) ->
             groupDTOs.add(new GroupDTO((String) value.get("id"), (String) value.get("name")))
         );
         return groupDTOs;
+    }
+
+    private List<Map> getMatches(Map rawMatches, boolean isLiveMatches) {
+        List<Map> result;
+        if (isLiveMatches){
+            Collection tennisData = ((Map) ((Map) rawMatches.get("response")).get("events")).values();
+            result = (List<Map>) tennisData.stream().collect(Collectors.toList());
+        }else{
+            Map tennisData = (Map) ((Map) ((Map) rawMatches.get("response")).get("groupedEvents")).get("5");
+            result = (List<Map>) tennisData.get("events");
+        }
+        return result;
     }
 }
