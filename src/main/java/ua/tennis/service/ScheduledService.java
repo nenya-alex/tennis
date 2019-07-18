@@ -86,10 +86,9 @@ public class ScheduledService {
         }
     }
 
-    private void place(Long matchId, double homeOdds, MatchWinner home) {
+    private void place(Long matchId, double odds, MatchWinner matchWinner) {
 
     }
-
 
     private void updateAccountForFinishedMatches(List<MatchDTO> matchDTOs) {
 

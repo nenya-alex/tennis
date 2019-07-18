@@ -2,6 +2,7 @@ package ua.tennis.repository;
 
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Repository;
+import ua.tennis.domain.Odds;
 import ua.tennis.service.CalculatorService;
 import ua.tennis.service.MatchCache;
 import ua.tennis.service.dto.*;
@@ -19,9 +20,14 @@ public class ScheduledRepository {
 
     private final CalculatorService calculatorService;
 
-    public ScheduledRepository(MatchCache matchCache, CalculatorService calculatorService) {
+    private final OddsRepository oddsRepository;
+
+    public ScheduledRepository(MatchCache matchCache,
+                               CalculatorService calculatorService,
+                               OddsRepository oddsRepository) {
         this.matchCache = matchCache;
         this.calculatorService = calculatorService;
+        this.oddsRepository = oddsRepository;
     }
 
     public void fillResultByMatches(Map rawMatches,
@@ -65,14 +71,18 @@ public class ScheduledRepository {
         String gameMode = (String) scoreboardSlim.get("gameMode");
         Integer numberOfSetsToWin = (Integer.valueOf(gameMode.substring(gameMode.length() - 1)) - 3) / 2 + 2;
 
-        //TODO take homeMatchProbability from DB!!!!!!!!!!
-        double homeMatchProbability = 0.544;
+        Odds excitedOdds = oddsRepository.findTopByMatchIdOrderByCheckDateDesc(matchDTO.getId());
 
-        matchCache.addToCache(matchDTO.getId(),
-            new MatchDTO(homeMatchProbability, calculatorService.getGameProbabilities(homeMatchProbability, numberOfSetsToWin)));
+        if (excitedOdds != null){
+            double homeMatchProbability = calculatorService.getRoundedDoubleNumber(
+                excitedOdds.getAwayOdds() / (excitedOdds.getHomeOdds() + excitedOdds.getAwayOdds()), calculatorService.getSCALE());
 
-        matchDTO.setGameMode(gameMode);
-        matchDTO.setNumberOfSetsToWin(numberOfSetsToWin);
+            matchCache.addToCache(matchDTO.getId(),
+                new MatchDTO(homeMatchProbability, calculatorService.getGameProbabilities(homeMatchProbability, numberOfSetsToWin)));
+
+            matchDTO.setGameMode(gameMode);
+            matchDTO.setNumberOfSetsToWin(numberOfSetsToWin);
+        }
     }
 
     private void workWithFinishedMatch(MatchDTO matchDTO, Map scoreboardSlim) {
@@ -222,7 +232,6 @@ public class ScheduledRepository {
         List<OddsDTO> odds = new ArrayList<>();
 
         if (!markets.isEmpty()) {
-            //
 
             String neededGroupId = groups.stream().filter(group -> group.getName().equals("2way - Who will win?"))
                 .findAny().get().getId();
