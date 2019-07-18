@@ -9,10 +9,12 @@
     <include file="config/liquibase/changelog/20190609135140_added_entity_Sett.xml" relativeToChangelogFile="false"/>
     <include file="config/liquibase/changelog/20190609131945_added_entity_Match.xml" relativeToChangelogFile="false"/>
     <include file="config/liquibase/changelog/20190711175004_added_entity_Odds.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20190718045016_added_entity_Bet.xml" relativeToChangelogFile="false"/>
     <!-- jhipster-needle-liquibase-add-changelog - JHipster will add liquibase changelogs here -->
     <include file="config/liquibase/changelog/20190609120107_added_entity_constraints_Game.xml" relativeToChangelogFile="false"/>
     <include file="config/liquibase/changelog/20190609135140_added_entity_constraints_Sett.xml" relativeToChangelogFile="false"/>
     <include file="config/liquibase/changelog/20190711175004_added_entity_constraints_Odds.xml"
              relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20190718045016_added_entity_constraints_Bet.xml" relativeToChangelogFile="false"/>
     <!-- jhipster-needle-liquibase-add-constraints-changelog - JHipster will add liquibase constraints changelogs here -->
 </databaseChangeLog>
