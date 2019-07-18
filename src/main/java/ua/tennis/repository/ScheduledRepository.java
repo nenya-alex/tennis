@@ -6,8 +6,8 @@ import ua.tennis.domain.Odds;
 import ua.tennis.service.CalculatorService;
 import ua.tennis.service.MatchCache;
 import ua.tennis.service.dto.*;
-import ua.tennis.service.enums.MatchStatus;
-import ua.tennis.service.enums.MatchWinner;
+import ua.tennis.domain.enumeration.MatchStatus;
+import ua.tennis.domain.enumeration.MatchWinner;
 
 import java.time.Instant;
 import java.util.*;

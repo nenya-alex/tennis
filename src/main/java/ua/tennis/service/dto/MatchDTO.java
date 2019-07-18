@@ -1,7 +1,7 @@
 package ua.tennis.service.dto;
 
-import ua.tennis.service.enums.MatchStatus;
-import ua.tennis.service.enums.MatchWinner;
+import ua.tennis.domain.enumeration.MatchStatus;
+import ua.tennis.domain.enumeration.MatchWinner;
 
 import java.io.Serializable;
 import java.time.Instant;

@@ -19,8 +19,6 @@ public class Match implements Serializable {
     private static final long serialVersionUID = 1L;
 
     @Id
-//    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "sequenceGenerator")
-//    @SequenceGenerator(name = "sequenceGenerator")
     private Long id;
 
     @Column(name = "identifier")
@@ -59,7 +57,6 @@ public class Match implements Serializable {
     @OneToMany(mappedBy = "match", cascade = CascadeType.ALL)
     private Set<Odds> odds = new HashSet<>();
 
-    // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
     public Long getId() {
         return id;
     }
@@ -212,7 +209,6 @@ public class Match implements Serializable {
     public void setSetts(Set<Sett> setts) {
         this.setts = setts;
     }
-    // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here, do not remove
 
 
     public Set<Odds> getOdds() {

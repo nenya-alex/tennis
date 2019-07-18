@@ -1,0 +1,68 @@
+<div>
+    <h2 id="page-heading">
+        <span>Bets</span>
+        <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-bet" [routerLink]="['/bet/new']">
+            <fa-icon [icon]="'plus'"></fa-icon>
+            <span >
+            Create new Bet
+            </span>
+        </button>
+    </h2>
+    <jhi-alert></jhi-alert>
+    <br/>
+    <div class="table-responsive" *ngIf="bets">
+        <table class="table table-striped">
+            <thead>
+            <tr>
+            <th><span>ID</span></th>
+            <th><span>Amount</span></th>
+            <th><span>Odds</span></th>
+            <th><span>Placed Bet Match Winner</span></th>
+            <th><span>Status</span></th>
+            <th><span>Placed Date</span></th>
+            <th><span>Match</span></th>
+            <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let bet of bets ;trackBy: trackId">
+                <td><a [routerLink]="['/bet', bet.id, 'view' ]">{{bet.id}}</a></td>
+                <td>{{bet.amount}}</td>
+                <td>{{bet.odds}}</td>
+                <td>{{bet.placedBetMatchWinner}}</td>
+                <td>{{bet.status}}</td>
+                <td>{{bet.placedDate | date:'medium'}}</td>
+                <td>
+                    <div *ngIf="bet.matchId">
+                        <a [routerLink]="['../match', bet.matchId , 'view' ]" >{{bet.matchId}}</a>
+                    </div>
+                </td>
+                <td class="text-right">
+                    <div class="btn-group">
+                        <button type="submit"
+                                [routerLink]="['/bet', bet.id, 'view' ]"
+                                class="btn btn-info btn-sm">
+                            <fa-icon [icon]="'eye'"></fa-icon>
+                            <span class="d-none d-md-inline">View</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/bet', bet.id, 'edit']"
+                                class="btn btn-primary btn-sm">
+                            <fa-icon [icon]="'pencil-alt'"></fa-icon>
+                            <span class="d-none d-md-inline">Edit</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', 'bet', { outlets: { popup: bet.id + '/delete'} }]"
+                                replaceUrl="true"
+                                queryParamsHandling="merge"
+                                class="btn btn-danger btn-sm">
+                            <fa-icon [icon]="'times'"></fa-icon>
+                            <span class="d-none d-md-inline">Delete</span>
+                        </button>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

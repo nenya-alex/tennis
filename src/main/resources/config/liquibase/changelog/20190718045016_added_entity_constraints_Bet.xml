@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.6.xsd">
+    <!--
+        Added the constraints for entity Bet.
+    -->
+    <changeSet id="20190718045016-2" author="jhipster">
+        
+        <addForeignKeyConstraint baseColumnNames="match_id"
+                                 baseTableName="bet"
+                                 constraintName="fk_bet_match_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="match"/>
+
+    </changeSet>
+</databaseChangeLog>

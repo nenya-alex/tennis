@@ -9,10 +9,9 @@ import ua.tennis.repository.MatchRepository;
 import ua.tennis.repository.OddsRepository;
 import ua.tennis.repository.ScheduledRepository;
 import ua.tennis.service.dto.GameDTO;
-import ua.tennis.service.dto.GroupDTO;
 import ua.tennis.service.dto.MatchDTO;
-import ua.tennis.service.enums.MatchStatus;
-import ua.tennis.service.enums.MatchWinner;
+import ua.tennis.domain.enumeration.MatchStatus;
+import ua.tennis.domain.enumeration.MatchWinner;
 import ua.tennis.service.mapper.MatchMapper;
 
 import java.util.*;

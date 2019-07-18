@@ -1,0 +1,49 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="bet">
+            <h2><span>Bet</span> {{bet.id}}</h2>
+            <hr>
+            <jhi-alert-error></jhi-alert-error>
+            <dl class="row-md jh-entity-details">
+                <dt><span>Amount</span></dt>
+                <dd>
+                    <span>{{bet.amount}}</span>
+                </dd>
+                <dt><span>Odds</span></dt>
+                <dd>
+                    <span>{{bet.odds}}</span>
+                </dd>
+                <dt><span>Placed Bet Match Winner</span></dt>
+                <dd>
+                    <span>{{bet.placedBetMatchWinner}}</span>
+                </dd>
+                <dt><span>Status</span></dt>
+                <dd>
+                    <span>{{bet.status}}</span>
+                </dd>
+                <dt><span>Placed Date</span></dt>
+                <dd>
+                    <span>{{bet.placedDate}}</span>
+                </dd>
+                <dt><span>Match</span></dt>
+                <dd>
+                    <div *ngIf="bet.matchId">
+                        <a [routerLink]="['/match', bet.matchId, 'view']">{{bet.matchId}}</a>
+                    </div>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon [icon]="'arrow-left'"></fa-icon>&nbsp;<span> Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/bet', bet.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span> Edit</span>
+            </button>
+        </div>
+    </div>
+</div>
