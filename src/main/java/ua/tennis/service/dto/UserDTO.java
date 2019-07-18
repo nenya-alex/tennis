@@ -6,7 +6,8 @@ import ua.tennis.config.Constants;
 import ua.tennis.domain.Authority;
 import ua.tennis.domain.User;
 
-import javax.validation.constraints.*;
+import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Size;
 import java.time.Instant;
 import java.util.Set;
 import java.util.stream.Collectors;

@@ -1,7 +1,11 @@
 package ua.tennis.service.dto;
-import java.time.Instant;
+
+import ua.tennis.domain.enumeration.BetStatus;
+import ua.tennis.domain.enumeration.MatchWinner;
+
 import java.io.Serializable;
 import java.math.BigDecimal;
+import java.time.Instant;
 import java.util.Objects;
 
 /**

@@ -5,13 +5,13 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.client.RestTemplate;
 import ua.tennis.domain.Match;
 import ua.tennis.domain.Odds;
+import ua.tennis.domain.enumeration.MatchStatus;
+import ua.tennis.domain.enumeration.MatchWinner;
 import ua.tennis.repository.MatchRepository;
 import ua.tennis.repository.OddsRepository;
 import ua.tennis.repository.ScheduledRepository;
 import ua.tennis.service.dto.GameDTO;
 import ua.tennis.service.dto.MatchDTO;
-import ua.tennis.domain.enumeration.MatchStatus;
-import ua.tennis.domain.enumeration.MatchWinner;
 import ua.tennis.service.mapper.MatchMapper;
 
 import java.util.*;

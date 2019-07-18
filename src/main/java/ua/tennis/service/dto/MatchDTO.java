@@ -5,7 +5,9 @@ import ua.tennis.domain.enumeration.MatchWinner;
 
 import java.io.Serializable;
 import java.time.Instant;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Objects;
 
 public class MatchDTO implements Serializable {
 

@@ -1,16 +1,16 @@
-import {NgModule, CUSTOM_ELEMENTS_SCHEMA} from '@angular/core';
-import {RouterModule} from '@angular/router';
+import {CUSTOM_ELEMENTS_SCHEMA, NgModule} from "@angular/core";
+import {RouterModule} from "@angular/router";
 
-import {TennisSharedModule} from 'app/shared';
+import {TennisSharedModule} from "app/shared";
 import {
     OddsComponent,
-    OddsDetailComponent,
-    OddsUpdateComponent,
-    OddsDeletePopupComponent,
     OddsDeleteDialogComponent,
+    OddsDeletePopupComponent,
+    OddsDetailComponent,
+    oddsPopupRoute,
     oddsRoute,
-    oddsPopupRoute
-} from './';
+    OddsUpdateComponent
+} from "./";
 
 const ENTITY_STATES = [...oddsRoute, ...oddsPopupRoute];
 

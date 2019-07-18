@@ -1,12 +1,12 @@
 /* tslint:disable max-line-length */
-import { ComponentFixture, TestBed, inject, fakeAsync, tick } from '@angular/core/testing';
-import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
-import { Observable, of } from 'rxjs';
-import { JhiEventManager } from 'ng-jhipster';
+import {ComponentFixture, fakeAsync, inject, TestBed, tick} from "@angular/core/testing";
+import {NgbActiveModal} from "@ng-bootstrap/ng-bootstrap";
+import {Observable, of} from "rxjs";
+import {JhiEventManager} from "ng-jhipster";
 
-import { TennisTestModule } from '../../../test.module';
-import { BetDeleteDialogComponent } from 'app/entities/bet/bet-delete-dialog.component';
-import { BetService } from 'app/entities/bet/bet.service';
+import {TennisTestModule} from "../../../test.module";
+import {BetDeleteDialogComponent} from "app/entities/bet/bet-delete-dialog.component";
+import {BetService} from "app/entities/bet/bet.service";
 
 describe('Component Tests', () => {
   describe('Bet Management Delete Component', () => {

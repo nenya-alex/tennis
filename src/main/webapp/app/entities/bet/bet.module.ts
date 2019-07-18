@@ -1,16 +1,16 @@
-import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
-import { RouterModule } from '@angular/router';
+import {CUSTOM_ELEMENTS_SCHEMA, NgModule} from "@angular/core";
+import {RouterModule} from "@angular/router";
 
-import { TennisSharedModule } from 'app/shared';
+import {TennisSharedModule} from "app/shared";
 import {
-  BetComponent,
-  BetDetailComponent,
-  BetUpdateComponent,
-  BetDeletePopupComponent,
-  BetDeleteDialogComponent,
-  betRoute,
-  betPopupRoute
-} from './';
+    BetComponent,
+    BetDeleteDialogComponent,
+    BetDeletePopupComponent,
+    BetDetailComponent,
+    betPopupRoute,
+    betRoute,
+    BetUpdateComponent
+} from "./";
 
 const ENTITY_STATES = [...betRoute, ...betPopupRoute];
 

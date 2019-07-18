@@ -1,13 +1,13 @@
 /* tslint:disable max-line-length */
-import { ComponentFixture, TestBed, fakeAsync, tick } from '@angular/core/testing';
-import { HttpResponse } from '@angular/common/http';
-import { FormBuilder } from '@angular/forms';
-import { Observable, of } from 'rxjs';
+import {ComponentFixture, fakeAsync, TestBed, tick} from "@angular/core/testing";
+import {HttpResponse} from "@angular/common/http";
+import {FormBuilder} from "@angular/forms";
+import {Observable, of} from "rxjs";
 
-import { TennisTestModule } from '../../../test.module';
-import { BetUpdateComponent } from 'app/entities/bet/bet-update.component';
-import { BetService } from 'app/entities/bet/bet.service';
-import { Bet } from 'app/shared/model/bet.model';
+import {TennisTestModule} from "../../../test.module";
+import {BetUpdateComponent} from "app/entities/bet/bet-update.component";
+import {BetService} from "app/entities/bet/bet.service";
+import {Bet} from "app/shared/model/bet.model";
 
 describe('Component Tests', () => {
   describe('Bet Management Update Component', () => {

@@ -1,9 +1,9 @@
 package ua.tennis.service.mapper;
 
-import ua.tennis.domain.*;
+import org.mapstruct.Mapper;
+import org.mapstruct.Mapping;
+import ua.tennis.domain.Odds;
 import ua.tennis.service.dto.OddsDTO;
-
-import org.mapstruct.*;
 
 import java.util.Set;
 

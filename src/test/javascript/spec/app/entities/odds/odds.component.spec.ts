@@ -1,12 +1,12 @@
 /* tslint:disable max-line-length */
-import {ComponentFixture, TestBed} from '@angular/core/testing';
-import {Observable, of} from 'rxjs';
-import {HttpHeaders, HttpResponse} from '@angular/common/http';
+import {ComponentFixture, TestBed} from "@angular/core/testing";
+import {Observable, of} from "rxjs";
+import {HttpHeaders, HttpResponse} from "@angular/common/http";
 
-import {TennisTestModule} from '../../../test.module';
-import {OddsComponent} from 'app/entities/odds/odds.component';
-import {OddsService} from 'app/entities/odds/odds.service';
-import {Odds} from 'app/shared/model/odds.model';
+import {TennisTestModule} from "../../../test.module";
+import {OddsComponent} from "app/entities/odds/odds.component";
+import {OddsService} from "app/entities/odds/odds.service";
+import {Odds} from "app/shared/model/odds.model";
 
 describe('Component Tests', () => {
     describe('Odds Management Component', () => {

@@ -1,12 +1,12 @@
 /* tslint:disable max-line-length */
-import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { Observable, of } from 'rxjs';
-import { HttpHeaders, HttpResponse } from '@angular/common/http';
+import {ComponentFixture, TestBed} from "@angular/core/testing";
+import {Observable, of} from "rxjs";
+import {HttpHeaders, HttpResponse} from "@angular/common/http";
 
-import { TennisTestModule } from '../../../test.module';
-import { BetComponent } from 'app/entities/bet/bet.component';
-import { BetService } from 'app/entities/bet/bet.service';
-import { Bet } from 'app/shared/model/bet.model';
+import {TennisTestModule} from "../../../test.module";
+import {BetComponent} from "app/entities/bet/bet.component";
+import {BetService} from "app/entities/bet/bet.service";
+import {Bet} from "app/shared/model/bet.model";
 
 describe('Component Tests', () => {
   describe('Bet Management Component', () => {

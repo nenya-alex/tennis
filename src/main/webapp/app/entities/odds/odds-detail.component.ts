@@ -1,7 +1,7 @@
-import {Component, OnInit} from '@angular/core';
-import {ActivatedRoute} from '@angular/router';
+import {Component, OnInit} from "@angular/core";
+import {ActivatedRoute} from "@angular/router";
 
-import {IOdds} from 'app/shared/model/odds.model';
+import {IOdds} from "app/shared/model/odds.model";
 
 @Component({
     selector: 'jhi-odds-detail',

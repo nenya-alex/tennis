@@ -18,8 +18,9 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.web.filter.CorsFilter;
 import org.zalando.problem.spring.web.advice.security.SecurityProblemSupport;
-import ua.tennis.security.*;
-import ua.tennis.security.jwt.*;
+import ua.tennis.security.AuthoritiesConstants;
+import ua.tennis.security.jwt.JWTConfigurer;
+import ua.tennis.security.jwt.TokenProvider;
 
 import javax.annotation.PostConstruct;
 

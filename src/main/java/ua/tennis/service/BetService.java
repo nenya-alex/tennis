@@ -1,14 +1,13 @@
 package ua.tennis.service;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import ua.tennis.domain.Bet;
 import ua.tennis.repository.BetRepository;
 import ua.tennis.service.dto.BetDTO;
 import ua.tennis.service.mapper.BetMapper;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
-import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -59,27 +58,4 @@ public class BetService {
             .collect(Collectors.toCollection(LinkedList::new));
     }
 
-
-    /**
-     * Get one bet by id.
-     *
-     * @param id the id of the entity.
-     * @return the entity.
-     */
-    @Transactional(readOnly = true)
-    public Optional<BetDTO> findOne(Long id) {
-        log.debug("Request to get Bet : {}", id);
-        return betRepository.findById(id)
-            .map(betMapper::toDto);
-    }
-
-    /**
-     * Delete the bet by id.
-     *
-     * @param id the id of the entity.
-     */
-    public void delete(Long id) {
-        log.debug("Request to delete Bet : {}", id);
-        betRepository.deleteById(id);
-    }
 }

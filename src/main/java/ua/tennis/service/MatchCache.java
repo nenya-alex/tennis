@@ -2,9 +2,7 @@ package ua.tennis.service;
 
 import org.springframework.stereotype.Component;
 import ua.tennis.service.dto.MatchDTO;
-import ua.tennis.service.dto.SettDTO;
 
-import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 

@@ -4,7 +4,6 @@ import ua.tennis.domain.enumeration.BetStatus;
 import ua.tennis.domain.enumeration.MatchWinner;
 
 import javax.persistence.*;
-
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.time.Instant;

@@ -1,11 +1,11 @@
 /* tslint:disable max-line-length */
-import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { ActivatedRoute } from '@angular/router';
-import { of } from 'rxjs';
+import {ComponentFixture, TestBed} from "@angular/core/testing";
+import {ActivatedRoute} from "@angular/router";
+import {of} from "rxjs";
 
-import { TennisTestModule } from '../../../test.module';
-import { BetDetailComponent } from 'app/entities/bet/bet-detail.component';
-import { Bet } from 'app/shared/model/bet.model';
+import {TennisTestModule} from "../../../test.module";
+import {BetDetailComponent} from "app/entities/bet/bet-detail.component";
+import {Bet} from "app/shared/model/bet.model";
 
 describe('Component Tests', () => {
   describe('Bet Management Detail Component', () => {

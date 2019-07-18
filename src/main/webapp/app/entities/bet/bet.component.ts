@@ -1,12 +1,12 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
-import { HttpErrorResponse, HttpResponse } from '@angular/common/http';
-import { Subscription } from 'rxjs';
-import { filter, map } from 'rxjs/operators';
-import { JhiEventManager, JhiAlertService } from 'ng-jhipster';
+import {Component, OnDestroy, OnInit} from "@angular/core";
+import {HttpErrorResponse, HttpResponse} from "@angular/common/http";
+import {Subscription} from "rxjs";
+import {filter, map} from "rxjs/operators";
+import {JhiAlertService, JhiEventManager} from "ng-jhipster";
 
-import { IBet } from 'app/shared/model/bet.model';
-import { AccountService } from 'app/core';
-import { BetService } from './bet.service';
+import {IBet} from "app/shared/model/bet.model";
+import {AccountService} from "app/core";
+import {BetService} from "./bet.service";
 
 @Component({
   selector: 'jhi-bet',

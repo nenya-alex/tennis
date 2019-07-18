@@ -1,7 +1,8 @@
 package ua.tennis.service.mapper;
 
-import org.mapstruct.*;
-import ua.tennis.domain.*;
+import org.mapstruct.Mapper;
+import org.mapstruct.Mapping;
+import ua.tennis.domain.Sett;
 import ua.tennis.service.dto.SettDTO;
 
 /**

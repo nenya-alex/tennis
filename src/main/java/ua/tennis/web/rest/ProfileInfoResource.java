@@ -2,7 +2,9 @@ package ua.tennis.web.rest;
 
 import io.github.jhipster.config.JHipsterProperties;
 import org.springframework.core.env.Environment;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 import ua.tennis.config.DefaultProfileUtil;
 
 import java.util.ArrayList;

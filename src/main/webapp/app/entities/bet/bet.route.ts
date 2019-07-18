@@ -1,16 +1,15 @@
-import { Injectable } from '@angular/core';
-import { HttpResponse } from '@angular/common/http';
-import { Resolve, ActivatedRouteSnapshot, RouterStateSnapshot, Routes } from '@angular/router';
-import { UserRouteAccessService } from 'app/core';
-import { Observable, of } from 'rxjs';
-import { filter, map } from 'rxjs/operators';
-import { Bet } from 'app/shared/model/bet.model';
-import { BetService } from './bet.service';
-import { BetComponent } from './bet.component';
-import { BetDetailComponent } from './bet-detail.component';
-import { BetUpdateComponent } from './bet-update.component';
-import { BetDeletePopupComponent } from './bet-delete-dialog.component';
-import { IBet } from 'app/shared/model/bet.model';
+import {Injectable} from "@angular/core";
+import {HttpResponse} from "@angular/common/http";
+import {ActivatedRouteSnapshot, Resolve, RouterStateSnapshot, Routes} from "@angular/router";
+import {UserRouteAccessService} from "app/core";
+import {Observable, of} from "rxjs";
+import {filter, map} from "rxjs/operators";
+import {Bet, IBet} from "app/shared/model/bet.model";
+import {BetService} from "./bet.service";
+import {BetComponent} from "./bet.component";
+import {BetDetailComponent} from "./bet-detail.component";
+import {BetUpdateComponent} from "./bet-update.component";
+import {BetDeletePopupComponent} from "./bet-delete-dialog.component";
 
 @Injectable({ providedIn: 'root' })
 export class BetResolve implements Resolve<IBet> {

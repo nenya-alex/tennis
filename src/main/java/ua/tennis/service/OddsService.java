@@ -1,14 +1,13 @@
 package ua.tennis.service;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import ua.tennis.domain.Odds;
 import ua.tennis.repository.OddsRepository;
 import ua.tennis.service.dto.OddsDTO;
 import ua.tennis.service.mapper.OddsMapper;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
-import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 import java.util.LinkedList;
 import java.util.List;
