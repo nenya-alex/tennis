@@ -21,7 +21,7 @@
                 <constraints nullable="true" />
             </column>
 
-            <column name="placed_bet_match_winner" type="varchar(255)">
+            <column name="bet_side" type="varchar(255)">
                 <constraints nullable="true" />
             </column>
 

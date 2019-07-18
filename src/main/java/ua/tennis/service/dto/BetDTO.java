@@ -1,5 +1,6 @@
 package ua.tennis.service.dto;
 
+import ua.tennis.domain.enumeration.BetSide;
 import ua.tennis.domain.enumeration.BetStatus;
 import ua.tennis.domain.enumeration.MatchWinner;
 
@@ -19,7 +20,7 @@ public class BetDTO implements Serializable {
 
     private Double odds;
 
-    private MatchWinner placedBetMatchWinner;
+    private BetSide betSide;
 
     private BetStatus status;
 
@@ -52,12 +53,12 @@ public class BetDTO implements Serializable {
         this.odds = odds;
     }
 
-    public MatchWinner getPlacedBetMatchWinner() {
-        return placedBetMatchWinner;
+    public BetSide getBetSide() {
+        return betSide;
     }
 
-    public void setPlacedBetMatchWinner(MatchWinner placedBetMatchWinner) {
-        this.placedBetMatchWinner = placedBetMatchWinner;
+    public void setBetSide(BetSide betSide) {
+        this.betSide = betSide;
     }
 
     public BetStatus getStatus() {
@@ -111,7 +112,6 @@ public class BetDTO implements Serializable {
             "id=" + getId() +
             ", amount=" + getAmount() +
             ", odds=" + getOdds() +
-            ", placedBetMatchWinner='" + getPlacedBetMatchWinner() + "'" +
             ", status='" + getStatus() + "'" +
             ", placedDate='" + getPlacedDate() + "'" +
             ", match=" + getMatchId() +

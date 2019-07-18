@@ -2,75 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="1134ab4c-b41f-4cdb-9270-7db41128e82a" name="Default" comment="">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.jhipster/Game.json" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.jhipster/Match.json" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.jhipster/Sett.json" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/main/java/ua/tennis/web/rest/BetResource.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/test/java/ua/tennis/web/rest/BetResourceIT.java" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/gradle/wrapper/gradle-wrapper.properties" afterPath="$PROJECT_DIR$/gradle/wrapper/gradle-wrapper.properties" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/ua/tennis/TennisApp.java" afterPath="$PROJECT_DIR$/src/main/java/ua/tennis/TennisApp.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/ua/tennis/config/AsyncConfiguration.java" afterPath="$PROJECT_DIR$/src/main/java/ua/tennis/config/AsyncConfiguration.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/ua/tennis/config/CloudDatabaseConfiguration.java" afterPath="$PROJECT_DIR$/src/main/java/ua/tennis/config/CloudDatabaseConfiguration.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/ua/tennis/config/LoggingAspectConfiguration.java" afterPath="$PROJECT_DIR$/src/main/java/ua/tennis/config/LoggingAspectConfiguration.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/ua/tennis/config/MetricsConfiguration.java" afterPath="$PROJECT_DIR$/src/main/java/ua/tennis/config/MetricsConfiguration.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/ua/tennis/config/SecurityConfiguration.java" afterPath="$PROJECT_DIR$/src/main/java/ua/tennis/config/SecurityConfiguration.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/ua/tennis/config/ThymeleafConfiguration.java" afterPath="$PROJECT_DIR$/src/main/java/ua/tennis/config/ThymeleafConfiguration.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/ua/tennis/config/WebConfigurer.java" afterPath="$PROJECT_DIR$/src/main/java/ua/tennis/config/WebConfigurer.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/ua/tennis/domain/enumeration/BetSide.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/ua/tennis/domain/Bet.java" afterPath="$PROJECT_DIR$/src/main/java/ua/tennis/domain/Bet.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/ua/tennis/domain/Match.java" afterPath="$PROJECT_DIR$/src/main/java/ua/tennis/domain/Match.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/ua/tennis/domain/Odds.java" afterPath="$PROJECT_DIR$/src/main/java/ua/tennis/domain/Odds.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/ua/tennis/repository/BetRepository.java" afterPath="$PROJECT_DIR$/src/main/java/ua/tennis/repository/BetRepository.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/ua/tennis/repository/GameRepository.java" afterPath="$PROJECT_DIR$/src/main/java/ua/tennis/repository/GameRepository.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/ua/tennis/repository/MatchRepository.java" afterPath="$PROJECT_DIR$/src/main/java/ua/tennis/repository/MatchRepository.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/ua/tennis/repository/OddsRepository.java" afterPath="$PROJECT_DIR$/src/main/java/ua/tennis/repository/OddsRepository.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/ua/tennis/repository/ScheduledRepository.java" afterPath="$PROJECT_DIR$/src/main/java/ua/tennis/repository/ScheduledRepository.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/ua/tennis/repository/SettRepository.java" afterPath="$PROJECT_DIR$/src/main/java/ua/tennis/repository/SettRepository.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/ua/tennis/service/BetService.java" afterPath="$PROJECT_DIR$/src/main/java/ua/tennis/service/BetService.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/ua/tennis/service/MatchCache.java" afterPath="$PROJECT_DIR$/src/main/java/ua/tennis/service/MatchCache.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/ua/tennis/service/OddsService.java" afterPath="$PROJECT_DIR$/src/main/java/ua/tennis/service/OddsService.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/ua/tennis/service/ScheduledService.java" afterPath="$PROJECT_DIR$/src/main/java/ua/tennis/service/ScheduledService.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/ua/tennis/service/dto/BetDTO.java" afterPath="$PROJECT_DIR$/src/main/java/ua/tennis/service/dto/BetDTO.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/ua/tennis/service/dto/MatchDTO.java" afterPath="$PROJECT_DIR$/src/main/java/ua/tennis/service/dto/MatchDTO.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/ua/tennis/service/dto/OddsDTO.java" afterPath="$PROJECT_DIR$/src/main/java/ua/tennis/service/dto/OddsDTO.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/ua/tennis/service/dto/UserDTO.java" afterPath="$PROJECT_DIR$/src/main/java/ua/tennis/service/dto/UserDTO.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/ua/tennis/service/mapper/BetMapper.java" afterPath="$PROJECT_DIR$/src/main/java/ua/tennis/service/mapper/BetMapper.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/ua/tennis/service/mapper/GameMapper.java" afterPath="$PROJECT_DIR$/src/main/java/ua/tennis/service/mapper/GameMapper.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/ua/tennis/service/mapper/MatchMapper.java" afterPath="$PROJECT_DIR$/src/main/java/ua/tennis/service/mapper/MatchMapper.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/ua/tennis/service/mapper/OddsMapper.java" afterPath="$PROJECT_DIR$/src/main/java/ua/tennis/service/mapper/OddsMapper.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/ua/tennis/service/mapper/SettMapper.java" afterPath="$PROJECT_DIR$/src/main/java/ua/tennis/service/mapper/SettMapper.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/ua/tennis/web/rest/ProfileInfoResource.java" afterPath="$PROJECT_DIR$/src/main/java/ua/tennis/web/rest/ProfileInfoResource.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/ua/tennis/web/rest/UserJWTController.java" afterPath="$PROJECT_DIR$/src/main/java/ua/tennis/web/rest/UserJWTController.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/ua/tennis/web/rest/vm/ProbabilityResource.java" afterPath="$PROJECT_DIR$/src/main/java/ua/tennis/web/rest/vm/ProbabilityResource.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/config/liquibase/changelog/20190711175004_added_entity_Odds.xml" afterPath="$PROJECT_DIR$/src/main/resources/config/liquibase/changelog/20190711175004_added_entity_Odds.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/config/liquibase/changelog/20190718045016_added_entity_Bet.xml" afterPath="$PROJECT_DIR$/src/main/resources/config/liquibase/changelog/20190718045016_added_entity_Bet.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/app/entities/bet/bet-delete-dialog.component.ts" afterPath="$PROJECT_DIR$/src/main/webapp/app/entities/bet/bet-delete-dialog.component.ts" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/app/entities/bet/bet-detail.component.ts" afterPath="$PROJECT_DIR$/src/main/webapp/app/entities/bet/bet-detail.component.ts" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/app/entities/bet/bet-update.component.ts" afterPath="$PROJECT_DIR$/src/main/webapp/app/entities/bet/bet-update.component.ts" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/app/entities/bet/bet.component.ts" afterPath="$PROJECT_DIR$/src/main/webapp/app/entities/bet/bet.component.ts" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/app/entities/bet/bet.module.ts" afterPath="$PROJECT_DIR$/src/main/webapp/app/entities/bet/bet.module.ts" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/app/entities/bet/bet.route.ts" afterPath="$PROJECT_DIR$/src/main/webapp/app/entities/bet/bet.route.ts" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/app/entities/bet/bet.service.ts" afterPath="$PROJECT_DIR$/src/main/webapp/app/entities/bet/bet.service.ts" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/app/entities/odds/odds-delete-dialog.component.ts" afterPath="$PROJECT_DIR$/src/main/webapp/app/entities/odds/odds-delete-dialog.component.ts" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/app/entities/odds/odds-detail.component.ts" afterPath="$PROJECT_DIR$/src/main/webapp/app/entities/odds/odds-detail.component.ts" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/app/entities/odds/odds-update.component.ts" afterPath="$PROJECT_DIR$/src/main/webapp/app/entities/odds/odds-update.component.ts" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/app/entities/odds/odds.component.ts" afterPath="$PROJECT_DIR$/src/main/webapp/app/entities/odds/odds.component.ts" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/app/entities/odds/odds.module.ts" afterPath="$PROJECT_DIR$/src/main/webapp/app/entities/odds/odds.module.ts" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/app/entities/odds/odds.route.ts" afterPath="$PROJECT_DIR$/src/main/webapp/app/entities/odds/odds.route.ts" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/app/entities/odds/odds.service.ts" afterPath="$PROJECT_DIR$/src/main/webapp/app/entities/odds/odds.service.ts" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/app/shared/model/bet.model.ts" afterPath="$PROJECT_DIR$/src/main/webapp/app/shared/model/bet.model.ts" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/app/shared/model/odds.model.ts" afterPath="$PROJECT_DIR$/src/main/webapp/app/shared/model/odds.model.ts" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/test/java/ua/tennis/web/rest/AccountResourceIntTest.java" afterPath="$PROJECT_DIR$/src/test/java/ua/tennis/web/rest/AccountResourceIntTest.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/test/javascript/spec/app/entities/bet/bet-delete-dialog.component.spec.ts" afterPath="$PROJECT_DIR$/src/test/javascript/spec/app/entities/bet/bet-delete-dialog.component.spec.ts" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/test/javascript/spec/app/entities/bet/bet-detail.component.spec.ts" afterPath="$PROJECT_DIR$/src/test/javascript/spec/app/entities/bet/bet-detail.component.spec.ts" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/test/javascript/spec/app/entities/bet/bet-update.component.spec.ts" afterPath="$PROJECT_DIR$/src/test/javascript/spec/app/entities/bet/bet-update.component.spec.ts" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/test/javascript/spec/app/entities/bet/bet.component.spec.ts" afterPath="$PROJECT_DIR$/src/test/javascript/spec/app/entities/bet/bet.component.spec.ts" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/test/javascript/spec/app/entities/bet/bet.service.spec.ts" afterPath="$PROJECT_DIR$/src/test/javascript/spec/app/entities/bet/bet.service.spec.ts" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/test/javascript/spec/app/entities/odds/odds-delete-dialog.component.spec.ts" afterPath="$PROJECT_DIR$/src/test/javascript/spec/app/entities/odds/odds-delete-dialog.component.spec.ts" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/test/javascript/spec/app/entities/odds/odds-detail.component.spec.ts" afterPath="$PROJECT_DIR$/src/test/javascript/spec/app/entities/odds/odds-detail.component.spec.ts" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/test/javascript/spec/app/entities/odds/odds-update.component.spec.ts" afterPath="$PROJECT_DIR$/src/test/javascript/spec/app/entities/odds/odds-update.component.spec.ts" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/test/javascript/spec/app/entities/odds/odds.component.spec.ts" afterPath="$PROJECT_DIR$/src/test/javascript/spec/app/entities/odds/odds.component.spec.ts" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/test/javascript/spec/app/entities/odds/odds.service.spec.ts" afterPath="$PROJECT_DIR$/src/test/javascript/spec/app/entities/odds/odds.service.spec.ts" />
     </list>
     <ignored path="$PROJECT_DIR$/.gradle/" />
     <ignored path="$PROJECT_DIR$/build/classes/" />
@@ -186,22 +123,53 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="BetService.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="BetService.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/ua/tennis/service/BetService.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="654">
+            <state relative-caret-position="1034">
               <caret line="59" column="0" lean-forward="false" selection-start-line="59" selection-start-column="0" selection-end-line="59" selection-end-column="0" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="BetRepository.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/ua/tennis/repository/BetRepository.java">
+      <file leaf-file-name="Bet.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/ua/tennis/domain/Bet.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="220">
-              <caret line="12" column="17" lean-forward="false" selection-start-line="12" selection-start-column="17" selection-end-line="12" selection-end-column="17" />
+            <state relative-caret-position="704">
+              <caret line="39" column="14" lean-forward="false" selection-start-line="39" selection-start-column="14" selection-end-line="39" selection-end-column="14" />
+              <folding>
+                <element signature="e#1749#1750#0" expanded="true" />
+                <element signature="e#1779#1780#0" expanded="true" />
+                <element signature="e#1826#1827#0" expanded="true" />
+                <element signature="e#1864#1865#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="20190718045016_added_entity_Bet.xml" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/main/resources/config/liquibase/changelog/20190718045016_added_entity_Bet.xml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-22">
+              <caret line="23" column="34" lean-forward="false" selection-start-line="23" selection-start-column="34" selection-end-line="23" selection-end-column="34" />
               <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Match.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/ua/tennis/domain/Match.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="2860">
+              <caret line="222" column="31" lean-forward="false" selection-start-line="222" selection-start-column="31" selection-end-line="222" selection-end-column="31" />
+              <folding>
+                <element signature="e#4360#4361#0" expanded="true" />
+                <element signature="e#4387#4388#0" expanded="true" />
+                <element signature="e#4522#4523#0" expanded="true" />
+                <element signature="e#4564#4565#0" expanded="true" />
+                <element signature="e#4596#4597#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -214,6 +182,14 @@
         <option value="Enum" />
       </list>
     </option>
+  </component>
+  <component name="FindInProjectRecents">
+    <findStrings>
+      <find>jhipster_dependencies_version</find>
+    </findStrings>
+    <dirStrings>
+      <dir>C:\workspace\Tennis</dir>
+    </dirStrings>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -769,12 +745,14 @@
         <option value="$PROJECT_DIR$/src/main/java/ua/tennis/repository/ScheduledRepository.java" />
         <option value="$PROJECT_DIR$/src/main/java/ua/tennis/service/enums/BetStatus.java" />
         <option value="$PROJECT_DIR$/src/main/java/ua/tennis/service/ScheduledService.java" />
-        <option value="$PROJECT_DIR$/src/main/java/ua/tennis/domain/Bet.java" />
-        <option value="$PROJECT_DIR$/src/main/java/ua/tennis/domain/Match.java" />
-        <option value="$PROJECT_DIR$/src/main/java/ua/tennis/service/dto/BetDTO.java" />
         <option value="$PROJECT_DIR$/src/main/java/ua/tennis/web/rest/BetResource.java" />
         <option value="$PROJECT_DIR$/src/main/java/ua/tennis/config/SecurityConfiguration.java" />
         <option value="$PROJECT_DIR$/src/main/java/ua/tennis/service/BetService.java" />
+        <option value="$PROJECT_DIR$/src/main/java/ua/tennis/domain/enumeration/BetSide.java" />
+        <option value="$PROJECT_DIR$/src/main/java/ua/tennis/service/dto/BetDTO.java" />
+        <option value="$PROJECT_DIR$/src/main/resources/config/liquibase/changelog/20190718045016_added_entity_Bet.xml" />
+        <option value="$PROJECT_DIR$/src/main/java/ua/tennis/domain/Match.java" />
+        <option value="$PROJECT_DIR$/src/main/java/ua/tennis/domain/Bet.java" />
       </list>
     </option>
   </component>
@@ -790,7 +768,9 @@
     <option name="width" value="1936" />
     <option name="height" value="1056" />
   </component>
-  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
   <component name="ProjectView">
     <navigator currentView="ProjectPane" proportions="" version="1">
       <flattenPackages />
@@ -851,6 +831,118 @@
             <PATH_ELEMENT>
               <option name="myItemId" value="main" />
               <option name="myItemType" value="org.jetbrains.plugins.gradle.projectView.GradleTreeStructureProvider$GradleSourceSetDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="tennis" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Tennis" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="main" />
+              <option name="myItemType" value="org.jetbrains.plugins.gradle.projectView.GradleTreeStructureProvider$GradleSourceSetDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="resources" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="tennis" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Tennis" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="main" />
+              <option name="myItemType" value="org.jetbrains.plugins.gradle.projectView.GradleTreeStructureProvider$GradleSourceSetDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="resources" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="config" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="tennis" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Tennis" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="main" />
+              <option name="myItemType" value="org.jetbrains.plugins.gradle.projectView.GradleTreeStructureProvider$GradleSourceSetDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="resources" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="config" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="liquibase" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="tennis" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Tennis" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="main" />
+              <option name="myItemType" value="org.jetbrains.plugins.gradle.projectView.GradleTreeStructureProvider$GradleSourceSetDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="resources" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="config" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="liquibase" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="changelog" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
           <PATH>
@@ -965,7 +1057,7 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="repository" />
+              <option name="myItemId" value="domain" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -1440,7 +1532,7 @@
       <workItem from="1563385759596" duration="6820000" />
       <workItem from="1563423652277" duration="2136000" />
       <workItem from="1563472680041" duration="32000" />
-      <workItem from="1563472715442" duration="757000" />
+      <workItem from="1563472715442" duration="2785000" />
     </task>
     <task id="LOCAL-00001" summary="added imports">
       <created>1562961638807</created>
@@ -1470,11 +1562,18 @@
       <option name="project" value="LOCAL" />
       <updated>1563425645318</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="working version">
+      <created>1563473533021</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1563473533021</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="11021000" />
+    <option name="totallyTimeSpent" value="13049000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
@@ -1485,25 +1584,27 @@
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Properties" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="TypeScript" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.1584318" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4720982" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.5546875" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.23549107" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Image Layers" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Java Enterprise" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.39955357" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.25558037" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.23883928" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Spring" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.36495537" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3236607" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.19387755" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Bean Validation" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Web" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32924107" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Gradle" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.18689582" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Theme Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
@@ -1512,7 +1613,6 @@
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32924107" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -1552,7 +1652,8 @@
     <MESSAGE value="refactored" />
     <MESSAGE value="getting homeProbability from DB" />
     <MESSAGE value="added Bet entity" />
-    <option name="LAST_COMMIT_MESSAGE" value="added Bet entity" />
+    <MESSAGE value="working version" />
+    <option name="LAST_COMMIT_MESSAGE" value="working version" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1672,14 +1773,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="176">
           <caret line="10" column="13" lean-forward="false" selection-start-line="10" selection-start-column="13" selection-end-line="10" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/build.gradle">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="88">
-          <caret line="4" column="20" lean-forward="false" selection-start-line="4" selection-start-column="20" selection-end-line="4" selection-end-column="20" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1846,20 +1939,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/ua/tennis/domain/Match.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-160">
-          <caret line="211" column="0" lean-forward="false" selection-start-line="211" selection-start-column="0" selection-end-line="211" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/ua/tennis/domain/Bet.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="544">
-          <caret line="34" column="16" lean-forward="false" selection-start-line="34" selection-start-column="16" selection-end-line="34" selection-end-column="16" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/ua/tennis/web/rest/BetResource.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="2420">
@@ -1868,21 +1947,34 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/ua/tennis/service/dto/BetDTO.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-418">
-          <caret line="21" column="20" lean-forward="false" selection-start-line="21" selection-start-column="20" selection-end-line="21" selection-end-column="20" />
-          <folding>
-            <element signature="e#1011#1012#0" expanded="true" />
-            <element signature="e#1054#1055#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/ua/tennis/config/SecurityConfiguration.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="242">
           <caret line="36" column="29" lean-forward="false" selection-start-line="36" selection-start-column="29" selection-end-line="36" selection-end-column="29" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/ua/tennis/repository/BetRepository.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="220">
+          <caret line="12" column="17" lean-forward="false" selection-start-line="12" selection-start-column="17" selection-end-line="12" selection-end-column="17" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/settings.gradle">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/build.gradle">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="178">
+          <caret line="43" column="59" lean-forward="false" selection-start-line="43" selection-start-column="59" selection-end-line="43" selection-end-column="59" />
           <folding />
         </state>
       </provider>
@@ -1897,18 +1989,82 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/ua/tennis/repository/BetRepository.java">
+    <entry file="file://$PROJECT_DIR$/gradle.properties">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="220">
-          <caret line="12" column="17" lean-forward="false" selection-start-line="12" selection-start-column="17" selection-end-line="12" selection-end-column="17" />
+        <state relative-caret-position="161">
+          <caret line="9" column="29" lean-forward="false" selection-start-line="9" selection-start-column="0" selection-end-line="9" selection-end-column="29" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/ua/tennis/service/BetService.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="654">
+        <state relative-caret-position="1034">
           <caret line="59" column="0" lean-forward="false" selection-start-line="59" selection-start-column="0" selection-end-line="59" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/ua/tennis/domain/enumeration/BetSide.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="44">
+          <caret line="2" column="19" lean-forward="false" selection-start-line="2" selection-start-column="12" selection-end-line="2" selection-end-column="19" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/ua/tennis/service/dto/BetDTO.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="286">
+          <caret line="114" column="0" lean-forward="false" selection-start-line="114" selection-start-column="0" selection-end-line="114" selection-end-column="0" />
+          <folding>
+            <element signature="e#1022#1023#0" expanded="true" />
+            <element signature="e#1052#1053#0" expanded="true" />
+            <element signature="e#1099#1100#0" expanded="true" />
+            <element signature="e#1137#1138#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/ua/tennis/domain/Match.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2860">
+          <caret line="222" column="31" lean-forward="false" selection-start-line="222" selection-start-column="31" selection-end-line="222" selection-end-column="31" />
+          <folding>
+            <element signature="e#4360#4361#0" expanded="true" />
+            <element signature="e#4387#4388#0" expanded="true" />
+            <element signature="e#4522#4523#0" expanded="true" />
+            <element signature="e#4564#4565#0" expanded="true" />
+            <element signature="e#4596#4597#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/ua/tennis/domain/Bet.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="704">
+          <caret line="39" column="14" lean-forward="false" selection-start-line="39" selection-start-column="14" selection-end-line="39" selection-end-column="14" />
+          <folding>
+            <element signature="e#1749#1750#0" expanded="true" />
+            <element signature="e#1779#1780#0" expanded="true" />
+            <element signature="e#1826#1827#0" expanded="true" />
+            <element signature="e#1864#1865#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/config/liquibase/changelog/20190718045016_added_entity_constraints_Bet.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/config/liquibase/changelog/20190718045016_added_entity_Bet.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-22">
+          <caret line="23" column="34" lean-forward="false" selection-start-line="23" selection-start-column="34" selection-end-line="23" selection-end-column="34" />
           <folding />
         </state>
       </provider>

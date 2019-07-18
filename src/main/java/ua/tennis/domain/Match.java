@@ -55,6 +55,9 @@ public class Match implements Serializable {
     @OneToMany(mappedBy = "match", cascade = CascadeType.ALL)
     private Set<Odds> odds = new HashSet<>();
 
+    @OneToMany(mappedBy = "match", cascade = CascadeType.ALL)
+    private Set<Bet> bets = new HashSet<>();
+
     public Long getId() {
         return id;
     }
@@ -215,6 +218,14 @@ public class Match implements Serializable {
 
     public void setOdds(Set<Odds> odds) {
         this.odds = odds;
+    }
+
+    public Set<Bet> getBets() {
+        return bets;
+    }
+
+    public void setBets(Set<Bet> bets) {
+        this.bets = bets;
     }
 
     @Override

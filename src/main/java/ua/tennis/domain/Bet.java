@@ -1,5 +1,6 @@
 package ua.tennis.domain;
 
+import ua.tennis.domain.enumeration.BetSide;
 import ua.tennis.domain.enumeration.BetStatus;
 import ua.tennis.domain.enumeration.MatchWinner;
 
@@ -26,8 +27,8 @@ public class Bet implements Serializable {
     private Double odds;
 
     @Enumerated(EnumType.STRING)
-    @Column(name = "placed_bet_match_winner")
-    private MatchWinner placedBetMatchWinner;
+    @Column(name = "bet_side")
+    private BetSide betSide;
 
     @Enumerated(EnumType.STRING)
     @Column(name = "status")
@@ -36,7 +37,7 @@ public class Bet implements Serializable {
     @Column(name = "placed_date")
     private Instant placedDate;
 
-    @OneToOne
+    @ManyToOne
     @JoinColumn(unique = true)
     private Match match;
 
@@ -75,17 +76,12 @@ public class Bet implements Serializable {
         this.odds = odds;
     }
 
-    public MatchWinner getPlacedBetMatchWinner() {
-        return placedBetMatchWinner;
+    public BetSide getBetSide() {
+        return betSide;
     }
 
-    public Bet placedBetMatchWinner(MatchWinner placedBetMatchWinner) {
-        this.placedBetMatchWinner = placedBetMatchWinner;
-        return this;
-    }
-
-    public void setPlacedBetMatchWinner(MatchWinner placedBetMatchWinner) {
-        this.placedBetMatchWinner = placedBetMatchWinner;
+    public void setBetSide(BetSide betSide) {
+        this.betSide = betSide;
     }
 
     public BetStatus getStatus() {
@@ -150,7 +146,7 @@ public class Bet implements Serializable {
             "id=" + getId() +
             ", amount=" + getAmount() +
             ", odds=" + getOdds() +
-            ", placedBetMatchWinner='" + getPlacedBetMatchWinner() + "'" +
+            ", betSide='" + getBetSide() + "'" +
             ", status='" + getStatus() + "'" +
             ", placedDate='" + getPlacedDate() + "'" +
             "}";
