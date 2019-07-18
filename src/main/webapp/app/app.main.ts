@@ -1,13 +1,14 @@
-import {platformBrowserDynamic} from "@angular/platform-browser-dynamic";
-import {ProdConfig} from "./blocks/config/prod.config";
-import {TennisAppModule} from "./app.module";
+import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
+import { ProdConfig } from './blocks/config/prod.config';
+import { TennisAppModule } from './app.module';
 
 ProdConfig();
 
 if (module['hot']) {
-    module['hot'].accept();
+  module['hot'].accept();
 }
 
-platformBrowserDynamic().bootstrapModule(TennisAppModule)
-.then((success) => console.log(`Application started`))
-.catch((err) => console.error(err));
+platformBrowserDynamic()
+  .bootstrapModule(TennisAppModule, { preserveWhitespaces: true })
+  .then(success => console.log(`Application started`))
+  .catch(err => console.error(err));

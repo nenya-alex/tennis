@@ -1,45 +1,30 @@
-import {CUSTOM_ELEMENTS_SCHEMA, NgModule} from "@angular/core";
-import {RouterModule} from "@angular/router";
+import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+import { RouterModule } from '@angular/router';
 
-import {TennisSharedModule} from "../shared";
+import { TennisSharedModule } from 'app/shared';
 
 import {
-    accountState,
-    ActivateComponent,
-    ActivateService,
-    PasswordComponent,
-    PasswordResetFinishComponent,
-    PasswordResetFinishService,
-    PasswordResetInitComponent,
-    PasswordResetInitService,
-    PasswordService,
-    PasswordStrengthBarComponent,
-    Register,
-    RegisterComponent,
-    SettingsComponent
-} from "./";
+  PasswordStrengthBarComponent,
+  RegisterComponent,
+  ActivateComponent,
+  PasswordComponent,
+  PasswordResetInitComponent,
+  PasswordResetFinishComponent,
+  SettingsComponent,
+  accountState
+} from './';
 
 @NgModule({
-    imports: [
-        TennisSharedModule,
-        RouterModule.forChild(accountState)
-    ],
-    declarations: [
-        ActivateComponent,
-        RegisterComponent,
-        PasswordComponent,
-        PasswordStrengthBarComponent,
-        PasswordResetInitComponent,
-        PasswordResetFinishComponent,
-        SettingsComponent
-    ],
-    providers: [
-        Register,
-        ActivateService,
-        PasswordService,
-        PasswordResetInitService,
-        PasswordResetFinishService
-    ],
-    schemas: [CUSTOM_ELEMENTS_SCHEMA]
+  imports: [TennisSharedModule, RouterModule.forChild(accountState)],
+  declarations: [
+    ActivateComponent,
+    RegisterComponent,
+    PasswordComponent,
+    PasswordStrengthBarComponent,
+    PasswordResetInitComponent,
+    PasswordResetFinishComponent,
+    SettingsComponent
+  ],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
 export class TennisAccountModule {}

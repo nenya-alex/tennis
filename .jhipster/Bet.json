@@ -1,0 +1,47 @@
+{
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "relationships": [
+        {
+            "relationshipName": "match",
+            "otherEntityName": "match",
+            "relationshipType": "one-to-one",
+            "otherEntityField": "id",
+            "ownerSide": true,
+            "useJPADerivedIdentifier": false,
+            "otherEntityRelationshipName": "bet"
+        }
+    ],
+    "fields": [
+        {
+            "fieldName": "amount",
+            "fieldType": "BigDecimal"
+        },
+        {
+            "fieldName": "odds",
+            "fieldType": "Double"
+        },
+        {
+            "fieldName": "placedBetMatchWinner",
+            "fieldType": "MatchWinner",
+            "fieldValues": "Q"
+        },
+        {
+            "fieldName": "status",
+            "fieldType": "BetStatus",
+            "fieldValues": "A"
+        },
+        {
+            "fieldName": "placedDate",
+            "fieldType": "Instant"
+        }
+    ],
+    "changelogDate": "20190718045016",
+    "dto": "mapstruct",
+    "searchEngine": false,
+    "service": "serviceClass",
+    "entityTableName": "bet",
+    "databaseType": "sql",
+    "jpaMetamodelFiltering": false,
+    "pagination": "no"
+}

@@ -1,12 +1,12 @@
 package ua.tennis.service;
 
+import ua.tennis.config.audit.AuditEventConverter;
+import ua.tennis.repository.PersistenceAuditEventRepository;
 import org.springframework.boot.actuate.audit.AuditEvent;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import ua.tennis.config.audit.AuditEventConverter;
-import ua.tennis.repository.PersistenceAuditEventRepository;
 
 import java.time.Instant;
 import java.util.Optional;
@@ -14,7 +14,7 @@ import java.util.Optional;
 /**
  * Service for managing audit events.
  * <p>
- * This is the default implementation to support SpringBoot Actuator AuditEventRepository
+ * This is the default implementation to support SpringBoot Actuator {@code AuditEventRepository}.
  */
 @Service
 @Transactional
@@ -43,7 +43,9 @@ public class AuditEventService {
     }
 
     public Optional<AuditEvent> find(Long id) {
-        return Optional.ofNullable(persistenceAuditEventRepository.findOne(id)).map
-            (auditEventConverter::convertToAuditEvent);
+        return Optional.ofNullable(persistenceAuditEventRepository.findById(id))
+            .filter(Optional::isPresent)
+            .map(Optional::get)
+            .map(auditEventConverter::convertToAuditEvent);
     }
 }

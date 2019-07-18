@@ -1,44 +1,39 @@
-apply plugin: 'org.springframework.boot'
-apply plugin: 'com.gorylenko.gradle-git-properties'
-apply plugin: 'com.moowork.node'
-
 dependencies {
-
+    testImplementation "com.h2database:h2"
 }
 
-def profiles = 'prod'
-if (project.hasProperty('no-liquibase')) {
-    profiles += ',no-liquibase'
+def profiles = "prod"
+if (project.hasProperty("no-liquibase")) {
+    profiles += ",no-liquibase"
 }
 
-if (project.hasProperty('swagger')) {
-    profiles += ',swagger'
+if (project.hasProperty("swagger")) {
+    profiles += ",swagger"
+}
+
+springBoot {
+    buildInfo()
 }
 
 bootRun {
     args = []
 }
 
-
-task webpack_test(type: YarnTask, dependsOn: 'yarn_install') {
+task webpack_test(type: YarnTask, dependsOn: "yarn") {
     args = ["run", "webpack:test"]
 }
 
-task webpack(type: YarnTask, dependsOn: 'yarn_install') {
+task webpack(type: YarnTask, dependsOn: "yarn") {
     args = ["run", "webpack:prod"]
 }
 
-war {
-    webAppDirName = 'build/www/'
-}
-
 processResources {
-    filesMatching('**/application.yml') {
+    filesMatching("**/application.yml") {
         filter {
-            it.replace('#project.version#', version)
+            it.replace("#project.version#", version)
         }
         filter {
-            it.replace('#spring.profiles.active#', profiles)
+            it.replace("#spring.profiles.active#", profiles)
         }
     }
 }
@@ -50,8 +45,9 @@ generateGitProperties {
 }
 
 gitProperties {
-    keys = ['git.branch', 'git.commit.id.abbrev']
+    keys = ["git.branch", "git.commit.id.abbrev", "git.commit.id.describe"]
 }
 
 test.dependsOn webpack_test
 processResources.dependsOn webpack
+bootJar.dependsOn processResources

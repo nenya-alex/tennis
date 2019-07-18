@@ -1,19 +1,23 @@
-import {NgModule} from "@angular/core";
-import {RouterModule} from "@angular/router";
-import {errorRoute, navbarRoute} from "./layouts";
-import {DEBUG_INFO_ENABLED} from "./app.constants";
+import { NgModule } from '@angular/core';
+import { RouterModule } from '@angular/router';
+import { errorRoute, navbarRoute } from './layouts';
+import { DEBUG_INFO_ENABLED } from 'app/app.constants';
 
-const LAYOUT_ROUTES = [
-    navbarRoute,
-    ...errorRoute
-];
+const LAYOUT_ROUTES = [navbarRoute, ...errorRoute];
 
 @NgModule({
-    imports: [
-        RouterModule.forRoot(LAYOUT_ROUTES, { useHash: true , enableTracing: DEBUG_INFO_ENABLED })
-    ],
-    exports: [
-        RouterModule
-    ]
+  imports: [
+    RouterModule.forRoot(
+      [
+        {
+          path: 'admin',
+          loadChildren: './admin/admin.module#TennisAdminModule'
+        },
+        ...LAYOUT_ROUTES
+      ],
+      { enableTracing: DEBUG_INFO_ENABLED }
+    )
+  ],
+  exports: [RouterModule]
 })
 export class TennisAppRoutingModule {}

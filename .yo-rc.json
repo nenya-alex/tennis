@@ -3,7 +3,7 @@
     "promptValues": {
       "packageName": "ua.tennis"
     },
-    "jhipsterVersion": "4.14.5",
+    "jhipsterVersion": "6.0.1",
     "baseName": "Tennis",
     "packageName": "ua.tennis",
     "packageFolder": "ua/tennis",
@@ -22,11 +22,16 @@
     "enableSwaggerCodegen": false,
     "jwtSecretKey": "acb4837eefdc911f49a4ee4d2cde24bb6019b691",
     "clientFramework": "angularX",
-    "useSass": false,
+    "useSass": true,
     "clientPackageManager": "yarn",
     "applicationType": "monolith",
     "testFrameworks": [],
     "jhiPrefix": "jhi",
-    "enableTranslation": false
+    "enableTranslation": false,
+    "enableHibernateCache": false,
+    "clientTheme": "none",
+    "entitySuffix": "",
+    "dtoSuffix": "DTO",
+    "otherModules": []
   }
 }

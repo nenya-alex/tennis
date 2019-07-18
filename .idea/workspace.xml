@@ -2,11 +2,256 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="a8283561-0117-44e9-8e3c-1714be667311" name="Default" comment="added Bet entity">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/main/java/ua/tennis/service/enums/BetStatus.java" afterPath="" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/java/ua/tennis/service/enums/BetStatus.java" afterPath="$PROJECT_DIR$/src/main/java/ua/tennis/domain/enumeration/BetStatus.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/gradle/wrapper/gradle-wrapper.jar" afterPath="$PROJECT_DIR$/gradle/wrapper/gradle-wrapper.jar" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/content/images/logo-jhipster.png" afterPath="$PROJECT_DIR$/src/main/webapp/content/images/logo-jhipster.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/favicon.ico" afterPath="$PROJECT_DIR$/src/main/webapp/favicon.ico" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.editorconfig" afterPath="$PROJECT_DIR$/.editorconfig" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gitattributes" afterPath="$PROJECT_DIR$/.gitattributes" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gitignore" afterPath="$PROJECT_DIR$/.gitignore" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.yo-rc.json" afterPath="$PROJECT_DIR$/.yo-rc.json" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/README.md" afterPath="$PROJECT_DIR$/README.md" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build.gradle" afterPath="$PROJECT_DIR$/build.gradle" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/gradle.properties" afterPath="$PROJECT_DIR$/gradle.properties" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/gradle/docker.gradle" afterPath="$PROJECT_DIR$/gradle/docker.gradle" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/gradle/profile_dev.gradle" afterPath="$PROJECT_DIR$/gradle/profile_dev.gradle" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/gradle/profile_prod.gradle" afterPath="$PROJECT_DIR$/gradle/profile_prod.gradle" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/gradle/sonar.gradle" afterPath="$PROJECT_DIR$/gradle/sonar.gradle" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/gradle/wrapper/gradle-wrapper.properties" afterPath="$PROJECT_DIR$/gradle/wrapper/gradle-wrapper.properties" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/gradle/zipkin.gradle" afterPath="$PROJECT_DIR$/gradle/zipkin.gradle" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/gradlew" afterPath="$PROJECT_DIR$/gradlew" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/gradlew.bat" afterPath="$PROJECT_DIR$/gradlew.bat" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/package.json" afterPath="$PROJECT_DIR$/package.json" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/proxy.conf.json" afterPath="$PROJECT_DIR$/proxy.conf.json" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/settings.gradle" afterPath="$PROJECT_DIR$/settings.gradle" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/docker/app.yml" afterPath="$PROJECT_DIR$/src/main/docker/app.yml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/docker/postgresql.yml" afterPath="$PROJECT_DIR$/src/main/docker/postgresql.yml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/docker/sonar.yml" afterPath="$PROJECT_DIR$/src/main/docker/sonar.yml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/ua/tennis/ApplicationWebXml.java" afterPath="$PROJECT_DIR$/src/main/java/ua/tennis/ApplicationWebXml.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/ua/tennis/TennisApp.java" afterPath="$PROJECT_DIR$/src/main/java/ua/tennis/TennisApp.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/ua/tennis/aop/logging/LoggingAspect.java" afterPath="$PROJECT_DIR$/src/main/java/ua/tennis/aop/logging/LoggingAspect.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/ua/tennis/config/ApplicationProperties.java" afterPath="$PROJECT_DIR$/src/main/java/ua/tennis/config/ApplicationProperties.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/ua/tennis/config/AsyncConfiguration.java" afterPath="$PROJECT_DIR$/src/main/java/ua/tennis/config/AsyncConfiguration.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/ua/tennis/config/CloudDatabaseConfiguration.java" afterPath="$PROJECT_DIR$/src/main/java/ua/tennis/config/CloudDatabaseConfiguration.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/ua/tennis/config/Constants.java" afterPath="$PROJECT_DIR$/src/main/java/ua/tennis/config/Constants.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/ua/tennis/config/DatabaseConfiguration.java" afterPath="$PROJECT_DIR$/src/main/java/ua/tennis/config/DatabaseConfiguration.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/ua/tennis/config/DateTimeFormatConfiguration.java" afterPath="$PROJECT_DIR$/src/main/java/ua/tennis/config/DateTimeFormatConfiguration.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/ua/tennis/config/DefaultProfileUtil.java" afterPath="$PROJECT_DIR$/src/main/java/ua/tennis/config/DefaultProfileUtil.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/ua/tennis/config/JacksonConfiguration.java" afterPath="$PROJECT_DIR$/src/main/java/ua/tennis/config/JacksonConfiguration.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/ua/tennis/config/LocaleConfiguration.java" afterPath="$PROJECT_DIR$/src/main/java/ua/tennis/config/LocaleConfiguration.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/ua/tennis/config/LoggingAspectConfiguration.java" afterPath="$PROJECT_DIR$/src/main/java/ua/tennis/config/LoggingAspectConfiguration.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/ua/tennis/config/LoggingConfiguration.java" afterPath="$PROJECT_DIR$/src/main/java/ua/tennis/config/LoggingConfiguration.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/ua/tennis/config/SecurityConfiguration.java" afterPath="$PROJECT_DIR$/src/main/java/ua/tennis/config/SecurityConfiguration.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/ua/tennis/config/WebConfigurer.java" afterPath="$PROJECT_DIR$/src/main/java/ua/tennis/config/WebConfigurer.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/ua/tennis/config/audit/AuditEventConverter.java" afterPath="$PROJECT_DIR$/src/main/java/ua/tennis/config/audit/AuditEventConverter.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/ua/tennis/config/audit/package-info.java" afterPath="$PROJECT_DIR$/src/main/java/ua/tennis/config/audit/package-info.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/ua/tennis/config/package-info.java" afterPath="$PROJECT_DIR$/src/main/java/ua/tennis/config/package-info.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/ua/tennis/domain/AbstractAuditingEntity.java" afterPath="$PROJECT_DIR$/src/main/java/ua/tennis/domain/AbstractAuditingEntity.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/ua/tennis/domain/Authority.java" afterPath="$PROJECT_DIR$/src/main/java/ua/tennis/domain/Authority.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/ua/tennis/domain/PersistentAuditEvent.java" afterPath="$PROJECT_DIR$/src/main/java/ua/tennis/domain/PersistentAuditEvent.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/ua/tennis/domain/User.java" afterPath="$PROJECT_DIR$/src/main/java/ua/tennis/domain/User.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/ua/tennis/domain/package-info.java" afterPath="$PROJECT_DIR$/src/main/java/ua/tennis/domain/package-info.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/ua/tennis/repository/AuthorityRepository.java" afterPath="$PROJECT_DIR$/src/main/java/ua/tennis/repository/AuthorityRepository.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/ua/tennis/repository/CustomAuditEventRepository.java" afterPath="$PROJECT_DIR$/src/main/java/ua/tennis/repository/CustomAuditEventRepository.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/ua/tennis/repository/PersistenceAuditEventRepository.java" afterPath="$PROJECT_DIR$/src/main/java/ua/tennis/repository/PersistenceAuditEventRepository.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/ua/tennis/repository/UserRepository.java" afterPath="$PROJECT_DIR$/src/main/java/ua/tennis/repository/UserRepository.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/ua/tennis/repository/package-info.java" afterPath="$PROJECT_DIR$/src/main/java/ua/tennis/repository/package-info.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/ua/tennis/security/AuthoritiesConstants.java" afterPath="$PROJECT_DIR$/src/main/java/ua/tennis/security/AuthoritiesConstants.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/ua/tennis/security/DomainUserDetailsService.java" afterPath="$PROJECT_DIR$/src/main/java/ua/tennis/security/DomainUserDetailsService.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/ua/tennis/security/SecurityUtils.java" afterPath="$PROJECT_DIR$/src/main/java/ua/tennis/security/SecurityUtils.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/ua/tennis/security/SpringSecurityAuditorAware.java" afterPath="$PROJECT_DIR$/src/main/java/ua/tennis/security/SpringSecurityAuditorAware.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/ua/tennis/security/UserNotActivatedException.java" afterPath="$PROJECT_DIR$/src/main/java/ua/tennis/security/UserNotActivatedException.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/ua/tennis/security/jwt/JWTConfigurer.java" afterPath="$PROJECT_DIR$/src/main/java/ua/tennis/security/jwt/JWTConfigurer.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/ua/tennis/security/jwt/JWTFilter.java" afterPath="$PROJECT_DIR$/src/main/java/ua/tennis/security/jwt/JWTFilter.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/ua/tennis/security/jwt/TokenProvider.java" afterPath="$PROJECT_DIR$/src/main/java/ua/tennis/security/jwt/TokenProvider.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/ua/tennis/security/package-info.java" afterPath="$PROJECT_DIR$/src/main/java/ua/tennis/security/package-info.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/ua/tennis/service/AuditEventService.java" afterPath="$PROJECT_DIR$/src/main/java/ua/tennis/service/AuditEventService.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/ua/tennis/service/MailService.java" afterPath="$PROJECT_DIR$/src/main/java/ua/tennis/service/MailService.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/ua/tennis/service/UserService.java" afterPath="$PROJECT_DIR$/src/main/java/ua/tennis/service/UserService.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/ua/tennis/service/dto/UserDTO.java" afterPath="$PROJECT_DIR$/src/main/java/ua/tennis/service/dto/UserDTO.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/ua/tennis/service/dto/package-info.java" afterPath="$PROJECT_DIR$/src/main/java/ua/tennis/service/dto/package-info.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/ua/tennis/service/mapper/UserMapper.java" afterPath="$PROJECT_DIR$/src/main/java/ua/tennis/service/mapper/UserMapper.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/ua/tennis/service/mapper/package-info.java" afterPath="$PROJECT_DIR$/src/main/java/ua/tennis/service/mapper/package-info.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/ua/tennis/service/package-info.java" afterPath="$PROJECT_DIR$/src/main/java/ua/tennis/service/package-info.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/ua/tennis/service/util/RandomUtil.java" afterPath="$PROJECT_DIR$/src/main/java/ua/tennis/service/util/RandomUtil.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/ua/tennis/web/rest/AccountResource.java" afterPath="$PROJECT_DIR$/src/main/java/ua/tennis/web/rest/AccountResource.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/ua/tennis/web/rest/AuditResource.java" afterPath="$PROJECT_DIR$/src/main/java/ua/tennis/web/rest/AuditResource.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/ua/tennis/web/rest/UserJWTController.java" afterPath="$PROJECT_DIR$/src/main/java/ua/tennis/web/rest/UserJWTController.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/ua/tennis/web/rest/UserResource.java" afterPath="$PROJECT_DIR$/src/main/java/ua/tennis/web/rest/UserResource.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/ua/tennis/web/rest/errors/BadRequestAlertException.java" afterPath="$PROJECT_DIR$/src/main/java/ua/tennis/web/rest/errors/BadRequestAlertException.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/ua/tennis/web/rest/errors/EmailAlreadyUsedException.java" afterPath="$PROJECT_DIR$/src/main/java/ua/tennis/web/rest/errors/EmailAlreadyUsedException.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/ua/tennis/web/rest/errors/EmailNotFoundException.java" afterPath="$PROJECT_DIR$/src/main/java/ua/tennis/web/rest/errors/EmailNotFoundException.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/ua/tennis/web/rest/errors/ErrorConstants.java" afterPath="$PROJECT_DIR$/src/main/java/ua/tennis/web/rest/errors/ErrorConstants.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/ua/tennis/web/rest/errors/ExceptionTranslator.java" afterPath="$PROJECT_DIR$/src/main/java/ua/tennis/web/rest/errors/ExceptionTranslator.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/ua/tennis/web/rest/errors/FieldErrorVM.java" afterPath="$PROJECT_DIR$/src/main/java/ua/tennis/web/rest/errors/FieldErrorVM.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/ua/tennis/web/rest/errors/InvalidPasswordException.java" afterPath="$PROJECT_DIR$/src/main/java/ua/tennis/web/rest/errors/InvalidPasswordException.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/ua/tennis/web/rest/errors/LoginAlreadyUsedException.java" afterPath="$PROJECT_DIR$/src/main/java/ua/tennis/web/rest/errors/LoginAlreadyUsedException.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/ua/tennis/web/rest/errors/package-info.java" afterPath="$PROJECT_DIR$/src/main/java/ua/tennis/web/rest/errors/package-info.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/ua/tennis/web/rest/package-info.java" afterPath="$PROJECT_DIR$/src/main/java/ua/tennis/web/rest/package-info.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/ua/tennis/web/rest/vm/KeyAndPasswordVM.java" afterPath="$PROJECT_DIR$/src/main/java/ua/tennis/web/rest/vm/KeyAndPasswordVM.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/ua/tennis/web/rest/vm/LoginVM.java" afterPath="$PROJECT_DIR$/src/main/java/ua/tennis/web/rest/vm/LoginVM.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/ua/tennis/web/rest/vm/ManagedUserVM.java" afterPath="$PROJECT_DIR$/src/main/java/ua/tennis/web/rest/vm/ManagedUserVM.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/ua/tennis/web/rest/vm/package-info.java" afterPath="$PROJECT_DIR$/src/main/java/ua/tennis/web/rest/vm/package-info.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/banner.txt" afterPath="$PROJECT_DIR$/src/main/resources/banner.txt" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/config/application-dev.yml" afterPath="$PROJECT_DIR$/src/main/resources/config/application-dev.yml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/config/application-prod.yml" afterPath="$PROJECT_DIR$/src/main/resources/config/application-prod.yml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/config/application.yml" afterPath="$PROJECT_DIR$/src/main/resources/config/application.yml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/config/liquibase/changelog/00000000000000_initial_schema.xml" afterPath="$PROJECT_DIR$/src/main/resources/config/liquibase/changelog/00000000000000_initial_schema.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/config/liquibase/master.xml" afterPath="$PROJECT_DIR$/src/main/resources/config/liquibase/master.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/i18n/messages.properties" afterPath="$PROJECT_DIR$/src/main/resources/i18n/messages.properties" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/logback-spring.xml" afterPath="$PROJECT_DIR$/src/main/resources/logback-spring.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/templates/error.html" afterPath="$PROJECT_DIR$/src/main/resources/templates/error.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/404.html" afterPath="$PROJECT_DIR$/src/main/webapp/404.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/app/account/account.module.ts" afterPath="$PROJECT_DIR$/src/main/webapp/app/account/account.module.ts" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/app/account/account.route.ts" afterPath="$PROJECT_DIR$/src/main/webapp/app/account/account.route.ts" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/app/account/activate/activate.component.html" afterPath="$PROJECT_DIR$/src/main/webapp/app/account/activate/activate.component.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/app/account/activate/activate.component.ts" afterPath="$PROJECT_DIR$/src/main/webapp/app/account/activate/activate.component.ts" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/app/account/activate/activate.route.ts" afterPath="$PROJECT_DIR$/src/main/webapp/app/account/activate/activate.route.ts" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/app/account/activate/activate.service.ts" afterPath="$PROJECT_DIR$/src/main/webapp/app/account/activate/activate.service.ts" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/app/account/index.ts" afterPath="$PROJECT_DIR$/src/main/webapp/app/account/index.ts" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/app/account/password-reset/finish/password-reset-finish.component.html" afterPath="$PROJECT_DIR$/src/main/webapp/app/account/password-reset/finish/password-reset-finish.component.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/app/account/password-reset/finish/password-reset-finish.component.ts" afterPath="$PROJECT_DIR$/src/main/webapp/app/account/password-reset/finish/password-reset-finish.component.ts" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/app/account/password-reset/finish/password-reset-finish.route.ts" afterPath="$PROJECT_DIR$/src/main/webapp/app/account/password-reset/finish/password-reset-finish.route.ts" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/app/account/password-reset/finish/password-reset-finish.service.ts" afterPath="$PROJECT_DIR$/src/main/webapp/app/account/password-reset/finish/password-reset-finish.service.ts" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/app/account/password-reset/init/password-reset-init.component.html" afterPath="$PROJECT_DIR$/src/main/webapp/app/account/password-reset/init/password-reset-init.component.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/app/account/password-reset/init/password-reset-init.component.ts" afterPath="$PROJECT_DIR$/src/main/webapp/app/account/password-reset/init/password-reset-init.component.ts" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/app/account/password-reset/init/password-reset-init.route.ts" afterPath="$PROJECT_DIR$/src/main/webapp/app/account/password-reset/init/password-reset-init.route.ts" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/app/account/password-reset/init/password-reset-init.service.ts" afterPath="$PROJECT_DIR$/src/main/webapp/app/account/password-reset/init/password-reset-init.service.ts" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/app/account/password/password-strength-bar.component.ts" afterPath="$PROJECT_DIR$/src/main/webapp/app/account/password/password-strength-bar.component.ts" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/app/account/password/password.component.html" afterPath="$PROJECT_DIR$/src/main/webapp/app/account/password/password.component.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/app/account/password/password.component.ts" afterPath="$PROJECT_DIR$/src/main/webapp/app/account/password/password.component.ts" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/app/account/password/password.route.ts" afterPath="$PROJECT_DIR$/src/main/webapp/app/account/password/password.route.ts" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/app/account/password/password.service.ts" afterPath="$PROJECT_DIR$/src/main/webapp/app/account/password/password.service.ts" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/app/account/register/register.component.html" afterPath="$PROJECT_DIR$/src/main/webapp/app/account/register/register.component.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/app/account/register/register.component.ts" afterPath="$PROJECT_DIR$/src/main/webapp/app/account/register/register.component.ts" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/app/account/register/register.route.ts" afterPath="$PROJECT_DIR$/src/main/webapp/app/account/register/register.route.ts" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/app/account/register/register.service.ts" afterPath="$PROJECT_DIR$/src/main/webapp/app/account/register/register.service.ts" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/app/account/settings/settings.component.html" afterPath="$PROJECT_DIR$/src/main/webapp/app/account/settings/settings.component.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/app/account/settings/settings.component.ts" afterPath="$PROJECT_DIR$/src/main/webapp/app/account/settings/settings.component.ts" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/app/account/settings/settings.route.ts" afterPath="$PROJECT_DIR$/src/main/webapp/app/account/settings/settings.route.ts" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/app/admin/admin.module.ts" afterPath="$PROJECT_DIR$/src/main/webapp/app/admin/admin.module.ts" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/app/admin/admin.route.ts" afterPath="$PROJECT_DIR$/src/main/webapp/app/admin/admin.route.ts" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/app/admin/audits/audit-data.model.ts" afterPath="$PROJECT_DIR$/src/main/webapp/app/admin/audits/audit-data.model.ts" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/app/admin/audits/audit.model.ts" afterPath="$PROJECT_DIR$/src/main/webapp/app/admin/audits/audit.model.ts" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/app/admin/audits/audits.component.html" afterPath="$PROJECT_DIR$/src/main/webapp/app/admin/audits/audits.component.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/app/admin/audits/audits.component.ts" afterPath="$PROJECT_DIR$/src/main/webapp/app/admin/audits/audits.component.ts" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/app/admin/audits/audits.route.ts" afterPath="$PROJECT_DIR$/src/main/webapp/app/admin/audits/audits.route.ts" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/app/admin/audits/audits.service.ts" afterPath="$PROJECT_DIR$/src/main/webapp/app/admin/audits/audits.service.ts" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/app/admin/configuration/configuration.component.html" afterPath="$PROJECT_DIR$/src/main/webapp/app/admin/configuration/configuration.component.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/app/admin/configuration/configuration.component.ts" afterPath="$PROJECT_DIR$/src/main/webapp/app/admin/configuration/configuration.component.ts" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/app/admin/configuration/configuration.route.ts" afterPath="$PROJECT_DIR$/src/main/webapp/app/admin/configuration/configuration.route.ts" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/app/admin/configuration/configuration.service.ts" afterPath="$PROJECT_DIR$/src/main/webapp/app/admin/configuration/configuration.service.ts" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/app/admin/docs/docs.component.html" afterPath="$PROJECT_DIR$/src/main/webapp/app/admin/docs/docs.component.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/app/admin/docs/docs.component.ts" afterPath="$PROJECT_DIR$/src/main/webapp/app/admin/docs/docs.component.ts" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/app/admin/docs/docs.route.ts" afterPath="$PROJECT_DIR$/src/main/webapp/app/admin/docs/docs.route.ts" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/app/admin/health/health-modal.component.html" afterPath="$PROJECT_DIR$/src/main/webapp/app/admin/health/health-modal.component.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/app/admin/health/health-modal.component.ts" afterPath="$PROJECT_DIR$/src/main/webapp/app/admin/health/health-modal.component.ts" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/app/admin/health/health.component.html" afterPath="$PROJECT_DIR$/src/main/webapp/app/admin/health/health.component.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/app/admin/health/health.component.ts" afterPath="$PROJECT_DIR$/src/main/webapp/app/admin/health/health.component.ts" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/app/admin/health/health.route.ts" afterPath="$PROJECT_DIR$/src/main/webapp/app/admin/health/health.route.ts" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/app/admin/health/health.service.ts" afterPath="$PROJECT_DIR$/src/main/webapp/app/admin/health/health.service.ts" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/app/admin/index.ts" afterPath="$PROJECT_DIR$/src/main/webapp/app/admin/index.ts" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/app/admin/logs/log.model.ts" afterPath="$PROJECT_DIR$/src/main/webapp/app/admin/logs/log.model.ts" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/app/admin/logs/logs.component.html" afterPath="$PROJECT_DIR$/src/main/webapp/app/admin/logs/logs.component.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/app/admin/logs/logs.component.ts" afterPath="$PROJECT_DIR$/src/main/webapp/app/admin/logs/logs.component.ts" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/app/admin/logs/logs.route.ts" afterPath="$PROJECT_DIR$/src/main/webapp/app/admin/logs/logs.route.ts" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/app/admin/logs/logs.service.ts" afterPath="$PROJECT_DIR$/src/main/webapp/app/admin/logs/logs.service.ts" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/app/admin/metrics/metrics.component.html" afterPath="$PROJECT_DIR$/src/main/webapp/app/admin/metrics/metrics.component.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/app/admin/metrics/metrics.component.ts" afterPath="$PROJECT_DIR$/src/main/webapp/app/admin/metrics/metrics.component.ts" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/app/admin/metrics/metrics.route.ts" afterPath="$PROJECT_DIR$/src/main/webapp/app/admin/metrics/metrics.route.ts" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/app/admin/metrics/metrics.service.ts" afterPath="$PROJECT_DIR$/src/main/webapp/app/admin/metrics/metrics.service.ts" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/app/admin/user-management/user-management-delete-dialog.component.html" afterPath="$PROJECT_DIR$/src/main/webapp/app/admin/user-management/user-management-delete-dialog.component.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/app/admin/user-management/user-management-delete-dialog.component.ts" afterPath="$PROJECT_DIR$/src/main/webapp/app/admin/user-management/user-management-delete-dialog.component.ts" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/app/admin/user-management/user-management-detail.component.html" afterPath="$PROJECT_DIR$/src/main/webapp/app/admin/user-management/user-management-detail.component.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/app/admin/user-management/user-management-detail.component.ts" afterPath="$PROJECT_DIR$/src/main/webapp/app/admin/user-management/user-management-detail.component.ts" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/app/admin/user-management/user-management.component.html" afterPath="$PROJECT_DIR$/src/main/webapp/app/admin/user-management/user-management.component.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/app/admin/user-management/user-management.component.ts" afterPath="$PROJECT_DIR$/src/main/webapp/app/admin/user-management/user-management.component.ts" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/app/admin/user-management/user-management.route.ts" afterPath="$PROJECT_DIR$/src/main/webapp/app/admin/user-management/user-management.route.ts" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/app/app-routing.module.ts" afterPath="$PROJECT_DIR$/src/main/webapp/app/app-routing.module.ts" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/app/app.constants.ts" afterPath="$PROJECT_DIR$/src/main/webapp/app/app.constants.ts" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/app/app.main.ts" afterPath="$PROJECT_DIR$/src/main/webapp/app/app.main.ts" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/app/app.module.ts" afterPath="$PROJECT_DIR$/src/main/webapp/app/app.module.ts" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/app/blocks/config/prod.config.ts" afterPath="$PROJECT_DIR$/src/main/webapp/app/blocks/config/prod.config.ts" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/app/blocks/config/uib-pagination.config.ts" afterPath="$PROJECT_DIR$/src/main/webapp/app/blocks/config/uib-pagination.config.ts" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/app/blocks/interceptor/auth-expired.interceptor.ts" afterPath="$PROJECT_DIR$/src/main/webapp/app/blocks/interceptor/auth-expired.interceptor.ts" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/app/blocks/interceptor/auth.interceptor.ts" afterPath="$PROJECT_DIR$/src/main/webapp/app/blocks/interceptor/auth.interceptor.ts" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/app/blocks/interceptor/errorhandler.interceptor.ts" afterPath="$PROJECT_DIR$/src/main/webapp/app/blocks/interceptor/errorhandler.interceptor.ts" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/app/blocks/interceptor/notification.interceptor.ts" afterPath="$PROJECT_DIR$/src/main/webapp/app/blocks/interceptor/notification.interceptor.ts" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/app/entities/entity.module.ts" afterPath="$PROJECT_DIR$/src/main/webapp/app/entities/entity.module.ts" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/app/home/home.component.html" afterPath="$PROJECT_DIR$/src/main/webapp/app/home/home.component.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/app/home/home.component.ts" afterPath="$PROJECT_DIR$/src/main/webapp/app/home/home.component.ts" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/app/home/home.module.ts" afterPath="$PROJECT_DIR$/src/main/webapp/app/home/home.module.ts" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/app/home/home.route.ts" afterPath="$PROJECT_DIR$/src/main/webapp/app/home/home.route.ts" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/app/home/index.ts" afterPath="$PROJECT_DIR$/src/main/webapp/app/home/index.ts" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/app/layouts/error/error.component.html" afterPath="$PROJECT_DIR$/src/main/webapp/app/layouts/error/error.component.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/app/layouts/error/error.component.ts" afterPath="$PROJECT_DIR$/src/main/webapp/app/layouts/error/error.component.ts" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/app/layouts/error/error.route.ts" afterPath="$PROJECT_DIR$/src/main/webapp/app/layouts/error/error.route.ts" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/app/layouts/footer/footer.component.html" afterPath="$PROJECT_DIR$/src/main/webapp/app/layouts/footer/footer.component.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/app/layouts/footer/footer.component.ts" afterPath="$PROJECT_DIR$/src/main/webapp/app/layouts/footer/footer.component.ts" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/app/layouts/index.ts" afterPath="$PROJECT_DIR$/src/main/webapp/app/layouts/index.ts" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/app/layouts/main/main.component.html" afterPath="$PROJECT_DIR$/src/main/webapp/app/layouts/main/main.component.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/app/layouts/main/main.component.ts" afterPath="$PROJECT_DIR$/src/main/webapp/app/layouts/main/main.component.ts" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/app/layouts/navbar/navbar.component.html" afterPath="$PROJECT_DIR$/src/main/webapp/app/layouts/navbar/navbar.component.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/app/layouts/navbar/navbar.component.ts" afterPath="$PROJECT_DIR$/src/main/webapp/app/layouts/navbar/navbar.component.ts" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/app/layouts/navbar/navbar.route.ts" afterPath="$PROJECT_DIR$/src/main/webapp/app/layouts/navbar/navbar.route.ts" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/app/layouts/profiles/page-ribbon.component.ts" afterPath="$PROJECT_DIR$/src/main/webapp/app/layouts/profiles/page-ribbon.component.ts" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/app/layouts/profiles/profile-info.model.ts" afterPath="$PROJECT_DIR$/src/main/webapp/app/layouts/profiles/profile-info.model.ts" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/app/layouts/profiles/profile.service.ts" afterPath="$PROJECT_DIR$/src/main/webapp/app/layouts/profiles/profile.service.ts" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/app/polyfills.ts" afterPath="$PROJECT_DIR$/src/main/webapp/app/polyfills.ts" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/app/shared/alert/alert-error.component.ts" afterPath="$PROJECT_DIR$/src/main/webapp/app/shared/alert/alert-error.component.ts" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/app/shared/alert/alert.component.ts" afterPath="$PROJECT_DIR$/src/main/webapp/app/shared/alert/alert.component.ts" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/app/shared/auth/has-any-authority.directive.ts" afterPath="$PROJECT_DIR$/src/main/webapp/app/shared/auth/has-any-authority.directive.ts" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/app/shared/constants/error.constants.ts" afterPath="$PROJECT_DIR$/src/main/webapp/app/shared/constants/error.constants.ts" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/app/shared/constants/pagination.constants.ts" afterPath="$PROJECT_DIR$/src/main/webapp/app/shared/constants/pagination.constants.ts" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/app/shared/index.ts" afterPath="$PROJECT_DIR$/src/main/webapp/app/shared/index.ts" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/app/shared/login/login.component.html" afterPath="$PROJECT_DIR$/src/main/webapp/app/shared/login/login.component.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/app/shared/login/login.component.ts" afterPath="$PROJECT_DIR$/src/main/webapp/app/shared/login/login.component.ts" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/app/shared/shared-common.module.ts" afterPath="$PROJECT_DIR$/src/main/webapp/app/shared/shared-common.module.ts" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/app/shared/shared-libs.module.ts" afterPath="$PROJECT_DIR$/src/main/webapp/app/shared/shared-libs.module.ts" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/app/shared/shared.module.ts" afterPath="$PROJECT_DIR$/src/main/webapp/app/shared/shared.module.ts" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/app/vendor.ts" afterPath="$PROJECT_DIR$/src/main/webapp/app/vendor.ts" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/index.html" afterPath="$PROJECT_DIR$/src/main/webapp/index.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/manifest.webapp" afterPath="$PROJECT_DIR$/src/main/webapp/manifest.webapp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/robots.txt" afterPath="$PROJECT_DIR$/src/main/webapp/robots.txt" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/swagger-ui/index.html" afterPath="$PROJECT_DIR$/src/main/webapp/swagger-ui/index.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/test/java/ua/tennis/config/WebConfigurerTest.java" afterPath="$PROJECT_DIR$/src/test/java/ua/tennis/config/WebConfigurerTest.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/test/java/ua/tennis/config/WebConfigurerTestController.java" afterPath="$PROJECT_DIR$/src/test/java/ua/tennis/config/WebConfigurerTestController.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/test/java/ua/tennis/security/SecurityUtilsUnitTest.java" afterPath="$PROJECT_DIR$/src/test/java/ua/tennis/security/SecurityUtilsUnitTest.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/test/java/ua/tennis/security/jwt/JWTFilterTest.java" afterPath="$PROJECT_DIR$/src/test/java/ua/tennis/security/jwt/JWTFilterTest.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/test/java/ua/tennis/security/jwt/TokenProviderTest.java" afterPath="$PROJECT_DIR$/src/test/java/ua/tennis/security/jwt/TokenProviderTest.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/test/java/ua/tennis/web/rest/TestUtil.java" afterPath="$PROJECT_DIR$/src/test/java/ua/tennis/web/rest/TestUtil.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/test/java/ua/tennis/web/rest/errors/ExceptionTranslatorTestController.java" afterPath="$PROJECT_DIR$/src/test/java/ua/tennis/web/rest/errors/ExceptionTranslatorTestController.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/test/javascript/spec/app/account/activate/activate.component.spec.ts" afterPath="$PROJECT_DIR$/src/test/javascript/spec/app/account/activate/activate.component.spec.ts" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/test/javascript/spec/app/account/password-reset/finish/password-reset-finish.component.spec.ts" afterPath="$PROJECT_DIR$/src/test/javascript/spec/app/account/password-reset/finish/password-reset-finish.component.spec.ts" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/test/javascript/spec/app/account/password-reset/init/password-reset-init.component.spec.ts" afterPath="$PROJECT_DIR$/src/test/javascript/spec/app/account/password-reset/init/password-reset-init.component.spec.ts" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/test/javascript/spec/app/account/password/password-strength-bar.component.spec.ts" afterPath="$PROJECT_DIR$/src/test/javascript/spec/app/account/password/password-strength-bar.component.spec.ts" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/test/javascript/spec/app/account/password/password.component.spec.ts" afterPath="$PROJECT_DIR$/src/test/javascript/spec/app/account/password/password.component.spec.ts" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/test/javascript/spec/app/account/register/register.component.spec.ts" afterPath="$PROJECT_DIR$/src/test/javascript/spec/app/account/register/register.component.spec.ts" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/test/javascript/spec/app/account/settings/settings.component.spec.ts" afterPath="$PROJECT_DIR$/src/test/javascript/spec/app/account/settings/settings.component.spec.ts" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/test/javascript/spec/app/admin/audits/audits.component.spec.ts" afterPath="$PROJECT_DIR$/src/test/javascript/spec/app/admin/audits/audits.component.spec.ts" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/test/javascript/spec/app/admin/health/health.component.spec.ts" afterPath="$PROJECT_DIR$/src/test/javascript/spec/app/admin/health/health.component.spec.ts" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/test/javascript/spec/app/admin/user-management/user-management-delete-dialog.component.spec.ts" afterPath="$PROJECT_DIR$/src/test/javascript/spec/app/admin/user-management/user-management-delete-dialog.component.spec.ts" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/test/javascript/spec/app/admin/user-management/user-management-detail.component.spec.ts" afterPath="$PROJECT_DIR$/src/test/javascript/spec/app/admin/user-management/user-management-detail.component.spec.ts" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/test/javascript/spec/app/admin/user-management/user-management.component.spec.ts" afterPath="$PROJECT_DIR$/src/test/javascript/spec/app/admin/user-management/user-management.component.spec.ts" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/test/javascript/spec/app/shared/login/login.component.spec.ts" afterPath="$PROJECT_DIR$/src/test/javascript/spec/app/shared/login/login.component.spec.ts" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/test/javascript/spec/helpers/mock-account.service.ts" afterPath="$PROJECT_DIR$/src/test/javascript/spec/helpers/mock-account.service.ts" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/test/javascript/spec/helpers/mock-active-modal.service.ts" afterPath="$PROJECT_DIR$/src/test/javascript/spec/helpers/mock-active-modal.service.ts" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/test/javascript/spec/helpers/mock-event-manager.service.ts" afterPath="$PROJECT_DIR$/src/test/javascript/spec/helpers/mock-event-manager.service.ts" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/test/javascript/spec/helpers/mock-login.service.ts" afterPath="$PROJECT_DIR$/src/test/javascript/spec/helpers/mock-login.service.ts" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/test/javascript/spec/helpers/mock-route.service.ts" afterPath="$PROJECT_DIR$/src/test/javascript/spec/helpers/mock-route.service.ts" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/test/javascript/spec/helpers/mock-state-storage.service.ts" afterPath="$PROJECT_DIR$/src/test/javascript/spec/helpers/mock-state-storage.service.ts" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/test/javascript/spec/helpers/spyobject.ts" afterPath="$PROJECT_DIR$/src/test/javascript/spec/helpers/spyobject.ts" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/test/javascript/spec/test.module.ts" afterPath="$PROJECT_DIR$/src/test/javascript/spec/test.module.ts" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/test/resources/config/application.yml" afterPath="$PROJECT_DIR$/src/test/resources/config/application.yml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/test/resources/i18n/messages_en.properties" afterPath="$PROJECT_DIR$/src/test/resources/i18n/messages_en.properties" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/test/resources/logback.xml" afterPath="$PROJECT_DIR$/src/test/resources/logback.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tsconfig-aot.json" afterPath="$PROJECT_DIR$/tsconfig-aot.json" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tsconfig.json" afterPath="$PROJECT_DIR$/tsconfig.json" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tslint.json" afterPath="$PROJECT_DIR$/tslint.json" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/webpack/utils.js" afterPath="$PROJECT_DIR$/webpack/utils.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/webpack/webpack.common.js" afterPath="$PROJECT_DIR$/webpack/webpack.common.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/webpack/webpack.dev.js" afterPath="$PROJECT_DIR$/webpack/webpack.dev.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/webpack/webpack.prod.js" afterPath="$PROJECT_DIR$/webpack/webpack.prod.js" />
     </list>
     <ignored path="$PROJECT_DIR$/.gradle/" />
     <ignored path="$PROJECT_DIR$/build/classes/" />
@@ -113,9 +358,13 @@
       <file leaf-file-name="CalculatorService.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/ua/tennis/service/CalculatorService.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="22">
+            <state relative-caret-position="220">
               <caret line="22" column="46" lean-forward="false" selection-start-line="22" selection-start-column="46" selection-end-line="22" selection-end-column="46" />
-              <folding />
+              <folding>
+                <element signature="imports" expanded="false" />
+                <element signature="e#8398#8399#0" expanded="false" />
+                <element signature="e#8426#8427#0" expanded="false" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -123,9 +372,11 @@
       <file leaf-file-name="ScheduledService.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/ua/tennis/service/ScheduledService.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-50">
-              <caret line="91" column="49" lean-forward="true" selection-start-line="91" selection-start-column="49" selection-end-line="91" selection-end-column="49" />
-              <folding />
+            <state relative-caret-position="1694">
+              <caret line="91" column="49" lean-forward="false" selection-start-line="91" selection-start-column="49" selection-end-line="91" selection-end-column="49" />
+              <folding>
+                <element signature="imports" expanded="false" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -133,9 +384,11 @@
       <file leaf-file-name="ScheduledRepository.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/ua/tennis/repository/ScheduledRepository.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="4196">
+            <state relative-caret-position="5522">
               <caret line="262" column="56" lean-forward="false" selection-start-line="262" selection-start-column="56" selection-end-line="262" selection-end-column="56" />
-              <folding />
+              <folding>
+                <element signature="imports" expanded="false" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -153,9 +406,65 @@
       <file leaf-file-name="Match.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/ua/tennis/domain/Match.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-160">
+            <state relative-caret-position="3432">
               <caret line="211" column="0" lean-forward="false" selection-start-line="211" selection-start-column="0" selection-end-line="211" selection-end-column="0" />
-              <folding />
+              <folding>
+                <element signature="imports" expanded="false" />
+                <element signature="e#1261#1262#0" expanded="false" />
+                <element signature="e#1286#1287#0" expanded="false" />
+                <element signature="e#1320#1321#0" expanded="false" />
+                <element signature="e#1348#1349#0" expanded="false" />
+                <element signature="e#1385#1386#0" expanded="false" />
+                <element signature="e#1418#1419#0" expanded="false" />
+                <element signature="e#1585#1586#0" expanded="false" />
+                <element signature="e#1629#1630#0" expanded="false" />
+                <element signature="e#1664#1665#0" expanded="false" />
+                <element signature="e#1695#1696#0" expanded="false" />
+                <element signature="e#1850#1851#0" expanded="false" />
+                <element signature="e#1890#1891#0" expanded="false" />
+                <element signature="e#1925#1926#0" expanded="false" />
+                <element signature="e#1956#1957#0" expanded="false" />
+                <element signature="e#2111#2112#0" expanded="false" />
+                <element signature="e#2151#2152#0" expanded="false" />
+                <element signature="e#2188#2189#0" expanded="false" />
+                <element signature="e#2220#2221#0" expanded="false" />
+                <element signature="e#2383#2384#0" expanded="false" />
+                <element signature="e#2425#2426#0" expanded="false" />
+                <element signature="e#2462#2463#0" expanded="false" />
+                <element signature="e#2494#2495#0" expanded="false" />
+                <element signature="e#2657#2658#0" expanded="false" />
+                <element signature="e#2699#2700#0" expanded="false" />
+                <element signature="e#2736#2737#0" expanded="false" />
+                <element signature="e#2768#2769#0" expanded="false" />
+                <element signature="e#2931#2932#0" expanded="false" />
+                <element signature="e#2973#2974#0" expanded="false" />
+                <element signature="e#3004#3005#0" expanded="false" />
+                <element signature="e#3031#3032#0" expanded="false" />
+                <element signature="e#3162#3163#0" expanded="false" />
+                <element signature="e#3194#3195#0" expanded="false" />
+                <element signature="e#3230#3231#0" expanded="false" />
+                <element signature="e#3261#3262#0" expanded="false" />
+                <element signature="e#3418#3419#0" expanded="false" />
+                <element signature="e#3458#3459#0" expanded="false" />
+                <element signature="e#3495#3496#0" expanded="false" />
+                <element signature="e#3528#3529#0" expanded="false" />
+                <element signature="e#3580#3581#0" expanded="false" />
+                <element signature="e#3624#3625#0" expanded="false" />
+                <element signature="e#3657#3658#0" expanded="false" />
+                <element signature="e#3688#3689#0" expanded="false" />
+                <element signature="e#3734#3735#0" expanded="false" />
+                <element signature="e#3774#3775#0" expanded="false" />
+                <element signature="e#3809#3810#0" expanded="false" />
+                <element signature="e#3837#3838#0" expanded="false" />
+                <element signature="e#4236#4237#0" expanded="false" />
+                <element signature="e#4270#4271#0" expanded="false" />
+                <element signature="e#4305#4306#0" expanded="false" />
+                <element signature="e#4332#4333#0" expanded="false" />
+                <element signature="e#4375#4376#0" expanded="false" />
+                <element signature="e#4407#4408#0" expanded="false" />
+                <element signature="e#4840#4841#0" expanded="false" />
+                <element signature="e#4888#4889#0" expanded="false" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -163,8 +472,8 @@
       <file leaf-file-name="Bet.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/ua/tennis/domain/Bet.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="544">
-              <caret line="34" column="16" lean-forward="false" selection-start-line="34" selection-start-column="16" selection-end-line="34" selection-end-column="16" />
+            <state relative-caret-position="38">
+              <caret line="11" column="7" lean-forward="false" selection-start-line="11" selection-start-column="7" selection-end-line="11" selection-end-column="7" />
               <folding />
             </state>
           </provider>
@@ -175,7 +484,31 @@
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="220">
               <caret line="13" column="13" lean-forward="false" selection-start-line="13" selection-start-column="13" selection-end-line="13" selection-end-column="13" />
-              <folding />
+              <folding>
+                <element signature="imports" expanded="false" />
+                <element signature="e#772#773#0" expanded="false" />
+                <element signature="e#797#798#0" expanded="false" />
+                <element signature="e#831#832#0" expanded="false" />
+                <element signature="e#859#860#0" expanded="false" />
+                <element signature="e#894#895#0" expanded="false" />
+                <element signature="e#925#926#0" expanded="false" />
+                <element signature="e#1079#1080#0" expanded="false" />
+                <element signature="e#1119#1120#0" expanded="false" />
+                <element signature="e#1154#1155#0" expanded="false" />
+                <element signature="e#1185#1186#0" expanded="false" />
+                <element signature="e#1339#1340#0" expanded="false" />
+                <element signature="e#1379#1380#0" expanded="false" />
+                <element signature="e#1416#1417#0" expanded="false" />
+                <element signature="e#1448#1449#0" expanded="false" />
+                <element signature="e#1610#1611#0" expanded="false" />
+                <element signature="e#1652#1653#0" expanded="false" />
+                <element signature="e#1683#1684#0" expanded="false" />
+                <element signature="e#1711#1712#0" expanded="false" />
+                <element signature="e#1845#1846#0" expanded="false" />
+                <element signature="e#1879#1880#0" expanded="false" />
+                <element signature="e#2278#2279#0" expanded="false" />
+                <element signature="e#2303#2304#0" expanded="false" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -841,6 +1174,9 @@
     <detection-done>true</detection-done>
     <sorting>DEFINITION_ORDER</sorting>
   </component>
+  <component name="NodeModulesDirectoryManager">
+    <handled-path value="$PROJECT_DIR$/node_modules" />
+  </component>
   <component name="ProjectFrameBounds">
     <option name="x" value="-8" />
     <option name="y" value="-8" />
@@ -961,79 +1297,15 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="service" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="tennis" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Tennis" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="main" />
-              <option name="myItemType" value="org.jetbrains.plugins.gradle.projectView.GradleTreeStructureProvider$GradleSourceSetDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="java" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="tennis" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
               <option name="myItemId" value="domain" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="tennis" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Tennis" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="main" />
-              <option name="myItemType" value="org.jetbrains.plugins.gradle.projectView.GradleTreeStructureProvider$GradleSourceSetDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="java" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="tennis" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="domain" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="enumeration" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
         </subPane>
       </pane>
+      <pane id="Scratches" />
       <pane id="PackagesPane" />
       <pane id="Scope" />
-      <pane id="Scratches" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -1501,7 +1773,8 @@
       <updated>1562961109613</updated>
       <workItem from="1562961111035" duration="1109000" />
       <workItem from="1563385759596" duration="6820000" />
-      <workItem from="1563423652277" duration="2136000" />
+      <workItem from="1563423652277" duration="2311000" />
+      <workItem from="1563426014928" duration="282000" />
     </task>
     <task id="LOCAL-00001" summary="added imports">
       <created>1562961638807</created>
@@ -1535,7 +1808,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="10065000" />
+    <option name="totallyTimeSpent" value="10522000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
@@ -1553,7 +1826,6 @@
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4720982" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.23549107" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Image Layers" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Java Enterprise" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -1562,7 +1834,7 @@
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32254463" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Spring" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.5234375" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.18850698" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.19119227" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Bean Validation" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Web" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Gradle" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32975295" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -1572,6 +1844,7 @@
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2109375" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32924107" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
     </layout>
@@ -1600,7 +1873,155 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="220">
           <caret line="22" column="46" lean-forward="false" selection-start-line="22" selection-start-column="46" selection-end-line="22" selection-end-column="46" />
+          <folding>
+            <element signature="imports" expanded="false" />
+            <element signature="e#8398#8399#0" expanded="false" />
+            <element signature="e#8426#8427#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/ua/tennis/service/ScheduledService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2002">
+          <caret line="91" column="49" lean-forward="false" selection-start-line="91" selection-start-column="49" selection-end-line="91" selection-end-column="49" />
+          <folding>
+            <element signature="imports" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/ua/tennis/repository/ScheduledRepository.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="5764">
+          <caret line="262" column="56" lean-forward="false" selection-start-line="262" selection-start-column="56" selection-end-line="262" selection-end-column="56" />
+          <folding>
+            <element signature="imports" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/ua/tennis/domain/enumeration/MatchWinner.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="110">
+          <caret line="5" column="0" lean-forward="false" selection-start-line="5" selection-start-column="0" selection-end-line="5" selection-end-column="0" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/ua/tennis/domain/Match.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="4642">
+          <caret line="211" column="0" lean-forward="false" selection-start-line="211" selection-start-column="0" selection-end-line="211" selection-end-column="0" />
+          <folding>
+            <element signature="imports" expanded="false" />
+            <element signature="e#1261#1262#0" expanded="false" />
+            <element signature="e#1286#1287#0" expanded="false" />
+            <element signature="e#1320#1321#0" expanded="false" />
+            <element signature="e#1348#1349#0" expanded="false" />
+            <element signature="e#1385#1386#0" expanded="false" />
+            <element signature="e#1418#1419#0" expanded="false" />
+            <element signature="e#1585#1586#0" expanded="false" />
+            <element signature="e#1629#1630#0" expanded="false" />
+            <element signature="e#1664#1665#0" expanded="false" />
+            <element signature="e#1695#1696#0" expanded="false" />
+            <element signature="e#1850#1851#0" expanded="false" />
+            <element signature="e#1890#1891#0" expanded="false" />
+            <element signature="e#1925#1926#0" expanded="false" />
+            <element signature="e#1956#1957#0" expanded="false" />
+            <element signature="e#2111#2112#0" expanded="false" />
+            <element signature="e#2151#2152#0" expanded="false" />
+            <element signature="e#2188#2189#0" expanded="false" />
+            <element signature="e#2220#2221#0" expanded="false" />
+            <element signature="e#2383#2384#0" expanded="false" />
+            <element signature="e#2425#2426#0" expanded="false" />
+            <element signature="e#2462#2463#0" expanded="false" />
+            <element signature="e#2494#2495#0" expanded="false" />
+            <element signature="e#2657#2658#0" expanded="false" />
+            <element signature="e#2699#2700#0" expanded="false" />
+            <element signature="e#2736#2737#0" expanded="false" />
+            <element signature="e#2768#2769#0" expanded="false" />
+            <element signature="e#2931#2932#0" expanded="false" />
+            <element signature="e#2973#2974#0" expanded="false" />
+            <element signature="e#3004#3005#0" expanded="false" />
+            <element signature="e#3031#3032#0" expanded="false" />
+            <element signature="e#3162#3163#0" expanded="false" />
+            <element signature="e#3194#3195#0" expanded="false" />
+            <element signature="e#3230#3231#0" expanded="false" />
+            <element signature="e#3261#3262#0" expanded="false" />
+            <element signature="e#3418#3419#0" expanded="false" />
+            <element signature="e#3458#3459#0" expanded="false" />
+            <element signature="e#3495#3496#0" expanded="false" />
+            <element signature="e#3528#3529#0" expanded="false" />
+            <element signature="e#3580#3581#0" expanded="false" />
+            <element signature="e#3624#3625#0" expanded="false" />
+            <element signature="e#3657#3658#0" expanded="false" />
+            <element signature="e#3688#3689#0" expanded="false" />
+            <element signature="e#3734#3735#0" expanded="false" />
+            <element signature="e#3774#3775#0" expanded="false" />
+            <element signature="e#3809#3810#0" expanded="false" />
+            <element signature="e#3837#3838#0" expanded="false" />
+            <element signature="e#4236#4237#0" expanded="false" />
+            <element signature="e#4270#4271#0" expanded="false" />
+            <element signature="e#4305#4306#0" expanded="false" />
+            <element signature="e#4332#4333#0" expanded="false" />
+            <element signature="e#4375#4376#0" expanded="false" />
+            <element signature="e#4407#4408#0" expanded="false" />
+            <element signature="e#4840#4841#0" expanded="false" />
+            <element signature="e#4888#4889#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/ua/tennis/domain/Odds.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="220">
+          <caret line="13" column="13" lean-forward="false" selection-start-line="13" selection-start-column="13" selection-end-line="13" selection-end-column="13" />
+          <folding>
+            <element signature="imports" expanded="false" />
+            <element signature="e#772#773#0" expanded="false" />
+            <element signature="e#797#798#0" expanded="false" />
+            <element signature="e#831#832#0" expanded="false" />
+            <element signature="e#859#860#0" expanded="false" />
+            <element signature="e#894#895#0" expanded="false" />
+            <element signature="e#925#926#0" expanded="false" />
+            <element signature="e#1079#1080#0" expanded="false" />
+            <element signature="e#1119#1120#0" expanded="false" />
+            <element signature="e#1154#1155#0" expanded="false" />
+            <element signature="e#1185#1186#0" expanded="false" />
+            <element signature="e#1339#1340#0" expanded="false" />
+            <element signature="e#1379#1380#0" expanded="false" />
+            <element signature="e#1416#1417#0" expanded="false" />
+            <element signature="e#1448#1449#0" expanded="false" />
+            <element signature="e#1610#1611#0" expanded="false" />
+            <element signature="e#1652#1653#0" expanded="false" />
+            <element signature="e#1683#1684#0" expanded="false" />
+            <element signature="e#1711#1712#0" expanded="false" />
+            <element signature="e#1845#1846#0" expanded="false" />
+            <element signature="e#1879#1880#0" expanded="false" />
+            <element signature="e#2278#2279#0" expanded="false" />
+            <element signature="e#2303#2304#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/ua/tennis/domain/Bet.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="88">
+          <caret line="11" column="7" lean-forward="false" selection-start-line="11" selection-start-column="7" selection-end-line="11" selection-end-column="7" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/ua/tennis/service/CalculatorService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="220">
+          <caret line="22" column="46" lean-forward="false" selection-start-line="22" selection-start-column="46" selection-end-line="22" selection-end-column="46" />
+          <folding>
+            <element signature="imports" expanded="false" />
+            <element signature="e#8398#8399#0" expanded="false" />
+            <element signature="e#8426#8427#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -1608,7 +2029,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="2398">
           <caret line="109" column="17" lean-forward="false" selection-start-line="109" selection-start-column="17" selection-end-line="109" selection-end-column="17" />
-          <folding />
+          <folding>
+            <element signature="imports" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -1616,7 +2039,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="4664">
           <caret line="212" column="59" lean-forward="true" selection-start-line="212" selection-start-column="59" selection-end-line="212" selection-end-column="59" />
-          <folding />
+          <folding>
+            <element signature="imports" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -1624,7 +2049,11 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1584">
           <caret line="72" column="0" lean-forward="false" selection-start-line="72" selection-start-column="0" selection-end-line="72" selection-end-column="0" />
-          <folding />
+          <folding>
+            <element signature="imports" expanded="false" />
+            <element signature="e#8398#8399#0" expanded="false" />
+            <element signature="e#8426#8427#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -1632,12 +2061,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="286">
           <caret line="17" column="0" lean-forward="false" selection-start-line="17" selection-start-column="0" selection-end-line="17" selection-end-column="0" />
-          <folding>
-            <element signature="e#491#492#0" expanded="false" />
-            <element signature="e#545#546#0" expanded="false" />
-            <element signature="e#636#637#0" expanded="false" />
-            <element signature="e#686#687#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1680,7 +2103,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="786">
           <caret line="117" column="5" lean-forward="false" selection-start-line="117" selection-start-column="5" selection-end-line="117" selection-end-column="5" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1695,7 +2117,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="308">
           <caret line="18" column="5" lean-forward="false" selection-start-line="18" selection-start-column="5" selection-end-line="18" selection-end-column="5" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1703,12 +2124,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="396">
           <caret line="22" column="43" lean-forward="true" selection-start-line="22" selection-start-column="43" selection-end-line="22" selection-end-column="43" />
-          <folding>
-            <element signature="e#491#492#0" expanded="false" />
-            <element signature="e#545#546#0" expanded="false" />
-            <element signature="e#636#637#0" expanded="false" />
-            <element signature="e#686#687#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1730,12 +2145,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="264">
           <caret line="53" column="23" lean-forward="false" selection-start-line="53" selection-start-column="23" selection-end-line="53" selection-end-column="23" />
-          <folding>
-            <element signature="e#5141#5142#0" expanded="true" />
-            <element signature="e#5170#5171#0" expanded="true" />
-            <element signature="e#5219#5220#0" expanded="true" />
-            <element signature="e#5255#5256#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1794,15 +2203,41 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="220">
           <caret line="13" column="13" lean-forward="false" selection-start-line="13" selection-start-column="13" selection-end-line="13" selection-end-column="13" />
-          <folding />
+          <folding>
+            <element signature="imports" expanded="false" />
+            <element signature="e#772#773#0" expanded="false" />
+            <element signature="e#797#798#0" expanded="false" />
+            <element signature="e#831#832#0" expanded="false" />
+            <element signature="e#859#860#0" expanded="false" />
+            <element signature="e#894#895#0" expanded="false" />
+            <element signature="e#925#926#0" expanded="false" />
+            <element signature="e#1079#1080#0" expanded="false" />
+            <element signature="e#1119#1120#0" expanded="false" />
+            <element signature="e#1154#1155#0" expanded="false" />
+            <element signature="e#1185#1186#0" expanded="false" />
+            <element signature="e#1339#1340#0" expanded="false" />
+            <element signature="e#1379#1380#0" expanded="false" />
+            <element signature="e#1416#1417#0" expanded="false" />
+            <element signature="e#1448#1449#0" expanded="false" />
+            <element signature="e#1610#1611#0" expanded="false" />
+            <element signature="e#1652#1653#0" expanded="false" />
+            <element signature="e#1683#1684#0" expanded="false" />
+            <element signature="e#1711#1712#0" expanded="false" />
+            <element signature="e#1845#1846#0" expanded="false" />
+            <element signature="e#1879#1880#0" expanded="false" />
+            <element signature="e#2278#2279#0" expanded="false" />
+            <element signature="e#2303#2304#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/ua/tennis/repository/ScheduledRepository.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="4196">
+        <state relative-caret-position="5522">
           <caret line="262" column="56" lean-forward="false" selection-start-line="262" selection-start-column="56" selection-end-line="262" selection-end-column="56" />
-          <folding />
+          <folding>
+            <element signature="imports" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -1816,17 +2251,23 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/ua/tennis/service/ScheduledService.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-50">
-          <caret line="91" column="49" lean-forward="true" selection-start-line="91" selection-start-column="49" selection-end-line="91" selection-end-column="49" />
-          <folding />
+        <state relative-caret-position="1694">
+          <caret line="91" column="49" lean-forward="false" selection-start-line="91" selection-start-column="49" selection-end-line="91" selection-end-column="49" />
+          <folding>
+            <element signature="imports" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/ua/tennis/service/CalculatorService.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="22">
+        <state relative-caret-position="220">
           <caret line="22" column="46" lean-forward="false" selection-start-line="22" selection-start-column="46" selection-end-line="22" selection-end-column="46" />
-          <folding />
+          <folding>
+            <element signature="imports" expanded="false" />
+            <element signature="e#8398#8399#0" expanded="false" />
+            <element signature="e#8426#8427#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -1842,22 +2283,77 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="66">
           <caret line="3" column="18" lean-forward="false" selection-start-line="3" selection-start-column="18" selection-end-line="3" selection-end-column="18" />
-          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/ua/tennis/domain/Match.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-160">
+        <state relative-caret-position="3432">
           <caret line="211" column="0" lean-forward="false" selection-start-line="211" selection-start-column="0" selection-end-line="211" selection-end-column="0" />
-          <folding />
+          <folding>
+            <element signature="imports" expanded="false" />
+            <element signature="e#1261#1262#0" expanded="false" />
+            <element signature="e#1286#1287#0" expanded="false" />
+            <element signature="e#1320#1321#0" expanded="false" />
+            <element signature="e#1348#1349#0" expanded="false" />
+            <element signature="e#1385#1386#0" expanded="false" />
+            <element signature="e#1418#1419#0" expanded="false" />
+            <element signature="e#1585#1586#0" expanded="false" />
+            <element signature="e#1629#1630#0" expanded="false" />
+            <element signature="e#1664#1665#0" expanded="false" />
+            <element signature="e#1695#1696#0" expanded="false" />
+            <element signature="e#1850#1851#0" expanded="false" />
+            <element signature="e#1890#1891#0" expanded="false" />
+            <element signature="e#1925#1926#0" expanded="false" />
+            <element signature="e#1956#1957#0" expanded="false" />
+            <element signature="e#2111#2112#0" expanded="false" />
+            <element signature="e#2151#2152#0" expanded="false" />
+            <element signature="e#2188#2189#0" expanded="false" />
+            <element signature="e#2220#2221#0" expanded="false" />
+            <element signature="e#2383#2384#0" expanded="false" />
+            <element signature="e#2425#2426#0" expanded="false" />
+            <element signature="e#2462#2463#0" expanded="false" />
+            <element signature="e#2494#2495#0" expanded="false" />
+            <element signature="e#2657#2658#0" expanded="false" />
+            <element signature="e#2699#2700#0" expanded="false" />
+            <element signature="e#2736#2737#0" expanded="false" />
+            <element signature="e#2768#2769#0" expanded="false" />
+            <element signature="e#2931#2932#0" expanded="false" />
+            <element signature="e#2973#2974#0" expanded="false" />
+            <element signature="e#3004#3005#0" expanded="false" />
+            <element signature="e#3031#3032#0" expanded="false" />
+            <element signature="e#3162#3163#0" expanded="false" />
+            <element signature="e#3194#3195#0" expanded="false" />
+            <element signature="e#3230#3231#0" expanded="false" />
+            <element signature="e#3261#3262#0" expanded="false" />
+            <element signature="e#3418#3419#0" expanded="false" />
+            <element signature="e#3458#3459#0" expanded="false" />
+            <element signature="e#3495#3496#0" expanded="false" />
+            <element signature="e#3528#3529#0" expanded="false" />
+            <element signature="e#3580#3581#0" expanded="false" />
+            <element signature="e#3624#3625#0" expanded="false" />
+            <element signature="e#3657#3658#0" expanded="false" />
+            <element signature="e#3688#3689#0" expanded="false" />
+            <element signature="e#3734#3735#0" expanded="false" />
+            <element signature="e#3774#3775#0" expanded="false" />
+            <element signature="e#3809#3810#0" expanded="false" />
+            <element signature="e#3837#3838#0" expanded="false" />
+            <element signature="e#4236#4237#0" expanded="false" />
+            <element signature="e#4270#4271#0" expanded="false" />
+            <element signature="e#4305#4306#0" expanded="false" />
+            <element signature="e#4332#4333#0" expanded="false" />
+            <element signature="e#4375#4376#0" expanded="false" />
+            <element signature="e#4407#4408#0" expanded="false" />
+            <element signature="e#4840#4841#0" expanded="false" />
+            <element signature="e#4888#4889#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/ua/tennis/domain/Bet.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="544">
-          <caret line="34" column="16" lean-forward="false" selection-start-line="34" selection-start-column="16" selection-end-line="34" selection-end-column="16" />
+        <state relative-caret-position="38">
+          <caret line="11" column="7" lean-forward="false" selection-start-line="11" selection-start-column="7" selection-end-line="11" selection-end-column="7" />
           <folding />
         </state>
       </provider>
