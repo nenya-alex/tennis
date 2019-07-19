@@ -4,6 +4,7 @@ import org.springframework.stereotype.Component;
 import ua.tennis.service.dto.MatchDTO;
 
 import java.util.Map;
+import java.util.Optional;
 import java.util.concurrent.ConcurrentHashMap;
 
 @Component
@@ -15,8 +16,8 @@ public class MatchCache {
         matches.putIfAbsent(matchId, matchDTO);
     }
 
-    public MatchDTO getCachedMatch(Long matchId) {
-        return matches.get(matchId);
+    public Optional<MatchDTO> getCachedMatch(Long matchId) {
+        return Optional.ofNullable(matches.get(matchId));
     }
 
     public Map<Long, MatchDTO> getMatches() {

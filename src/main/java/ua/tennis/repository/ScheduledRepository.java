@@ -126,20 +126,25 @@ public class ScheduledRepository {
             List<String> points = (List<String>) scoreboardSlim.get("points");
             if ("0".equals(points.get(0)) && "0".equals(points.get(1))) {
 
-                Integer setNumber = Integer.valueOf(period.substring(0, 1));
-                prepareMatchDtoForPlacingBet(matchDTO, Integer.valueOf(homeSets.get(setNumber - 1)),
-                    Integer.valueOf(awaySets.get(setNumber - 1)));
+                Optional<MatchDTO> cachedMatchDTO = matchCache.getCachedMatch(matchDTO.getId());
 
-                result.get(MatchStatus.LIVE).add(matchDTO);
+                if (cachedMatchDTO.isPresent()) {
+
+                    Integer setNumber = Integer.valueOf(period.substring(0, 1));
+
+                    prepareMatchDtoForPlacingBet(matchDTO, cachedMatchDTO.get().getSetts(), Integer.valueOf(homeSets.get(setNumber - 1)),
+                        Integer.valueOf(awaySets.get(setNumber - 1)));
+
+                    result.get(MatchStatus.LIVE).add(matchDTO);
+                }
             }
         }
     }
 
     private void prepareMatchDtoForPlacingBet(MatchDTO matchDTO,
+                                              List<SettDTO> cachedSets,
                                               Integer homeScoreInSett,
                                               Integer awayScoreInSett) {
-
-        List<SettDTO> cachedSets = matchCache.getCachedMatch(matchDTO.getId()).getSetts();
 
         SettDTO cachedSettDTO = getCachedSettDTO(cachedSets, matchDTO.getHomeScore(), matchDTO.getAwayScore());
         GameDTO cachedGameDTO = getCachedGameDTO(cachedSettDTO.getGames(), homeScoreInSett, awayScoreInSett);

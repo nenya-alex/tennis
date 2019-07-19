@@ -11,9 +11,6 @@
     <property name="floatType" value="float4" dbms="postgresql, h2"/>
     <property name="floatType" value="float" dbms="mysql, oracle, mssql"/>
 
-    <!--
-        Added the entity Game.
-    -->
     <changeSet id="20190609120107-1" author="jhipster">
         <createTable tableName="game">
             <column name="id" type="bigint" autoIncrement="${autoIncrement}">

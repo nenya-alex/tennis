@@ -8,6 +8,8 @@ import javax.persistence.*;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.time.Instant;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 @Table(name = "bet")
@@ -40,6 +42,9 @@ public class Bet implements Serializable {
     @ManyToOne
     @JoinColumn(unique = true)
     private Match match;
+
+    @OneToMany(mappedBy = "bet")
+    private Set<Account> accounts = new HashSet<>();
 
     // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
     public Long getId() {
@@ -122,7 +127,14 @@ public class Bet implements Serializable {
     public void setMatch(Match match) {
         this.match = match;
     }
-    // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here, do not remove
+
+    public Set<Account> getAccounts() {
+        return accounts;
+    }
+
+    public void setAccounts(Set<Account> accounts) {
+        this.accounts = accounts;
+    }
 
     @Override
     public boolean equals(Object o) {

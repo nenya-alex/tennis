@@ -5,9 +5,6 @@ import org.mapstruct.Mapping;
 import ua.tennis.domain.Bet;
 import ua.tennis.service.dto.BetDTO;
 
-/**
- * Mapper for the entity {@link Bet} and its DTO {@link BetDTO}.
- */
 @Mapper(componentModel = "spring", uses = {MatchMapper.class})
 public interface BetMapper extends EntityMapper<BetDTO, Bet> {
 

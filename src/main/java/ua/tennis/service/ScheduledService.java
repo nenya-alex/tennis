@@ -72,7 +72,10 @@ public class ScheduledService {
 
     private void placeBet(List<MatchDTO> matchDTOs) {
         for (MatchDTO matchDTO: matchDTOs) {
+
+            //TODO java.lang.IndexOutOfBoundsException: Index: 0, Size: 0
             GameDTO gameDTO = matchDTO.getSetts().get(0).getGames().get(0);
+
             double homeOdds = gameDTO.getOddsDTO().getHomeOdds();
             double awayOdds = gameDTO.getOddsDTO().getAwayOdds();
             double bookmakersHomeProbability = awayOdds / (homeOdds + awayOdds);

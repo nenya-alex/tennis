@@ -9,9 +9,6 @@ import java.math.BigDecimal;
 import java.time.Instant;
 import java.util.Objects;
 
-/**
- * A DTO for the {@link ua.tennis.domain.Bet} entity.
- */
 public class BetDTO implements Serializable {
 
     private Long id;
@@ -25,7 +22,6 @@ public class BetDTO implements Serializable {
     private BetStatus status;
 
     private Instant placedDate;
-
 
     private Long matchId;
 

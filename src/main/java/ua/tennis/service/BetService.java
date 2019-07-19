@@ -14,9 +14,6 @@ import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
-/**
- * Service Implementation for managing {@link Bet}.
- */
 @Service
 @Transactional
 public class BetService {
