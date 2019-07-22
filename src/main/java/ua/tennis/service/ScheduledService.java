@@ -3,10 +3,12 @@ package ua.tennis.service;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.client.RestTemplate;
+import ua.tennis.domain.Account;
 import ua.tennis.domain.Match;
 import ua.tennis.domain.Odds;
 import ua.tennis.domain.enumeration.MatchStatus;
 import ua.tennis.domain.enumeration.MatchWinner;
+import ua.tennis.repository.AccountRepository;
 import ua.tennis.repository.MatchRepository;
 import ua.tennis.repository.OddsRepository;
 import ua.tennis.repository.ScheduledRepository;
@@ -14,6 +16,7 @@ import ua.tennis.service.dto.GameDTO;
 import ua.tennis.service.dto.MatchDTO;
 import ua.tennis.service.mapper.MatchMapper;
 
+import java.math.BigDecimal;
 import java.util.*;
 
 @Service
@@ -38,16 +41,20 @@ public class ScheduledService {
 
     private final OddsRepository oddsRepository;
 
+    private final AccountRepository accountRepository;
+
     public ScheduledService(RestTemplate restTemplate,
                             ScheduledRepository scheduledRepository,
                             MatchMapper matchMapper,
                             MatchRepository matchRepository,
-                            OddsRepository oddsRepository) {
+                            OddsRepository oddsRepository,
+                            AccountRepository accountRepository) {
         this.restTemplate = restTemplate;
         this.scheduledRepository = scheduledRepository;
         this.matchMapper = matchMapper;
         this.matchRepository = matchRepository;
         this.oddsRepository = oddsRepository;
+        this.accountRepository = accountRepository;
     }
 
 
@@ -79,16 +86,24 @@ public class ScheduledService {
             double homeOdds = gameDTO.getOddsDTO().getHomeOdds();
             double awayOdds = gameDTO.getOddsDTO().getAwayOdds();
             double bookmakersHomeProbability = awayOdds / (homeOdds + awayOdds);
+            Double homeProbability = gameDTO.getHomeProbability();
 
             if (gameDTO.getHomeProbability() > bookmakersHomeProbability * MULTIPLIER) {
-                place(matchDTO.getId(), homeOdds, MatchWinner.HOME);
+                place(matchDTO.getId(), homeOdds, (homeOdds + awayOdds) / awayOdds, homeProbability, MatchWinner.HOME);
             } else if ((1 - gameDTO.getHomeProbability()) > (1 - bookmakersHomeProbability) * MULTIPLIER) {
-                place(matchDTO.getId(), awayOdds, MatchWinner.AWAY);
+                place(matchDTO.getId(), awayOdds, (homeOdds + awayOdds) / homeOdds, 1 - homeProbability, MatchWinner.AWAY);
             }
         }
     }
 
-    private void place(Long matchId, double odds, MatchWinner matchWinner) {
+    private void place(Long matchId,
+                       double odds,
+                       double bookmakerOddsWithoutMarge,
+                       Double probability,
+                       MatchWinner matchWinner) {
+        double kellyCoefficient = (bookmakerOddsWithoutMarge * probability - 1) / (bookmakerOddsWithoutMarge - 1);
+        Account account = accountRepository.findOne(1L);
+        BigDecimal stake = account.getAmount().multiply(BigDecimal.valueOf(kellyCoefficient));
 
     }
 
