@@ -7,7 +7,9 @@ import ua.tennis.domain.enumeration.MatchWinner;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.time.Instant;
+import java.util.HashSet;
 import java.util.Objects;
+import java.util.Set;
 
 public class BetDTO implements Serializable {
 
@@ -24,6 +26,8 @@ public class BetDTO implements Serializable {
     private Instant placedDate;
 
     private Long matchId;
+
+    private Set<AccountDetailDTO> accountDetailDTOs = new HashSet<>();
 
     public Long getId() {
         return id;
@@ -79,6 +83,14 @@ public class BetDTO implements Serializable {
 
     public void setMatchId(Long matchId) {
         this.matchId = matchId;
+    }
+
+    public Set<AccountDetailDTO> getAccountDetailDTOs() {
+        return accountDetailDTOs;
+    }
+
+    public void setAccountDetailDTOs(Set<AccountDetailDTO> accountDetailDTOs) {
+        this.accountDetailDTOs = accountDetailDTOs;
     }
 
     @Override

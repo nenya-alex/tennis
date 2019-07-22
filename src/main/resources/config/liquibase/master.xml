@@ -11,14 +11,15 @@
     <include file="config/liquibase/changelog/20190711175004_added_entity_Odds.xml" relativeToChangelogFile="false"/>
     <include file="config/liquibase/changelog/20190718045016_added_entity_Bet.xml" relativeToChangelogFile="false"/>
     <include file="config/liquibase/changelog/20190719071700_added_entity_Account.xml" relativeToChangelogFile="false"/>
-
+    <include file="config/liquibase/changelog/20190722140000_added_entity_AccountDetail.xml"
+             relativeToChangelogFile="false"/>
 
     <include file="config/liquibase/changelog/20190609120107_added_entity_constraints_Game.xml" relativeToChangelogFile="false"/>
     <include file="config/liquibase/changelog/20190609135140_added_entity_constraints_Sett.xml" relativeToChangelogFile="false"/>
     <include file="config/liquibase/changelog/20190711175004_added_entity_constraints_Odds.xml"
              relativeToChangelogFile="false"/>
     <include file="config/liquibase/changelog/20190718045016_added_entity_constraints_Bet.xml" relativeToChangelogFile="false"/>
-    <include file="config/liquibase/changelog/20190719071700_added_entity_constraints_Account.xml"
+    <include file="config/liquibase/changelog/20190722140000_added_entity_constraints_AccountDetail.xml"
              relativeToChangelogFile="false"/>
 
 </databaseChangeLog>

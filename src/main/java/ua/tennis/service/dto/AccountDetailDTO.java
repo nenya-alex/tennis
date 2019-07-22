@@ -3,10 +3,8 @@ package ua.tennis.service.dto;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.time.Instant;
-import java.util.HashSet;
-import java.util.Set;
 
-public class AccountDTO implements Serializable {
+public class AccountDetailDTO implements Serializable {
 
     private Long id;
 
@@ -14,11 +12,11 @@ public class AccountDTO implements Serializable {
 
     private Long betId;
 
-    private Instant updatedDate;
+    private Long accountId;
+
+    private Instant createdDate;
 
     private BigDecimal placedAmount;
-
-    private Set<AccountDetailDTO> accountDetailDTOs = new HashSet<>();
 
     public Long getId() {
         return id;
@@ -44,12 +42,12 @@ public class AccountDTO implements Serializable {
         this.betId = betId;
     }
 
-    public Instant getUpdatedDate() {
-        return updatedDate;
+    public Instant getCreatedDate() {
+        return createdDate;
     }
 
-    public void setUpdatedDate(Instant updatedDate) {
-        this.updatedDate = updatedDate;
+    public void setCreatedDate(Instant createdDate) {
+        this.createdDate = createdDate;
     }
 
     public BigDecimal getPlacedAmount() {
@@ -60,11 +58,11 @@ public class AccountDTO implements Serializable {
         this.placedAmount = placedAmount;
     }
 
-    public Set<AccountDetailDTO> getAccountDetailDTOs() {
-        return accountDetailDTOs;
+    public Long getAccountId() {
+        return accountId;
     }
 
-    public void setAccountDetailDTOs(Set<AccountDetailDTO> accountDetailDTOs) {
-        this.accountDetailDTOs = accountDetailDTOs;
+    public void setAccountId(Long accountId) {
+        this.accountId = accountId;
     }
 }

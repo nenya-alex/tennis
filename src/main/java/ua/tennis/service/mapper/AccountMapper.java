@@ -5,13 +5,11 @@ import org.mapstruct.Mapping;
 import ua.tennis.domain.Account;
 import ua.tennis.service.dto.AccountDTO;
 
-@Mapper(componentModel = "spring", uses = {BetMapper.class})
+@Mapper(componentModel = "spring", uses = {})
 public interface AccountMapper extends EntityMapper<AccountDTO, Account> {
 
-    @Mapping(source = "bet.id", target = "betId")
     AccountDTO toDto(Account account);
 
-    @Mapping(source = "betId", target = "bet")
     Account toEntity(AccountDTO accountDTO);
 
     default Account fromId(Long id) {

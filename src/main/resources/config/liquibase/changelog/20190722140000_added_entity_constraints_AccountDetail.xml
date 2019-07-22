@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.6.xsd">
+
+    <changeSet id="20190722140000-2" author="jhipster">
+
+        <addForeignKeyConstraint baseColumnNames="bet_id"
+                                 baseTableName="account_detail"
+                                 constraintName="fk_account_detail_bet_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="bet"/>
+
+        <addForeignKeyConstraint baseColumnNames="account_id"
+                                 baseTableName="account_detail"
+                                 constraintName="fk_account_detail_account_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="account"/>
+
+    </changeSet>
+</databaseChangeLog>

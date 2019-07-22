@@ -44,9 +44,8 @@ public class Bet implements Serializable {
     private Match match;
 
     @OneToMany(mappedBy = "bet")
-    private Set<Account> accounts = new HashSet<>();
+    private Set<AccountDetail> accountDetails = new HashSet<>();
 
-    // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
     public Long getId() {
         return id;
     }
@@ -128,12 +127,12 @@ public class Bet implements Serializable {
         this.match = match;
     }
 
-    public Set<Account> getAccounts() {
-        return accounts;
+    public Set<AccountDetail> getAccountDetails() {
+        return accountDetails;
     }
 
-    public void setAccounts(Set<Account> accounts) {
-        this.accounts = accounts;
+    public void setAccountDetails(Set<AccountDetail> accountDetails) {
+        this.accountDetails = accountDetails;
     }
 
     @Override

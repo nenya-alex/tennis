@@ -4,13 +4,11 @@ import javax.persistence.*;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.time.Instant;
-import java.util.HashSet;
 import java.util.Objects;
-import java.util.Set;
 
 @Entity
-@Table(name = "account")
-public class Account implements Serializable {
+@Table(name = "account_detail")
+public class AccountDetail implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
@@ -25,11 +23,14 @@ public class Account implements Serializable {
     @Column(name = "placed_amount", precision = 21, scale = 2)
     private BigDecimal placedAmount;
 
-    @Column(name = "updated_date")
-    private Instant updatedDate;
+    @Column(name = "created_date")
+    private Instant createdDate;
 
-    @OneToMany(mappedBy = "account")
-    private Set<AccountDetail> accountDetails = new HashSet<>();
+    @ManyToOne
+    private Bet bet;
+
+    @ManyToOne
+    private Account account;
 
     public Long getId() {
         return id;
@@ -47,12 +48,20 @@ public class Account implements Serializable {
         this.amount = amount;
     }
 
-    public Instant getUpdatedDate() {
-        return updatedDate;
+    public Bet getBet() {
+        return bet;
     }
 
-    public void setUpdatedDate(Instant updatedDate) {
-        this.updatedDate = updatedDate;
+    public void setBet(Bet bet) {
+        this.bet = bet;
+    }
+
+    public Instant getCreatedDate() {
+        return createdDate;
+    }
+
+    public void setCreatedDate(Instant createdDate) {
+        this.createdDate = createdDate;
     }
 
     public BigDecimal getPlacedAmount() {
@@ -63,28 +72,27 @@ public class Account implements Serializable {
         this.placedAmount = placedAmount;
     }
 
-    public Set<AccountDetail> getAccountDetails() {
-        return accountDetails;
+    public Account getAccount() {
+        return account;
     }
 
-    public void setAccountDetails(Set<AccountDetail> accountDetails) {
-        this.accountDetails = accountDetails;
+    public void setAccount(Account account) {
+        this.account = account;
     }
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        Account account = (Account) o;
-        return Objects.equals(id, account.id) &&
-            Objects.equals(amount, account.amount) &&
-            Objects.equals(placedAmount, account.placedAmount) &&
-            Objects.equals(updatedDate, account.updatedDate) &&
-            Objects.equals(accountDetails, account.accountDetails);
+        AccountDetail that = (AccountDetail) o;
+        return Objects.equals(id, that.id) &&
+            Objects.equals(amount, that.amount) &&
+            Objects.equals(placedAmount, that.placedAmount) &&
+            Objects.equals(createdDate, that.createdDate);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, amount, placedAmount, updatedDate, accountDetails);
+        return Objects.hash(id, amount, placedAmount, createdDate);
     }
 }
