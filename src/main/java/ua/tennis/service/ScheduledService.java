@@ -104,6 +104,10 @@ public class ScheduledService {
 
             if (match != null) {
 
+                if (match.getStatus() != MatchStatus.LIVE) {
+                    match.setStatus(MatchStatus.LIVE);
+                }
+
                 //TODO java.lang.IndexOutOfBoundsException: Index: 0, Size: 0
                 GameDTO gameDTO = matchDTO.getSetts().get(0).getGames().get(0);
 
@@ -175,7 +179,7 @@ public class ScheduledService {
     private void updateAccountForFinishedMatches(List<MatchDTO> matchDTOs) {
         for (MatchDTO matchDTO : matchDTOs) {
             Match match = matchRepository.findOne(matchDTO.getId());
-            if (match != null) {
+            if (match != null && match.getStatus() != MatchStatus.FINISHED) {
                 match.setStatus(MatchStatus.FINISHED);
 
                 Account account = accountRepository.findOne(1L);
