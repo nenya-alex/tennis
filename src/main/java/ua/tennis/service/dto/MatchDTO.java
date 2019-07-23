@@ -47,7 +47,7 @@ public class MatchDTO implements Serializable {
 
     private MatchStatus status;
 
-    MatchWinner winner;
+    private MatchWinner winner;
 
     private List<OddsDTO> odds = new ArrayList<>();
 

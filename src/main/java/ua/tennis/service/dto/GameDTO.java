@@ -12,15 +12,15 @@ public class GameDTO implements Serializable {
 
     private Integer awayScore;
 
-    private Double homeProbability;
+    private double homeProbability;
 
-    private Double awayProbability;
+    private double awayProbability;
 
     private Long settId;
 
     private OddsDTO oddsDTO;
 
-    public GameDTO(Integer homeScore, Integer awayScore, Double homeProbability) {
+    public GameDTO(Integer homeScore, Integer awayScore, double homeProbability) {
         this.homeScore = homeScore;
         this.awayScore = awayScore;
         this.homeProbability = homeProbability;
@@ -53,19 +53,19 @@ public class GameDTO implements Serializable {
         this.awayScore = awayScore;
     }
 
-    public Double getHomeProbability() {
+    public double getHomeProbability() {
         return homeProbability;
     }
 
-    public void setHomeProbability(Double homeProbability) {
+    public void setHomeProbability(double homeProbability) {
         this.homeProbability = homeProbability;
     }
 
-    public Double getAwayProbability() {
+    public double getAwayProbability() {
         return awayProbability;
     }
 
-    public void setAwayProbability(Double awayProbability) {
+    public void setAwayProbability(double awayProbability) {
         this.awayProbability = awayProbability;
     }
 

@@ -4,19 +4,23 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.client.RestTemplate;
 import ua.tennis.domain.Account;
+import ua.tennis.domain.Bet;
 import ua.tennis.domain.Match;
 import ua.tennis.domain.Odds;
+import ua.tennis.domain.enumeration.BetSide;
+import ua.tennis.domain.enumeration.BetStatus;
 import ua.tennis.domain.enumeration.MatchStatus;
-import ua.tennis.domain.enumeration.MatchWinner;
-import ua.tennis.repository.AccountRepository;
-import ua.tennis.repository.MatchRepository;
-import ua.tennis.repository.OddsRepository;
-import ua.tennis.repository.ScheduledRepository;
+import ua.tennis.repository.*;
+import ua.tennis.service.dto.AccountDetailDTO;
+import ua.tennis.service.dto.BetDTO;
 import ua.tennis.service.dto.GameDTO;
 import ua.tennis.service.dto.MatchDTO;
+import ua.tennis.service.mapper.AccountDetailMapper;
+import ua.tennis.service.mapper.BetMapper;
 import ua.tennis.service.mapper.MatchMapper;
 
 import java.math.BigDecimal;
+import java.time.Instant;
 import java.util.*;
 
 @Service
@@ -43,18 +47,34 @@ public class ScheduledService {
 
     private final AccountRepository accountRepository;
 
+    private final BetRepository betRepository;
+
+    private final BetMapper betMapper;
+
+    private final AccountDetailRepository accountDetailRepository;
+
+    private final AccountDetailMapper accountDetailMapper;
+
     public ScheduledService(RestTemplate restTemplate,
                             ScheduledRepository scheduledRepository,
                             MatchMapper matchMapper,
                             MatchRepository matchRepository,
                             OddsRepository oddsRepository,
-                            AccountRepository accountRepository) {
+                            AccountRepository accountRepository,
+                            BetRepository betRepository,
+                            BetMapper betMapper,
+                            AccountDetailRepository accountDetailRepository,
+                            AccountDetailMapper accountDetailMapper) {
         this.restTemplate = restTemplate;
         this.scheduledRepository = scheduledRepository;
         this.matchMapper = matchMapper;
         this.matchRepository = matchRepository;
         this.oddsRepository = oddsRepository;
         this.accountRepository = accountRepository;
+        this.betRepository = betRepository;
+        this.betMapper = betMapper;
+        this.accountDetailRepository = accountDetailRepository;
+        this.accountDetailMapper = accountDetailMapper;
     }
 
 
@@ -78,37 +98,113 @@ public class ScheduledService {
     }
 
     private void placeBet(List<MatchDTO> matchDTOs) {
-        for (MatchDTO matchDTO: matchDTOs) {
+        for (MatchDTO matchDTO : matchDTOs) {
 
-            //TODO java.lang.IndexOutOfBoundsException: Index: 0, Size: 0
-            GameDTO gameDTO = matchDTO.getSetts().get(0).getGames().get(0);
+            Match match = matchRepository.findOne(matchDTO.getId());
 
-            double homeOdds = gameDTO.getOddsDTO().getHomeOdds();
-            double awayOdds = gameDTO.getOddsDTO().getAwayOdds();
-            double bookmakersHomeProbability = awayOdds / (homeOdds + awayOdds);
-            Double homeProbability = gameDTO.getHomeProbability();
+            if (match != null) {
 
-            if (gameDTO.getHomeProbability() > bookmakersHomeProbability * MULTIPLIER) {
-                place(matchDTO.getId(), homeOdds, (homeOdds + awayOdds) / awayOdds, homeProbability, MatchWinner.HOME);
-            } else if ((1 - gameDTO.getHomeProbability()) > (1 - bookmakersHomeProbability) * MULTIPLIER) {
-                place(matchDTO.getId(), awayOdds, (homeOdds + awayOdds) / homeOdds, 1 - homeProbability, MatchWinner.AWAY);
+                //TODO java.lang.IndexOutOfBoundsException: Index: 0, Size: 0
+                GameDTO gameDTO = matchDTO.getSetts().get(0).getGames().get(0);
+
+                double homeOdds = gameDTO.getOddsDTO().getHomeOdds();
+                double awayOdds = gameDTO.getOddsDTO().getAwayOdds();
+                double bookmakersHomeProbability = awayOdds / (homeOdds + awayOdds);
+                double homeProbability = gameDTO.getHomeProbability();
+
+                if (gameDTO.getHomeProbability() > bookmakersHomeProbability * MULTIPLIER) {
+                    place(match, homeOdds, (homeOdds + awayOdds) / awayOdds, homeProbability, BetSide.HOME);
+                } else if ((1 - gameDTO.getHomeProbability()) > (1 - bookmakersHomeProbability) * MULTIPLIER) {
+                    place(match, awayOdds, (homeOdds + awayOdds) / homeOdds, 1 - homeProbability, BetSide.AWAY);
+                }
             }
         }
     }
 
-    private void place(Long matchId,
+    private void place(Match match,
                        double odds,
                        double bookmakerOddsWithoutMarge,
                        Double probability,
-                       MatchWinner matchWinner) {
+                       BetSide betSide) {
         double kellyCoefficient = (bookmakerOddsWithoutMarge * probability - 1) / (bookmakerOddsWithoutMarge - 1);
         Account account = accountRepository.findOne(1L);
-        BigDecimal stake = account.getAmount().multiply(BigDecimal.valueOf(kellyCoefficient));
+        BigDecimal stakeAmount = account.getAmount().multiply(BigDecimal.valueOf(kellyCoefficient));
 
+        BetDTO betDTO = new BetDTO();
+        betDTO.setAmount(stakeAmount);
+        betDTO.setOdds(odds);
+        betDTO.setBetSide(betSide);
+        betDTO.setPlacedDate(Instant.now());
+        betDTO.setMatchId(match.getId());
+
+        if (match.getBets().stream().noneMatch(bet -> bet.getStatus() == BetStatus.OPENED)) {
+            Bet savedBet = saveBet(betDTO, BetStatus.OPENED);
+            saveAccountDetail(account.getAmount(), account.getId(), stakeAmount, savedBet.getId());
+            saveAccount(account, account.getAmount().subtract(stakeAmount),
+                account.getPlacedAmount().add(stakeAmount));
+        } else {
+            saveBet(betDTO, BetStatus.POTENTIAL);
+        }
+    }
+
+    private Bet saveBet(BetDTO betDTO, BetStatus betStatus) {
+        betDTO.setStatus(betStatus);
+        return betRepository.save(betMapper.toEntity(betDTO));
+    }
+
+    private void saveAccount(Account account, BigDecimal amount, BigDecimal placedAmount) {
+        account.setAmount(amount);
+        account.setUpdatedDate(Instant.now());
+        account.setPlacedAmount(placedAmount);
+        accountRepository.save(account);
+    }
+
+    private void saveAccountDetail(BigDecimal amount,
+                                   Long accountId,
+                                   BigDecimal placedAmount,
+                                   Long betId) {
+        AccountDetailDTO accountDetailDTO = new AccountDetailDTO();
+        accountDetailDTO.setAmount(amount);
+        accountDetailDTO.setBetId(betId);
+        accountDetailDTO.setAccountId(accountId);
+        accountDetailDTO.setCreatedDate(Instant.now());
+        accountDetailDTO.setPlacedAmount(placedAmount);
+        accountDetailRepository.save(accountDetailMapper.toEntity(accountDetailDTO));
     }
 
     private void updateAccountForFinishedMatches(List<MatchDTO> matchDTOs) {
+        for (MatchDTO matchDTO : matchDTOs) {
+            Match match = matchRepository.findOne(matchDTO.getId());
+            if (match != null) {
+                match.setStatus(MatchStatus.FINISHED);
 
+                Account account = accountRepository.findOne(1L);
+                Bet bet = match.getBets().stream()
+                    .filter(innerBet -> innerBet.getStatus() == BetStatus.OPENED).findFirst().get();
+
+                BigDecimal amount;
+                BigDecimal placedAmount;
+
+                if (isBetWon(matchDTO, bet)) {
+                    amount = account.getAmount().add(bet.getAmount().multiply(BigDecimal.valueOf(bet.getOdds())));
+                    placedAmount = account.getPlacedAmount().subtract(bet.getAmount());
+                } else {
+                    amount = account.getAmount();
+                    placedAmount = account.getPlacedAmount().subtract(bet.getAmount());
+                }
+
+                saveAccount(account, amount, placedAmount);
+
+                saveAccountDetail(account.getAmount(), account.getId(), BigDecimal.ZERO, bet.getId());
+
+                bet.setStatus(BetStatus.CLOSED);
+                betRepository.save(bet);
+            }
+        }
+    }
+
+    private boolean isBetWon(MatchDTO matchDTO, Bet bet) {
+        return bet.getBetSide().name().equals(matchDTO.getWinner().name());
     }
 
     public void saveUpcomingMatches() {

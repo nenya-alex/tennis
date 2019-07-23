@@ -11,14 +11,18 @@
     <property name="floatType" value="float4" dbms="postgresql, h2"/>
     <property name="floatType" value="float" dbms="mysql, oracle, mssql"/>
 
-    <!--
-        Added the entity Match.
-    -->
+
     <changeSet id="20190609131945-1" author="jhipster">
         <createTable tableName="match">
+
             <column name="id" type="bigint">
                 <constraints primaryKey="true" nullable="false"/>
             </column>
+
+            <column name="status" type="varchar(255)">
+                <constraints nullable="true"/>
+            </column>
+
             <column name="identifier" type="varchar(255)">
                 <constraints nullable="true" />
             </column>
@@ -59,11 +63,9 @@
                 <constraints nullable="true"/>
             </column>
 
-            <!-- jhipster-needle-liquibase-add-column - JHipster will add columns here, do not remove-->
         </createTable>
         <dropDefaultValue tableName="match" columnName="start_date" columnDataType="datetime"/>
         <dropDefaultValue tableName="match" columnName="open_date" columnDataType="datetime"/>
 
     </changeSet>
-    <!-- jhipster-needle-liquibase-add-changeset - JHipster will add changesets here, do not remove-->
 </databaseChangeLog>

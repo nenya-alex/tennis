@@ -1,5 +1,7 @@
 package ua.tennis.domain;
 
+import ua.tennis.domain.enumeration.MatchStatus;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.time.Instant;
@@ -48,6 +50,10 @@ public class Match implements Serializable {
 
     @Column(name = "league_id")
     private Long leagueId;
+
+    @Enumerated(EnumType.STRING)
+    @Column(name = "status")
+    private MatchStatus status;
 
     @OneToMany(mappedBy = "match")
     private Set<Sett> setts = new HashSet<>();
@@ -226,6 +232,14 @@ public class Match implements Serializable {
 
     public void setBets(Set<Bet> bets) {
         this.bets = bets;
+    }
+
+    public MatchStatus getStatus() {
+        return status;
+    }
+
+    public void setStatus(MatchStatus status) {
+        this.status = status;
     }
 
     @Override
