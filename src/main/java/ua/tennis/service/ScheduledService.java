@@ -1,5 +1,7 @@
 package ua.tennis.service;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.client.RestTemplate;
@@ -11,13 +13,11 @@ import ua.tennis.domain.enumeration.BetSide;
 import ua.tennis.domain.enumeration.BetStatus;
 import ua.tennis.domain.enumeration.MatchStatus;
 import ua.tennis.repository.*;
-import ua.tennis.service.dto.AccountDetailDTO;
-import ua.tennis.service.dto.BetDTO;
-import ua.tennis.service.dto.GameDTO;
-import ua.tennis.service.dto.MatchDTO;
+import ua.tennis.service.dto.*;
 import ua.tennis.service.mapper.AccountDetailMapper;
 import ua.tennis.service.mapper.BetMapper;
 import ua.tennis.service.mapper.MatchMapper;
+import ua.tennis.service.mapper.OddsMapper;
 
 import java.math.BigDecimal;
 import java.time.Instant;
@@ -26,6 +26,8 @@ import java.util.*;
 @Service
 @Transactional
 public class ScheduledService {
+
+    private final Logger log = LoggerFactory.getLogger(ScheduledService.class);
 
     private static final String UPCOMING_MATCHES_URL = "https://bcdapi.itsfogo.com/v1/bettingoffer/grid/upcomingEventsBySport"
         + "?x-bwin-accessId=YjU5ZGYwOTMtOWRjNS00Y2M0LWJmZjktMDNhN2FhNGY3NDkw&sportId=5";
@@ -55,6 +57,8 @@ public class ScheduledService {
 
     private final AccountDetailMapper accountDetailMapper;
 
+    private final OddsMapper oddsMapper;
+
     public ScheduledService(RestTemplate restTemplate,
                             ScheduledRepository scheduledRepository,
                             MatchMapper matchMapper,
@@ -64,7 +68,8 @@ public class ScheduledService {
                             BetRepository betRepository,
                             BetMapper betMapper,
                             AccountDetailRepository accountDetailRepository,
-                            AccountDetailMapper accountDetailMapper) {
+                            AccountDetailMapper accountDetailMapper,
+                            OddsMapper oddsMapper) {
         this.restTemplate = restTemplate;
         this.scheduledRepository = scheduledRepository;
         this.matchMapper = matchMapper;
@@ -75,6 +80,7 @@ public class ScheduledService {
         this.betMapper = betMapper;
         this.accountDetailRepository = accountDetailRepository;
         this.accountDetailMapper = accountDetailMapper;
+        this.oddsMapper = oddsMapper;
     }
 
 
@@ -143,7 +149,7 @@ public class ScheduledService {
 
         if (match.getBets().stream().noneMatch(bet -> bet.getStatus() == BetStatus.OPENED)) {
             Bet savedBet = saveBet(betDTO, BetStatus.OPENED);
-            saveAccountDetail(account.getAmount(), account.getId(), stakeAmount, savedBet.getId());
+//            saveAccountDetail(account.getAmount(), account.getId(), stakeAmount, savedBet.getId());
             saveAccount(account, account.getAmount().subtract(stakeAmount),
                 account.getPlacedAmount().add(stakeAmount));
         } else {
@@ -182,27 +188,33 @@ public class ScheduledService {
             if (match != null && match.getStatus() != MatchStatus.FINISHED) {
                 match.setStatus(MatchStatus.FINISHED);
 
-                Account account = accountRepository.findOne(1L);
-                Bet bet = match.getBets().stream()
-                    .filter(innerBet -> innerBet.getStatus() == BetStatus.OPENED).findFirst().get();
+                Set<Bet> bets = match.getBets();
 
-                BigDecimal amount;
-                BigDecimal placedAmount;
+                if (!bets.isEmpty()) {
 
-                if (isBetWon(matchDTO, bet)) {
-                    amount = account.getAmount().add(bet.getAmount().multiply(BigDecimal.valueOf(bet.getOdds())));
-                    placedAmount = account.getPlacedAmount().subtract(bet.getAmount());
-                } else {
-                    amount = account.getAmount();
-                    placedAmount = account.getPlacedAmount().subtract(bet.getAmount());
+                    Account account = accountRepository.findOne(1L);
+
+                    Bet bet = bets.stream()
+                        .filter(innerBet -> innerBet.getStatus() == BetStatus.OPENED).findFirst().get();
+
+                    BigDecimal amount;
+                    BigDecimal placedAmount;
+
+                    if (isBetWon(matchDTO, bet)) {
+                        amount = account.getAmount().add(bet.getAmount().multiply(BigDecimal.valueOf(bet.getOdds())));
+                        placedAmount = account.getPlacedAmount().subtract(bet.getAmount());
+                    } else {
+                        amount = account.getAmount();
+                        placedAmount = account.getPlacedAmount().subtract(bet.getAmount());
+                    }
+
+                    saveAccount(account, amount, placedAmount);
+
+                    saveAccountDetail(account.getAmount(), account.getId(), BigDecimal.ZERO, bet.getId());
+
+                    bet.setStatus(BetStatus.CLOSED);
+                    betRepository.save(bet);
                 }
-
-                saveAccount(account, amount, placedAmount);
-
-                saveAccountDetail(account.getAmount(), account.getId(), BigDecimal.ZERO, bet.getId());
-
-                bet.setStatus(BetStatus.CLOSED);
-                betRepository.save(bet);
             }
         }
     }
@@ -224,18 +236,26 @@ public class ScheduledService {
     }
 
     private void saveMatches(List<MatchDTO> matchDTOs) {
-        List<Match> matches = matchMapper.matchDtosToEntity(matchDTOs);
-        for (Match match : matches) {
-            Optional<Match> excitedMatch = matchRepository.findByIdentifier(match.getIdentifier());
-            if (excitedMatch.isPresent()) {
-                Odds excitedOdds = oddsRepository.findTopByMatchIdOrderByCheckDateDesc(excitedMatch.get().getId());
-                Odds odds = new ArrayList<>(match.getOdds()).get(0);
-                if (!odds.getHomeOdds().equals(excitedOdds.getHomeOdds())
-                    || !odds.getAwayOdds().equals(excitedOdds.getAwayOdds())) {
-                    oddsRepository.save(odds);
+        for (MatchDTO matchDTO : matchDTOs) {
+
+            log.debug("Request to save MatchDTO : {}", matchDTO);
+
+            Match excitedMatch = matchRepository.findOne(matchDTO.getId());
+            if (excitedMatch != null) {
+                Odds existedOdds = oddsRepository.findTopByMatchIdOrderByCheckDateDesc(excitedMatch.getId());
+                OddsDTO oddsDTO = matchDTO.getOdds().get(0);
+                if (!oddsDTO.getHomeOdds().equals(existedOdds.getHomeOdds())
+                    || !oddsDTO.getAwayOdds().equals(existedOdds.getAwayOdds())) {
+
+                    Odds odds = oddsRepository.saveAndFlush(oddsMapper.toEntity(oddsDTO));
+
+                    log.debug("Saved Odds : {} for existed Match : {}", odds, excitedMatch);
+
                 }
             } else {
-                matchRepository.save(match);
+                Match match = matchRepository.saveAndFlush(matchMapper.toEntity(matchDTO));
+
+                log.debug("Saved new Match : {}", match);
             }
         }
     }

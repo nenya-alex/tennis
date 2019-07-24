@@ -275,15 +275,27 @@ public class MatchDTO implements Serializable {
     @Override
     public String toString() {
         return "MatchDTO{" +
-            "id=" + getId() +
-            ", identifier='" + getIdentifier() + "'" +
-            ", homeName='" + getHomeName() + "'" +
-            ", awayName='" + getAwayName() + "'" +
-            ", homeScore=" + getHomeScore() +
-            ", awayScore=" + getAwayScore() +
-            ", startDate='" + getStartDate() + "'" +
-            ", name='" + getName() + "'" +
-            ", openDate='" + getOpenDate() + "'" +
-            "}";
+            "id=" + id +
+            ", identifier='" + identifier + '\'' +
+            ", homeName='" + homeName + '\'' +
+            ", awayName='" + awayName + '\'' +
+            ", homeScore=" + homeScore +
+            ", awayScore=" + awayScore +
+            ", startDate=" + startDate +
+            ", name='" + name + '\'' +
+            ", openDate=" + openDate +
+            ", prematchEventId=" + prematchEventId +
+            ", checkedDate=" + checkedDate +
+            ", leagueName='" + leagueName + '\'' +
+            ", leagueId=" + leagueId +
+            ", gameMode='" + gameMode + '\'' +
+            ", numberOfSetsToWin=" + numberOfSetsToWin +
+            ", period='" + period + '\'' +
+            ", homeMatchProbability=" + homeMatchProbability +
+            ", status=" + status +
+            ", winner=" + winner +
+            ", odds=" + odds +
+            ", setts=" + setts +
+            '}';
     }
 }

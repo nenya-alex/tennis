@@ -5,9 +5,6 @@ import javax.persistence.*;
 import java.io.Serializable;
 import java.time.Instant;
 
-/**
- * A Odds.
- */
 @Entity
 @Table(name = "odds")
 public class Odds implements Serializable {
@@ -112,10 +109,11 @@ public class Odds implements Serializable {
     @Override
     public String toString() {
         return "Odds{" +
-            "id=" + getId() +
-            ", homeOdds=" + getHomeOdds() +
-            ", awayOdds=" + getAwayOdds() +
-            ", checkDate='" + getCheckDate() + "'" +
-            "}";
+            "id=" + id +
+            ", homeOdds=" + homeOdds +
+            ", awayOdds=" + awayOdds +
+            ", checkDate=" + checkDate +
+            ", match=" + match +
+            '}';
     }
 }
