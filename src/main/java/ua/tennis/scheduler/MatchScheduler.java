@@ -13,12 +13,14 @@ public class MatchScheduler {
         this.scheduledService = scheduledService;
     }
 
-    @Scheduled(cron = "0 0/1 * * * *") //every minutes
+    //    @Scheduled(cron = "0 0/1 * * * *") //every minutes
+    @Scheduled(fixedDelay = 30000)
     public void getUpcomingMatches() {
         scheduledService.saveUpcomingMatches();
     }
 
-    @Scheduled(cron = "0 0/1 * * * *") //every minutes
+    //    @Scheduled(cron = "0 0/1 * * * *") //every minutes
+    @Scheduled(fixedDelay = 30000)
     public void getLiveMatches() {
         scheduledService.saveLiveMatches();
     }

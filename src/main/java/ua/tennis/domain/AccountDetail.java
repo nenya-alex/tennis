@@ -95,4 +95,16 @@ public class AccountDetail implements Serializable {
     public int hashCode() {
         return Objects.hash(id, amount, placedAmount, createdDate);
     }
+
+    @Override
+    public String toString() {
+        return "AccountDetail{" +
+            "id=" + id +
+            ", amount=" + amount +
+            ", placedAmount=" + placedAmount +
+            ", createdDate=" + createdDate +
+            ", bet=" + bet +
+            ", account=" + account +
+            '}';
+    }
 }

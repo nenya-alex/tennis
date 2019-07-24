@@ -5,10 +5,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.client.RestTemplate;
-import ua.tennis.domain.Account;
-import ua.tennis.domain.Bet;
-import ua.tennis.domain.Match;
-import ua.tennis.domain.Odds;
+import ua.tennis.domain.*;
 import ua.tennis.domain.enumeration.BetSide;
 import ua.tennis.domain.enumeration.BetStatus;
 import ua.tennis.domain.enumeration.MatchStatus;
@@ -99,7 +96,7 @@ public class ScheduledService {
 
         placeBet(result.get(MatchStatus.LIVE));
 
-        updateAccountForFinishedMatches(result.get(MatchStatus.FINISHED));
+        settleBet(result.get(MatchStatus.FINISHED));
 
     }
 
@@ -110,8 +107,14 @@ public class ScheduledService {
 
             if (match != null) {
 
+                log.debug("PLACE BET: Request for Match : {}", match);
+                log.debug("PLACE BET: Request for MatchDTO : {}", matchDTO);
+
                 if (match.getStatus() != MatchStatus.LIVE) {
                     match.setStatus(MatchStatus.LIVE);
+                    matchRepository.saveAndFlush(match);
+
+                    log.debug("PLACE BET: Saved LIVE Match : {}", match);
                 }
 
                 //TODO java.lang.IndexOutOfBoundsException: Index: 0, Size: 0
@@ -137,8 +140,16 @@ public class ScheduledService {
                        Double probability,
                        BetSide betSide) {
         double kellyCoefficient = (bookmakerOddsWithoutMarge * probability - 1) / (bookmakerOddsWithoutMarge - 1);
+
+        log.debug("PLACE BET: KellyCoefficient = {} for Match id :{}", kellyCoefficient, match.getId());
+
         Account account = accountRepository.findOne(1L);
+
+        log.debug("PLACE BET: Account before placing : {} ", account);
+
         BigDecimal stakeAmount = account.getAmount().multiply(BigDecimal.valueOf(kellyCoefficient));
+
+        log.debug("PLACE BET: stakeAmount = {} ", stakeAmount);
 
         BetDTO betDTO = new BetDTO();
         betDTO.setAmount(stakeAmount);
@@ -149,24 +160,31 @@ public class ScheduledService {
 
         if (match.getBets().stream().noneMatch(bet -> bet.getStatus() == BetStatus.OPENED)) {
             Bet savedBet = saveBet(betDTO, BetStatus.OPENED);
-//            saveAccountDetail(account.getAmount(), account.getId(), stakeAmount, savedBet.getId());
+            log.debug("PLACE BET: Saved OPENED Bet : {}", savedBet);
+
             saveAccount(account, account.getAmount().subtract(stakeAmount),
                 account.getPlacedAmount().add(stakeAmount));
+
+            saveAccountDetail(account.getAmount(), account.getId(), stakeAmount, savedBet.getId());
+
         } else {
-            saveBet(betDTO, BetStatus.POTENTIAL);
+            Bet savedBet = saveBet(betDTO, BetStatus.POTENTIAL);
+            log.debug("PLACE BET: Saved POTENTIAL Bet : {}", savedBet);
         }
     }
 
     private Bet saveBet(BetDTO betDTO, BetStatus betStatus) {
         betDTO.setStatus(betStatus);
-        return betRepository.save(betMapper.toEntity(betDTO));
+        return betRepository.saveAndFlush(betMapper.toEntity(betDTO));
     }
 
     private void saveAccount(Account account, BigDecimal amount, BigDecimal placedAmount) {
         account.setAmount(amount);
         account.setUpdatedDate(Instant.now());
         account.setPlacedAmount(placedAmount);
-        accountRepository.save(account);
+        accountRepository.saveAndFlush(account);
+
+        log.debug("Saved Account after action: {}", account);
     }
 
     private void saveAccountDetail(BigDecimal amount,
@@ -179,23 +197,36 @@ public class ScheduledService {
         accountDetailDTO.setAccountId(accountId);
         accountDetailDTO.setCreatedDate(Instant.now());
         accountDetailDTO.setPlacedAmount(placedAmount);
-        accountDetailRepository.save(accountDetailMapper.toEntity(accountDetailDTO));
+        AccountDetail accountDetail = accountDetailRepository.saveAndFlush(accountDetailMapper.toEntity(accountDetailDTO));
+
+        log.debug("Saved AccountDetail : {}", accountDetail);
     }
 
-    private void updateAccountForFinishedMatches(List<MatchDTO> matchDTOs) {
+    private void settleBet(List<MatchDTO> matchDTOs) {
         for (MatchDTO matchDTO : matchDTOs) {
             Match match = matchRepository.findOne(matchDTO.getId());
-            if (match != null && match.getStatus() != MatchStatus.FINISHED) {
-                match.setStatus(MatchStatus.FINISHED);
 
-                Set<Bet> bets = match.getBets();
+            if (match != null && match.getStatus() != MatchStatus.FINISHED) {
+
+                log.debug("SETTLE BET: Match to finish : {}", match);
+
+                match.setStatus(MatchStatus.FINISHED);
+                matchRepository.saveAndFlush(match);
+
+                log.debug("SETTLE BET: Saved Match : {}", match);
+
+                Set<Bet> bets = betRepository.findByMatchId(match.getId());
 
                 if (!bets.isEmpty()) {
 
                     Account account = accountRepository.findOne(1L);
 
+                    log.debug("SETTLE BET: Account before settlement: {}", account);
+
                     Bet bet = bets.stream()
                         .filter(innerBet -> innerBet.getStatus() == BetStatus.OPENED).findFirst().get();
+
+                    log.debug("SETTLE BET: Bet before settlement : {}", bet);
 
                     BigDecimal amount;
                     BigDecimal placedAmount;
@@ -208,12 +239,13 @@ public class ScheduledService {
                         placedAmount = account.getPlacedAmount().subtract(bet.getAmount());
                     }
 
+                    bet.setStatus(BetStatus.CLOSED);
+                    betRepository.saveAndFlush(bet);
+                    log.debug("SETTLE BET: Bet after settlement : {}", bet);
+
                     saveAccount(account, amount, placedAmount);
 
                     saveAccountDetail(account.getAmount(), account.getId(), BigDecimal.ZERO, bet.getId());
-
-                    bet.setStatus(BetStatus.CLOSED);
-                    betRepository.save(bet);
                 }
             }
         }

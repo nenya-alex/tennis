@@ -153,13 +153,15 @@ public class Bet implements Serializable {
 
     @Override
     public String toString() {
-        return "Bet{" +
-            "id=" + getId() +
-            ", amount=" + getAmount() +
-            ", odds=" + getOdds() +
-            ", betSide='" + getBetSide() + "'" +
-            ", status='" + getStatus() + "'" +
-            ", placedDate='" + getPlacedDate() + "'" +
-            "}";
+        return "Bet{\n" +
+            "id=" + id + "\n" +
+            ", amount=" + amount + "\n" +
+            ", odds=" + odds + "\n" +
+            ", betSide=" + betSide + "\n" +
+            ", status=" + status + "\n" +
+            ", placedDate=" + placedDate + "\n" +
+            ", match=" + match + "\n" +
+            ", accountDetails=" + accountDetails + "\n" +
+            '}';
     }
 }
