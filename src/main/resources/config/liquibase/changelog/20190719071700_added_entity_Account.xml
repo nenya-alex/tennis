@@ -27,6 +27,13 @@
         </createTable>
 
         <dropDefaultValue tableName="account" columnName="updated_date" columnDataType="datetime"/>
+
+        <loadData encoding="UTF-8"
+                  file="config/liquibase/data/account.csv"
+                  separator=";"
+                  tableName="account">
+        </loadData>
+
     </changeSet>
 
 </databaseChangeLog>

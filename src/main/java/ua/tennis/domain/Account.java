@@ -90,12 +90,11 @@ public class Account implements Serializable {
 
     @Override
     public String toString() {
-        return "Account{" +
-            "id=" + id +
-            ", amount=" + amount +
-            ", placedAmount=" + placedAmount +
+        return "\n" +"Account{" +
+            "id=" + id +"\n" +
+            ", amount=" + amount +"\n" +
+            ", placedAmount=" + placedAmount +"\n" +
             ", updatedDate=" + updatedDate +
-            ", accountDetails=" + accountDetails +
             '}';
     }
 }

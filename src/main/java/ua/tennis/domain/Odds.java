@@ -108,11 +108,11 @@ public class Odds implements Serializable {
 
     @Override
     public String toString() {
-        return "Odds{" +
+        return "\n" +"Odds{" +
             "id=" + id +
-            ", homeOdds=" + homeOdds +
-            ", awayOdds=" + awayOdds +
-            ", checkDate=" + checkDate +
+            ", homeOdds=" + homeOdds +"\n" +
+            ", awayOdds=" + awayOdds +"\n" +
+            ", checkDate=" + checkDate +"\n" +
             ", match=" + match +
             '}';
     }

@@ -153,7 +153,7 @@ public class Bet implements Serializable {
 
     @Override
     public String toString() {
-        return "Bet{\n" +
+        return "\n" +"Bet{" +
             "id=" + id + "\n" +
             ", amount=" + amount + "\n" +
             ", odds=" + odds + "\n" +
@@ -161,7 +161,7 @@ public class Bet implements Serializable {
             ", status=" + status + "\n" +
             ", placedDate=" + placedDate + "\n" +
             ", match=" + match + "\n" +
-            ", accountDetails=" + accountDetails + "\n" +
+            ", accountDetails=" + accountDetails +
             '}';
     }
 }

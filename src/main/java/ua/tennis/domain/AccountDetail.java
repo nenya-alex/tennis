@@ -98,13 +98,12 @@ public class AccountDetail implements Serializable {
 
     @Override
     public String toString() {
-        return "AccountDetail{" +
+        return "\n" +"AccountDetail{" +
             "id=" + id +
-            ", amount=" + amount +
-            ", placedAmount=" + placedAmount +
-            ", createdDate=" + createdDate +
+            ", amount=" + amount +"\n" +
+            ", placedAmount=" + placedAmount +"\n" +
+            ", createdDate=" + createdDate +"\n" +
             ", bet=" + bet +
-            ", account=" + account +
             '}';
     }
 }

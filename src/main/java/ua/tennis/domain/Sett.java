@@ -163,12 +163,14 @@ public class Sett implements Serializable {
 
     @Override
     public String toString() {
-        return "Sett{" +
-            "id=" + getId() +
-            ", homeScore=" + getHomeScore() +
-            ", awayScore=" + getAwayScore() +
-            ", homeProbability=" + getHomeProbability() +
-            ", awayProbability=" + getAwayProbability() +
-            "}";
+        return "\n" +"Sett{" +
+            "id=" + id +
+            ", homeScore=" + homeScore +"\n" +
+            ", awayScore=" + awayScore +"\n" +
+            ", homeProbability=" + homeProbability +"\n" +
+            ", awayProbability=" + awayProbability +"\n" +
+            ", games=" + games +"\n" +
+            ", match=" + match +
+            '}';
     }
 }

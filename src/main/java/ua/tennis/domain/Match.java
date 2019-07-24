@@ -264,22 +264,19 @@ public class Match implements Serializable {
 
     @Override
     public String toString() {
-        return "Match{" +
-            "id=" + id +
-            ", identifier='" + identifier + '\'' +
-            ", homeName='" + homeName + '\'' +
-            ", awayName='" + awayName + '\'' +
-            ", homeScore=" + homeScore +
-            ", awayScore=" + awayScore +
-            ", startDate=" + startDate +
-            ", name='" + name + '\'' +
-            ", openDate=" + openDate +
-            ", leagueName='" + leagueName + '\'' +
-            ", leagueId=" + leagueId +
+        return "\n" +"Match{" +
+            "id=" + id +"\n" +
+            ", identifier='" + identifier + '\'' +"\n" +
+            ", homeName='" + homeName + '\'' +"\n" +
+            ", awayName='" + awayName + '\'' +"\n" +
+            ", homeScore=" + homeScore +"\n" +
+            ", awayScore=" + awayScore +"\n" +
+            ", startDate=" + startDate +"\n" +
+            ", name='" + name + '\'' +"\n" +
+            ", openDate=" + openDate +"\n" +
+            ", leagueName='" + leagueName + '\'' +"\n" +
+            ", leagueId=" + leagueId +"\n" +
             ", status=" + status +
-            ", setts=" + setts +
-            ", odds=" + odds +
-            ", bets=" + bets +
             '}';
     }
 }

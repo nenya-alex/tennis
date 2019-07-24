@@ -131,11 +131,11 @@ public class Game implements Serializable {
 
     @Override
     public String toString() {
-        return "Game{" +
+        return "\n" +"Game{" +
             "id=" + getId() +
-            ", homeScore=" + getHomeScore() +
-            ", awayScore=" + getAwayScore() +
-            ", homeProbability=" + getHomeProbability() +
+            ", homeScore=" + getHomeScore() +"\n" +
+            ", awayScore=" + getAwayScore() +"\n" +
+            ", homeProbability=" + getHomeProbability() +"\n" +
             ", awayProbability=" + getAwayProbability() +
             "}";
     }
