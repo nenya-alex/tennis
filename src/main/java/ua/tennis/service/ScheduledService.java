@@ -107,14 +107,14 @@ public class ScheduledService {
 
             if (match != null) {
 
-                log.debug("PLACE BET: Request for Match : {}", match);
-                log.debug("PLACE BET: Request for MatchDTO : {}", matchDTO);
+                log.debug("\nPLACE BET: Request for Match : {}", match);
+                log.debug("\nPLACE BET: Request for MatchDTO : {}", matchDTO);
 
                 if (match.getStatus() != MatchStatus.LIVE) {
                     match.setStatus(MatchStatus.LIVE);
                     matchRepository.saveAndFlush(match);
 
-                    log.debug("PLACE BET: Saved LIVE Match : {}", match);
+                    log.debug("\nPLACE BET: Saved LIVE Match : {}", match);
                 }
 
                 //TODO java.lang.IndexOutOfBoundsException: Index: 0, Size: 0
@@ -141,15 +141,15 @@ public class ScheduledService {
                        BetSide betSide) {
         double kellyCoefficient = (bookmakerOddsWithoutMarge * probability - 1) / (bookmakerOddsWithoutMarge - 1);
 
-        log.debug("PLACE BET: KellyCoefficient = {} for Match id :{}", kellyCoefficient, match.getId());
+        log.debug("\nPLACE BET: KellyCoefficient = {} for Match id :{}", kellyCoefficient, match.getId());
 
         Account account = accountRepository.findOne(1L);
 
-        log.debug("PLACE BET: Account before placing : {} ", account);
+        log.debug("\nPLACE BET: Account before placing : {} ", account);
 
         BigDecimal stakeAmount = account.getAmount().multiply(BigDecimal.valueOf(kellyCoefficient));
 
-        log.debug("PLACE BET: stakeAmount = {} ", stakeAmount);
+        log.debug("\nPLACE BET: stakeAmount = {} ", stakeAmount);
 
         BetDTO betDTO = new BetDTO();
         betDTO.setAmount(stakeAmount);
@@ -160,7 +160,7 @@ public class ScheduledService {
 
         if (match.getBets().stream().noneMatch(bet -> bet.getStatus() == BetStatus.OPENED)) {
             Bet savedBet = saveBet(betDTO, BetStatus.OPENED);
-            log.debug("PLACE BET: Saved OPENED Bet : {}", savedBet);
+            log.debug("\nPLACE BET: Saved OPENED Bet : {}", savedBet);
 
             saveAccount(account, account.getAmount().subtract(stakeAmount),
                 account.getPlacedAmount().add(stakeAmount));
@@ -169,7 +169,7 @@ public class ScheduledService {
 
         } else {
             Bet savedBet = saveBet(betDTO, BetStatus.POTENTIAL);
-            log.debug("PLACE BET: Saved POTENTIAL Bet : {}", savedBet);
+            log.debug("\nPLACE BET: Saved POTENTIAL Bet : {}", savedBet);
         }
     }
 
@@ -184,7 +184,7 @@ public class ScheduledService {
         account.setPlacedAmount(placedAmount);
         accountRepository.saveAndFlush(account);
 
-        log.debug("Saved Account after action: {}", account);
+        log.debug("\nSaved Account after action: {}", account);
     }
 
     private void saveAccountDetail(BigDecimal amount,
@@ -199,7 +199,7 @@ public class ScheduledService {
         accountDetailDTO.setPlacedAmount(placedAmount);
         AccountDetail accountDetail = accountDetailRepository.saveAndFlush(accountDetailMapper.toEntity(accountDetailDTO));
 
-        log.debug("Saved AccountDetail : {}", accountDetail);
+        log.debug("\nSaved AccountDetail : {}", accountDetail);
     }
 
     private void settleBet(List<MatchDTO> matchDTOs) {
@@ -208,12 +208,12 @@ public class ScheduledService {
 
             if (match != null && match.getStatus() != MatchStatus.FINISHED) {
 
-                log.debug("SETTLE BET: Match to finish : {}", match);
+                log.debug("\nSETTLE BET: Match to finish : {}", match);
 
                 match.setStatus(MatchStatus.FINISHED);
                 matchRepository.saveAndFlush(match);
 
-                log.debug("SETTLE BET: Saved Match : {}", match);
+                log.debug("\nSETTLE BET: Saved Match : {}", match);
 
                 Set<Bet> bets = betRepository.findByMatchId(match.getId());
 
@@ -221,12 +221,12 @@ public class ScheduledService {
 
                     Account account = accountRepository.findOne(1L);
 
-                    log.debug("SETTLE BET: Account before settlement: {}", account);
+                    log.debug("\nSETTLE BET: Account before settlement: {}", account);
 
                     Bet bet = bets.stream()
                         .filter(innerBet -> innerBet.getStatus() == BetStatus.OPENED).findFirst().get();
 
-                    log.debug("SETTLE BET: Bet before settlement : {}", bet);
+                    log.debug("\nSETTLE BET: Bet before settlement : {}", bet);
 
                     BigDecimal amount;
                     BigDecimal placedAmount;
@@ -241,7 +241,7 @@ public class ScheduledService {
 
                     bet.setStatus(BetStatus.CLOSED);
                     betRepository.saveAndFlush(bet);
-                    log.debug("SETTLE BET: Bet after settlement : {}", bet);
+                    log.debug("\nSETTLE BET: Bet after settlement : {}", bet);
 
                     saveAccount(account, amount, placedAmount);
 
@@ -269,9 +269,6 @@ public class ScheduledService {
 
     private void saveMatches(List<MatchDTO> matchDTOs) {
         for (MatchDTO matchDTO : matchDTOs) {
-
-            log.debug("Request to save MatchDTO : {}", matchDTO);
-
             Match excitedMatch = matchRepository.findOne(matchDTO.getId());
             if (excitedMatch != null) {
                 Odds existedOdds = oddsRepository.findTopByMatchIdOrderByCheckDateDesc(excitedMatch.getId());
@@ -281,13 +278,13 @@ public class ScheduledService {
 
                     Odds odds = oddsRepository.saveAndFlush(oddsMapper.toEntity(oddsDTO));
 
-                    log.debug("Saved Odds : {} for existed Match : {}", odds, excitedMatch);
+                    log.debug("\nSaved Odds : {} for existed Match : {}", odds, excitedMatch);
 
                 }
             } else {
                 Match match = matchRepository.saveAndFlush(matchMapper.toEntity(matchDTO));
 
-                log.debug("Saved new Match : {}", match);
+                log.debug("\nSaved new Match : {}", match);
             }
         }
     }
