@@ -108,12 +108,10 @@ public class ScheduledService {
             if (match != null) {
 
                 log.debug("\nPLACE BET: Request for Match : {}", match);
-                log.debug("\nPLACE BET: Request for MatchDTO : {}", matchDTO);
 
                 if (match.getStatus() != MatchStatus.LIVE) {
                     match.setStatus(MatchStatus.LIVE);
                     matchRepository.saveAndFlush(match);
-
                     log.debug("\nPLACE BET: Saved LIVE Match : {}", match);
                 }
 
@@ -160,7 +158,6 @@ public class ScheduledService {
 
         if (match.getBets().stream().noneMatch(bet -> bet.getStatus() == BetStatus.OPENED)) {
             Bet savedBet = saveBet(betDTO, BetStatus.OPENED);
-            log.debug("\nPLACE BET: Saved OPENED Bet : {}", savedBet);
 
             saveAccount(account, account.getAmount().subtract(stakeAmount),
                 account.getPlacedAmount().add(stakeAmount));
@@ -168,14 +165,16 @@ public class ScheduledService {
             saveAccountDetail(account.getAmount(), account.getId(), stakeAmount, savedBet.getId());
 
         } else {
-            Bet savedBet = saveBet(betDTO, BetStatus.POTENTIAL);
-            log.debug("\nPLACE BET: Saved POTENTIAL Bet : {}", savedBet);
+            saveBet(betDTO, BetStatus.POTENTIAL);
         }
     }
 
     private Bet saveBet(BetDTO betDTO, BetStatus betStatus) {
         betDTO.setStatus(betStatus);
-        return betRepository.saveAndFlush(betMapper.toEntity(betDTO));
+        Bet savedBet = betRepository.saveAndFlush(betMapper.toEntity(betDTO));
+        log.debug("\nPLACE BET: Saved " + betStatus.name() + " Bet : {}", savedBet);
+        return savedBet;
+
     }
 
     private void saveAccount(Account account, BigDecimal amount, BigDecimal placedAmount) {
@@ -220,7 +219,6 @@ public class ScheduledService {
                 if (!bets.isEmpty()) {
 
                     Account account = accountRepository.findOne(1L);
-
                     log.debug("\nSETTLE BET: Account before settlement: {}", account);
 
                     Bet bet = bets.stream()
@@ -277,13 +275,11 @@ public class ScheduledService {
                     || !oddsDTO.getAwayOdds().equals(existedOdds.getAwayOdds())) {
 
                     Odds odds = oddsRepository.saveAndFlush(oddsMapper.toEntity(oddsDTO));
-
-                    log.debug("\nSaved Odds : {} for existed Match : {}", odds, excitedMatch);
+                    log.debug("\nSaved Odds : {} \n for existed Match : {}", odds, excitedMatch);
 
                 }
             } else {
                 Match match = matchRepository.saveAndFlush(matchMapper.toEntity(matchDTO));
-
                 log.debug("\nSaved new Match : {}", match);
             }
         }

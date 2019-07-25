@@ -6,9 +6,11 @@
 
     <changeSet id="20190711175004-1" author="jhipster">
         <createTable tableName="odds">
+
             <column name="id" type="bigint" autoIncrement="${autoIncrement}">
                 <constraints primaryKey="true" nullable="false"/>
             </column>
+
             <column name="home_odds" type="double">
                 <constraints nullable="true"/>
             </column>

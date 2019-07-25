@@ -40,7 +40,6 @@ public class Bet implements Serializable {
     private Instant placedDate;
 
     @ManyToOne
-    @JoinColumn(unique = true)
     private Match match;
 
     @OneToMany(mappedBy = "bet")
