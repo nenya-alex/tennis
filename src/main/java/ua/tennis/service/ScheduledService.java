@@ -116,6 +116,8 @@ public class ScheduledService {
                 }
 
                 //TODO java.lang.IndexOutOfBoundsException: Index: 0, Size: 0
+                log.debug("\nPLACE BET: \n Request for MatchDTO with \n POTENTIAL ERROR : {}", matchDTO);
+
                 GameDTO gameDTO = matchDTO.getSetts().get(0).getGames().get(0);
 
                 double homeOdds = gameDTO.getOddsDTO().getHomeOdds();
@@ -267,16 +269,24 @@ public class ScheduledService {
 
     private void saveMatches(List<MatchDTO> matchDTOs) {
         for (MatchDTO matchDTO : matchDTOs) {
+
+            log.debug("\nMatchDTO to save : {}", matchDTO);
+
             Match excitedMatch = matchRepository.findOne(matchDTO.getId());
             if (excitedMatch != null) {
                 Odds existedOdds = oddsRepository.findTopByMatchIdOrderByCheckDateDesc(excitedMatch.getId());
-                OddsDTO oddsDTO = matchDTO.getOdds().get(0);
-                if (!oddsDTO.getHomeOdds().equals(existedOdds.getHomeOdds())
-                    || !oddsDTO.getAwayOdds().equals(existedOdds.getAwayOdds())) {
 
-                    Odds odds = oddsRepository.saveAndFlush(oddsMapper.toEntity(oddsDTO));
-                    log.debug("\nSaved Odds : {} \n for existed Match : {}", odds, excitedMatch);
+                List<OddsDTO> oddsDTOs = matchDTO.getOdds();
+                if (!oddsDTOs.isEmpty()) {
+                    OddsDTO oddsDTO = oddsDTOs.get(0);
 
+                    if (!oddsDTO.getHomeOdds().equals(existedOdds.getHomeOdds())
+                        || !oddsDTO.getAwayOdds().equals(existedOdds.getAwayOdds())) {
+
+                        Odds odds = oddsRepository.saveAndFlush(oddsMapper.toEntity(oddsDTO));
+                        log.debug("\nSaved Odds : {} \n for existed Match : {}", odds, excitedMatch);
+
+                    }
                 }
             } else {
                 Match match = matchRepository.saveAndFlush(matchMapper.toEntity(matchDTO));
