@@ -13,8 +13,6 @@ public class MatchDTO implements Serializable {
 
     private Long id;
 
-    private String identifier;
-
     private String homeName;
 
     private String awayName;
@@ -29,13 +27,7 @@ public class MatchDTO implements Serializable {
 
     private Instant openDate;
 
-    private Integer prematchEventId;
-
     private Instant checkedDate;
-
-    private String leagueName;
-
-    private Long leagueId;
 
     private String gameMode;
 
@@ -57,25 +49,17 @@ public class MatchDTO implements Serializable {
     }
 
     public MatchDTO(Long id,
-                    String identifier,
-                    Integer prematchEventId,
                     String name,
                     Instant openDate,
                     Instant startDate,
                     String homeName,
-                    String awayName,
-                    String leagueName,
-                    Long leagueId) {
+                    String awayName) {
         this.id = id;
-        this.identifier = identifier;
         this.homeName = homeName;
         this.awayName = awayName;
         this.startDate = startDate;
         this.name = name;
         this.openDate = openDate;
-        this.prematchEventId = prematchEventId;
-        this.leagueName = leagueName;
-        this.leagueId = leagueId;
     }
 
     public MatchDTO(double homeMatchProbability, List<SettDTO> setts) {
@@ -89,14 +73,6 @@ public class MatchDTO implements Serializable {
 
     public void setId(Long id) {
         this.id = id;
-    }
-
-    public String getIdentifier() {
-        return identifier;
-    }
-
-    public void setIdentifier(String identifier) {
-        this.identifier = identifier;
     }
 
     public String getHomeName() {
@@ -155,36 +131,12 @@ public class MatchDTO implements Serializable {
         this.openDate = openDate;
     }
 
-    public Integer getPrematchEventId() {
-        return prematchEventId;
-    }
-
-    public void setPrematchEventId(Integer prematchEventId) {
-        this.prematchEventId = prematchEventId;
-    }
-
     public Instant getCheckedDate() {
         return checkedDate;
     }
 
     public void setCheckedDate(Instant checkedDate) {
         this.checkedDate = checkedDate;
-    }
-
-    public String getLeagueName() {
-        return leagueName;
-    }
-
-    public void setLeagueName(String leagueName) {
-        this.leagueName = leagueName;
-    }
-
-    public Long getLeagueId() {
-        return leagueId;
-    }
-
-    public void setLeagueId(Long leagueId) {
-        this.leagueId = leagueId;
     }
 
     public String getGameMode() {

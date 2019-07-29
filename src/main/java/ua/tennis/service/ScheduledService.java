@@ -107,12 +107,12 @@ public class ScheduledService {
 
             if (match != null) {
 
-                log.debug("\nPLACE BET: Request for Match : {}", match);
+//                log.debug("\nPLACE BET: Request for Match : {}", match);
 
                 if (match.getStatus() != MatchStatus.LIVE) {
                     match.setStatus(MatchStatus.LIVE);
                     matchRepository.saveAndFlush(match);
-                    log.debug("\nPLACE BET: Saved LIVE Match : {}", match);
+//                    log.debug("\nPLACE BET: Saved LIVE Match : {}", match);
                 }
 
                 //TODO java.lang.IndexOutOfBoundsException: Index: 0, Size: 0
@@ -141,40 +141,43 @@ public class ScheduledService {
                        BetSide betSide) {
         double kellyCoefficient = (bookmakerOddsWithoutMarge * probability - 1) / (bookmakerOddsWithoutMarge - 1);
 
-        log.debug("\nPLACE BET: KellyCoefficient = {} for Match id :{}", kellyCoefficient, match.getId());
+//        log.debug("\nPLACE BET: KellyCoefficient = {} for Match id :{}", kellyCoefficient, match.getId());
 
         Account account = accountRepository.findOne(1L);
 
-        log.debug("\nPLACE BET: Account before placing : {} ", account);
+        if (account.getAmount().compareTo(BigDecimal.ZERO) > 0) {
 
-        BigDecimal stakeAmount = account.getAmount().multiply(BigDecimal.valueOf(kellyCoefficient));
+//        log.debug("\nPLACE BET: Account before placing : {} ", account);
 
-        log.debug("\nPLACE BET: stakeAmount = {} ", stakeAmount);
+            BigDecimal stakeAmount = account.getAmount().multiply(BigDecimal.valueOf(kellyCoefficient));
 
-        BetDTO betDTO = new BetDTO();
-        betDTO.setAmount(stakeAmount);
-        betDTO.setOdds(odds);
-        betDTO.setBetSide(betSide);
-        betDTO.setPlacedDate(Instant.now());
-        betDTO.setMatchId(match.getId());
+//        log.debug("\nPLACE BET: stakeAmount = {} ", stakeAmount);
 
-        if (match.getBets().stream().noneMatch(bet -> bet.getStatus() == BetStatus.OPENED)) {
-            Bet savedBet = saveBet(betDTO, BetStatus.OPENED);
+            BetDTO betDTO = new BetDTO();
+            betDTO.setAmount(stakeAmount);
+            betDTO.setOdds(odds);
+            betDTO.setBetSide(betSide);
+            betDTO.setPlacedDate(Instant.now());
+            betDTO.setMatchId(match.getId());
 
-            saveAccount(account, account.getAmount().subtract(stakeAmount),
-                account.getPlacedAmount().add(stakeAmount));
+            if (match.getBets().stream().noneMatch(bet -> bet.getStatus() == BetStatus.OPENED)) {
+                Bet savedBet = saveBet(betDTO, BetStatus.OPENED);
 
-            saveAccountDetail(account.getAmount(), account.getId(), stakeAmount, savedBet.getId());
+                saveAccount(account, account.getAmount().subtract(stakeAmount),
+                    account.getPlacedAmount().add(stakeAmount));
 
-        } else {
+                saveAccountDetail(account.getAmount(), account.getId(), stakeAmount, savedBet.getId());
+
+            } else {
 //            saveBet(betDTO, BetStatus.POTENTIAL);
+            }
         }
     }
 
     private Bet saveBet(BetDTO betDTO, BetStatus betStatus) {
         betDTO.setStatus(betStatus);
         Bet savedBet = betRepository.saveAndFlush(betMapper.toEntity(betDTO));
-        log.debug("\nPLACE BET: Saved " + betStatus.name() + " Bet : {}", savedBet);
+//        log.debug("\nPLACE BET: Saved " + betStatus.name() + " Bet : {}", savedBet);
         return savedBet;
 
     }
@@ -212,6 +215,9 @@ public class ScheduledService {
                 log.debug("\nSETTLE BET: Match to finish : {}", match);
 
                 match.setStatus(MatchStatus.FINISHED);
+                match.setWinner(matchDTO.getWinner());
+                match.setHomeScore(matchDTO.getHomeScore());
+                match.setAwayScore(matchDTO.getAwayScore());
                 matchRepository.saveAndFlush(match);
 
                 log.debug("\nSETTLE BET: Saved Match : {}", match);
@@ -268,7 +274,7 @@ public class ScheduledService {
     private void saveMatches(List<MatchDTO> matchDTOs) {
         for (MatchDTO matchDTO : matchDTOs) {
 
-            log.debug("\nMatchDTO to save : {}", matchDTO);
+//            log.debug("\nMatchDTO to save : {}", matchDTO);
 
             Match excitedMatch = matchRepository.findOne(matchDTO.getId());
             if (excitedMatch != null) {
@@ -282,13 +288,13 @@ public class ScheduledService {
                         || !oddsDTO.getAwayOdds().equals(existedOdds.getAwayOdds())) {
 
                         Odds odds = oddsRepository.saveAndFlush(oddsMapper.toEntity(oddsDTO));
-                        log.debug("\nSaved Odds : {} \n for existed Match : {}", odds, excitedMatch);
+//                        log.debug("\nSaved Odds : {} \n for existed Match : {}", odds, excitedMatch);
 
                     }
                 }
             } else {
                 Match match = matchRepository.saveAndFlush(matchMapper.toEntity(matchDTO));
-                log.debug("\nSaved new Match : {}", match);
+//                log.debug("\nSaved new Match : {}", match);
             }
         }
     }

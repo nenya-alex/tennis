@@ -18,6 +18,8 @@ logging:
         ROOT: DEBUG
         ua.tennis: DEBUG
         io.github.jhipster: DEBUG
+    file:
+        max-size: 100MB
 
 spring:
     profiles:

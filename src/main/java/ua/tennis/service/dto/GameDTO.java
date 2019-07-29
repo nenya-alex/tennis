@@ -108,12 +108,12 @@ public class GameDTO implements Serializable {
 
     @Override
     public String toString() {
-        return "GameDTO{" +
-            "id=" + getId() +
-            ", homeScore=" + getHomeScore() +
-            ", awayScore=" + getAwayScore() +
-            ", homeProbability=" + getHomeProbability() +
-            ", awayProbability=" + getAwayProbability() +
+        return "\nGameDTO{" +
+            "id=" + getId() + "\n" +
+            ", homeScore=" + getHomeScore() + "\n" +
+            ", awayScore=" + getAwayScore() + "\n" +
+            ", homeProbability=" + getHomeProbability() + "\n" +
+            ", awayProbability=" + getAwayProbability() + "\n" +
             "}";
     }
 }

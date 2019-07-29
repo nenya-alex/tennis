@@ -217,19 +217,13 @@ public class ScheduledRepository {
     private MatchDTO getMatchDTO(Map match) {
         Long matchId = ((Integer) match.get("id")).longValue();
         String name = (String) match.get("name");
-        String leagueName = (String) ((Map) match.get("league")).get("name");
-        Long leagueId = ((Integer) ((Map) match.get("league")).get("id")).longValue();
         return new MatchDTO(
             matchId,
-            matchId.toString(),
-            (Integer) match.get("prematchEventId"),
             name,
             Instant.parse((String) match.get("openDate")),
             Instant.parse((String) match.get("startDate")),
             name.substring(0, name.indexOf(" - ")),
-            name.substring(name.indexOf(" - ") + 3),
-            leagueName,
-            leagueId
+            name.substring(name.indexOf(" - ") + 3)
         );
     }
 

@@ -7,9 +7,6 @@ import ua.tennis.service.dto.OddsDTO;
 
 import java.util.Set;
 
-/**
- * Mapper for the entity {@link Odds} and its DTO {@link OddsDTO}.
- */
 @Mapper(componentModel = "spring", uses = {MatchMapper.class})
 public interface OddsMapper extends EntityMapper<OddsDTO, Odds> {
 

@@ -19,14 +19,6 @@
                 <constraints primaryKey="true" nullable="false"/>
             </column>
 
-            <column name="status" type="varchar(255)">
-                <constraints nullable="true"/>
-            </column>
-
-            <column name="identifier" type="varchar(255)">
-                <constraints nullable="true" />
-            </column>
-
             <column name="home_name" type="varchar(255)">
                 <constraints nullable="true" />
             </column>
@@ -35,12 +27,20 @@
                 <constraints nullable="true" />
             </column>
 
+            <column name="status" type="varchar(255)">
+                <constraints nullable="true"/>
+            </column>
+
             <column name="home_score" type="integer">
                 <constraints nullable="true" />
             </column>
 
             <column name="away_score" type="integer">
                 <constraints nullable="true" />
+            </column>
+
+            <column name="winner" type="varchar(255)">
+                <constraints nullable="true"/>
             </column>
 
             <column name="start_date" type="timestamp">
@@ -53,14 +53,6 @@
 
             <column name="open_date" type="timestamp">
                 <constraints nullable="true" />
-            </column>
-
-            <column name="league_name" type="varchar(255)">
-                <constraints nullable="true"/>
-            </column>
-
-            <column name="league_id" type="bigint">
-                <constraints nullable="true"/>
             </column>
 
         </createTable>

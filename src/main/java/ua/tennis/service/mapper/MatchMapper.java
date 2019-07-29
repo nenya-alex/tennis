@@ -7,9 +7,6 @@ import ua.tennis.service.dto.MatchDTO;
 
 import java.util.List;
 
-/**
- * Mapper for the entity Match and its DTO MatchDTO.
- */
 @Mapper(componentModel = "spring", uses = {OddsMapper.class})
 public interface MatchMapper extends EntityMapper<MatchDTO, Match> {
 
