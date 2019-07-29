@@ -167,7 +167,7 @@ public class ScheduledService {
             saveAccountDetail(account.getAmount(), account.getId(), stakeAmount, savedBet.getId());
 
         } else {
-            saveBet(betDTO, BetStatus.POTENTIAL);
+//            saveBet(betDTO, BetStatus.POTENTIAL);
         }
     }
 
@@ -229,14 +229,12 @@ public class ScheduledService {
                     log.debug("\nSETTLE BET: Bet before settlement : {}", bet);
 
                     BigDecimal amount;
-                    BigDecimal placedAmount;
+                    BigDecimal placedAmount = account.getPlacedAmount().subtract(bet.getAmount());
 
                     if (isBetWon(matchDTO, bet)) {
                         amount = account.getAmount().add(bet.getAmount().multiply(BigDecimal.valueOf(bet.getOdds())));
-                        placedAmount = account.getPlacedAmount().subtract(bet.getAmount());
                     } else {
                         amount = account.getAmount();
-                        placedAmount = account.getPlacedAmount().subtract(bet.getAmount());
                     }
 
                     bet.setStatus(BetStatus.CLOSED);
