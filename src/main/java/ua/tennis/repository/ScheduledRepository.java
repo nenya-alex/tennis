@@ -113,16 +113,16 @@ public class ScheduledRepository {
                                    String period,
                                    Map<MatchStatus, List<MatchDTO>> result) {
 
-        if (isLiveMatchFinished()){
+        if (isLiveMatchFinished()) {
             workWithFinishedMatch(matchDTO.status(MatchStatus.FINISHED), scoreboardSlim, result);
-        }else{
+        } else {
             fillCachedMatchByProbabilities(matchDTO, scoreboardSlim);
 
             List<List<String>> sets = (List<List<String>>) scoreboardSlim.get("sets");
             List<String> homeSets = sets.get(0);
             List<String> awaySets = sets.get(1);
 
-            if (!"0".equals(homeSets.get(0)) || !"0".equals(awaySets.get(0))){
+            if (!"0".equals(homeSets.get(0)) || !"0".equals(awaySets.get(0))) {
                 List<Integer> scoresInMatch = getScoresInMatch(homeSets, awaySets);
 
                 Integer homeScoreInMatch = scoresInMatch.get(0);
@@ -150,7 +150,7 @@ public class ScheduledRepository {
         }
     }
 
-    private boolean isLiveMatchFinished(){
+    private boolean isLiveMatchFinished() {
         return false;
     }
 
@@ -202,7 +202,7 @@ public class ScheduledRepository {
 
     private GameDTO getCachedGameDTO(List<GameDTO> cachedGames, Integer homeScoreInSett, Integer awayScoreInSett) {
 
-        Optional<GameDTO> optionalGameDTO = cachedGames.stream().filter( game ->
+        Optional<GameDTO> optionalGameDTO = cachedGames.stream().filter(game ->
             game.getHomeScore().equals(homeScoreInSett) && game.getAwayScore().equals(awayScoreInSett)).findFirst();
 
         return optionalGameDTO.orElseGet(GameDTO::new);
