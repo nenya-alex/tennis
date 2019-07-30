@@ -197,21 +197,15 @@ public class ScheduledRepository {
     private SettDTO getCachedSettDTO(List<SettDTO> cachedSets, Integer homeScoreInMatch, Integer awayScoreInMatch) {
         return cachedSets.stream().filter( set ->
             set.getHomeScore().equals(homeScoreInMatch) && set.getAwayScore().equals(awayScoreInMatch))
-            .collect(Collectors.toList()).get(0);
+            .findFirst().get();
     }
 
     private GameDTO getCachedGameDTO(List<GameDTO> cachedGames, Integer homeScoreInSett, Integer awayScoreInSett) {
-        GameDTO gameDTO;
 
-        if (cachedGames.isEmpty()){
-            gameDTO = new GameDTO();
-        }else{
-            gameDTO = cachedGames.stream().filter( game ->
-                game.getHomeScore().equals(homeScoreInSett) && game.getAwayScore().equals(awayScoreInSett))
-                .collect(Collectors.toList()).get(0);
-        }
+        Optional<GameDTO> optionalGameDTO = cachedGames.stream().filter( game ->
+            game.getHomeScore().equals(homeScoreInSett) && game.getAwayScore().equals(awayScoreInSett)).findFirst();
 
-        return gameDTO;
+        return optionalGameDTO.orElseGet(GameDTO::new);
     }
 
     private GameDTO cloneGameDTO(GameDTO gameDTO) {
