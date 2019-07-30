@@ -195,6 +195,11 @@ public class MatchDTO implements Serializable {
         this.status = status;
     }
 
+    public MatchDTO status(MatchStatus status) {
+        this.status = status;
+        return this;
+    }
+
     public MatchWinner getWinner() {
         return winner;
     }
