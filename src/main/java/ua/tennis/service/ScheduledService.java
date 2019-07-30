@@ -56,6 +56,8 @@ public class ScheduledService {
 
     private final OddsMapper oddsMapper;
 
+    private final CalculatorService calculatorService;
+
     public ScheduledService(RestTemplate restTemplate,
                             ScheduledRepository scheduledRepository,
                             MatchMapper matchMapper,
@@ -66,7 +68,8 @@ public class ScheduledService {
                             BetMapper betMapper,
                             AccountDetailRepository accountDetailRepository,
                             AccountDetailMapper accountDetailMapper,
-                            OddsMapper oddsMapper) {
+                            OddsMapper oddsMapper,
+                            CalculatorService calculatorService) {
         this.restTemplate = restTemplate;
         this.scheduledRepository = scheduledRepository;
         this.matchMapper = matchMapper;
@@ -78,6 +81,7 @@ public class ScheduledService {
         this.accountDetailRepository = accountDetailRepository;
         this.accountDetailMapper = accountDetailMapper;
         this.oddsMapper = oddsMapper;
+        this.calculatorService = calculatorService;
     }
 
 
@@ -122,13 +126,13 @@ public class ScheduledService {
 
                 double homeOdds = gameDTO.getOddsDTO().getHomeOdds();
                 double awayOdds = gameDTO.getOddsDTO().getAwayOdds();
-                double bookmakersHomeProbability = awayOdds / (homeOdds + awayOdds);
+                double bookmakersHomeProbability = calculatorService.getRoundedDoubleNumber(awayOdds / (homeOdds + awayOdds));
                 double homeProbability = gameDTO.getHomeProbability();
 
                 if (gameDTO.getHomeProbability() > bookmakersHomeProbability * MULTIPLIER) {
-                    place(match, homeOdds, (homeOdds + awayOdds) / awayOdds, homeProbability, BetSide.HOME);
+                    place(match, homeOdds, calculatorService.getRoundedDoubleNumber((homeOdds + awayOdds) / awayOdds), homeProbability, BetSide.HOME);
                 } else if ((1 - gameDTO.getHomeProbability()) > (1 - bookmakersHomeProbability) * MULTIPLIER) {
-                    place(match, awayOdds, (homeOdds + awayOdds) / homeOdds, 1 - homeProbability, BetSide.AWAY);
+                    place(match, awayOdds, calculatorService.getRoundedDoubleNumber((homeOdds + awayOdds) / homeOdds), 1 - homeProbability, BetSide.AWAY);
                 }
             }
         }
@@ -139,7 +143,8 @@ public class ScheduledService {
                        double bookmakerOddsWithoutMarge,
                        double probability,
                        BetSide betSide) {
-        double kellyCoefficient = (bookmakerOddsWithoutMarge * probability - 1) / (bookmakerOddsWithoutMarge - 1);
+        double kellyCoefficient = calculatorService.getRoundedDoubleNumber(
+            (bookmakerOddsWithoutMarge * probability - 1) / (bookmakerOddsWithoutMarge - 1));
 
 //        log.debug("\nPLACE BET: KellyCoefficient = {} for Match id :{}", kellyCoefficient, match.getId());
 
@@ -159,6 +164,9 @@ public class ScheduledService {
             betDTO.setBetSide(betSide);
             betDTO.setPlacedDate(Instant.now());
             betDTO.setMatchId(match.getId());
+            betDTO.setKellyCoefficient(kellyCoefficient);
+            betDTO.setCountedProbability(probability);
+            betDTO.setBookmakerProbability(calculatorService.getRoundedDoubleNumber(1 / bookmakerOddsWithoutMarge));
 
             if (match.getBets().stream().noneMatch(bet -> bet.getStatus() == BetStatus.OPENED)) {
                 Bet savedBet = saveBet(betDTO, BetStatus.OPENED);
@@ -244,6 +252,8 @@ public class ScheduledService {
                     }
 
                     bet.setStatus(BetStatus.CLOSED);
+                    bet.setWinner(matchDTO.getWinner());
+                    bet.setSettledDate(Instant.now());
                     betRepository.saveAndFlush(bet);
                     log.debug("\nSETTLE BET: Bet after settlement : {}", bet);
 

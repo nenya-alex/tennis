@@ -59,7 +59,7 @@ public class CalculatorService {
         int homeScoreLeft = numberOfSetsToWin - homeScore;
         int awayScoreLeft = numberOfSetsToWin - awayScore;
         SettDTO sett = new SettDTO(homeScore, awayScore,
-            getRoundedDoubleNumber(getWinProbability(homeSetProbability, homeScoreLeft, awayScoreLeft), SCALE));
+            getRoundedDoubleNumber(getWinProbability(homeSetProbability, homeScoreLeft, awayScoreLeft)));
 
         if (numberOfSetsToWin == 2) {
             fillSetByGames(games, homeSetProbability, sett, gameProbabilityCalculatorForTwoSets, numberOfSetsToWin);
@@ -114,7 +114,7 @@ public class CalculatorService {
                     if (homeScore == 0 && awayScore == 2) {
                         winProbability = gameProbabilityCalculator.calculateZeroTwo(homeSetProbability, homeProbability);
                     }
-                    result.add(new GameDTO(j, i, getRoundedDoubleNumber(winProbability, SCALE)));
+                    result.add(new GameDTO(j, i, getRoundedDoubleNumber(winProbability)));
                 }
             }
             sett.setGames(result);
@@ -134,7 +134,7 @@ public class CalculatorService {
     private GameDTO getGame(double homeGameProbability, int numberOfGamesToWin, int homeScore, int awayScore) {
         int homeScoreLeft = numberOfGamesToWin - homeScore;
         int awayScoreLeft = numberOfGamesToWin - awayScore;
-        return new GameDTO(homeScore, awayScore, getRoundedDoubleNumber(getWinProbability(homeGameProbability, homeScoreLeft, awayScoreLeft), SCALE));
+        return new GameDTO(homeScore, awayScore, getRoundedDoubleNumber(getWinProbability(homeGameProbability, homeScoreLeft, awayScoreLeft)));
 
     }
 
@@ -159,7 +159,7 @@ public class CalculatorService {
                 10, -15, 6});
             root = laguerreSolver.solve(100, polynomial, 0, 1);
         }
-        return getRoundedDoubleNumber(root, 3);
+        return getRoundedDoubleNumber(root);
     }
 
     private double getGameProbability(double homeSetProbability) {
@@ -167,11 +167,11 @@ public class CalculatorService {
         PolynomialFunction polynomial = new PolynomialFunction(new double[]{-homeSetProbability,
             0, 0, 0, 0, 0, 462, -1980, 3465, -3080, 1386, -252});
         double root = laguerreSolver.solve(100, polynomial, 0, 1);
-        return getRoundedDoubleNumber(root, 3);
+        return getRoundedDoubleNumber(root);
     }
 
-    public double getRoundedDoubleNumber(double number, int scale) {
-        return new BigDecimal(number).setScale(scale, RoundingMode.HALF_EVEN).doubleValue();
+    public double getRoundedDoubleNumber(double number) {
+        return new BigDecimal(number).setScale(SCALE, RoundingMode.HALF_EVEN).doubleValue();
     }
 
     public int getSCALE() {

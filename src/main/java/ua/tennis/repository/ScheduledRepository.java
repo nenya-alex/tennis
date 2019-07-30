@@ -4,7 +4,7 @@ import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Repository;
 import ua.tennis.domain.Odds;
 import ua.tennis.domain.enumeration.MatchStatus;
-import ua.tennis.domain.enumeration.MatchWinner;
+import ua.tennis.domain.enumeration.Winner;
 import ua.tennis.service.CalculatorService;
 import ua.tennis.service.MatchCache;
 import ua.tennis.service.dto.*;
@@ -72,7 +72,7 @@ public class ScheduledRepository {
 
         if (excitedOdds != null){
             double homeMatchProbability = calculatorService.getRoundedDoubleNumber(
-                excitedOdds.getAwayOdds() / (excitedOdds.getHomeOdds() + excitedOdds.getAwayOdds()), calculatorService.getSCALE());
+                excitedOdds.getAwayOdds() / (excitedOdds.getHomeOdds() + excitedOdds.getAwayOdds()));
 
             matchCache.addToCache(matchDTO.getId(),
                 new MatchDTO(homeMatchProbability, calculatorService.getGameProbabilities(homeMatchProbability, numberOfSetsToWin)));
@@ -98,9 +98,9 @@ public class ScheduledRepository {
         matchDTO.setAwayScore(awayScoreInMatch);
 
         if (homeScoreInMatch.compareTo(awayScoreInMatch) > 0){
-            matchDTO.setWinner(MatchWinner.HOME);
+            matchDTO.setWinner(Winner.HOME);
         }else if (homeScoreInMatch.compareTo(awayScoreInMatch) < 0){
-            matchDTO.setWinner(MatchWinner.AWAY);
+            matchDTO.setWinner(Winner.AWAY);
         }
 
         result.get(MatchStatus.FINISHED).add(matchDTO);

@@ -2,7 +2,7 @@ package ua.tennis.service.dto;
 
 import ua.tennis.domain.enumeration.BetSide;
 import ua.tennis.domain.enumeration.BetStatus;
-import ua.tennis.domain.enumeration.MatchWinner;
+import ua.tennis.domain.enumeration.Winner;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
@@ -27,7 +27,7 @@ public class BetDTO implements Serializable {
 
     private Long matchId;
 
-    private BetSide winner;
+    private Winner winner;
 
     private Double countedProbability;
 
@@ -103,11 +103,11 @@ public class BetDTO implements Serializable {
         this.accountDetailDTOs = accountDetailDTOs;
     }
 
-    public BetSide getWinner() {
+    public Winner getWinner() {
         return winner;
     }
 
-    public void setWinner(BetSide winner) {
+    public void setWinner(Winner winner) {
         this.winner = winner;
     }
 

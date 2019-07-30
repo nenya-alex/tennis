@@ -1,7 +1,7 @@
 package ua.tennis.service.dto;
 
 import ua.tennis.domain.enumeration.MatchStatus;
-import ua.tennis.domain.enumeration.MatchWinner;
+import ua.tennis.domain.enumeration.Winner;
 
 import java.io.Serializable;
 import java.time.Instant;
@@ -39,7 +39,7 @@ public class MatchDTO implements Serializable {
 
     private MatchStatus status;
 
-    private MatchWinner winner;
+    private Winner winner;
 
     private List<OddsDTO> odds = new ArrayList<>();
 
@@ -200,11 +200,11 @@ public class MatchDTO implements Serializable {
         return this;
     }
 
-    public MatchWinner getWinner() {
+    public Winner getWinner() {
         return winner;
     }
 
-    public void setWinner(MatchWinner winner) {
+    public void setWinner(Winner winner) {
         this.winner = winner;
     }
 

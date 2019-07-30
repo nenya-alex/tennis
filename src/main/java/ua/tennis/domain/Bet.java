@@ -2,7 +2,7 @@ package ua.tennis.domain;
 
 import ua.tennis.domain.enumeration.BetSide;
 import ua.tennis.domain.enumeration.BetStatus;
-import ua.tennis.domain.enumeration.MatchWinner;
+import ua.tennis.domain.enumeration.Winner;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -34,7 +34,7 @@ public class Bet implements Serializable {
 
     @Enumerated(EnumType.STRING)
     @Column(name = "winner")
-    private BetSide winner;
+    private Winner winner;
 
     @Enumerated(EnumType.STRING)
     @Column(name = "status")
@@ -150,11 +150,11 @@ public class Bet implements Serializable {
         this.accountDetails = accountDetails;
     }
 
-    public BetSide getWinner() {
+    public Winner getWinner() {
         return winner;
     }
 
-    public void setWinner(BetSide winner) {
+    public void setWinner(Winner winner) {
         this.winner = winner;
     }
 

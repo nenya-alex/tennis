@@ -1,7 +1,7 @@
 package ua.tennis.domain;
 
 import ua.tennis.domain.enumeration.MatchStatus;
-import ua.tennis.domain.enumeration.MatchWinner;
+import ua.tennis.domain.enumeration.Winner;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -49,7 +49,7 @@ public class Match implements Serializable {
 
     @Enumerated(EnumType.STRING)
     @Column(name = "winner")
-    private MatchWinner winner;
+    private Winner winner;
 
     @OneToMany(mappedBy = "match")
     private Set<Sett> setts = new HashSet<>();
@@ -209,11 +209,11 @@ public class Match implements Serializable {
         this.status = status;
     }
 
-    public MatchWinner getWinner() {
+    public Winner getWinner() {
         return winner;
     }
 
-    public void setWinner(MatchWinner winner) {
+    public void setWinner(Winner winner) {
         this.winner = winner;
     }
 
