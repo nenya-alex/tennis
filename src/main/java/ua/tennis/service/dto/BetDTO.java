@@ -27,6 +27,16 @@ public class BetDTO implements Serializable {
 
     private Long matchId;
 
+    private BetSide winner;
+
+    private Double countedProbability;
+
+    private Double bookmakerProbability;
+
+    private Double kellyCoefficient;
+
+    private Instant settledDate;
+
     private Set<AccountDetailDTO> accountDetailDTOs = new HashSet<>();
 
     public Long getId() {
@@ -91,6 +101,46 @@ public class BetDTO implements Serializable {
 
     public void setAccountDetailDTOs(Set<AccountDetailDTO> accountDetailDTOs) {
         this.accountDetailDTOs = accountDetailDTOs;
+    }
+
+    public BetSide getWinner() {
+        return winner;
+    }
+
+    public void setWinner(BetSide winner) {
+        this.winner = winner;
+    }
+
+    public Double getCountedProbability() {
+        return countedProbability;
+    }
+
+    public void setCountedProbability(Double countedProbability) {
+        this.countedProbability = countedProbability;
+    }
+
+    public Double getBookmakerProbability() {
+        return bookmakerProbability;
+    }
+
+    public void setBookmakerProbability(Double bookmakerProbability) {
+        this.bookmakerProbability = bookmakerProbability;
+    }
+
+    public Double getKellyCoefficient() {
+        return kellyCoefficient;
+    }
+
+    public void setKellyCoefficient(Double kellyCoefficient) {
+        this.kellyCoefficient = kellyCoefficient;
+    }
+
+    public Instant getSettledDate() {
+        return settledDate;
+    }
+
+    public void setSettledDate(Instant settledDate) {
+        this.settledDate = settledDate;
     }
 
     @Override

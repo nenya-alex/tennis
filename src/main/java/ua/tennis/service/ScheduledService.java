@@ -137,7 +137,7 @@ public class ScheduledService {
     private void place(Match match,
                        double odds,
                        double bookmakerOddsWithoutMarge,
-                       Double probability,
+                       double probability,
                        BetSide betSide) {
         double kellyCoefficient = (bookmakerOddsWithoutMarge * probability - 1) / (bookmakerOddsWithoutMarge - 1);
 
