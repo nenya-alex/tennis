@@ -25,11 +25,11 @@
             </column>
 
             <column name="bet_id" type="bigint">
-                <constraints unique="true" nullable="true" uniqueConstraintName="ux_account_detail_bet_id"/>
+                <constraints nullable="true"/>
             </column>
 
             <column name="account_id" type="bigint">
-                <constraints unique="true" nullable="true" uniqueConstraintName="ux_account_detail_account_id"/>
+                <constraints nullable="true"/>
             </column>
 
         </createTable>

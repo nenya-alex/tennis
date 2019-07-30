@@ -8,9 +8,6 @@ import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
-/**
- * A Sett.
- */
 @Entity
 @Table(name = "sett")
 public class Sett implements Serializable {
@@ -41,7 +38,6 @@ public class Sett implements Serializable {
     @ManyToOne
     private Match match;
 
-    // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
     public Long getId() {
         return id;
     }
@@ -139,7 +135,6 @@ public class Sett implements Serializable {
     public void setMatch(Match match) {
         this.match = match;
     }
-    // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here, do not remove
 
     @Override
     public boolean equals(Object o) {

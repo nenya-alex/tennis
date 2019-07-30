@@ -1,6 +1,7 @@
 package ua.tennis.domain;
 
 import ua.tennis.domain.enumeration.MatchStatus;
+import ua.tennis.domain.enumeration.MatchWinner;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -20,9 +21,6 @@ public class Match implements Serializable {
 
     @Id
     private Long id;
-
-    @Column(name = "identifier")
-    private String identifier;
 
     @Column(name = "home_name")
     private String homeName;
@@ -45,15 +43,13 @@ public class Match implements Serializable {
     @Column(name = "open_date")
     private Instant openDate;
 
-    @Column(name = "league_name")
-    private String leagueName;
-
-    @Column(name = "league_id")
-    private Long leagueId;
-
     @Enumerated(EnumType.STRING)
     @Column(name = "status")
     private MatchStatus status;
+
+    @Enumerated(EnumType.STRING)
+    @Column(name = "winner")
+    private MatchWinner winner;
 
     @OneToMany(mappedBy = "match")
     private Set<Sett> setts = new HashSet<>();
@@ -70,19 +66,6 @@ public class Match implements Serializable {
 
     public void setId(Long id) {
         this.id = id;
-    }
-
-    public String getIdentifier() {
-        return identifier;
-    }
-
-    public Match identifier(String identifier) {
-        this.identifier = identifier;
-        return this;
-    }
-
-    public void setIdentifier(String identifier) {
-        this.identifier = identifier;
     }
 
     public String getHomeName() {
@@ -176,22 +159,6 @@ public class Match implements Serializable {
         this.openDate = openDate;
     }
 
-    public String getLeagueName() {
-        return leagueName;
-    }
-
-    public void setLeagueName(String leagueName) {
-        this.leagueName = leagueName;
-    }
-
-    public Long getLeagueId() {
-        return leagueId;
-    }
-
-    public void setLeagueId(Long leagueId) {
-        this.leagueId = leagueId;
-    }
-
     public Set<Sett> getSetts() {
         return setts;
     }
@@ -242,6 +209,14 @@ public class Match implements Serializable {
         this.status = status;
     }
 
+    public MatchWinner getWinner() {
+        return winner;
+    }
+
+    public void setWinner(MatchWinner winner) {
+        this.winner = winner;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) {
@@ -266,7 +241,6 @@ public class Match implements Serializable {
     public String toString() {
         return "\n" +"Match{" +
             "id=" + id +"\n" +
-            ", identifier='" + identifier + '\'' +"\n" +
             ", homeName='" + homeName + '\'' +"\n" +
             ", awayName='" + awayName + '\'' +"\n" +
             ", homeScore=" + homeScore +"\n" +
@@ -274,8 +248,7 @@ public class Match implements Serializable {
             ", startDate=" + startDate +"\n" +
             ", name='" + name + '\'' +"\n" +
             ", openDate=" + openDate +"\n" +
-            ", leagueName='" + leagueName + '\'' +"\n" +
-            ", leagueId=" + leagueId +"\n" +
+            ", winner=" + winner + "\n" +
             ", status=" + status +
             '}';
     }

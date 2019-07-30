@@ -147,12 +147,13 @@ public class SettDTO implements Serializable {
 
     @Override
     public String toString() {
-        return "SettDTO{" +
-            "id=" + getId() +
-            ", homeScore=" + getHomeScore() +
-            ", awayScore=" + getAwayScore() +
-            ", homeProbability=" + getHomeProbability() +
-            ", awayProbability=" + getAwayProbability() +
+        return "\nSettDTO{" +
+            "id=" + getId() + "\n" +
+            ", homeScore=" + getHomeScore() + "\n" +
+            ", awayScore=" + getAwayScore() + "\n" +
+            ", homeProbability=" + getHomeProbability() + "\n" +
+            ", awayProbability=" + getAwayProbability() + "\n" +
+            ", games=" + games +
             "}";
     }
 }
