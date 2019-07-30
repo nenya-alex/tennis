@@ -45,26 +45,23 @@ public class ScheduledRepository {
                     String period = (String) scoreboardSlim.get("period");
                     matchDTO.setPeriod(period);
                     if (MatchStatus.NOT_STARTED.getName().equals(period)) {
-                        matchDTO.setStatus(MatchStatus.NOT_STARTED);
-                        result.get(MatchStatus.NOT_STARTED).add(matchDTO);
+                        workWithMatch(matchDTO.status(MatchStatus.NOT_STARTED), result.get(MatchStatus.NOT_STARTED));
                     } else if (MatchStatus.FINISHED.getName().equals(period)) {
-                        matchDTO.setStatus(MatchStatus.FINISHED);
-                        workWithFinishedMatch(matchDTO, scoreboardSlim);
-                        result.get(MatchStatus.FINISHED).add(matchDTO);
+                        workWithFinishedMatch(matchDTO.status(MatchStatus.FINISHED), scoreboardSlim, result);
                     } else if (period.endsWith("Set")) {
-                        matchDTO.setStatus(MatchStatus.LIVE);
-                        fillCachedMatchByProbabilities(matchDTO, scoreboardSlim);
-                        workWithLiveMatch(matchDTO, scoreboardSlim, period, result);
+                        workWithLiveMatch(matchDTO.status(MatchStatus.LIVE), scoreboardSlim, period, result);
                     } else if (MatchStatus.SUSPENDED.getName().equals(period)) {
-                        matchDTO.setStatus(MatchStatus.SUSPENDED);
-                        result.get(MatchStatus.SUSPENDED).add(matchDTO);
+                        workWithMatch(matchDTO.status(MatchStatus.SUSPENDED), result.get(MatchStatus.SUSPENDED));
                     }
                 } else {
-                    matchDTO.setStatus(MatchStatus.UPCOMING);
-                    result.get(MatchStatus.UPCOMING).add(matchDTO);
+                    workWithMatch(matchDTO.status(MatchStatus.UPCOMING), result.get(MatchStatus.UPCOMING));
                 }
             }
         );
+    }
+
+    private void workWithMatch(MatchDTO matchDTO, List<MatchDTO> matchDTOs) {
+        matchDTOs.add(matchDTO);
     }
 
     private void fillCachedMatchByProbabilities(MatchDTO matchDTO, Map scoreboardSlim) {
@@ -85,7 +82,10 @@ public class ScheduledRepository {
         }
     }
 
-    private void workWithFinishedMatch(MatchDTO matchDTO, Map scoreboardSlim) {
+    private void workWithFinishedMatch(MatchDTO matchDTO,
+                                       Map scoreboardSlim,
+                                       Map<MatchStatus, List<MatchDTO>> result) {
+
         List<List<String>> sets = (List<List<String>>) scoreboardSlim.get("sets");
         List<String> homeSets = sets.get(0);
         List<String> awaySets = sets.get(1);
@@ -102,6 +102,9 @@ public class ScheduledRepository {
         }else if (homeScoreInMatch.compareTo(awayScoreInMatch) < 0){
             matchDTO.setWinner(MatchWinner.AWAY);
         }
+
+        result.get(MatchStatus.FINISHED).add(matchDTO);
+
         matchCache.deleteFromCache(matchDTO.getId());
     }
 
@@ -110,35 +113,45 @@ public class ScheduledRepository {
                                    String period,
                                    Map<MatchStatus, List<MatchDTO>> result) {
 
-        List<List<String>> sets = (List<List<String>>) scoreboardSlim.get("sets");
-        List<String> homeSets = sets.get(0);
-        List<String> awaySets = sets.get(1);
+        if (isLiveMatchFinished()){
+            workWithFinishedMatch(matchDTO.status(MatchStatus.FINISHED), scoreboardSlim, result);
+        }else{
+            fillCachedMatchByProbabilities(matchDTO, scoreboardSlim);
 
-        if (!"0".equals(homeSets.get(0)) || !"0".equals(awaySets.get(0))){
-            List<Integer> scoresInMatch = getScoresInMatch(homeSets, awaySets);
+            List<List<String>> sets = (List<List<String>>) scoreboardSlim.get("sets");
+            List<String> homeSets = sets.get(0);
+            List<String> awaySets = sets.get(1);
 
-            Integer homeScoreInMatch = scoresInMatch.get(0);
-            Integer awayScoreInMatch = scoresInMatch.get(1);
+            if (!"0".equals(homeSets.get(0)) || !"0".equals(awaySets.get(0))){
+                List<Integer> scoresInMatch = getScoresInMatch(homeSets, awaySets);
 
-            matchDTO.setHomeScore(homeScoreInMatch);
-            matchDTO.setAwayScore(awayScoreInMatch);
+                Integer homeScoreInMatch = scoresInMatch.get(0);
+                Integer awayScoreInMatch = scoresInMatch.get(1);
 
-            List<String> points = (List<String>) scoreboardSlim.get("points");
-            if ("0".equals(points.get(0)) && "0".equals(points.get(1))) {
+                matchDTO.setHomeScore(homeScoreInMatch);
+                matchDTO.setAwayScore(awayScoreInMatch);
 
-                Optional<MatchDTO> cachedMatchDTO = matchCache.getCachedMatch(matchDTO.getId());
+                List<String> points = (List<String>) scoreboardSlim.get("points");
+                if ("0".equals(points.get(0)) && "0".equals(points.get(1))) {
 
-                if (cachedMatchDTO.isPresent()) {
+                    Optional<MatchDTO> cachedMatchDTO = matchCache.getCachedMatch(matchDTO.getId());
 
-                    Integer setNumber = Integer.valueOf(period.substring(0, 1));
+                    if (cachedMatchDTO.isPresent()) {
 
-                    prepareMatchDtoForPlacingBet(matchDTO, cachedMatchDTO.get().getSetts(), Integer.valueOf(homeSets.get(setNumber - 1)),
-                        Integer.valueOf(awaySets.get(setNumber - 1)));
+                        Integer setNumber = Integer.valueOf(period.substring(0, 1));
 
-                    result.get(MatchStatus.LIVE).add(matchDTO);
+                        prepareMatchDtoForPlacingBet(matchDTO, cachedMatchDTO.get().getSetts(), Integer.valueOf(homeSets.get(setNumber - 1)),
+                            Integer.valueOf(awaySets.get(setNumber - 1)));
+
+                        result.get(MatchStatus.LIVE).add(matchDTO);
+                    }
                 }
             }
         }
+    }
+
+    private boolean isLiveMatchFinished(){
+        return false;
     }
 
     private void prepareMatchDtoForPlacingBet(MatchDTO matchDTO,
@@ -184,21 +197,15 @@ public class ScheduledRepository {
     private SettDTO getCachedSettDTO(List<SettDTO> cachedSets, Integer homeScoreInMatch, Integer awayScoreInMatch) {
         return cachedSets.stream().filter( set ->
             set.getHomeScore().equals(homeScoreInMatch) && set.getAwayScore().equals(awayScoreInMatch))
-            .collect(Collectors.toList()).get(0);
+            .findFirst().get();
     }
 
     private GameDTO getCachedGameDTO(List<GameDTO> cachedGames, Integer homeScoreInSett, Integer awayScoreInSett) {
-        GameDTO gameDTO;
 
-        if (cachedGames.isEmpty()){
-            gameDTO = new GameDTO();
-        }else{
-            gameDTO = cachedGames.stream().filter( game ->
-                game.getHomeScore().equals(homeScoreInSett) && game.getAwayScore().equals(awayScoreInSett))
-                .collect(Collectors.toList()).get(0);
-        }
+        Optional<GameDTO> optionalGameDTO = cachedGames.stream().filter( game ->
+            game.getHomeScore().equals(homeScoreInSett) && game.getAwayScore().equals(awayScoreInSett)).findFirst();
 
-        return gameDTO;
+        return optionalGameDTO.orElseGet(GameDTO::new);
     }
 
     private GameDTO cloneGameDTO(GameDTO gameDTO) {
