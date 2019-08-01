@@ -27,7 +27,7 @@ public class MatchDTO implements Serializable {
 
     private Instant openDate;
 
-    private Instant checkedDate;
+    private Instant updatedDate;
 
     private String gameMode;
 
@@ -131,12 +131,12 @@ public class MatchDTO implements Serializable {
         this.openDate = openDate;
     }
 
-    public Instant getCheckedDate() {
-        return checkedDate;
+    public Instant getUpdatedDate() {
+        return updatedDate;
     }
 
-    public void setCheckedDate(Instant checkedDate) {
-        this.checkedDate = checkedDate;
+    public void setUpdatedDate(Instant updatedDate) {
+        this.updatedDate = updatedDate;
     }
 
     public String getGameMode() {
@@ -240,7 +240,7 @@ public class MatchDTO implements Serializable {
             ", startDate=" + startDate +"\n" +
             ", name='" + name + '\'' +"\n" +
             ", openDate=" + openDate +"\n" +
-            ", checkedDate=" + checkedDate +"\n" +
+            ", updatedDate=" + updatedDate + "\n" +
             ", homeMatchProbability=" + homeMatchProbability +"\n" +
             ", status=" + status +"\n" +
             ", winner=" + winner + "\n" +

@@ -96,6 +96,8 @@ public class ScheduledService {
 
         scheduledRepository.fillResultByMatches(liveMatches, true, result);
 
+        saveSuspendedMatches(result.get(MatchStatus.SUSPENDED));
+
         saveMatches(result.get(MatchStatus.NOT_STARTED));
 
         placeBet(result.get(MatchStatus.LIVE));
@@ -115,6 +117,7 @@ public class ScheduledService {
 
                 if (match.getStatus() != MatchStatus.LIVE) {
                     match.setStatus(MatchStatus.LIVE);
+                    match.setUpdatedDate(Instant.now());
                     matchRepository.saveAndFlush(match);
 //                    log.debug("\nPLACE BET: Saved LIVE Match : {}", match);
                 }
@@ -226,6 +229,7 @@ public class ScheduledService {
                 match.setWinner(matchDTO.getWinner());
                 match.setHomeScore(matchDTO.getHomeScore());
                 match.setAwayScore(matchDTO.getAwayScore());
+                match.setUpdatedDate(Instant.now());
                 matchRepository.saveAndFlush(match);
 
                 log.debug("\nSETTLE BET: Saved Match : {}", match);
@@ -284,6 +288,8 @@ public class ScheduledService {
     private void saveMatches(List<MatchDTO> matchDTOs) {
         for (MatchDTO matchDTO : matchDTOs) {
 
+            matchDTO.setUpdatedDate(Instant.now());
+
 //            log.debug("\nMatchDTO to save : {}", matchDTO);
 
             Match excitedMatch = matchRepository.findOne(matchDTO.getId());
@@ -305,6 +311,21 @@ public class ScheduledService {
             } else {
                 Match match = matchRepository.saveAndFlush(matchMapper.toEntity(matchDTO));
 //                log.debug("\nSaved new Match : {}", match);
+            }
+        }
+    }
+
+    private void saveSuspendedMatches(List<MatchDTO> matchDTOs) {
+        for (MatchDTO matchDTO : matchDTOs) {
+
+            //            log.debug("\nSuspended MatchDTO to update : {}", matchDTO);
+
+            Match excitedMatch = matchRepository.findOne(matchDTO.getId());
+            if (excitedMatch != null) {
+                excitedMatch.setStatus(MatchStatus.SUSPENDED);
+                excitedMatch.setUpdatedDate(Instant.now());
+                matchRepository.save(excitedMatch);
+//                log.debug("\nUpdated Suspended Match : {}", excitedMatch);
             }
         }
     }

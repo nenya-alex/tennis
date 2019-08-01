@@ -37,6 +37,9 @@ public class Match implements Serializable {
     @Column(name = "start_date")
     private Instant startDate;
 
+    @Column(name = "updated_date")
+    private Instant updatedDate;
+
     @Column(name = "name")
     private String name;
 
@@ -217,6 +220,14 @@ public class Match implements Serializable {
         this.winner = winner;
     }
 
+    public Instant getUpdatedDate() {
+        return updatedDate;
+    }
+
+    public void setUpdatedDate(Instant updatedDate) {
+        this.updatedDate = updatedDate;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) {
@@ -248,6 +259,7 @@ public class Match implements Serializable {
             ", startDate=" + startDate +"\n" +
             ", name='" + name + '\'' +"\n" +
             ", openDate=" + openDate +"\n" +
+            ", updatedDate=" + updatedDate + "\n" +
             ", winner=" + winner + "\n" +
             ", status=" + status +
             '}';
