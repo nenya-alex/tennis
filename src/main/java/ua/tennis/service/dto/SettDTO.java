@@ -6,9 +6,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
-/**
- * A DTO for the Sett entity.
- */
 public class SettDTO implements Serializable {
 
     private Long id;
