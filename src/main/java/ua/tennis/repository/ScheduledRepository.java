@@ -157,7 +157,7 @@ public class ScheduledRepository {
             Integer homeScore = StringUtils.isNumeric(homeSets.get(i)) ? Integer.valueOf(homeSets.get(i)) : 0;
             Integer awayScore = StringUtils.isNumeric(awaySets.get(i)) ? Integer.valueOf(homeSets.get(i)) : 0;
 
-            result.add(new SettDTO(homeScore, awayScore, i, matchId));
+            result.add(new SettDTO(homeScore, awayScore, i + 1, matchId));
         }
         return result;
     }
