@@ -31,6 +31,9 @@ public class Sett implements Serializable {
     @Column(name = "away_probability")
     private Double awayProbability;
 
+    @Column(name = "set_number")
+    private Integer setNumber;
+
     @OneToMany(mappedBy = "sett")
     @JsonIgnore
     private Set<Game> games = new HashSet<>();
@@ -136,6 +139,14 @@ public class Sett implements Serializable {
         this.match = match;
     }
 
+    public Integer getSetNumber() {
+        return setNumber;
+    }
+
+    public void setSetNumber(Integer setNumber) {
+        this.setNumber = setNumber;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) {
@@ -164,6 +175,7 @@ public class Sett implements Serializable {
             ", awayScore=" + awayScore +"\n" +
             ", homeProbability=" + homeProbability +"\n" +
             ", awayProbability=" + awayProbability +"\n" +
+            ", setNumber=" + setNumber() + "\n" +
             ", games=" + games +"\n" +
             ", match=" + match +
             '}';

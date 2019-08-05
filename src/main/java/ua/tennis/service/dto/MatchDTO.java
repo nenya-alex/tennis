@@ -35,6 +35,8 @@ public class MatchDTO implements Serializable {
 
     private String period;
 
+    private int periodNumber;
+
     private double homeMatchProbability;
 
     private MatchStatus status;
@@ -208,6 +210,14 @@ public class MatchDTO implements Serializable {
         this.winner = winner;
     }
 
+    public int getPeriodNumber() {
+        return periodNumber;
+    }
+
+    public void setPeriodNumber(int periodNumber) {
+        this.periodNumber = periodNumber;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) {
@@ -244,6 +254,7 @@ public class MatchDTO implements Serializable {
             ", homeMatchProbability=" + homeMatchProbability +"\n" +
             ", status=" + status +"\n" +
             ", winner=" + winner + "\n" +
+            ", periodNumber=" + periodNumber + "\n" +
             ", odds=" + odds + "\n" +
             ", setts=" + setts +
             '}';

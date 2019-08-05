@@ -22,6 +22,8 @@ public class SettDTO implements Serializable {
 
     private Double awayProbability;
 
+    private int setNumber;
+
     private Long matchId;
 
     private List<GameDTO> games = new ArrayList<>();
@@ -47,6 +49,13 @@ public class SettDTO implements Serializable {
         this.homeScore = homeScore;
         this.awayScore = awayScore;
         this.homeProbability = homeProbability;
+    }
+
+    public SettDTO(Integer homeScore, Integer awayScore, int setNumber, Long matchId) {
+        this.homeScore = homeScore;
+        this.awayScore = awayScore;
+        this.setNumber = setNumber;
+        this.matchId = matchId;
     }
 
     public Long getId() {
@@ -121,6 +130,14 @@ public class SettDTO implements Serializable {
         this.games = games;
     }
 
+    public int getSetNumber() {
+        return setNumber;
+    }
+
+    public void setSetNumber(int setNumber) {
+        this.setNumber = setNumber;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) {
@@ -150,6 +167,7 @@ public class SettDTO implements Serializable {
             ", awayScore=" + getAwayScore() + "\n" +
             ", homeProbability=" + getHomeProbability() + "\n" +
             ", awayProbability=" + getAwayProbability() + "\n" +
+            ", setNumber=" + setNumber() + "\n" +
             ", games=" + games +
             "}";
     }

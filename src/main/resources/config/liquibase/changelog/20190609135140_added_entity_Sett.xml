@@ -26,6 +26,10 @@
                 <constraints nullable="true" />
             </column>
 
+            <column name="set_number" type="integer">
+                <constraints nullable="true"/>
+            </column>
+
             <column name="home_probability" type="double">
                 <constraints nullable="true" />
             </column>
