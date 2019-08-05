@@ -10,9 +10,6 @@ import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
-/**
- * A Match.
- */
 @Entity
 @Table(name = "match")
 public class Match implements Serializable {
@@ -54,7 +51,7 @@ public class Match implements Serializable {
     @Column(name = "winner")
     private Winner winner;
 
-    @OneToMany(mappedBy = "match")
+    @OneToMany(mappedBy = "match", cascade = CascadeType.ALL)
     private Set<Sett> setts = new HashSet<>();
 
     @OneToMany(mappedBy = "match", cascade = CascadeType.ALL)

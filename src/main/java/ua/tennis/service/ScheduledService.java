@@ -11,10 +11,7 @@ import ua.tennis.domain.enumeration.BetStatus;
 import ua.tennis.domain.enumeration.MatchStatus;
 import ua.tennis.repository.*;
 import ua.tennis.service.dto.*;
-import ua.tennis.service.mapper.AccountDetailMapper;
-import ua.tennis.service.mapper.BetMapper;
-import ua.tennis.service.mapper.MatchMapper;
-import ua.tennis.service.mapper.OddsMapper;
+import ua.tennis.service.mapper.*;
 
 import java.math.BigDecimal;
 import java.time.Instant;
@@ -58,6 +55,10 @@ public class ScheduledService {
 
     private final CalculatorService calculatorService;
 
+    private final SettRepository settRepository;
+
+    private final SettMapper settMapper;
+
     public ScheduledService(RestTemplate restTemplate,
                             ScheduledRepository scheduledRepository,
                             MatchMapper matchMapper,
@@ -69,7 +70,9 @@ public class ScheduledService {
                             AccountDetailRepository accountDetailRepository,
                             AccountDetailMapper accountDetailMapper,
                             OddsMapper oddsMapper,
-                            CalculatorService calculatorService) {
+                            CalculatorService calculatorService,
+                            SettRepository settRepository,
+                            SettMapper settMapper) {
         this.restTemplate = restTemplate;
         this.scheduledRepository = scheduledRepository;
         this.matchMapper = matchMapper;
@@ -82,6 +85,8 @@ public class ScheduledService {
         this.accountDetailMapper = accountDetailMapper;
         this.oddsMapper = oddsMapper;
         this.calculatorService = calculatorService;
+        this.settRepository = settRepository;
+        this.settMapper = settMapper;
     }
 
 
@@ -112,6 +117,9 @@ public class ScheduledService {
             Match match = matchRepository.findOne(matchDTO.getId());
 
             if (match != null) {
+
+                List<SettDTO> settDTOs = matchDTO.getSetts();
+                settRepository.save(settMapper.dtosToEntities(settDTOs));
 
 //                log.debug("\nPLACE BET: Request for Match : {}", match);
 

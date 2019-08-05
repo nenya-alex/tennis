@@ -47,7 +47,7 @@ public class ScheduledRepository {
                     if (MatchStatus.NOT_STARTED.getName().equals(period)) {
                         workWithMatch(matchDTO.status(MatchStatus.NOT_STARTED), result.get(MatchStatus.NOT_STARTED));
                     } else if (MatchStatus.FINISHED.getName().equals(period)) {
-                        workWithFinishedMatch(matchDTO.status(MatchStatus.FINISHED), scoreboardSlim, result);
+//                        workWithFinishedMatch(matchDTO.status(MatchStatus.FINISHED), scoreboardSlim, result);
                     } else if (period.endsWith("Set")) {
                         workWithLiveMatch(matchDTO.status(MatchStatus.LIVE), scoreboardSlim, period, result);
                     } else if (MatchStatus.SUSPENDED.getName().equals(period)) {
@@ -82,40 +82,40 @@ public class ScheduledRepository {
         }
     }
 
-    private void workWithFinishedMatch(MatchDTO matchDTO,
-                                       Map scoreboardSlim,
-                                       Map<MatchStatus, List<MatchDTO>> result) {
-
-        List<List<String>> sets = (List<List<String>>) scoreboardSlim.get("sets");
-        List<String> homeSets = sets.get(0);
-        List<String> awaySets = sets.get(1);
-
-        List<Integer> scoresInMatch = fillMatchByScores(homeSets, awaySets);
-
-        Integer homeScoreInMatch = scoresInMatch.get(0);
-        Integer awayScoreInMatch = scoresInMatch.get(1);
-        matchDTO.setHomeScore(homeScoreInMatch);
-        matchDTO.setAwayScore(awayScoreInMatch);
-
-        if (homeScoreInMatch.compareTo(awayScoreInMatch) > 0){
-            matchDTO.setWinner(Winner.HOME);
-        }else if (homeScoreInMatch.compareTo(awayScoreInMatch) < 0){
-            matchDTO.setWinner(Winner.AWAY);
-        }
-
-        result.get(MatchStatus.FINISHED).add(matchDTO);
-
-        matchCache.deleteFromCache(matchDTO.getId());
-    }
+//    private void workWithFinishedMatch(MatchDTO matchDTO,
+//                                       Map scoreboardSlim,
+//                                       Map<MatchStatus, List<MatchDTO>> result) {
+//
+//        List<List<String>> sets = (List<List<String>>) scoreboardSlim.get("sets");
+//        List<String> homeSets = sets.get(0);
+//        List<String> awaySets = sets.get(1);
+//
+//        List<Integer> scoresInMatch = fillMatchByScores(homeSets, awaySets);
+//
+//        Integer homeScoreInMatch = scoresInMatch.get(0);
+//        Integer awayScoreInMatch = scoresInMatch.get(1);
+//        matchDTO.setHomeScore(homeScoreInMatch);
+//        matchDTO.setAwayScore(awayScoreInMatch);
+//
+//        if (homeScoreInMatch.compareTo(awayScoreInMatch) > 0){
+//            matchDTO.setWinner(Winner.HOME);
+//        }else if (homeScoreInMatch.compareTo(awayScoreInMatch) < 0){
+//            matchDTO.setWinner(Winner.AWAY);
+//        }
+//
+//        result.get(MatchStatus.FINISHED).add(matchDTO);
+//
+//        matchCache.deleteFromCache(matchDTO.getId());
+//    }
 
     private void workWithLiveMatch(MatchDTO matchDTO,
                                    Map scoreboardSlim,
                                    String period,
                                    Map<MatchStatus, List<MatchDTO>> result) {
 
-        if (isLiveMatchFinished()) {
-            workWithFinishedMatch(matchDTO.status(MatchStatus.FINISHED), scoreboardSlim, result);
-        } else {
+//        if (isLiveMatchFinished()) {
+//            workWithFinishedMatch(matchDTO.status(MatchStatus.FINISHED), scoreboardSlim, result);
+//        } else {
             fillCachedMatchByProbabilities(matchDTO, scoreboardSlim);
 
             List<SettDTO> settDTOs = getSetts((List<List<String>>) scoreboardSlim.get("sets"), matchDTO.getId());
@@ -140,7 +140,7 @@ public class ScheduledRepository {
                     }
                 }
             }
-        }
+//        }
     }
 
     private boolean isZeroPoints(List<String> points){
@@ -162,9 +162,9 @@ public class ScheduledRepository {
         return result;
     }
 
-    private boolean isLiveMatchFinished() {
-        return false;
-    }
+//    private boolean isLiveMatchFinished() {
+//        return false;
+//    }
 
     private void prepareMatchDtoForPlacingBet(MatchDTO matchDTO,
                                               List<SettDTO> cachedSets,
