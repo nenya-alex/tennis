@@ -90,7 +90,7 @@ public class ScheduledRepository {
         List<String> homeSets = sets.get(0);
         List<String> awaySets = sets.get(1);
 
-        List<Integer> scoresInMatch = getScoresInMatch(homeSets, awaySets);
+        List<Integer> scoresInMatch = fillMatchByScores(homeSets, awaySets);
 
         Integer homeScoreInMatch = scoresInMatch.get(0);
         Integer awayScoreInMatch = scoresInMatch.get(1);
@@ -118,36 +118,48 @@ public class ScheduledRepository {
         } else {
             fillCachedMatchByProbabilities(matchDTO, scoreboardSlim);
 
-            List<List<String>> sets = (List<List<String>>) scoreboardSlim.get("sets");
-            List<String> homeSets = sets.get(0);
-            List<String> awaySets = sets.get(1);
+            List<SettDTO> settDTOs = getSetts((List<List<String>>) scoreboardSlim.get("sets"), matchDTO.getId());
+            matchDTO.setSetts(settDTOs);
 
-            if (!"0".equals(homeSets.get(0)) || !"0".equals(awaySets.get(0))) {
-                List<Integer> scoresInMatch = getScoresInMatch(homeSets, awaySets);
+            int periodNumber = StringUtils.isNumeric(period.substring(0, 1)) ? Integer.valueOf(period.substring(0, 1)) : 0;
+            matchDTO.setPeriodNumber(periodNumber);
 
-                Integer homeScoreInMatch = scoresInMatch.get(0);
-                Integer awayScoreInMatch = scoresInMatch.get(1);
+            Integer setHomeScore = settDTOs.get(periodNumber-1).getHomeScore();
+            Integer setAwayScore = settDTOs.get(periodNumber-1).getAwayScore();
 
-                matchDTO.setHomeScore(homeScoreInMatch);
-                matchDTO.setAwayScore(awayScoreInMatch);
+            if (setHomeScore.compareTo(Integer.valueOf("0")) != 0 || setAwayScore.compareTo(Integer.valueOf("0")) != 0) {
+                fillMatchByScores(matchDTO);
 
-                List<String> points = (List<String>) scoreboardSlim.get("points");
-                if ("0".equals(points.get(0)) && "0".equals(points.get(1))) {
+                if (isZeroPoints((List<String>) scoreboardSlim.get("points"))) {
 
                     Optional<MatchDTO> cachedMatchDTO = matchCache.getCachedMatch(matchDTO.getId());
 
                     if (cachedMatchDTO.isPresent()) {
-
-                        Integer setNumber = Integer.valueOf(period.substring(0, 1));
-
-                        prepareMatchDtoForPlacingBet(matchDTO, cachedMatchDTO.get().getSetts(), Integer.valueOf(homeSets.get(setNumber - 1)),
-                            Integer.valueOf(awaySets.get(setNumber - 1)));
-
+                        prepareMatchDtoForPlacingBet(matchDTO, cachedMatchDTO.get().getSetts(), setHomeScore, setAwayScore);
                         result.get(MatchStatus.LIVE).add(matchDTO);
                     }
                 }
             }
         }
+    }
+
+    private boolean isZeroPoints(List<String> points){
+        return "0".equals(points.get(0)) && "0".equals(points.get(1));
+    }
+
+    private List<SettDTO> getSetts(List<List<String>> sets, Long matchId){
+
+        List<String> homeSets = sets.get(0);
+        List<String> awaySets = sets.get(1);
+
+        List<SettDTO> result = new ArrayList<>();
+        for (int i = 0; i < homeSets.size(); i++) {
+            Integer homeScore = StringUtils.isNumeric(homeSets.get(i)) ? Integer.valueOf(homeSets.get(i)) : 0;
+            Integer awayScore = StringUtils.isNumeric(awaySets.get(i)) ? Integer.valueOf(homeSets.get(i)) : 0;
+
+            result.add(new SettDTO(homeScore, awayScore, i, matchId));
+        }
+        return result;
     }
 
     private boolean isLiveMatchFinished() {
@@ -156,42 +168,42 @@ public class ScheduledRepository {
 
     private void prepareMatchDtoForPlacingBet(MatchDTO matchDTO,
                                               List<SettDTO> cachedSets,
-                                              Integer homeScoreInSett,
-                                              Integer awayScoreInSett) {
+                                              Integer setHomeScore,
+                                              Integer setAwayScore) {
 
         SettDTO cachedSettDTO = getCachedSettDTO(cachedSets, matchDTO.getHomeScore(), matchDTO.getAwayScore());
-        GameDTO cachedGameDTO = getCachedGameDTO(cachedSettDTO.getGames(), homeScoreInSett, awayScoreInSett);
+        GameDTO cachedGameDTO = getCachedGameDTO(cachedSettDTO.getGames(), setHomeScore, setAwayScore);
 
-        SettDTO clonedSettDTO = cloneSettDTO(cachedSettDTO, matchDTO.getId(), matchDTO.getOdds());
+        SettDTO sett = matchDTO.getSetts().get(matchDTO.getPeriodNumber() - 1);
+        sett.setHomeOdds(matchDTO.getOdds().get(0).getHomeOdds());
+        sett.setAwayOdds(matchDTO.getOdds().get(0).getAwayOdds());
+        sett.setHomeProbability(cachedSettDTO.getHomeProbability());
+
         GameDTO clonedGameDTO = cloneGameDTO(cachedGameDTO);
         clonedGameDTO.setOddsDTO(matchDTO.getOdds().get(0));
 
-        clonedSettDTO.getGames().add(clonedGameDTO);
-        matchDTO.getSetts().add(clonedSettDTO);
+        sett.getGames().add(clonedGameDTO);
     }
 
-    private List<Integer> getScoresInMatch(List<String> homeSets, List<String> awaySets) {
-        List<Integer> result = new ArrayList<>();
-        Integer homeScoreResult = 0;
-        Integer awayScoreResult = 0;
+    private void fillMatchByScores(MatchDTO matchDTO) {
+        Integer matchHomeScore = 0;
+        Integer matchAwayScore = 0;
 
-        for (int i = 0; i < homeSets.size(); i++) {
-            if (StringUtils.isNumeric(homeSets.get(i)) && StringUtils.isNumeric(awaySets.get(i))){
-                Integer homeScore =  Integer.valueOf(homeSets.get(i));
-                Integer awayScore =  Integer.valueOf(awaySets.get(i));
-                if (homeScore.equals(6) || awayScore.equals(6)){
-                    if (homeScore.compareTo(awayScore) > 0){
-                        homeScoreResult = homeScoreResult + 1;
-                    }else{
-                        awayScoreResult = awayScoreResult + 1;
-                    }
+        List<SettDTO> setts = matchDTO.getSetts();
+
+        for (int i = 0; i < setts.size(); i++) {
+            Integer setHomeScore = setts.get(i).getHomeScore();
+            Integer setAwayScore = setts.get(i).getAwayScore();
+            if (setHomeScore.equals(6) || setAwayScore.equals(6)) {
+                if (setHomeScore.compareTo(setAwayScore) > 0) {
+                    matchHomeScore = matchHomeScore + 1;
+                } else {
+                    matchAwayScore = matchAwayScore + 1;
                 }
             }
         }
-
-        result.add(homeScoreResult);
-        result.add(awayScoreResult);
-        return result;
+        matchDTO.setHomeScore(matchHomeScore);
+        matchDTO.setAwayScore(matchAwayScore);
     }
 
     private SettDTO getCachedSettDTO(List<SettDTO> cachedSets, Integer homeScoreInMatch, Integer awayScoreInMatch) {
