@@ -2,7 +2,7 @@ package ua.tennis.service.dto;
 
 import ua.tennis.domain.enumeration.BetSide;
 import ua.tennis.domain.enumeration.BetStatus;
-import ua.tennis.domain.enumeration.MatchWinner;
+import ua.tennis.domain.enumeration.Winner;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
@@ -26,6 +26,16 @@ public class BetDTO implements Serializable {
     private Instant placedDate;
 
     private Long matchId;
+
+    private Winner winner;
+
+    private Double countedProbability;
+
+    private Double bookmakerProbability;
+
+    private Double kellyCoefficient;
+
+    private Instant settledDate;
 
     private Set<AccountDetailDTO> accountDetailDTOs = new HashSet<>();
 
@@ -91,6 +101,46 @@ public class BetDTO implements Serializable {
 
     public void setAccountDetailDTOs(Set<AccountDetailDTO> accountDetailDTOs) {
         this.accountDetailDTOs = accountDetailDTOs;
+    }
+
+    public Winner getWinner() {
+        return winner;
+    }
+
+    public void setWinner(Winner winner) {
+        this.winner = winner;
+    }
+
+    public Double getCountedProbability() {
+        return countedProbability;
+    }
+
+    public void setCountedProbability(Double countedProbability) {
+        this.countedProbability = countedProbability;
+    }
+
+    public Double getBookmakerProbability() {
+        return bookmakerProbability;
+    }
+
+    public void setBookmakerProbability(Double bookmakerProbability) {
+        this.bookmakerProbability = bookmakerProbability;
+    }
+
+    public Double getKellyCoefficient() {
+        return kellyCoefficient;
+    }
+
+    public void setKellyCoefficient(Double kellyCoefficient) {
+        this.kellyCoefficient = kellyCoefficient;
+    }
+
+    public Instant getSettledDate() {
+        return settledDate;
+    }
+
+    public void setSettledDate(Instant settledDate) {
+        this.settledDate = settledDate;
     }
 
     @Override

@@ -47,6 +47,10 @@
                 <constraints nullable="true" />
             </column>
 
+            <column name="updated_date" type="timestamp">
+                <constraints nullable="true"/>
+            </column>
+
             <column name="name" type="varchar(255)">
                 <constraints nullable="true" />
             </column>
@@ -58,6 +62,8 @@
         </createTable>
         <dropDefaultValue tableName="match" columnName="start_date" columnDataType="datetime"/>
         <dropDefaultValue tableName="match" columnName="open_date" columnDataType="datetime"/>
+        <dropDefaultValue tableName="match" columnName="updated_date" columnDataType="datetime"/>
+
 
     </changeSet>
 </databaseChangeLog>

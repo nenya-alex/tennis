@@ -2,7 +2,7 @@ package ua.tennis.domain;
 
 import ua.tennis.domain.enumeration.BetSide;
 import ua.tennis.domain.enumeration.BetStatus;
-import ua.tennis.domain.enumeration.MatchWinner;
+import ua.tennis.domain.enumeration.Winner;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -33,11 +33,27 @@ public class Bet implements Serializable {
     private BetSide betSide;
 
     @Enumerated(EnumType.STRING)
+    @Column(name = "winner")
+    private Winner winner;
+
+    @Enumerated(EnumType.STRING)
     @Column(name = "status")
     private BetStatus status;
 
+    @Column(name = "counted_probability")
+    private Double countedProbability;
+
+    @Column(name = "bookmaker_probability")
+    private Double bookmakerProbability;
+
+    @Column(name = "kelly_coefficient")
+    private Double kellyCoefficient;
+
     @Column(name = "placed_date")
     private Instant placedDate;
+
+    @Column(name = "settled_date")
+    private Instant settledDate;
 
     @ManyToOne
     private Match match;
@@ -132,6 +148,46 @@ public class Bet implements Serializable {
 
     public void setAccountDetails(Set<AccountDetail> accountDetails) {
         this.accountDetails = accountDetails;
+    }
+
+    public Winner getWinner() {
+        return winner;
+    }
+
+    public void setWinner(Winner winner) {
+        this.winner = winner;
+    }
+
+    public Double getCountedProbability() {
+        return countedProbability;
+    }
+
+    public void setCountedProbability(Double countedProbability) {
+        this.countedProbability = countedProbability;
+    }
+
+    public Double getBookmakerProbability() {
+        return bookmakerProbability;
+    }
+
+    public void setBookmakerProbability(Double bookmakerProbability) {
+        this.bookmakerProbability = bookmakerProbability;
+    }
+
+    public Double getKellyCoefficient() {
+        return kellyCoefficient;
+    }
+
+    public void setKellyCoefficient(Double kellyCoefficient) {
+        this.kellyCoefficient = kellyCoefficient;
+    }
+
+    public Instant getSettledDate() {
+        return settledDate;
+    }
+
+    public void setSettledDate(Instant settledDate) {
+        this.settledDate = settledDate;
     }
 
     @Override

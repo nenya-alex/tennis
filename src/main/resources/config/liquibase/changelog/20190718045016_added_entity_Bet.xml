@@ -20,8 +20,24 @@
                 <constraints nullable="true" />
             </column>
 
+            <column name="counted_probability" type="double">
+                <constraints nullable="true"/>
+            </column>
+
+            <column name="bookmaker_probability" type="double">
+                <constraints nullable="true"/>
+            </column>
+
+            <column name="kelly_coefficient" type="double">
+                <constraints nullable="true"/>
+            </column>
+
             <column name="bet_side" type="varchar(255)">
                 <constraints nullable="true" />
+            </column>
+
+            <column name="winner" type="varchar(255)">
+                <constraints nullable="true"/>
             </column>
 
             <column name="status" type="varchar(255)">
@@ -32,12 +48,18 @@
                 <constraints nullable="true" />
             </column>
 
+            <column name="settled_date" type="datetime">
+                <constraints nullable="true"/>
+            </column>
+
             <column name="match_id" type="bigint">
                 <constraints nullable="true"/>
             </column>
         </createTable>
 
         <dropDefaultValue tableName="bet" columnName="placed_date" columnDataType="datetime"/>
+        <dropDefaultValue tableName="bet" columnName="settled_date" columnDataType="datetime"/>
+
     </changeSet>
 
 </databaseChangeLog>

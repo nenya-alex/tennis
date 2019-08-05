@@ -1,5 +1,5 @@
 package ua.tennis.domain.enumeration;
 
-public enum MatchWinner {
+public enum Winner {
     HOME, AWAY
 }

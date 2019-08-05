@@ -56,6 +56,8 @@ public class ScheduledService {
 
     private final OddsMapper oddsMapper;
 
+    private final CalculatorService calculatorService;
+
     public ScheduledService(RestTemplate restTemplate,
                             ScheduledRepository scheduledRepository,
                             MatchMapper matchMapper,
@@ -66,7 +68,8 @@ public class ScheduledService {
                             BetMapper betMapper,
                             AccountDetailRepository accountDetailRepository,
                             AccountDetailMapper accountDetailMapper,
-                            OddsMapper oddsMapper) {
+                            OddsMapper oddsMapper,
+                            CalculatorService calculatorService) {
         this.restTemplate = restTemplate;
         this.scheduledRepository = scheduledRepository;
         this.matchMapper = matchMapper;
@@ -78,6 +81,7 @@ public class ScheduledService {
         this.accountDetailRepository = accountDetailRepository;
         this.accountDetailMapper = accountDetailMapper;
         this.oddsMapper = oddsMapper;
+        this.calculatorService = calculatorService;
     }
 
 
@@ -91,6 +95,8 @@ public class ScheduledService {
         result.put(MatchStatus.SUSPENDED, new ArrayList<>());
 
         scheduledRepository.fillResultByMatches(liveMatches, true, result);
+
+        saveSuspendedMatches(result.get(MatchStatus.SUSPENDED));
 
         saveMatches(result.get(MatchStatus.NOT_STARTED));
 
@@ -111,6 +117,7 @@ public class ScheduledService {
 
                 if (match.getStatus() != MatchStatus.LIVE) {
                     match.setStatus(MatchStatus.LIVE);
+                    match.setUpdatedDate(Instant.now());
                     matchRepository.saveAndFlush(match);
 //                    log.debug("\nPLACE BET: Saved LIVE Match : {}", match);
                 }
@@ -122,13 +129,13 @@ public class ScheduledService {
 
                 double homeOdds = gameDTO.getOddsDTO().getHomeOdds();
                 double awayOdds = gameDTO.getOddsDTO().getAwayOdds();
-                double bookmakersHomeProbability = awayOdds / (homeOdds + awayOdds);
+                double bookmakersHomeProbability = calculatorService.getRoundedDoubleNumber(awayOdds / (homeOdds + awayOdds));
                 double homeProbability = gameDTO.getHomeProbability();
 
                 if (gameDTO.getHomeProbability() > bookmakersHomeProbability * MULTIPLIER) {
-                    place(match, homeOdds, (homeOdds + awayOdds) / awayOdds, homeProbability, BetSide.HOME);
+                    place(match, homeOdds, calculatorService.getRoundedDoubleNumber((homeOdds + awayOdds) / awayOdds), homeProbability, BetSide.HOME);
                 } else if ((1 - gameDTO.getHomeProbability()) > (1 - bookmakersHomeProbability) * MULTIPLIER) {
-                    place(match, awayOdds, (homeOdds + awayOdds) / homeOdds, 1 - homeProbability, BetSide.AWAY);
+                    place(match, awayOdds, calculatorService.getRoundedDoubleNumber((homeOdds + awayOdds) / homeOdds), 1 - homeProbability, BetSide.AWAY);
                 }
             }
         }
@@ -137,9 +144,10 @@ public class ScheduledService {
     private void place(Match match,
                        double odds,
                        double bookmakerOddsWithoutMarge,
-                       Double probability,
+                       double probability,
                        BetSide betSide) {
-        double kellyCoefficient = (bookmakerOddsWithoutMarge * probability - 1) / (bookmakerOddsWithoutMarge - 1);
+        double kellyCoefficient = calculatorService.getRoundedDoubleNumber(
+            (bookmakerOddsWithoutMarge * probability - 1) / (bookmakerOddsWithoutMarge - 1));
 
 //        log.debug("\nPLACE BET: KellyCoefficient = {} for Match id :{}", kellyCoefficient, match.getId());
 
@@ -159,6 +167,9 @@ public class ScheduledService {
             betDTO.setBetSide(betSide);
             betDTO.setPlacedDate(Instant.now());
             betDTO.setMatchId(match.getId());
+            betDTO.setKellyCoefficient(kellyCoefficient);
+            betDTO.setCountedProbability(probability);
+            betDTO.setBookmakerProbability(calculatorService.getRoundedDoubleNumber(1 / bookmakerOddsWithoutMarge));
 
             if (match.getBets().stream().noneMatch(bet -> bet.getStatus() == BetStatus.OPENED)) {
                 Bet savedBet = saveBet(betDTO, BetStatus.OPENED);
@@ -218,6 +229,7 @@ public class ScheduledService {
                 match.setWinner(matchDTO.getWinner());
                 match.setHomeScore(matchDTO.getHomeScore());
                 match.setAwayScore(matchDTO.getAwayScore());
+                match.setUpdatedDate(Instant.now());
                 matchRepository.saveAndFlush(match);
 
                 log.debug("\nSETTLE BET: Saved Match : {}", match);
@@ -244,6 +256,8 @@ public class ScheduledService {
                     }
 
                     bet.setStatus(BetStatus.CLOSED);
+                    bet.setWinner(matchDTO.getWinner());
+                    bet.setSettledDate(Instant.now());
                     betRepository.saveAndFlush(bet);
                     log.debug("\nSETTLE BET: Bet after settlement : {}", bet);
 
@@ -274,6 +288,8 @@ public class ScheduledService {
     private void saveMatches(List<MatchDTO> matchDTOs) {
         for (MatchDTO matchDTO : matchDTOs) {
 
+            matchDTO.setUpdatedDate(Instant.now());
+
 //            log.debug("\nMatchDTO to save : {}", matchDTO);
 
             Match excitedMatch = matchRepository.findOne(matchDTO.getId());
@@ -295,6 +311,21 @@ public class ScheduledService {
             } else {
                 Match match = matchRepository.saveAndFlush(matchMapper.toEntity(matchDTO));
 //                log.debug("\nSaved new Match : {}", match);
+            }
+        }
+    }
+
+    private void saveSuspendedMatches(List<MatchDTO> matchDTOs) {
+        for (MatchDTO matchDTO : matchDTOs) {
+
+            //            log.debug("\nSuspended MatchDTO to update : {}", matchDTO);
+
+            Match excitedMatch = matchRepository.findOne(matchDTO.getId());
+            if (excitedMatch != null) {
+                excitedMatch.setStatus(MatchStatus.SUSPENDED);
+                excitedMatch.setUpdatedDate(Instant.now());
+                matchRepository.save(excitedMatch);
+//                log.debug("\nUpdated Suspended Match : {}", excitedMatch);
             }
         }
     }

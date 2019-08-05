@@ -1,7 +1,7 @@
 package ua.tennis.service.dto;
 
 import ua.tennis.domain.enumeration.MatchStatus;
-import ua.tennis.domain.enumeration.MatchWinner;
+import ua.tennis.domain.enumeration.Winner;
 
 import java.io.Serializable;
 import java.time.Instant;
@@ -27,7 +27,7 @@ public class MatchDTO implements Serializable {
 
     private Instant openDate;
 
-    private Instant checkedDate;
+    private Instant updatedDate;
 
     private String gameMode;
 
@@ -39,7 +39,7 @@ public class MatchDTO implements Serializable {
 
     private MatchStatus status;
 
-    private MatchWinner winner;
+    private Winner winner;
 
     private List<OddsDTO> odds = new ArrayList<>();
 
@@ -131,12 +131,12 @@ public class MatchDTO implements Serializable {
         this.openDate = openDate;
     }
 
-    public Instant getCheckedDate() {
-        return checkedDate;
+    public Instant getUpdatedDate() {
+        return updatedDate;
     }
 
-    public void setCheckedDate(Instant checkedDate) {
-        this.checkedDate = checkedDate;
+    public void setUpdatedDate(Instant updatedDate) {
+        this.updatedDate = updatedDate;
     }
 
     public String getGameMode() {
@@ -200,11 +200,11 @@ public class MatchDTO implements Serializable {
         return this;
     }
 
-    public MatchWinner getWinner() {
+    public Winner getWinner() {
         return winner;
     }
 
-    public void setWinner(MatchWinner winner) {
+    public void setWinner(Winner winner) {
         this.winner = winner;
     }
 
@@ -240,7 +240,7 @@ public class MatchDTO implements Serializable {
             ", startDate=" + startDate +"\n" +
             ", name='" + name + '\'' +"\n" +
             ", openDate=" + openDate +"\n" +
-            ", checkedDate=" + checkedDate +"\n" +
+            ", updatedDate=" + updatedDate + "\n" +
             ", homeMatchProbability=" + homeMatchProbability +"\n" +
             ", status=" + status +"\n" +
             ", winner=" + winner + "\n" +

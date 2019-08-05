@@ -1,7 +1,7 @@
 package ua.tennis.domain;
 
 import ua.tennis.domain.enumeration.MatchStatus;
-import ua.tennis.domain.enumeration.MatchWinner;
+import ua.tennis.domain.enumeration.Winner;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -37,6 +37,9 @@ public class Match implements Serializable {
     @Column(name = "start_date")
     private Instant startDate;
 
+    @Column(name = "updated_date")
+    private Instant updatedDate;
+
     @Column(name = "name")
     private String name;
 
@@ -49,7 +52,7 @@ public class Match implements Serializable {
 
     @Enumerated(EnumType.STRING)
     @Column(name = "winner")
-    private MatchWinner winner;
+    private Winner winner;
 
     @OneToMany(mappedBy = "match")
     private Set<Sett> setts = new HashSet<>();
@@ -209,12 +212,20 @@ public class Match implements Serializable {
         this.status = status;
     }
 
-    public MatchWinner getWinner() {
+    public Winner getWinner() {
         return winner;
     }
 
-    public void setWinner(MatchWinner winner) {
+    public void setWinner(Winner winner) {
         this.winner = winner;
+    }
+
+    public Instant getUpdatedDate() {
+        return updatedDate;
+    }
+
+    public void setUpdatedDate(Instant updatedDate) {
+        this.updatedDate = updatedDate;
     }
 
     @Override
@@ -248,6 +259,7 @@ public class Match implements Serializable {
             ", startDate=" + startDate +"\n" +
             ", name='" + name + '\'' +"\n" +
             ", openDate=" + openDate +"\n" +
+            ", updatedDate=" + updatedDate + "\n" +
             ", winner=" + winner + "\n" +
             ", status=" + status +
             '}';
