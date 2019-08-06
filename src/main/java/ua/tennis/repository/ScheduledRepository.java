@@ -158,7 +158,7 @@ public class ScheduledRepository {
         for (int i = 0; i < setts.size(); i++) {
             Integer setHomeScore = setts.get(i).getHomeScore();
             Integer setAwayScore = setts.get(i).getAwayScore();
-            if (setHomeScore.equals(6) || setAwayScore.equals(6)) {
+            if (Integer.valueOf(Math.max(setHomeScore, setAwayScore)).compareTo(Integer.valueOf(6)) >= 0) {
                 if (setHomeScore.compareTo(setAwayScore) > 0) {
                     matchHomeScore = matchHomeScore + 1;
                 } else {

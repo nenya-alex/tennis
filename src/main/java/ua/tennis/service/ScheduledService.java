@@ -123,6 +123,52 @@ public class ScheduledService {
                 updateMatch(match);
 
                 //TODO java.lang.IndexOutOfBoundsException: Index: 0, Size: 0
+//                PLACE BET:
+//                Request for MatchDTO with
+//                POTENTIAL ERROR :
+//                MatchDTO{id=8908537
+//                    , homeName='S. Chang/A. Mueller'
+//                    , awayName='E. S. Liang/L. Zhu'
+//                    , homeScore=0
+//                    , awayScore=0
+//                    , startDate=2019-08-06T17:48:00Z
+//                    , name='S. Chang/A. Mueller - E. S. Liang/L. Zhu'
+//                    , openDate=2019-08-06T17:48:00Z
+//                    , updatedDate=null
+//                    , homeMatchProbability=0.0
+//                    , status=LIVE
+//                    , winner=null
+//                    , periodNumber=2
+//                    , odds=[OddsDTO{id=null, homeOdds=1.65, awayOdds=2.15, checkDate='2019-08-06T18:47:00.807Z', match=8908537}]
+//                    , setts=[
+//                    SettDTO{id=null
+//                        , homeScore=7
+//                        , awayScore=5
+//                        , homeProbability=null
+//                        , awayProbability=null
+//                        , setNumber=1
+//                        , games=[]},
+//                    SettDTO{id=null
+//                        , homeScore=0
+//                        , awayScore=2
+//                        , homeProbability=0.433
+//                        , awayProbability=null
+//                        , setNumber=2
+//                        , games=[
+//                        GameDTO{id=null
+//                            , homeScore=0
+//                            , awayScore=2
+//                            , homeProbability=0.317
+//                            , awayProbability=0.0
+//                        }]},
+//                    SettDTO{id=null
+//                        , homeScore=0
+//                        , awayScore=0
+//                        , homeProbability=null
+//                        , awayProbability=null
+//                        , setNumber=3
+//                        , games=[]}]}
+
                 log.debug("\nPLACE BET: \n Request for MatchDTO with \n POTENTIAL ERROR : {}", matchDTO);
 
                 GameDTO gameDTO = matchDTO.getSetts().get(0).getGames().get(0);
