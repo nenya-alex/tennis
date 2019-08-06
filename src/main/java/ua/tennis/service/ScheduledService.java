@@ -117,18 +117,8 @@ public class ScheduledService {
             Match match = matchRepository.findOne(matchDTO.getId());
 
             if (match != null) {
-
-                List<SettDTO> settDTOs = matchDTO.getSetts();
-                settRepository.save(settMapper.dtosToEntities(settDTOs));
-
-//                log.debug("\nPLACE BET: Request for Match : {}", match);
-
-                if (match.getStatus() != MatchStatus.LIVE) {
-                    match.setStatus(MatchStatus.LIVE);
-                    match.setUpdatedDate(Instant.now());
-                    matchRepository.saveAndFlush(match);
-//                    log.debug("\nPLACE BET: Saved LIVE Match : {}", match);
-                }
+                createOrUpdateSett(matchDTO);
+                updateMatch(match);
 
                 //TODO java.lang.IndexOutOfBoundsException: Index: 0, Size: 0
                 log.debug("\nPLACE BET: \n Request for MatchDTO with \n POTENTIAL ERROR : {}", matchDTO);
@@ -147,6 +137,37 @@ public class ScheduledService {
                 }
             }
         }
+    }
+
+    private void updateMatch(Match match) {
+//        log.debug("\nPLACE BET: Request for Match : {}", match);
+        if (match.getStatus() != MatchStatus.LIVE) {
+            matchRepository.saveAndFlush(
+                match
+                    .status(MatchStatus.LIVE)
+                    .updatedDate(Instant.now())
+            );
+//            log.debug("\nPLACE BET: Saved LIVE Match : {}", match);
+        }
+    }
+
+    private void createOrUpdateSett(MatchDTO matchDTO) {
+        SettDTO settDTO = matchDTO.getSetts().get(matchDTO.getCurrentSetNumber() - 1);
+//        log.debug("\nPLACE BET: Request for saving SettDTO : {}", settDTO);
+
+        Sett sett = settRepository.findBySetNumberAndMatchId(matchDTO.getCurrentSetNumber(), matchDTO.getId());
+
+        if (sett == null) {
+            settRepository.save(settMapper.toEntity(settDTO));
+        } else {
+            settRepository.save(
+                sett
+                    .homeScore(settDTO.getHomeScore())
+                    .awayScore(settDTO.getAwayScore())
+                    .homeProbability(settDTO.getHomeProbability())
+            );
+        }
+//        log.debug("\nPLACE BET: Saved Sett : {}", sett);
     }
 
     private void place(Match match,

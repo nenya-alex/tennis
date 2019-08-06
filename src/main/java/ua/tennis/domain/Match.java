@@ -209,6 +209,12 @@ public class Match implements Serializable {
         this.status = status;
     }
 
+    public Match status(MatchStatus status) {
+        this.status = status;
+        return this;
+    }
+
+
     public Winner getWinner() {
         return winner;
     }
@@ -224,6 +230,12 @@ public class Match implements Serializable {
     public void setUpdatedDate(Instant updatedDate) {
         this.updatedDate = updatedDate;
     }
+
+    public Match updatedDate(Instant updatedDate) {
+        this.updatedDate = updatedDate;
+        return this;
+    }
+
 
     @Override
     public boolean equals(Object o) {
