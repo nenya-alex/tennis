@@ -223,6 +223,11 @@ public class Match implements Serializable {
         this.winner = winner;
     }
 
+    public Match winner(Winner winner) {
+        this.winner = winner;
+        return this;
+    }
+
     public Instant getUpdatedDate() {
         return updatedDate;
     }

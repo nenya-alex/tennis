@@ -59,6 +59,8 @@ public class ScheduledService {
 
     private final SettMapper settMapper;
 
+    private final MatchCache matchCache;
+
     public ScheduledService(RestTemplate restTemplate,
                             ScheduledRepository scheduledRepository,
                             MatchMapper matchMapper,
@@ -72,7 +74,8 @@ public class ScheduledService {
                             OddsMapper oddsMapper,
                             CalculatorService calculatorService,
                             SettRepository settRepository,
-                            SettMapper settMapper) {
+                            SettMapper settMapper,
+                            MatchCache matchCache) {
         this.restTemplate = restTemplate;
         this.scheduledRepository = scheduledRepository;
         this.matchMapper = matchMapper;
@@ -87,6 +90,7 @@ public class ScheduledService {
         this.calculatorService = calculatorService;
         this.settRepository = settRepository;
         this.settMapper = settMapper;
+        this.matchCache = matchCache;
     }
 
 
@@ -357,6 +361,30 @@ public class ScheduledService {
 //                log.debug("\nUpdated Suspended Match : {}", excitedMatch);
             }
         }
+    }
+
+    public void prepareMatchesToFinish(){
+        List<Match> matchesToFinish = matchRepository.find();
+        for (Match match: matchesToFinish){
+            saveMatchAsReadyToFinish(match);
+        }
+    }
+
+    private void saveMatchAsReadyToFinish(Match match) {
+
+        match.status(MatchStatus.READY_TO_FINISH);
+
+        Integer matchHomeScore = match.getHomeScore();
+        Integer matchAwayScore = match.getAwayScore();
+
+        if (matchHomeScore.compareTo(matchAwayScore) > 0) {
+            match.setWinner(Winner.HOME);
+        } else if (matchHomeScore.compareTo(matchAwayScore) < 0) {
+            match.setWinner(Winner.AWAY);
+        }
+
+        matchRepository.save(match);
+        matchCache.deleteFromCache(match.getId());
     }
 
 }
