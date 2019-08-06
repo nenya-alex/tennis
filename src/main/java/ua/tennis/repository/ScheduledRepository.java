@@ -217,21 +217,25 @@ public class ScheduledRepository {
 
             String neededGroupId = groups.stream().filter(group -> group.getName().equals("2way - Who will win?"))
                 .findAny().get().getId();
-            List<Map> options = (List) ((Map) ((Map) markets.values().stream().filter(market ->
+
+            Optional<Map> neededGroupOptional = markets.values().stream().filter(market ->
                 {
                     String groupId = (String) ((Map) market).get("groupId");
                     return groupId.equals(neededGroupId);
                 }
-            ).findAny().get()).get("options")).values().stream()
-                .sorted(Comparator.comparingInt(option -> (int) ((Map) option).get("order"))).collect(Collectors.toList());
+            ).findAny();
 
-            OddsDTO oddsDTO = new OddsDTO();
-            oddsDTO.setHomeOdds((Double) options.get(0).get("odds"));
-            oddsDTO.setAwayOdds((Double) options.get(1).get("odds"));
-            oddsDTO.setCheckDate(Instant.now());
-            oddsDTO.setMatchId(matchId);
+            if (neededGroupOptional.isPresent()) {
+                List<Map> options = (List) ((Map) ((Map) neededGroupOptional.get()).get("options")).values().stream()
+                    .sorted(Comparator.comparingInt(option -> (int) ((Map) option).get("order"))).collect(Collectors.toList());
+                OddsDTO oddsDTO = new OddsDTO();
+                oddsDTO.setHomeOdds((Double) options.get(0).get("odds"));
+                oddsDTO.setAwayOdds((Double) options.get(1).get("odds"));
+                oddsDTO.setCheckDate(Instant.now());
+                oddsDTO.setMatchId(matchId);
 
-            odds.add(oddsDTO);
+                odds.add(oddsDTO);
+            }
         }
         return odds;
     }
