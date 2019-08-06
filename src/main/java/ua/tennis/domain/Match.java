@@ -253,7 +253,7 @@ public class Match implements Serializable {
     }
 
     public boolean isScoreCorrect() {
-        return homeScore.compareTo(numberOfSetsToWin) = 0 || awayScore.compareTo(numberOfSetsToWin) = 0;
+        return homeScore.equals(numberOfSetsToWin) || awayScore.equals(numberOfSetsToWin);
     }
 
     @Override

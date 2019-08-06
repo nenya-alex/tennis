@@ -5,8 +5,6 @@ import org.mapstruct.Mapping;
 import ua.tennis.domain.Sett;
 import ua.tennis.service.dto.SettDTO;
 
-import java.util.List;
-
 
 @Mapper(componentModel = "spring", uses = {MatchMapper.class})
 public interface SettMapper extends EntityMapper<SettDTO, Sett> {
@@ -27,5 +25,4 @@ public interface SettMapper extends EntityMapper<SettDTO, Sett> {
         return sett;
     }
 
-    List<Sett> dtosToEntities(List<SettDTO> settDTOs);
 }
