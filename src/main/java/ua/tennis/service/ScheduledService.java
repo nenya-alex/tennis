@@ -171,17 +171,20 @@ public class ScheduledService {
 
                 log.debug("\nPLACE BET: \n Request for MatchDTO with \n POTENTIAL ERROR : {}", matchDTO);
 
-                GameDTO gameDTO = matchDTO.getSetts().get(0).getGames().get(0);
+                List<GameDTO> gameDTOs = matchDTO.getSetts().get(matchDTO.getCurrentSetNumber()).getGames();
+                if (!gameDTOs.isEmpty()) {
+                    GameDTO gameDTO = gameDTOs.get(0);
 
-                double homeOdds = gameDTO.getOddsDTO().getHomeOdds();
-                double awayOdds = gameDTO.getOddsDTO().getAwayOdds();
-                double bookmakersHomeProbability = calculatorService.getRoundedDoubleNumber(awayOdds / (homeOdds + awayOdds));
-                double homeProbability = gameDTO.getHomeProbability();
+                    double homeOdds = gameDTO.getOddsDTO().getHomeOdds();
+                    double awayOdds = gameDTO.getOddsDTO().getAwayOdds();
+                    double bookmakersHomeProbability = calculatorService.getRoundedDoubleNumber(awayOdds / (homeOdds + awayOdds));
+                    double homeProbability = gameDTO.getHomeProbability();
 
-                if (gameDTO.getHomeProbability() > bookmakersHomeProbability * MULTIPLIER) {
-                    place(match, homeOdds, calculatorService.getRoundedDoubleNumber((homeOdds + awayOdds) / awayOdds), homeProbability, BetSide.HOME);
-                } else if ((1 - gameDTO.getHomeProbability()) > (1 - bookmakersHomeProbability) * MULTIPLIER) {
-                    place(match, awayOdds, calculatorService.getRoundedDoubleNumber((homeOdds + awayOdds) / homeOdds), 1 - homeProbability, BetSide.AWAY);
+                    if (gameDTO.getHomeProbability() > bookmakersHomeProbability * MULTIPLIER) {
+                        place(match, homeOdds, calculatorService.getRoundedDoubleNumber((homeOdds + awayOdds) / awayOdds), homeProbability, BetSide.HOME);
+                    } else if ((1 - gameDTO.getHomeProbability()) > (1 - bookmakersHomeProbability) * MULTIPLIER) {
+                        place(match, awayOdds, calculatorService.getRoundedDoubleNumber((homeOdds + awayOdds) / homeOdds), 1 - homeProbability, BetSide.AWAY);
+                    }
                 }
             }
         }
