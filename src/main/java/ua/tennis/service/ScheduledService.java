@@ -364,7 +364,8 @@ public class ScheduledService {
     }
 
     public void prepareMatchesToFinish(){
-        List<Match> matchesToFinish = matchRepository.find();
+        List<Match> matchesToFinish =
+            matchRepository.findByStatusAndUpdatedDateBefore(MatchStatus.LIVE, Instant.now().minusSeconds(1800L));
         for (Match match: matchesToFinish){
             saveMatchAsReadyToFinish(match);
         }
