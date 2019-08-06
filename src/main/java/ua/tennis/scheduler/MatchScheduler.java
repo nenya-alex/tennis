@@ -29,4 +29,9 @@ public class MatchScheduler {
     public void prepareMatchesToFinish() {
         scheduledService.prepareMatchesToFinish();
     }
+
+    @Scheduled(cron = "0 0 0/1 * * *") //every hour
+    public void finishMatchsAndSettleBets() {
+        scheduledService.finishMatchsAndSettleBets();
+    }
 }

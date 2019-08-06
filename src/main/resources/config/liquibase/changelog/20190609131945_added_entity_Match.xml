@@ -59,6 +59,10 @@
                 <constraints nullable="true" />
             </column>
 
+            <column name="number_of_sets_to_win" type="integer">
+                <constraints nullable="true"/>
+            </column>
+
         </createTable>
         <dropDefaultValue tableName="match" columnName="start_date" columnDataType="datetime"/>
         <dropDefaultValue tableName="match" columnName="open_date" columnDataType="datetime"/>

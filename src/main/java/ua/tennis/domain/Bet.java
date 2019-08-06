@@ -158,6 +158,11 @@ public class Bet implements Serializable {
         this.winner = winner;
     }
 
+    public Bet winner(Winner winner) {
+        this.winner = winner;
+        return this;
+    }
+
     public Double getCountedProbability() {
         return countedProbability;
     }
@@ -188,6 +193,11 @@ public class Bet implements Serializable {
 
     public void setSettledDate(Instant settledDate) {
         this.settledDate = settledDate;
+    }
+
+    public Bet settledDate(Instant settledDate) {
+        this.settledDate = settledDate;
+        return this;
     }
 
     @Override

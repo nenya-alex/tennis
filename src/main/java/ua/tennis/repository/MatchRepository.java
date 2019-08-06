@@ -8,4 +8,8 @@ import ua.tennis.domain.Match;
 @Repository
 public interface MatchRepository extends JpaRepository<Match, Long> {
 
+    List<Match> findByStatusAndUpdatedDateBefore(MatchStatus status, Instant date);
+
+    List<Match> findByStatus(MatchStatus status);
+
 }

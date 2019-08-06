@@ -10,5 +10,5 @@ import java.util.Set;
 @Repository
 public interface BetRepository extends JpaRepository<Bet, Long> {
 
-    Set<Bet> findByMatchId(Long id);
+    Set<Bet> findByMatchIdAndStatus(Long id, BetStatus status);
 }

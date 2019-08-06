@@ -51,6 +51,9 @@ public class Match implements Serializable {
     @Column(name = "winner")
     private Winner winner;
 
+    @Column(name = "number_of_sets_to_win")
+    private Integer numberOfSetsToWin;
+
     @OneToMany(mappedBy = "match", cascade = CascadeType.ALL)
     private Set<Sett> setts = new HashSet<>();
 
@@ -241,6 +244,17 @@ public class Match implements Serializable {
         return this;
     }
 
+    public Integer getNumberOfSetsToWin() {
+        return numberOfSetsToWin;
+    }
+
+    public void setNumberOfSetsToWin(Integer numberOfSetsToWin) {
+        this.numberOfSetsToWin = numberOfSetsToWin;
+    }
+
+    public boolean isScoreCorrect() {
+        return homeScore.compareTo(numberOfSetsToWin) = 0 || awayScore.compareTo(numberOfSetsToWin) = 0;
+    }
 
     @Override
     public boolean equals(Object o) {
