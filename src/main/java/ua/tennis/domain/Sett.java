@@ -1,6 +1,5 @@
 package ua.tennis.domain;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -35,7 +34,6 @@ public class Sett implements Serializable {
     private Integer setNumber;
 
     @OneToMany(mappedBy = "sett")
-    @JsonIgnore
     private Set<Game> games = new HashSet<>();
 
     @ManyToOne
@@ -175,7 +173,7 @@ public class Sett implements Serializable {
             ", awayScore=" + awayScore +"\n" +
             ", homeProbability=" + homeProbability +"\n" +
             ", awayProbability=" + awayProbability +"\n" +
-            ", setNumber=" + setNumber() + "\n" +
+            ", setNumber=" + setNumber + "\n" +
             ", games=" + games +"\n" +
             ", match=" + match +
             '}';

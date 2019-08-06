@@ -167,7 +167,7 @@ public class SettDTO implements Serializable {
             ", awayScore=" + getAwayScore() + "\n" +
             ", homeProbability=" + getHomeProbability() + "\n" +
             ", awayProbability=" + getAwayProbability() + "\n" +
-            ", setNumber=" + setNumber() + "\n" +
+            ", setNumber=" + setNumber + "\n" +
             ", games=" + games +
             "}";
     }
