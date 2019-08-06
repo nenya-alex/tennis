@@ -59,6 +59,8 @@ public class ScheduledService {
 
     private final SettMapper settMapper;
 
+    private final MatchCache matchCache;
+
     public ScheduledService(RestTemplate restTemplate,
                             ScheduledRepository scheduledRepository,
                             MatchMapper matchMapper,
@@ -72,7 +74,8 @@ public class ScheduledService {
                             OddsMapper oddsMapper,
                             CalculatorService calculatorService,
                             SettRepository settRepository,
-                            SettMapper settMapper) {
+                            SettMapper settMapper,
+                            MatchCache matchCache) {
         this.restTemplate = restTemplate;
         this.scheduledRepository = scheduledRepository;
         this.matchMapper = matchMapper;
@@ -87,6 +90,7 @@ public class ScheduledService {
         this.calculatorService = calculatorService;
         this.settRepository = settRepository;
         this.settMapper = settMapper;
+        this.matchCache = matchCache;
     }
 
 
@@ -96,7 +100,6 @@ public class ScheduledService {
         Map<MatchStatus, List<MatchDTO>> result = new HashMap<>();
         result.put(MatchStatus.NOT_STARTED, new ArrayList<>());
         result.put(MatchStatus.LIVE, new ArrayList<>());
-        result.put(MatchStatus.FINISHED, new ArrayList<>());
         result.put(MatchStatus.SUSPENDED, new ArrayList<>());
 
         scheduledRepository.fillResultByMatches(liveMatches, true, result);
@@ -107,8 +110,6 @@ public class ScheduledService {
 
         placeBet(result.get(MatchStatus.LIVE));
 
-        settleBet(result.get(MatchStatus.FINISHED));
-
     }
 
     private void placeBet(List<MatchDTO> matchDTOs) {
@@ -117,18 +118,8 @@ public class ScheduledService {
             Match match = matchRepository.findOne(matchDTO.getId());
 
             if (match != null) {
-
-                List<SettDTO> settDTOs = matchDTO.getSetts();
-                settRepository.save(settMapper.dtosToEntities(settDTOs));
-
-//                log.debug("\nPLACE BET: Request for Match : {}", match);
-
-                if (match.getStatus() != MatchStatus.LIVE) {
-                    match.setStatus(MatchStatus.LIVE);
-                    match.setUpdatedDate(Instant.now());
-                    matchRepository.saveAndFlush(match);
-//                    log.debug("\nPLACE BET: Saved LIVE Match : {}", match);
-                }
+                createOrUpdateSett(matchDTO);
+                updateMatch(match);
 
                 //TODO java.lang.IndexOutOfBoundsException: Index: 0, Size: 0
                 log.debug("\nPLACE BET: \n Request for MatchDTO with \n POTENTIAL ERROR : {}", matchDTO);
@@ -147,6 +138,29 @@ public class ScheduledService {
                 }
             }
         }
+    }
+
+    private void updateMatch(Match match) {
+//        log.debug("\nPLACE BET: Request for Match : {}", match);
+        if (match.getStatus() != MatchStatus.LIVE) {
+            matchRepository.saveAndFlush(match.status(MatchStatus.LIVE).updatedDate(Instant.now()));
+//            log.debug("\nPLACE BET: Saved LIVE Match : {}", match);
+        }
+    }
+
+    private void createOrUpdateSett(MatchDTO matchDTO) {
+        SettDTO settDTO = matchDTO.getSetts().get(matchDTO.getCurrentSetNumber() - 1);
+//        log.debug("\nPLACE BET: Request for saving SettDTO : {}", settDTO);
+
+        Sett sett = settRepository.findBySetNumberAndMatchId(matchDTO.getCurrentSetNumber(), matchDTO.getId());
+
+        if (sett == null) {
+            settRepository.save(settMapper.toEntity(settDTO));
+        } else {
+            settRepository.save(sett.homeScore(settDTO.getHomeScore()).awayScore(settDTO.getAwayScore())
+                    .homeProbability(settDTO.getHomeProbability()));
+        }
+//        log.debug("\nPLACE BET: Saved Sett : {}", sett);
     }
 
     private void place(Match match,
@@ -182,8 +196,7 @@ public class ScheduledService {
             if (match.getBets().stream().noneMatch(bet -> bet.getStatus() == BetStatus.OPENED)) {
                 Bet savedBet = saveBet(betDTO, BetStatus.OPENED);
 
-                saveAccount(account, account.getAmount().subtract(stakeAmount),
-                    account.getPlacedAmount().add(stakeAmount));
+                saveAccount(account, account.getAmount().subtract(stakeAmount), account.getPlacedAmount().add(stakeAmount));
 
                 saveAccountDetail(account.getAmount(), account.getId(), stakeAmount, savedBet.getId());
 
@@ -202,11 +215,7 @@ public class ScheduledService {
     }
 
     private void saveAccount(Account account, BigDecimal amount, BigDecimal placedAmount) {
-        account.setAmount(amount);
-        account.setUpdatedDate(Instant.now());
-        account.setPlacedAmount(placedAmount);
-        accountRepository.saveAndFlush(account);
-
+        accountRepository.saveAndFlush(account.amount(amount).updatedDate(Instant.now()).placedAmount(placedAmount);
         log.debug("\nSaved Account after action: {}", account);
     }
 
@@ -223,62 +232,6 @@ public class ScheduledService {
         AccountDetail accountDetail = accountDetailRepository.saveAndFlush(accountDetailMapper.toEntity(accountDetailDTO));
 
         log.debug("\nSaved AccountDetail : {}", accountDetail);
-    }
-
-    private void settleBet(List<MatchDTO> matchDTOs) {
-        for (MatchDTO matchDTO : matchDTOs) {
-            Match match = matchRepository.findOne(matchDTO.getId());
-
-            if (match != null && match.getStatus() != MatchStatus.FINISHED) {
-
-                log.debug("\nSETTLE BET: Match to finish : {}", match);
-
-                match.setStatus(MatchStatus.FINISHED);
-                match.setWinner(matchDTO.getWinner());
-                match.setHomeScore(matchDTO.getHomeScore());
-                match.setAwayScore(matchDTO.getAwayScore());
-                match.setUpdatedDate(Instant.now());
-                matchRepository.saveAndFlush(match);
-
-                log.debug("\nSETTLE BET: Saved Match : {}", match);
-
-                Set<Bet> bets = betRepository.findByMatchId(match.getId());
-
-                if (!bets.isEmpty()) {
-
-                    Account account = accountRepository.findOne(1L);
-                    log.debug("\nSETTLE BET: Account before settlement: {}", account);
-
-                    Bet bet = bets.stream()
-                        .filter(innerBet -> innerBet.getStatus() == BetStatus.OPENED).findFirst().get();
-
-                    log.debug("\nSETTLE BET: Bet before settlement : {}", bet);
-
-                    BigDecimal amount;
-                    BigDecimal placedAmount = account.getPlacedAmount().subtract(bet.getAmount());
-
-                    if (isBetWon(matchDTO, bet)) {
-                        amount = account.getAmount().add(bet.getAmount().multiply(BigDecimal.valueOf(bet.getOdds())));
-                    } else {
-                        amount = account.getAmount();
-                    }
-
-                    bet.setStatus(BetStatus.CLOSED);
-                    bet.setWinner(matchDTO.getWinner());
-                    bet.setSettledDate(Instant.now());
-                    betRepository.saveAndFlush(bet);
-                    log.debug("\nSETTLE BET: Bet after settlement : {}", bet);
-
-                    saveAccount(account, amount, placedAmount);
-
-                    saveAccountDetail(account.getAmount(), account.getId(), BigDecimal.ZERO, bet.getId());
-                }
-            }
-        }
-    }
-
-    private boolean isBetWon(MatchDTO matchDTO, Bet bet) {
-        return bet.getBetSide().name().equals(matchDTO.getWinner().name());
     }
 
     public void saveUpcomingMatches() {
@@ -328,14 +281,80 @@ public class ScheduledService {
 
             //            log.debug("\nSuspended MatchDTO to update : {}", matchDTO);
 
-            Match excitedMatch = matchRepository.findOne(matchDTO.getId());
-            if (excitedMatch != null) {
-                excitedMatch.setStatus(MatchStatus.SUSPENDED);
-                excitedMatch.setUpdatedDate(Instant.now());
-                matchRepository.save(excitedMatch);
-//                log.debug("\nUpdated Suspended Match : {}", excitedMatch);
+            Match existedMatch = matchRepository.findOne(matchDTO.getId());
+            if (existedMatch != null) {
+                matchRepository.save(existedMatch.status(MatchStatus.SUSPENDED).updatedDate(Instant.now()));
+//                log.debug("\nUpdated Suspended Match : {}", existedMatch);
             }
         }
     }
 
+    public void prepareMatchesToFinish(){
+        List<Match> matches =
+            matchRepository.findByStatusAndUpdatedDateBefore(MatchStatus.LIVE, Instant.now().minusSeconds(1800L));
+        for (Match match: matches){
+            saveMatchAsReadyToFinish(match);
+        }
+    }
+
+    private void saveMatchAsReadyToFinish(Match match) {
+        log.debug("\nPREPARE TO FINISH: Match : {}", match);
+        match.setStatus(MatchStatus.READY_TO_FINISH);
+
+        Integer matchHomeScore = match.getHomeScore();
+        Integer matchAwayScore = match.getAwayScore();
+
+        if (matchHomeScore.compareTo(matchAwayScore) > 0) {
+            match.setWinner(Winner.HOME);
+        } else if (matchHomeScore.compareTo(matchAwayScore) < 0) {
+            match.setWinner(Winner.AWAY);
+        }
+
+        matchRepository.save(match);
+        log.debug("\nPREPARE TO FINISH: Saved Match : {}", match);
+
+        matchCache.deleteFromCache(match.getId());
+    }
+
+    public void finishMatchsAndSettleBets(){
+        List<Match> matchesToFinish = matchRepository.findByStatus(MatchStatus.READY_TO_FINISH);
+        for (Match match: matchesToFinish){
+            if (match.isScoreCorrect()){
+                matchRepository.save(match.status(MatchStatus.FINISHED));
+                log.debug("\nFINISH MATCH: Saved Match : {}", match);
+
+                settleBets(betRepository.findByMatchIdAndStatus(match.getId(), BetStatus.OPENED), match.getWinner());
+            }
+        }
+    }
+
+    private void settleBets(Set<Bet> bets, Winner winner) {
+
+        Account account = accountRepository.findOne(1L);
+        log.debug("\nSETTLE BET: Account before settlement: {}", account);
+
+        for (Bet bet: bets) {
+            log.debug("\nSETTLE BET: Bet before settlement : {}", bet);
+
+            BigDecimal amount;
+            BigDecimal placedAmount = account.getPlacedAmount().subtract(bet.getAmount());
+
+            if (isBetWon(bet, winner.name())) {
+                amount = account.getAmount().add(bet.getAmount().multiply(BigDecimal.valueOf(bet.getOdds())));
+            } else {
+                amount = account.getAmount();
+            }
+
+            betRepository.saveAndFlush(bet.status(BetStatus.CLOSED).winner(winner).settledDate(Instant.now()));
+            log.debug("\nSETTLE BET: Bet after settlement : {}", bet);
+
+            saveAccount(account, amount, placedAmount);
+
+            saveAccountDetail(account.getAmount(), account.getId(), BigDecimal.ZERO, bet.getId());
+        }
+    }
+
+    private boolean isBetWon(Bet bet, String winnerName) {
+        return bet.getBetSide().name().equals(winnerName);
+    }
 }

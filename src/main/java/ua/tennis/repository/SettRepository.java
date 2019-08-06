@@ -9,4 +9,6 @@ import ua.tennis.domain.Sett;
 @Repository
 public interface SettRepository extends JpaRepository<Sett, Long> {
 
+    Sett findBySetNumberAndMatchId(int currentSetNumber, Long matchId);
+
 }

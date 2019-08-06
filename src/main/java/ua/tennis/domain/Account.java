@@ -47,6 +47,11 @@ public class Account implements Serializable {
         this.amount = amount;
     }
 
+    public Account amount(BigDecimal amount) {
+        this.amount = amount;
+        return this;
+    }
+
     public Instant getUpdatedDate() {
         return updatedDate;
     }
@@ -55,12 +60,22 @@ public class Account implements Serializable {
         this.updatedDate = updatedDate;
     }
 
+    public Account updatedDate(Instant updatedDate) {
+        this.updatedDate = updatedDate;
+        return this;
+    }
+
     public BigDecimal getPlacedAmount() {
         return placedAmount;
     }
 
     public void setPlacedAmount(BigDecimal placedAmount) {
         this.placedAmount = placedAmount;
+    }
+
+    public Account placedAmount(BigDecimal placedAmount) {
+        this.placedAmount = placedAmount;
+        return this;
     }
 
     public Set<AccountDetail> getAccountDetails() {
