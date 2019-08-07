@@ -93,12 +93,12 @@ public class ScheduledRepository {
 
         int currentSetNumber = StringUtils.isNumeric(period.substring(0, 1)) ? Integer.valueOf(period.substring(0, 1)) : 0;
         matchDTO.setCurrentSetNumber(currentSetNumber);
+        fillMatchByScores(matchDTO);
 
         Integer setHomeScore = settDTOs.get(currentSetNumber - 1).getHomeScore();
         Integer setAwayScore = settDTOs.get(currentSetNumber - 1).getAwayScore();
 
         if (!setHomeScore.equals(INTEGER_ZERO) || setAwayScore.equals(INTEGER_ZERO)) {
-            fillMatchByScores(matchDTO);
 
             if (isZeroPoints((List<String>) scoreboardSlim.get("points"))) {
 
