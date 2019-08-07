@@ -122,7 +122,6 @@ public class ScheduledService {
                 createOrUpdateSett(matchDTO);
                 updateMatch(match);
 
-                //TODO java.lang.IndexOutOfBoundsException: Index: 0, Size: 0
                 log.debug("\nPLACE BET: \n Request for MatchDTO with \n POTENTIAL ERROR : {}", matchDTO);
 
                 List<GameDTO> gameDTOs = matchDTO.getSetts().get(matchDTO.getCurrentSetNumber() - 1).getGames();
@@ -177,35 +176,38 @@ public class ScheduledService {
 
 //        log.debug("\nPLACE BET: KellyCoefficient = {} for Match id :{}", kellyCoefficient, match.getId());
 
-        Account account = accountRepository.findOne(1L);
+        if (kellyCoefficient != 1.0) {
 
-        if (account.getAmount().compareTo(BigDecimal.ZERO) > 0) {
+            Account account = accountRepository.findOne(1L);
+
+            if (account.getAmount().compareTo(BigDecimal.ZERO) > 0) {
 
 //        log.debug("\nPLACE BET: Account before placing : {} ", account);
 
-            BigDecimal stakeAmount = account.getAmount().multiply(BigDecimal.valueOf(kellyCoefficient));
+                BigDecimal stakeAmount = account.getAmount().multiply(BigDecimal.valueOf(kellyCoefficient));
 
 //        log.debug("\nPLACE BET: stakeAmount = {} ", stakeAmount);
 
-            BetDTO betDTO = new BetDTO();
-            betDTO.setAmount(stakeAmount);
-            betDTO.setOdds(odds);
-            betDTO.setBetSide(betSide);
-            betDTO.setPlacedDate(Instant.now());
-            betDTO.setMatchId(match.getId());
-            betDTO.setKellyCoefficient(kellyCoefficient);
-            betDTO.setCountedProbability(probability);
-            betDTO.setBookmakerProbability(calculatorService.getRoundedDoubleNumber(1 / bookmakerOddsWithoutMarge));
+                BetDTO betDTO = new BetDTO();
+                betDTO.setAmount(stakeAmount);
+                betDTO.setOdds(odds);
+                betDTO.setBetSide(betSide);
+                betDTO.setPlacedDate(Instant.now());
+                betDTO.setMatchId(match.getId());
+                betDTO.setKellyCoefficient(kellyCoefficient);
+                betDTO.setCountedProbability(probability);
+                betDTO.setBookmakerProbability(calculatorService.getRoundedDoubleNumber(1 / bookmakerOddsWithoutMarge));
 
-            if (match.getBets().stream().noneMatch(bet -> bet.getStatus() == BetStatus.OPENED)) {
-                Bet savedBet = saveBet(betDTO, BetStatus.OPENED);
+                if (match.getBets().stream().noneMatch(bet -> bet.getStatus() == BetStatus.OPENED)) {
+                    Bet savedBet = saveBet(betDTO, BetStatus.OPENED);
 
-                saveAccount(account, account.getAmount().subtract(stakeAmount), account.getPlacedAmount().add(stakeAmount));
+                    saveAccount(account, account.getAmount().subtract(stakeAmount), account.getPlacedAmount().add(stakeAmount));
 
-                saveAccountDetail(account.getAmount(), account.getId(), stakeAmount, savedBet.getId());
+                    saveAccountDetail(account.getAmount(), account.getId(), stakeAmount, savedBet.getId());
 
-            } else {
+                } else {
 //            saveBet(betDTO, BetStatus.POTENTIAL);
+                }
             }
         }
     }
@@ -257,9 +259,9 @@ public class ScheduledService {
 
 //            log.debug("\nMatchDTO to save : {}", matchDTO);
 
-            Match excitedMatch = matchRepository.findOne(matchDTO.getId());
-            if (excitedMatch != null) {
-                Odds existedOdds = oddsRepository.findTopByMatchIdOrderByCheckDateDesc(excitedMatch.getId());
+            Match existedMatch = matchRepository.findOne(matchDTO.getId());
+            if (existedMatch != null) {
+                Odds existedOdds = oddsRepository.findTopByMatchIdOrderByCheckDateDesc(existedMatch.getId());
 
                 List<OddsDTO> oddsDTOs = matchDTO.getOdds();
                 if (!oddsDTOs.isEmpty()) {
@@ -269,7 +271,7 @@ public class ScheduledService {
                         || !oddsDTO.getAwayOdds().equals(existedOdds.getAwayOdds())) {
 
                         Odds odds = oddsRepository.saveAndFlush(oddsMapper.toEntity(oddsDTO));
-//                        log.debug("\nSaved Odds : {} \n for existed Match : {}", odds, excitedMatch);
+//                        log.debug("\nSaved Odds : {} \n for existed Match : {}", odds, existedMatch);
 
                     }
                 }
