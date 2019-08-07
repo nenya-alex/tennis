@@ -174,7 +174,4 @@ public class CalculatorService {
         return new BigDecimal(number).setScale(SCALE, RoundingMode.HALF_EVEN).doubleValue();
     }
 
-    public int getSCALE() {
-        return SCALE;
-    }
 }

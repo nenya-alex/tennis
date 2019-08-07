@@ -9,6 +9,7 @@ import ua.tennis.domain.*;
 import ua.tennis.domain.enumeration.BetSide;
 import ua.tennis.domain.enumeration.BetStatus;
 import ua.tennis.domain.enumeration.MatchStatus;
+import ua.tennis.domain.enumeration.Winner;
 import ua.tennis.repository.*;
 import ua.tennis.service.dto.*;
 import ua.tennis.service.mapper.*;
@@ -124,17 +125,20 @@ public class ScheduledService {
                 //TODO java.lang.IndexOutOfBoundsException: Index: 0, Size: 0
                 log.debug("\nPLACE BET: \n Request for MatchDTO with \n POTENTIAL ERROR : {}", matchDTO);
 
-                GameDTO gameDTO = matchDTO.getSetts().get(0).getGames().get(0);
+                List<GameDTO> gameDTOs = matchDTO.getSetts().get(matchDTO.getCurrentSetNumber() - 1).getGames();
+                if (!gameDTOs.isEmpty()) {
+                    GameDTO gameDTO = gameDTOs.get(0);
 
-                double homeOdds = gameDTO.getOddsDTO().getHomeOdds();
-                double awayOdds = gameDTO.getOddsDTO().getAwayOdds();
-                double bookmakersHomeProbability = calculatorService.getRoundedDoubleNumber(awayOdds / (homeOdds + awayOdds));
-                double homeProbability = gameDTO.getHomeProbability();
+                    double homeOdds = gameDTO.getOddsDTO().getHomeOdds();
+                    double awayOdds = gameDTO.getOddsDTO().getAwayOdds();
+                    double bookmakersHomeProbability = calculatorService.getRoundedDoubleNumber(awayOdds / (homeOdds + awayOdds));
+                    double homeProbability = gameDTO.getHomeProbability();
 
-                if (gameDTO.getHomeProbability() > bookmakersHomeProbability * MULTIPLIER) {
-                    place(match, homeOdds, calculatorService.getRoundedDoubleNumber((homeOdds + awayOdds) / awayOdds), homeProbability, BetSide.HOME);
-                } else if ((1 - gameDTO.getHomeProbability()) > (1 - bookmakersHomeProbability) * MULTIPLIER) {
-                    place(match, awayOdds, calculatorService.getRoundedDoubleNumber((homeOdds + awayOdds) / homeOdds), 1 - homeProbability, BetSide.AWAY);
+                    if (gameDTO.getHomeProbability() > bookmakersHomeProbability * MULTIPLIER) {
+                        place(match, homeOdds, calculatorService.getRoundedDoubleNumber((homeOdds + awayOdds) / awayOdds), homeProbability, BetSide.HOME);
+                    } else if ((1 - gameDTO.getHomeProbability()) > (1 - bookmakersHomeProbability) * MULTIPLIER) {
+                        place(match, awayOdds, calculatorService.getRoundedDoubleNumber((homeOdds + awayOdds) / homeOdds), 1 - homeProbability, BetSide.AWAY);
+                    }
                 }
             }
         }
@@ -158,7 +162,7 @@ public class ScheduledService {
             settRepository.save(settMapper.toEntity(settDTO));
         } else {
             settRepository.save(sett.homeScore(settDTO.getHomeScore()).awayScore(settDTO.getAwayScore())
-                    .homeProbability(settDTO.getHomeProbability()));
+                .homeProbability(settDTO.getHomeProbability()));
         }
 //        log.debug("\nPLACE BET: Saved Sett : {}", sett);
     }
@@ -215,7 +219,7 @@ public class ScheduledService {
     }
 
     private void saveAccount(Account account, BigDecimal amount, BigDecimal placedAmount) {
-        accountRepository.saveAndFlush(account.amount(amount).updatedDate(Instant.now()).placedAmount(placedAmount);
+        accountRepository.saveAndFlush(account.amount(amount).updatedDate(Instant.now()).placedAmount(placedAmount));
         log.debug("\nSaved Account after action: {}", account);
     }
 
@@ -289,10 +293,10 @@ public class ScheduledService {
         }
     }
 
-    public void prepareMatchesToFinish(){
+    public void prepareMatchesToFinish() {
         List<Match> matches =
             matchRepository.findByStatusAndUpdatedDateBefore(MatchStatus.LIVE, Instant.now().minusSeconds(1800L));
-        for (Match match: matches){
+        for (Match match : matches) {
             saveMatchAsReadyToFinish(match);
         }
     }
@@ -316,10 +320,10 @@ public class ScheduledService {
         matchCache.deleteFromCache(match.getId());
     }
 
-    public void finishMatchsAndSettleBets(){
+    public void finishMatchsAndSettleBets() {
         List<Match> matchesToFinish = matchRepository.findByStatus(MatchStatus.READY_TO_FINISH);
-        for (Match match: matchesToFinish){
-            if (match.isScoreCorrect()){
+        for (Match match : matchesToFinish) {
+            if (match.isScoreCorrect()) {
                 matchRepository.save(match.status(MatchStatus.FINISHED));
                 log.debug("\nFINISH MATCH: Saved Match : {}", match);
 
@@ -333,7 +337,7 @@ public class ScheduledService {
         Account account = accountRepository.findOne(1L);
         log.debug("\nSETTLE BET: Account before settlement: {}", account);
 
-        for (Bet bet: bets) {
+        for (Bet bet : bets) {
             log.debug("\nSETTLE BET: Bet before settlement : {}", bet);
 
             BigDecimal amount;

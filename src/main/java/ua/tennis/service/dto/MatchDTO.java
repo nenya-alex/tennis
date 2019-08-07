@@ -254,7 +254,7 @@ public class MatchDTO implements Serializable {
             ", homeMatchProbability=" + homeMatchProbability +"\n" +
             ", status=" + status +"\n" +
             ", winner=" + winner + "\n" +
-            ", periodNumber=" + currentSetNumber + "\n" +
+            ", currentSetNumber=" + currentSetNumber + "\n" +
             ", odds=" + odds + "\n" +
             ", setts=" + setts +
             '}';
