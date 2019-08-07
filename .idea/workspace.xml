@@ -1,17 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="1134ab4c-b41f-4cdb-9270-7db41128e82a" name="Default" comment="fixed Sett errors">
+    <list default="true" id="1134ab4c-b41f-4cdb-9270-7db41128e82a" name="Default" comment="Finished settlement Bets">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ua/tennis/domain/Account.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ua/tennis/domain/Account.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ua/tennis/domain/Bet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ua/tennis/domain/Bet.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ua/tennis/domain/Match.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ua/tennis/domain/Match.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ua/tennis/repository/BetRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ua/tennis/repository/BetRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ua/tennis/repository/MatchRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ua/tennis/repository/MatchRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ua/tennis/repository/ScheduledRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ua/tennis/repository/ScheduledRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ua/tennis/scheduler/MatchScheduler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ua/tennis/scheduler/MatchScheduler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ua/tennis/service/ScheduledService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ua/tennis/service/ScheduledService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/config/liquibase/changelog/20190609131945_added_entity_Match.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/config/liquibase/changelog/20190609131945_added_entity_Match.xml" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -123,12 +114,7 @@
       </map>
     </option>
   </component>
-  <component name="ProjectFrameBounds">
-    <option name="x" value="-8" />
-    <option name="y" value="-8" />
-    <option name="width" value="1936" />
-    <option name="height" value="1056" />
-  </component>
+  <component name="ProjectId" id="1P5R9FwPQx68u4NOlfNAMzRmTwk" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
     <ConfirmationsSetting value="2" id="Add" />
   </component>
@@ -138,7 +124,8 @@
     <property name="aspect.path.notification.shown" value="true" />
     <property name="com.intellij.database.dataSource.DataSourceTemplate" value="PostgreSQL" />
     <property name="extract.method.default.visibility" value="private" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/.gradle" />
+    <property name="last_opened_file_path" value="$USER_HOME$/Projects/apollo" />
+    <property name="nodejs_package_manager_path" value="yarn" />
     <property name="settings.editor.selected.configurable" value="project.propVCSSupport.Ignored.Files" />
   </component>
   <component name="Push.Settings">
@@ -412,6 +399,7 @@
       <workItem from="1564502357910" duration="4869000" />
       <workItem from="1564680532678" duration="2026000" />
       <workItem from="1565029429434" duration="2390000" />
+      <workItem from="1565161822926" duration="14000" />
     </task>
     <task id="LOCAL-00001" summary="added imports">
       <created>1562961638807</created>
@@ -623,7 +611,14 @@
       <option name="project" value="LOCAL" />
       <updated>1565092893295</updated>
     </task>
-    <option name="localTasksCounter" value="31" />
+    <task id="LOCAL-00031" summary="Finished settlement Bets">
+      <created>1565099192430</created>
+      <option name="number" value="00031" />
+      <option name="presentableId" value="LOCAL-00031" />
+      <option name="project" value="LOCAL" />
+      <updated>1565099192430</updated>
+    </task>
+    <option name="localTasksCounter" value="32" />
     <servers />
   </component>
   <component name="UnknownFeatures">
@@ -669,7 +664,8 @@
     <MESSAGE value="fixed Sett errors" />
     <MESSAGE value="added job that checks Matches READY_TO_FINISH" />
     <MESSAGE value="finished Ready to Finish Match" />
-    <option name="LAST_COMMIT_MESSAGE" value="finished Ready to Finish Match" />
+    <MESSAGE value="Finished settlement Bets" />
+    <option name="LAST_COMMIT_MESSAGE" value="Finished settlement Bets" />
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
   </component>
   <component name="antWorkspaceConfiguration">
