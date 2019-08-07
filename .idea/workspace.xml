@@ -3,7 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="1134ab4c-b41f-4cdb-9270-7db41128e82a" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/config/application-dev.yml" afterPath="$PROJECT_DIR$/src/main/resources/config/application-dev.yml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/ua/tennis/scheduler/MatchScheduler.java" afterPath="$PROJECT_DIR$/src/main/java/ua/tennis/scheduler/MatchScheduler.java" />
     </list>
     <ignored path="$PROJECT_DIR$/.gradle/" />
     <ignored path="$PROJECT_DIR$/build/classes/" />
@@ -110,11 +110,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="375">
-      <file leaf-file-name="ScheduledService.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="ScheduledService.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/ua/tennis/service/ScheduledService.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="123">
-              <caret line="175" column="46" lean-forward="false" selection-start-line="175" selection-start-column="46" selection-end-line="175" selection-end-column="46" />
+            <state relative-caret-position="-176">
+              <caret line="124" column="77" lean-forward="false" selection-start-line="124" selection-start-column="77" selection-end-line="124" selection-end-column="77" />
               <folding />
             </state>
           </provider>
@@ -130,79 +130,14 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="MatchScheduler.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="MatchScheduler.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/ua/tennis/scheduler/MatchScheduler.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="170">
-              <caret line="24" column="0" lean-forward="false" selection-start-line="24" selection-start-column="0" selection-end-line="24" selection-end-column="0" />
+            <state relative-caret-position="259">
+              <caret line="21" column="53" lean-forward="false" selection-start-line="21" selection-start-column="53" selection-end-line="21" selection-end-column="53" />
               <folding>
+                <element signature="e#708#709#0" expanded="true" />
                 <element signature="e#758#759#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="MatchDTO.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/ua/tennis/service/dto/MatchDTO.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="337">
-              <caret line="256" column="31" lean-forward="false" selection-start-line="256" selection-start-column="31" selection-end-line="256" selection-end-column="31" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Match.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/ua/tennis/domain/Match.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="37">
-              <caret line="255" column="70" lean-forward="false" selection-start-line="255" selection-start-column="70" selection-end-line="255" selection-end-column="70" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Sett.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/ua/tennis/domain/Sett.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="44">
-              <caret line="2" column="0" lean-forward="false" selection-start-line="2" selection-start-column="0" selection-end-line="2" selection-end-column="0" />
-              <folding>
-                <element signature="imports" expanded="false" />
-                <element signature="e#953#954#0" expanded="false" />
-                <element signature="e#978#979#0" expanded="false" />
-                <element signature="e#1012#1013#0" expanded="false" />
-                <element signature="e#1040#1041#0" expanded="false" />
-                <element signature="e#1077#1078#0" expanded="false" />
-                <element signature="e#1109#1110#0" expanded="false" />
-                <element signature="e#1271#1272#0" expanded="false" />
-                <element signature="e#1313#1314#0" expanded="false" />
-                <element signature="e#1350#1351#0" expanded="false" />
-                <element signature="e#1382#1383#0" expanded="false" />
-                <element signature="e#1544#1545#0" expanded="false" />
-                <element signature="e#1586#1587#0" expanded="false" />
-                <element signature="e#1628#1629#0" expanded="false" />
-                <element signature="e#1666#1667#0" expanded="false" />
-                <element signature="e#1862#1863#0" expanded="false" />
-                <element signature="e#1916#1917#0" expanded="false" />
-                <element signature="e#1958#1959#0" expanded="false" />
-                <element signature="e#1996#1997#0" expanded="false" />
-                <element signature="e#2192#2193#0" expanded="false" />
-                <element signature="e#2246#2247#0" expanded="false" />
-                <element signature="e#2281#2282#0" expanded="false" />
-                <element signature="e#2309#2310#0" expanded="false" />
-                <element signature="e#2703#2704#0" expanded="false" />
-                <element signature="e#2737#2738#0" expanded="false" />
-                <element signature="e#2768#2769#0" expanded="false" />
-                <element signature="e#2796#2797#0" expanded="false" />
-                <element signature="e#2930#2931#0" expanded="false" />
-                <element signature="e#2964#2965#0" expanded="false" />
-                <element signature="e#3001#3002#0" expanded="false" />
-                <element signature="e#3033#3034#0" expanded="false" />
-                <element signature="e#3084#3085#0" expanded="false" />
-                <element signature="e#3126#3127#0" expanded="false" />
-                <element signature="e#3554#3555#0" expanded="false" />
-                <element signature="e#3602#3603#0" expanded="false" />
               </folding>
             </state>
           </provider>
@@ -211,8 +146,8 @@
       <file leaf-file-name="SettDTO.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/ua/tennis/service/dto/SettDTO.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="402">
-              <caret line="124" column="24" lean-forward="false" selection-start-line="124" selection-start-column="11" selection-end-line="124" selection-end-column="24" />
+            <state relative-caret-position="457">
+              <caret line="171" column="16" lean-forward="false" selection-start-line="171" selection-start-column="16" selection-end-line="171" selection-end-column="16" />
               <folding>
                 <element signature="e#2763#2764#0" expanded="true" />
                 <element signature="e#2791#2792#0" expanded="true" />
@@ -797,7 +732,6 @@
         <option value="$PROJECT_DIR$/src/main/java/ua/tennis/domain/enumeration/BetStatus.java" />
         <option value="$PROJECT_DIR$/src/main/resources/config/liquibase/data/account.csv" />
         <option value="$PROJECT_DIR$/src/main/resources/config/liquibase/changelog/20190719071700_added_entity_Account.xml" />
-        <option value="$PROJECT_DIR$/src/main/java/ua/tennis/scheduler/MatchScheduler.java" />
         <option value="$PROJECT_DIR$/src/main/java/ua/tennis/domain/AccountDetail.java" />
         <option value="$PROJECT_DIR$/src/main/java/ua/tennis/domain/Account.java" />
         <option value="$PROJECT_DIR$/src/main/java/ua/tennis/domain/Game.java" />
@@ -817,14 +751,12 @@
         <option value="$PROJECT_DIR$/src/main/resources/logback-spring.xml" />
         <option value="$PROJECT_DIR$/logFile.2019-07-29.log" />
         <option value="$PROJECT_DIR$/src/main/resources/config/liquibase/changelog/20190718045016_added_entity_Bet.xml" />
-        <option value="$PROJECT_DIR$/src/main/java/ua/tennis/service/CalculatorService.java" />
         <option value="$PROJECT_DIR$/src/main/java/ua/tennis/domain/enumeration/MatchWinner.java" />
         <option value="$PROJECT_DIR$/src/main/java/ua/tennis/domain/enumeration/Winner.java" />
         <option value="$PROJECT_DIR$/src/main/java/ua/tennis/service/dto/BetDTO.java" />
         <option value="$PROJECT_DIR$/src/main/java/ua/tennis/domain/Bet.java" />
         <option value="$PROJECT_DIR$/.gitignore" />
         <option value="$PROJECT_DIR$/src/main/resources/config/liquibase/changelog/20190609131945_added_entity_Match.xml" />
-        <option value="$PROJECT_DIR$/src/main/java/ua/tennis/service/dto/SettDTO.java" />
         <option value="$PROJECT_DIR$/src/main/java/ua/tennis/repository/SettRepository.java" />
         <option value="$PROJECT_DIR$/src/main/java/ua/tennis/domain/Sett.java" />
         <option value="$PROJECT_DIR$/src/main/java/ua/tennis/repository/MatchRepository.java" />
@@ -833,8 +765,11 @@
         <option value="$PROJECT_DIR$/src/main/java/ua/tennis/domain/Match.java" />
         <option value="$PROJECT_DIR$/src/main/java/ua/tennis/repository/ScheduledRepository.java" />
         <option value="$PROJECT_DIR$/src/main/java/ua/tennis/service/dto/MatchDTO.java" />
-        <option value="$PROJECT_DIR$/src/main/java/ua/tennis/service/ScheduledService.java" />
         <option value="$PROJECT_DIR$/src/main/resources/config/application-dev.yml" />
+        <option value="$PROJECT_DIR$/src/main/java/ua/tennis/service/CalculatorService.java" />
+        <option value="$PROJECT_DIR$/src/main/java/ua/tennis/service/dto/SettDTO.java" />
+        <option value="$PROJECT_DIR$/src/main/java/ua/tennis/service/ScheduledService.java" />
+        <option value="$PROJECT_DIR$/src/main/java/ua/tennis/scheduler/MatchScheduler.java" />
       </list>
     </option>
   </component>
@@ -1015,7 +950,7 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="scheduler" />
+              <option name="myItemId" value="service" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -1045,7 +980,7 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="domain" />
+              <option name="myItemId" value="scheduler" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -1539,7 +1474,7 @@
       <workItem from="1564680532678" duration="2026000" />
       <workItem from="1565029429434" duration="2421000" />
       <workItem from="1565111412736" duration="615000" />
-      <workItem from="1565112394336" duration="6621000" />
+      <workItem from="1565112394336" duration="9083000" />
     </task>
     <task id="LOCAL-00001" summary="added imports">
       <created>1562961638807</created>
@@ -1765,11 +1700,25 @@
       <option name="project" value="LOCAL" />
       <updated>1565118860024</updated>
     </task>
-    <option name="localTasksCounter" value="33" />
+    <task id="LOCAL-00033" summary="changed DB name">
+      <created>1565119053976</created>
+      <option name="number" value="00033" />
+      <option name="presentableId" value="LOCAL-00033" />
+      <option name="project" value="LOCAL" />
+      <updated>1565119053976</updated>
+    </task>
+    <task id="LOCAL-00034" summary="fixed an error">
+      <created>1565152555083</created>
+      <option name="number" value="00034" />
+      <option name="presentableId" value="LOCAL-00034" />
+      <option name="project" value="LOCAL" />
+      <updated>1565152555083</updated>
+    </task>
+    <option name="localTasksCounter" value="35" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="73948000" />
+    <option name="totallyTimeSpent" value="76410000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
@@ -1785,7 +1734,7 @@
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.45200893" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.4408482" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Image Layers" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
@@ -1849,8 +1798,6 @@
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_NEW_TODO" value="false" />
-    <MESSAGE value="getting homeProbability from DB" />
-    <MESSAGE value="added Bet entity" />
     <MESSAGE value="working version" />
     <MESSAGE value="changed Bet entity" />
     <MESSAGE value="added Account entity" />
@@ -1874,7 +1821,9 @@
     <MESSAGE value="fixed errors - 2" />
     <MESSAGE value="fixed errors - 3" />
     <MESSAGE value="fixed errors - 4" />
-    <option name="LAST_COMMIT_MESSAGE" value="fixed errors - 4" />
+    <MESSAGE value="changed DB name" />
+    <MESSAGE value="fixed an error" />
+    <option name="LAST_COMMIT_MESSAGE" value="fixed an error" />
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
   </component>
   <component name="XDebuggerManager">
@@ -2092,13 +2041,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/ua/tennis/service/CalculatorService.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="566">
-          <caret line="172" column="34" lean-forward="false" selection-start-line="172" selection-start-column="34" selection-end-line="172" selection-end-column="34" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/resources/config/liquibase/changelog/20190609131945_added_entity_Match.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="632">
@@ -2141,50 +2083,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/ua/tennis/domain/Sett.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="44">
-          <caret line="2" column="0" lean-forward="false" selection-start-line="2" selection-start-column="0" selection-end-line="2" selection-end-column="0" />
-          <folding>
-            <element signature="imports" expanded="false" />
-            <element signature="e#953#954#0" expanded="false" />
-            <element signature="e#978#979#0" expanded="false" />
-            <element signature="e#1012#1013#0" expanded="false" />
-            <element signature="e#1040#1041#0" expanded="false" />
-            <element signature="e#1077#1078#0" expanded="false" />
-            <element signature="e#1109#1110#0" expanded="false" />
-            <element signature="e#1271#1272#0" expanded="false" />
-            <element signature="e#1313#1314#0" expanded="false" />
-            <element signature="e#1350#1351#0" expanded="false" />
-            <element signature="e#1382#1383#0" expanded="false" />
-            <element signature="e#1544#1545#0" expanded="false" />
-            <element signature="e#1586#1587#0" expanded="false" />
-            <element signature="e#1628#1629#0" expanded="false" />
-            <element signature="e#1666#1667#0" expanded="false" />
-            <element signature="e#1862#1863#0" expanded="false" />
-            <element signature="e#1916#1917#0" expanded="false" />
-            <element signature="e#1958#1959#0" expanded="false" />
-            <element signature="e#1996#1997#0" expanded="false" />
-            <element signature="e#2192#2193#0" expanded="false" />
-            <element signature="e#2246#2247#0" expanded="false" />
-            <element signature="e#2281#2282#0" expanded="false" />
-            <element signature="e#2309#2310#0" expanded="false" />
-            <element signature="e#2703#2704#0" expanded="false" />
-            <element signature="e#2737#2738#0" expanded="false" />
-            <element signature="e#2768#2769#0" expanded="false" />
-            <element signature="e#2796#2797#0" expanded="false" />
-            <element signature="e#2930#2931#0" expanded="false" />
-            <element signature="e#2964#2965#0" expanded="false" />
-            <element signature="e#3001#3002#0" expanded="false" />
-            <element signature="e#3033#3034#0" expanded="false" />
-            <element signature="e#3084#3085#0" expanded="false" />
-            <element signature="e#3126#3127#0" expanded="false" />
-            <element signature="e#3554#3555#0" expanded="false" />
-            <element signature="e#3602#3603#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/ua/tennis/repository/MatchRepository.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="176">
@@ -2224,24 +2122,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/ua/tennis/domain/Match.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="37">
-          <caret line="255" column="70" lean-forward="false" selection-start-line="255" selection-start-column="70" selection-end-line="255" selection-end-column="70" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/ua/tennis/scheduler/MatchScheduler.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="170">
-          <caret line="24" column="0" lean-forward="false" selection-start-line="24" selection-start-column="0" selection-end-line="24" selection-end-column="0" />
-          <folding>
-            <element signature="e#758#759#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="jar://C:/Program Files/Java/jdk1.8.0_102/src.zip!/java/lang/Math.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="193">
@@ -2249,33 +2129,6 @@
           <folding>
             <element signature="e#49043#49044#0" expanded="false" />
             <element signature="e#49082#49083#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/ua/tennis/repository/ScheduledRepository.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="145">
-          <caret line="137" column="0" lean-forward="false" selection-start-line="137" selection-start-column="0" selection-end-line="137" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/ua/tennis/service/dto/MatchDTO.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="337">
-          <caret line="256" column="31" lean-forward="false" selection-start-line="256" selection-start-column="31" selection-end-line="256" selection-end-column="31" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/ua/tennis/service/dto/SettDTO.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="402">
-          <caret line="124" column="24" lean-forward="false" selection-start-line="124" selection-start-column="11" selection-end-line="124" selection-end-column="24" />
-          <folding>
-            <element signature="e#2763#2764#0" expanded="true" />
-            <element signature="e#2791#2792#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -2296,11 +2149,73 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/ua/tennis/service/dto/SettDTO.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="457">
+          <caret line="171" column="16" lean-forward="false" selection-start-line="171" selection-start-column="16" selection-end-line="171" selection-end-column="16" />
+          <folding>
+            <element signature="e#2763#2764#0" expanded="true" />
+            <element signature="e#2791#2792#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/ua/tennis/domain/Sett.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="44">
+          <caret line="2" column="0" lean-forward="false" selection-start-line="2" selection-start-column="0" selection-end-line="2" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/ua/tennis/domain/Match.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="37">
+          <caret line="255" column="70" lean-forward="false" selection-start-line="255" selection-start-column="70" selection-end-line="255" selection-end-column="70" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/ua/tennis/service/dto/MatchDTO.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="391">
+          <caret line="256" column="31" lean-forward="false" selection-start-line="256" selection-start-column="31" selection-end-line="256" selection-end-column="31" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/ua/tennis/service/CalculatorService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-2882">
+          <caret line="16" column="8" lean-forward="true" selection-start-line="16" selection-start-column="8" selection-end-line="16" selection-end-column="8" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/ua/tennis/service/ScheduledService.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="123">
-          <caret line="175" column="46" lean-forward="false" selection-start-line="175" selection-start-column="46" selection-end-line="175" selection-end-column="46" />
+        <state relative-caret-position="-176">
+          <caret line="124" column="77" lean-forward="false" selection-start-line="124" selection-start-column="77" selection-end-line="124" selection-end-column="77" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/ua/tennis/repository/ScheduledRepository.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="145">
+          <caret line="137" column="0" lean-forward="false" selection-start-line="137" selection-start-column="0" selection-end-line="137" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/ua/tennis/scheduler/MatchScheduler.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="259">
+          <caret line="21" column="53" lean-forward="false" selection-start-line="21" selection-start-column="53" selection-end-line="21" selection-end-column="53" />
+          <folding>
+            <element signature="e#708#709#0" expanded="true" />
+            <element signature="e#758#759#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
