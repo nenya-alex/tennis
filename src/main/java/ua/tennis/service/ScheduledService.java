@@ -119,7 +119,7 @@ public class ScheduledService {
             Match match = matchRepository.findOne(matchDTO.getId());
 
             if (match != null) {
-                createOrUpdateSett(matchDTO);
+                createOrUpdateSetts(matchDTO);
                 updateMatch(match);
 
                 log.debug("\nPLACE BET: \n Request for MatchDTO with \n POTENTIAL ERROR : {}", matchDTO);
@@ -151,19 +151,18 @@ public class ScheduledService {
         }
     }
 
-    private void createOrUpdateSett(MatchDTO matchDTO) {
-        SettDTO settDTO = matchDTO.getSetts().get(matchDTO.getCurrentSetNumber() - 1);
+    private void createOrUpdateSetts(MatchDTO matchDTO) {
+        for (SettDTO settDTO : matchDTO.getSetts()) {
 //        log.debug("\nPLACE BET: Request for saving SettDTO : {}", settDTO);
+            Sett sett = settRepository.findBySetNumberAndMatchId(settDTO.getSetNumber(), matchDTO.getId());
 
-        Sett sett = settRepository.findBySetNumberAndMatchId(matchDTO.getCurrentSetNumber(), matchDTO.getId());
-
-        if (sett == null) {
-            settRepository.save(settMapper.toEntity(settDTO));
-        } else {
-            settRepository.save(sett.homeScore(settDTO.getHomeScore()).awayScore(settDTO.getAwayScore())
-                .homeProbability(settDTO.getHomeProbability()));
-        }
+            if (sett == null) {
+                settRepository.save(settMapper.toEntity(settDTO));
+            } else {
+                settRepository.save(sett.homeScore(settDTO.getHomeScore()).awayScore(settDTO.getAwayScore()));
+            }
 //        log.debug("\nPLACE BET: Saved Sett : {}", sett);
+        }
     }
 
     private void place(Match match,
