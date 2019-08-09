@@ -16,6 +16,7 @@ import java.util.stream.Collectors;
 @Repository
 public class ScheduledRepository {
 
+    private static final Integer INTEGER_ZERO = Integer.valueOf("0");
     private final MatchCache matchCache;
 
     private final CalculatorService calculatorService;
@@ -92,12 +93,12 @@ public class ScheduledRepository {
 
         int currentSetNumber = StringUtils.isNumeric(period.substring(0, 1)) ? Integer.valueOf(period.substring(0, 1)) : 0;
         matchDTO.setCurrentSetNumber(currentSetNumber);
+        fillMatchByScores(matchDTO);
 
         Integer setHomeScore = settDTOs.get(currentSetNumber - 1).getHomeScore();
         Integer setAwayScore = settDTOs.get(currentSetNumber - 1).getAwayScore();
 
-        if (setHomeScore.compareTo(Integer.valueOf("0")) != 0 || setAwayScore.compareTo(Integer.valueOf("0")) != 0) {
-            fillMatchByScores(matchDTO);
+        if (!setHomeScore.equals(INTEGER_ZERO) || setAwayScore.equals(INTEGER_ZERO)) {
 
             if (isZeroPoints((List<String>) scoreboardSlim.get("points"))) {
 

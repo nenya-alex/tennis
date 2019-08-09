@@ -12,8 +12,6 @@ public interface MatchMapper extends EntityMapper<MatchDTO, Match> {
 
 
     @Mapping(target = "setts", ignore = true)
-    @Mapping(target = "homeScore", ignore = true)
-    @Mapping(target = "awayScore", ignore = true)
     Match toEntity(MatchDTO matchDTO);
 
     default Match fromId(Long id) {
