@@ -106,10 +106,10 @@ public class ScheduledRepository {
 
                 if (cachedMatchDTO.isPresent()) {
                     prepareMatchDtoForPlacingBet(matchDTO, cachedMatchDTO.get().getSetts(), setHomeScore, setAwayScore);
-                    result.get(MatchStatus.LIVE).add(matchDTO);
                 }
             }
         }
+        result.get(MatchStatus.LIVE).add(matchDTO);
     }
 
     private boolean isZeroPoints(List<String> points) {

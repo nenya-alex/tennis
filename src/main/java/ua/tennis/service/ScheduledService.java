@@ -120,7 +120,7 @@ public class ScheduledService {
 
             if (match != null) {
                 createOrUpdateSetts(matchDTO);
-                updateMatch(match);
+                updateMatch(match, matchDTO);
 
                 log.debug("\nPLACE BET: \n Request for MatchDTO with \n POTENTIAL ERROR : {}", matchDTO);
 
@@ -143,12 +143,14 @@ public class ScheduledService {
         }
     }
 
-    private void updateMatch(Match match) {
+    private void updateMatch(Match match, MatchDTO matchDTO) {
 //        log.debug("\nPLACE BET: Request for Match : {}", match);
         if (match.getStatus() != MatchStatus.LIVE) {
-            matchRepository.saveAndFlush(match.status(MatchStatus.LIVE).updatedDate(Instant.now()));
-//            log.debug("\nPLACE BET: Saved LIVE Match : {}", match);
+            match.setStatus(MatchStatus.LIVE);
         }
+        matchRepository.saveAndFlush(match.homeScore(matchDTO.getHomeScore())
+            .awayScore(matchDTO.getAwayScore()).updatedDate(Instant.now()));
+//        log.debug("\nPLACE BET: Saved LIVE Match : {}", match);
     }
 
     private void createOrUpdateSetts(MatchDTO matchDTO) {
