@@ -159,7 +159,7 @@ public class ScheduledRepository {
         for (int i = 0; i < setts.size(); i++) {
             Integer setHomeScore = setts.get(i).getHomeScore();
             Integer setAwayScore = setts.get(i).getAwayScore();
-            if (Integer.valueOf(Math.max(setHomeScore, setAwayScore)).compareTo(Integer.valueOf(6)) >= 0) {
+            if (isReadyToCountMatchScores(setHomeScore, setAwayScore)) {
                 if (setHomeScore.compareTo(setAwayScore) > 0) {
                     matchHomeScore = matchHomeScore + 1;
                 } else {
@@ -169,6 +169,11 @@ public class ScheduledRepository {
         }
         matchDTO.setHomeScore(matchHomeScore);
         matchDTO.setAwayScore(matchAwayScore);
+    }
+
+    private boolean isReadyToCountMatchScores(Integer setHomeScore, Integer setAwayScore) {
+        return Integer.valueOf(Math.max(setHomeScore, setAwayScore)).compareTo(Integer.valueOf(6)) >= 0 &&
+            Math.abs(setHomeScore - setAwayScore) >= 2;
     }
 
     private SettDTO getCachedSettDTO(List<SettDTO> cachedSets, Integer homeScoreInMatch, Integer awayScoreInMatch) {
