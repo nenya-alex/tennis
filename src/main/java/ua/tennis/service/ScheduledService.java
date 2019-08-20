@@ -94,6 +94,17 @@ public class ScheduledService {
         this.matchCache = matchCache;
     }
 
+    public void saveUpcomingMatches() {
+
+        Map upcomingMatches = restTemplate.getForObject(UPCOMING_MATCHES_URL, Map.class);
+
+        Map<MatchStatus, List<MatchDTO>> result = new HashMap<>();
+        result.put(MatchStatus.UPCOMING, new ArrayList<>());
+
+        scheduledRepository.fillResultByMatches(upcomingMatches, false, result);
+
+        saveMatches(result.get(MatchStatus.UPCOMING));
+    }
 
     public void saveLiveMatches() {
         Map liveMatches = restTemplate.getForObject(LIVE_MATCHES_URL, Map.class);
@@ -244,18 +255,6 @@ public class ScheduledService {
         AccountDetail accountDetail = accountDetailRepository.saveAndFlush(accountDetailMapper.toEntity(accountDetailDTO));
 
         log.debug("\nSaved AccountDetail : {}", accountDetail);
-    }
-
-    public void saveUpcomingMatches() {
-
-        Map upcomingMatches = restTemplate.getForObject(UPCOMING_MATCHES_URL, Map.class);
-
-        Map<MatchStatus, List<MatchDTO>> result = new HashMap<>();
-        result.put(MatchStatus.UPCOMING, new ArrayList<>());
-
-        scheduledRepository.fillResultByMatches(upcomingMatches, false, result);
-
-        saveMatches(result.get(MatchStatus.UPCOMING));
     }
 
     private void saveMatches(List<MatchDTO> matchDTOs) {
