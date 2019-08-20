@@ -31,7 +31,7 @@ public class MatchScheduler {
     }
 
     @Scheduled(cron = "0 0 0/1 * * *") //every hour
-    public void finishMatchsAndSettleBets() {
-        scheduledService.finishMatchsAndSettleBets();
+    public void finishMatchesAndSettleBets() {
+        scheduledService.finishMatchesAndSettleBets();
     }
 }

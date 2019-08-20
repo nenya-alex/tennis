@@ -252,6 +252,11 @@ public class Match implements Serializable {
         this.numberOfSetsToWin = numberOfSetsToWin;
     }
 
+    public Match numberOfSetsToWin(Integer numberOfSetsToWin) {
+        this.numberOfSetsToWin = numberOfSetsToWin;
+        return this;
+    }
+
     public boolean isScoreCorrect() {
         return homeScore.equals(numberOfSetsToWin) || awayScore.equals(numberOfSetsToWin);
     }

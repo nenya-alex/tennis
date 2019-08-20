@@ -148,8 +148,13 @@ public class ScheduledService {
         if (match.getStatus() != MatchStatus.LIVE) {
             match.setStatus(MatchStatus.LIVE);
         }
-        matchRepository.saveAndFlush(match.homeScore(matchDTO.getHomeScore())
-            .awayScore(matchDTO.getAwayScore()).updatedDate(Instant.now()));
+        matchRepository.saveAndFlush(
+            match
+                .homeScore(matchDTO.getHomeScore())
+                .awayScore(matchDTO.getAwayScore())
+                .updatedDate(Instant.now())
+                .numberOfSetsToWin(matchDTO.getNumberOfSetsToWin())
+        );
 //        log.debug("\nPLACE BET: Saved LIVE Match : {}", match);
     }
 
@@ -323,7 +328,7 @@ public class ScheduledService {
         matchCache.deleteFromCache(match.getId());
     }
 
-    public void finishMatchsAndSettleBets() {
+    public void finishMatchesAndSettleBets() {
         List<Match> matchesToFinish = matchRepository.findByStatus(MatchStatus.READY_TO_FINISH);
         for (Match match : matchesToFinish) {
             if (match.isScoreCorrect()) {
