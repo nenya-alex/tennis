@@ -17,6 +17,7 @@ import ua.tennis.service.mapper.*;
 import java.math.BigDecimal;
 import java.time.Instant;
 import java.util.*;
+import java.util.stream.Collectors;
 
 @Service
 @Transactional
@@ -103,7 +104,11 @@ public class ScheduledService {
 
         scheduledRepository.fillResultByMatches(upcomingMatches, false, result);
 
-        saveMatches(result.get(MatchStatus.UPCOMING));
+        saveUpcomingMatches(result.get(MatchStatus.UPCOMING));
+    }
+
+    private void saveUpcomingMatches(List<MatchDTO> matchDTOs) {
+        saveMatches(matchDTOs);
     }
 
     public void saveLiveMatches() {
@@ -113,25 +118,46 @@ public class ScheduledService {
         result.put(MatchStatus.NOT_STARTED, new ArrayList<>());
         result.put(MatchStatus.LIVE, new ArrayList<>());
         result.put(MatchStatus.SUSPENDED, new ArrayList<>());
+        result.put(MatchStatus.FINISHED, new ArrayList<>());
 
         scheduledRepository.fillResultByMatches(liveMatches, true, result);
 
         saveSuspendedMatches(result.get(MatchStatus.SUSPENDED));
 
-        saveMatches(result.get(MatchStatus.NOT_STARTED));
+        saveNotStartedMatches(result.get(MatchStatus.NOT_STARTED));
 
-        placeBet(result.get(MatchStatus.LIVE));
+        saveLiveMatches(result.get(MatchStatus.LIVE));
+
+        saveFinishedMatches(result.get(MatchStatus.FINISHED));
 
     }
 
-    private void placeBet(List<MatchDTO> matchDTOs) {
+    private void saveFinishedMatches(List<MatchDTO> matchDTOs) {
+        for (MatchDTO matchDTO : matchDTOs) {
+            log.debug("\nFINISH MATCH: \n Request for MatchDTO : {}", matchDTO);
+
+            Match match = matchRepository.findOne(matchDTO.getId());
+
+            if (match != null && match.getStatus() != MatchStatus.FINISHED) {
+                createOrUpdateSetts(matchDTO);
+                updateMatch(match);
+            }
+        }
+    }
+
+    private void saveNotStartedMatches(List<MatchDTO> matchDTOs) {
+        saveMatches(matchDTOs);
+    }
+
+    private void saveLiveMatches(List<MatchDTO> matchDTOs) {
         for (MatchDTO matchDTO : matchDTOs) {
 
             Match match = matchRepository.findOne(matchDTO.getId());
 
             if (match != null) {
                 createOrUpdateSetts(matchDTO);
-                updateMatch(match, matchDTO);
+                match.setNumberOfSetsToWin(matchDTO.getNumberOfSetsToWin());
+                updateMatch(match);
 
                 log.debug("\nPLACE BET: \n Request for MatchDTO with \n POTENTIAL ERROR : {}", matchDTO);
 
@@ -154,18 +180,12 @@ public class ScheduledService {
         }
     }
 
-    private void updateMatch(Match match, MatchDTO matchDTO) {
+    private void updateMatch(Match match) {
 //        log.debug("\nPLACE BET: Request for Match : {}", match);
         if (match.getStatus() != MatchStatus.LIVE) {
             match.setStatus(MatchStatus.LIVE);
         }
-        matchRepository.saveAndFlush(
-            match
-                .homeScore(matchDTO.getHomeScore())
-                .awayScore(matchDTO.getAwayScore())
-                .updatedDate(Instant.now())
-                .numberOfSetsToWin(matchDTO.getNumberOfSetsToWin())
-        );
+        matchRepository.saveAndFlush(match.updatedDate(Instant.now()));
 //        log.debug("\nPLACE BET: Saved LIVE Match : {}", match);
     }
 
@@ -311,7 +331,16 @@ public class ScheduledService {
     private void saveMatchAsReadyToFinish(Match match) {
         log.debug("\nPREPARE TO FINISH: Match : {}", match);
         match.setStatus(MatchStatus.READY_TO_FINISH);
+        fillMatchByScores(match);
+        setMatchWinner(match);
 
+        matchRepository.save(match);
+        log.debug("\nPREPARE TO FINISH: Saved Match : {}", match);
+
+        matchCache.deleteFromCache(match.getId());
+    }
+
+    private void setMatchWinner(Match match) {
         Integer matchHomeScore = match.getHomeScore();
         Integer matchAwayScore = match.getAwayScore();
 
@@ -320,11 +349,33 @@ public class ScheduledService {
         } else if (matchHomeScore.compareTo(matchAwayScore) < 0) {
             match.setWinner(Winner.AWAY);
         }
+    }
 
-        matchRepository.save(match);
-        log.debug("\nPREPARE TO FINISH: Saved Match : {}", match);
+    private void fillMatchByScores(Match match) {
+        Integer matchHomeScore = 0;
+        Integer matchAwayScore = 0;
 
-        matchCache.deleteFromCache(match.getId());
+        List<Sett> setts = match.getSetts().stream().sorted(Comparator.comparingInt(Sett::getSetNumber))
+            .collect(Collectors.toList());
+
+        for (Sett sett : setts) {
+            Integer setHomeScore = sett.getHomeScore();
+            Integer setAwayScore = sett.getAwayScore();
+            if (isReadyToCountMatchScores(setHomeScore, setAwayScore)) {
+                if (setHomeScore.compareTo(setAwayScore) > 0) {
+                    matchHomeScore = matchHomeScore + 1;
+                } else {
+                    matchAwayScore = matchAwayScore + 1;
+                }
+            }
+        }
+        match.setHomeScore(matchHomeScore);
+        match.setAwayScore(matchAwayScore);
+    }
+
+    private boolean isReadyToCountMatchScores(Integer setHomeScore, Integer setAwayScore) {
+        return Integer.valueOf(Math.max(setHomeScore, setAwayScore)).compareTo(Integer.valueOf(6)) >= 0 &&
+            Math.abs(setHomeScore - setAwayScore) >= 2;
     }
 
     public void finishMatchesAndSettleBets() {
