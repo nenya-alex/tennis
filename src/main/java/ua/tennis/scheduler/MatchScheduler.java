@@ -19,7 +19,7 @@ public class MatchScheduler {
         scheduledService.saveUpcomingMatches();
     }
 
-//    @Scheduled(cron = "0 0/1 * * * *") //every minute
+    //    @Scheduled(cron = "0 0/1 * * * *") //every minute
     @Scheduled(fixedDelay = 2000) //every 2 seconds
     public void getLiveMatches() {
         scheduledService.saveLiveMatches();
