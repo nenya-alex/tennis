@@ -31,7 +31,7 @@ public class ScheduledService {
     private static final String LIVE_MATCHES_URL = "https://bcdapi.itsfogo.com/v1/bettingoffer/grid/liveOverviewEvents" +
         "?x-bwin-accessId=YjU5ZGYwOTMtOWRjNS00Y2M0LWJmZjktMDNhN2FhNGY3NDkw&sportId=5";
 
-    private static final double MULTIPLIER = 1.1;
+    private static final String PROBABILITY_MULTIPLIER = "PROBABILITY_MULTIPLIER";
 
     private final RestTemplate restTemplate;
 
@@ -63,6 +63,8 @@ public class ScheduledService {
 
     private final MatchCache matchCache;
 
+    private final SettingsRepository settingsRepository;
+
     public ScheduledService(RestTemplate restTemplate,
                             ScheduledRepository scheduledRepository,
                             MatchMapper matchMapper,
@@ -77,7 +79,8 @@ public class ScheduledService {
                             CalculatorService calculatorService,
                             SettRepository settRepository,
                             SettMapper settMapper,
-                            MatchCache matchCache) {
+                            MatchCache matchCache,
+                            SettingsRepository settingsRepository) {
         this.restTemplate = restTemplate;
         this.scheduledRepository = scheduledRepository;
         this.matchMapper = matchMapper;
@@ -93,6 +96,7 @@ public class ScheduledService {
         this.settRepository = settRepository;
         this.settMapper = settMapper;
         this.matchCache = matchCache;
+        this.settingsRepository = settingsRepository;
     }
 
     public void saveUpcomingMatches() {
@@ -150,6 +154,9 @@ public class ScheduledService {
     }
 
     private void saveLiveMatches(List<MatchDTO> matchDTOs) {
+
+        double multiplier = Double.parseDouble(settingsRepository.findByKey(PROBABILITY_MULTIPLIER).getValue());
+
         for (MatchDTO matchDTO : matchDTOs) {
 
             Match match = matchRepository.findOne(matchDTO.getId());
@@ -171,9 +178,9 @@ public class ScheduledService {
                     double bookmakersHomeProbability = calculatorService.getRoundedDoubleNumber(awayOdds / (homeOdds + awayOdds));
                     double homeProbability = gameDTO.getHomeProbability();
 
-                    if (gameDTO.getHomeProbability() > bookmakersHomeProbability * MULTIPLIER) {
+                    if (gameDTO.getHomeProbability() > bookmakersHomeProbability * multiplier) {
                         place(match, homeOdds, calculatorService.getRoundedDoubleNumber((homeOdds + awayOdds) / awayOdds), homeProbability, BetSide.HOME);
-                    } else if ((1 - gameDTO.getHomeProbability()) > (1 - bookmakersHomeProbability) * MULTIPLIER) {
+                    } else if ((1 - gameDTO.getHomeProbability()) > (1 - bookmakersHomeProbability) * multiplier) {
                         place(match, awayOdds, calculatorService.getRoundedDoubleNumber((homeOdds + awayOdds) / homeOdds), 1 - homeProbability, BetSide.AWAY);
                     }
                 }
@@ -379,8 +386,7 @@ public class ScheduledService {
 //    }
 
 //    private boolean isReadyToCountMatchScores(Integer setHomeScore, Integer setAwayScore) {
-//        return Integer.valueOf(Math.max(setHomeScore, setAwayScore)).compareTo(Integer.valueOf(6)) >= 0 &&
-//            Math.abs(setHomeScore - setAwayScore) >= 2;
+//        return Math.max(setHomeScore, setAwayScore) >= 6 && Math.abs(setHomeScore - setAwayScore) >= 1;
 //    }
 
     public void finishMatchesAndSettleBets() {

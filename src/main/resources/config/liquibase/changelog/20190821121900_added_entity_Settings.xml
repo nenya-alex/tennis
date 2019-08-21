@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.6.xsd">
+
+
+    <changeSet id="20190821121900" author="jhipster">
+        <createTable tableName="settings">
+
+            <column name="id" type="bigint" autoIncrement="${autoIncrement}">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+
+            <column name="key" type="varchar(255)">
+                <constraints nullable="true"/>
+            </column>
+
+            <column name="value" type="varchar(255)">
+                <constraints nullable="true"/>
+            </column>
+
+        </createTable>
+
+        <loadData encoding="UTF-8"
+                  file="config/liquibase/data/settings.csv"
+                  separator=";"
+                  tableName="settings">
+        </loadData>
+
+    </changeSet>
+
+</databaseChangeLog>

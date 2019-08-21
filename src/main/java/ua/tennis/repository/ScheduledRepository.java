@@ -178,8 +178,7 @@ public class ScheduledRepository {
     }
 
     private boolean isReadyToCountMatchScores(Integer setHomeScore, Integer setAwayScore) {
-        return Integer.valueOf(Math.max(setHomeScore, setAwayScore)).compareTo(Integer.valueOf(6)) >= 0 &&
-            Math.abs(setHomeScore - setAwayScore) >= 2;
+        return Math.max(setHomeScore, setAwayScore) >= 6 && Math.abs(setHomeScore - setAwayScore) >= 1;
     }
 
     private SettDTO getCachedSettDTO(List<SettDTO> cachedSets, Integer matchHomeScore, Integer matchAwayScore) {
