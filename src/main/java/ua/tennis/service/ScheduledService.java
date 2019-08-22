@@ -373,12 +373,10 @@ public class ScheduledService {
         for (Sett sett : setts) {
             Integer setHomeScore = sett.getHomeScore();
             Integer setAwayScore = sett.getAwayScore();
-            if (!match.isScoreCorrect()) {
-                if (setHomeScore.compareTo(setAwayScore) > 0) {
-                    matchHomeScore = matchHomeScore + 1;
-                } else if (setHomeScore.compareTo(setAwayScore) < 0) {
-                    matchAwayScore = matchAwayScore + 1;
-                }
+            if (setHomeScore.compareTo(setAwayScore) > 0) {
+                matchHomeScore = matchHomeScore + 1;
+            } else if (setHomeScore.compareTo(setAwayScore) < 0) {
+                matchAwayScore = matchAwayScore + 1;
             }
         }
         match.setHomeScore(matchHomeScore);

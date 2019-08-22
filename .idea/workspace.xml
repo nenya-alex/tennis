@@ -1,9 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="1134ab4c-b41f-4cdb-9270-7db41128e82a" name="Default" comment="added">
+    <list default="true" id="1134ab4c-b41f-4cdb-9270-7db41128e82a" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/ua/tennis/scheduler/MatchScheduler.java" afterPath="$PROJECT_DIR$/src/main/java/ua/tennis/scheduler/MatchScheduler.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/ua/tennis/service/ScheduledService.java" afterPath="$PROJECT_DIR$/src/main/java/ua/tennis/service/ScheduledService.java" />
     </list>
     <ignored path="$PROJECT_DIR$/.gradle/" />
@@ -124,17 +123,17 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ScheduledService.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="ScheduledService.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/ua/tennis/service/ScheduledService.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="414">
-              <caret line="378" column="65" lean-forward="false" selection-start-line="378" selection-start-column="65" selection-end-line="378" selection-end-column="65" />
+            <state relative-caret-position="369">
+              <caret line="380" column="9" lean-forward="true" selection-start-line="380" selection-start-column="9" selection-end-line="380" selection-end-column="9" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="tennis.public.match" pinned="false" current-in-tab="true">
+      <file leaf-file-name="tennis.public.match" pinned="false" current-in-tab="false">
         <entry file="dbDummy://dbtable:/82fd9b07/f3ae0290-573f-4ae7-93c9-7e5a237698b4/tennis.public.match">
           <provider editor-type-id="text-editor">
             <state relative-caret-position="0">
@@ -824,8 +823,8 @@
         <option value="$PROJECT_DIR$/src/main/resources/config/liquibase/data/account.csv" />
         <option value="$PROJECT_DIR$/src/main/java/ua/tennis/domain/Match.java" />
         <option value="$PROJECT_DIR$/src/main/java/ua/tennis/repository/ScheduledRepository.java" />
-        <option value="$PROJECT_DIR$/src/main/java/ua/tennis/service/ScheduledService.java" />
         <option value="$PROJECT_DIR$/src/main/java/ua/tennis/scheduler/MatchScheduler.java" />
+        <option value="$PROJECT_DIR$/src/main/java/ua/tennis/service/ScheduledService.java" />
       </list>
     </option>
   </component>
@@ -1525,7 +1524,7 @@
       <workItem from="1566320064054" duration="68000" />
       <workItem from="1566320169353" duration="7782000" />
       <workItem from="1566411152471" duration="302000" />
-      <workItem from="1566411503714" duration="7084000" />
+      <workItem from="1566411503714" duration="7207000" />
     </task>
     <task id="LOCAL-00001" summary="added imports">
       <created>1562961638807</created>
@@ -1863,11 +1862,18 @@
       <option name="project" value="LOCAL" />
       <updated>1566415979813</updated>
     </task>
-    <option name="localTasksCounter" value="49" />
+    <task id="LOCAL-00049" summary="changed time of READE_TO_FINISH Scheduler and added filling match scires there">
+      <created>1566450578629</created>
+      <option name="number" value="00049" />
+      <option name="presentableId" value="LOCAL-00049" />
+      <option name="project" value="LOCAL" />
+      <updated>1566450578629</updated>
+    </task>
+    <option name="localTasksCounter" value="50" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="107933000" />
+    <option name="totallyTimeSpent" value="108056000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
@@ -1947,7 +1953,6 @@
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_NEW_TODO" value="false" />
-    <MESSAGE value="added logging" />
     <MESSAGE value="added logging in file" />
     <MESSAGE value="added logging settings" />
     <MESSAGE value="changed logging settings and deleted unused Match fields" />
@@ -1972,7 +1977,8 @@
     <MESSAGE value="fixed NPE error" />
     <MESSAGE value="after pulling" />
     <MESSAGE value="refactored" />
-    <option name="LAST_COMMIT_MESSAGE" value="refactored" />
+    <MESSAGE value="changed time of READE_TO_FINISH Scheduler and added filling match scires there" />
+    <option name="LAST_COMMIT_MESSAGE" value="changed time of READE_TO_FINISH Scheduler and added filling match scires there" />
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
   </component>
   <component name="XDebuggerManager">
@@ -2340,14 +2346,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/ua/tennis/service/ScheduledService.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="414">
-          <caret line="378" column="65" lean-forward="false" selection-start-line="378" selection-start-column="65" selection-end-line="378" selection-end-column="65" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/ua/tennis/scheduler/MatchScheduler.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="264">
@@ -2356,6 +2354,23 @@
             <element signature="e#882#883#0" expanded="true" />
             <element signature="e#939#940#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="dbDummy://dbtable:/82fd9b07/f3ae0290-573f-4ae7-93c9-7e5a237698b4/tennis.public.match">
+      <provider editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+        <state>
+          <filtering enabled="true" text="status = 'READY_TO_FINISH'">
+            <filter text="status = 'READY_TO_FINISH'" />
+            <filter text="status = 'SUSPENDED'" />
+            <filter text="id = 8959849" />
+          </filtering>
         </state>
       </provider>
     </entry>
@@ -2381,20 +2396,11 @@
         </state>
       </provider>
     </entry>
-    <entry file="dbDummy://dbtable:/82fd9b07/f3ae0290-573f-4ae7-93c9-7e5a237698b4/tennis.public.match">
-      <provider editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+    <entry file="file://$PROJECT_DIR$/src/main/java/ua/tennis/service/ScheduledService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="369">
+          <caret line="380" column="9" lean-forward="true" selection-start-line="380" selection-start-column="9" selection-end-line="380" selection-end-column="9" />
           <folding />
-        </state>
-      </provider>
-      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
-        <state>
-          <filtering enabled="true" text="status = 'READY_TO_FINISH'">
-            <filter text="status = 'READY_TO_FINISH'" />
-            <filter text="status = 'SUSPENDED'" />
-            <filter text="id = 8959849" />
-          </filtering>
         </state>
       </provider>
     </entry>
