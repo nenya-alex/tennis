@@ -393,12 +393,12 @@ public class ScheduledService {
             if (match.isScoreCorrect()) {
                 settleBets(betRepository.findByMatchIdAndStatus(match.getId(), BetStatus.OPENED), match.getWinner());
             } else {
-                returnBets(betRepository.findByMatchIdAndStatus(match.getId(), BetStatus.OPENED), match.getWinner());
+                returnBetAmount(betRepository.findByMatchIdAndStatus(match.getId(), BetStatus.OPENED), match.getWinner());
             }
         }
     }
 
-    private void returnBets(Set<Bet> bets, Winner winner) {
+    private void returnBetAmount(Set<Bet> bets, Winner winner) {
         Account account = accountRepository.findOne(1L);
         log.debug("\nRETURN BET: Account before returning: {}", account);
 
