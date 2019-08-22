@@ -25,7 +25,7 @@ public class MatchScheduler {
         scheduledService.saveLiveMatches();
     }
 
-    @Scheduled(cron = "0 0 0/1 * * *") //every hour
+    @Scheduled(cron = "0 0/59 * * * *") //every 59 minutes
     public void prepareMatchesToFinish() {
         scheduledService.prepareMatchesToFinish();
     }

@@ -343,7 +343,7 @@ public class ScheduledService {
     private void saveMatchAsReadyToFinish(Match match) {
         log.debug("\nPREPARE TO FINISH: Match : {}", match);
         match.setStatus(MatchStatus.READY_TO_FINISH);
-//        fillMatchByScores(match);
+        fillMatchByScores(match);
         setMatchWinner(match);
 
         matchRepository.save(match);
@@ -363,31 +363,27 @@ public class ScheduledService {
         }
     }
 
-//    private void fillMatchByScores(Match match) {
-//        Integer matchHomeScore = 0;
-//        Integer matchAwayScore = 0;
-//
-//        List<Sett> setts = match.getSetts().stream().sorted(Comparator.comparingInt(Sett::getSetNumber))
-//            .collect(Collectors.toList());
-//
-//        for (Sett sett : setts) {
-//            Integer setHomeScore = sett.getHomeScore();
-//            Integer setAwayScore = sett.getAwayScore();
-//            if (isReadyToCountMatchScores(setHomeScore, setAwayScore)) {
-//                if (setHomeScore.compareTo(setAwayScore) > 0) {
-//                    matchHomeScore = matchHomeScore + 1;
-//                } else {
-//                    matchAwayScore = matchAwayScore + 1;
-//                }
-//            }
-//        }
-//        match.setHomeScore(matchHomeScore);
-//        match.setAwayScore(matchAwayScore);
-//    }
+    private void fillMatchByScores(Match match) {
+        Integer matchHomeScore = 0;
+        Integer matchAwayScore = 0;
 
-//    private boolean isReadyToCountMatchScores(Integer setHomeScore, Integer setAwayScore) {
-//        return Math.max(setHomeScore, setAwayScore) >= 6 && Math.abs(setHomeScore - setAwayScore) >= 1;
-//    }
+        List<Sett> setts = match.getSetts().stream().sorted(Comparator.comparingInt(Sett::getSetNumber))
+            .collect(Collectors.toList());
+
+        for (Sett sett : setts) {
+            Integer setHomeScore = sett.getHomeScore();
+            Integer setAwayScore = sett.getAwayScore();
+            if (!match.isScoreCorrect()) {
+                if (setHomeScore.compareTo(setAwayScore) > 0) {
+                    matchHomeScore = matchHomeScore + 1;
+                } else if (setHomeScore.compareTo(setAwayScore) < 0) {
+                    matchAwayScore = matchAwayScore + 1;
+                }
+            }
+        }
+        match.setHomeScore(matchHomeScore);
+        match.setAwayScore(matchAwayScore);
+    }
 
     public void finishMatchesAndSettleBets() {
         List<Match> matchesToFinish = matchRepository.findByStatus(MatchStatus.READY_TO_FINISH);
