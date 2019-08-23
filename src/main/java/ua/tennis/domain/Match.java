@@ -19,11 +19,11 @@ public class Match implements Serializable {
     @Id
     private Long id;
 
-    @Column(name = "home_name")
-    private String homeName;
+    @Column(name = "name")
+    private String name;
 
-    @Column(name = "away_name")
-    private String awayName;
+    @Column(name = "league_name")
+    private String leagueName;
 
     @Column(name = "home_score")
     private Integer homeScore;
@@ -36,12 +36,6 @@ public class Match implements Serializable {
 
     @Column(name = "updated_date")
     private Instant updatedDate;
-
-    @Column(name = "name")
-    private String name;
-
-    @Column(name = "open_date")
-    private Instant openDate;
 
     @Enumerated(EnumType.STRING)
     @Column(name = "status")
@@ -69,32 +63,6 @@ public class Match implements Serializable {
 
     public void setId(Long id) {
         this.id = id;
-    }
-
-    public String getHomeName() {
-        return homeName;
-    }
-
-    public Match homeName(String homeName) {
-        this.homeName = homeName;
-        return this;
-    }
-
-    public void setHomeName(String homeName) {
-        this.homeName = homeName;
-    }
-
-    public String getAwayName() {
-        return awayName;
-    }
-
-    public Match awayName(String awayName) {
-        this.awayName = awayName;
-        return this;
-    }
-
-    public void setAwayName(String awayName) {
-        this.awayName = awayName;
     }
 
     public Integer getHomeScore() {
@@ -149,17 +117,17 @@ public class Match implements Serializable {
         this.name = name;
     }
 
-    public Instant getOpenDate() {
-        return openDate;
+    public String getLeagueName() {
+        return leagueName;
     }
 
-    public Match openDate(Instant openDate) {
-        this.openDate = openDate;
+    public Match leagueName(String leagueName) {
+        this.leagueName = leagueName;
         return this;
     }
 
-    public void setOpenDate(Instant openDate) {
-        this.openDate = openDate;
+    public void setLeagueName(String leagueName) {
+        this.leagueName = leagueName;
     }
 
     public Set<Sett> getSetts() {
@@ -216,7 +184,6 @@ public class Match implements Serializable {
         this.status = status;
         return this;
     }
-
 
     public Winner getWinner() {
         return winner;
@@ -285,13 +252,10 @@ public class Match implements Serializable {
     public String toString() {
         return "\n" +"Match{" +
             "id=" + id +"\n" +
-            ", homeName='" + homeName + '\'' +"\n" +
-            ", awayName='" + awayName + '\'' +"\n" +
             ", homeScore=" + homeScore +"\n" +
             ", awayScore=" + awayScore +"\n" +
             ", startDate=" + startDate +"\n" +
             ", name='" + name + '\'' +"\n" +
-            ", openDate=" + openDate +"\n" +
             ", updatedDate=" + updatedDate + "\n" +
             ", winner=" + winner + "\n" +
             ", status=" + status +

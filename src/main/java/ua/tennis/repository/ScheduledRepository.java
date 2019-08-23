@@ -73,11 +73,11 @@ public class ScheduledRepository {
         String gameMode = (String) scoreboardSlim.get("gameMode");
         Integer numberOfSetsToWin = (Integer.valueOf(gameMode.substring(gameMode.length() - 1)) - 3) / 2 + 2;
 
-        Odds excitedOdds = oddsRepository.findTopByMatchIdOrderByCheckDateDesc(matchDTO.getId());
+        Odds existedOdds = oddsRepository.findTopByMatchIdOrderByCheckDateDesc(matchDTO.getId());
 
-        if (excitedOdds != null) {
+        if (existedOdds != null) {
             double homeMatchProbability = calculatorService.getRoundedDoubleNumber(
-                excitedOdds.getAwayOdds() / (excitedOdds.getHomeOdds() + excitedOdds.getAwayOdds()));
+                existedOdds.getAwayOdds() / (existedOdds.getHomeOdds() + existedOdds.getAwayOdds()));
 
             matchCache.addToCache(matchDTO.getId(),
                 new MatchDTO(homeMatchProbability, calculatorService.getGameProbabilities(homeMatchProbability, numberOfSetsToWin)));
@@ -203,13 +203,12 @@ public class ScheduledRepository {
     private MatchDTO getMatchDTO(Map match) {
         Long matchId = ((Integer) match.get("id")).longValue();
         String name = (String) match.get("name");
+        String leagueName = (String) ((Map) match.get("league")).get("name");
         return new MatchDTO(
             matchId,
             name,
-            Instant.parse((String) match.get("openDate")),
             Instant.parse((String) match.get("startDate")),
-            name.substring(0, name.indexOf(" - ")),
-            name.substring(name.indexOf(" - ") + 3)
+            leagueName
         );
     }
 
