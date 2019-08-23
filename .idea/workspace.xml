@@ -1,12 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="1134ab4c-b41f-4cdb-9270-7db41128e82a" name="Default" comment="">
+    <list default="true" id="1134ab4c-b41f-4cdb-9270-7db41128e82a" name="Default" comment="changed Match entity">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ua/tennis/domain/Match.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ua/tennis/domain/Match.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ua/tennis/repository/ScheduledRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ua/tennis/repository/ScheduledRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ua/tennis/service/dto/MatchDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ua/tennis/service/dto/MatchDTO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/config/liquibase/changelog/20190609131945_added_entity_Match.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/config/liquibase/changelog/20190609131945_added_entity_Match.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ua/tennis/domain/Bet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ua/tennis/domain/Bet.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ua/tennis/domain/enumeration/BetStatus.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ua/tennis/domain/enumeration/BetStatus.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ua/tennis/service/ScheduledService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ua/tennis/service/ScheduledService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ua/tennis/service/dto/BetDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ua/tennis/service/dto/BetDTO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/config/liquibase/changelog/20190718045016_added_entity_Bet.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/config/liquibase/changelog/20190718045016_added_entity_Bet.xml" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -430,13 +431,6 @@
       <workItem from="1566411152471" duration="302000" />
       <workItem from="1566411503714" duration="17274000" />
     </task>
-    <task id="LOCAL-00004" summary="added Bet entity">
-      <created>1563425645318</created>
-      <option name="number" value="00004" />
-      <option name="presentableId" value="LOCAL-00004" />
-      <option name="project" value="LOCAL" />
-      <updated>1563425645318</updated>
-    </task>
     <task id="LOCAL-00005" summary="working version">
       <created>1563473533021</created>
       <option name="number" value="00005" />
@@ -773,7 +767,14 @@
       <option name="project" value="LOCAL" />
       <updated>1566499313181</updated>
     </task>
-    <option name="localTasksCounter" value="53" />
+    <task id="LOCAL-00053" summary="changed Match entity">
+      <created>1566557360955</created>
+      <option name="number" value="00053" />
+      <option name="presentableId" value="LOCAL-00053" />
+      <option name="project" value="LOCAL" />
+      <updated>1566557360955</updated>
+    </task>
+    <option name="localTasksCounter" value="54" />
     <servers />
   </component>
   <component name="UnknownFeatures">
@@ -795,7 +796,6 @@
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_NEW_TODO" value="false" />
-    <MESSAGE value="changed logging settings and deleted unused Match fields" />
     <MESSAGE value="added new fields in Bet" />
     <MESSAGE value="added new fields in Bet - 2" />
     <MESSAGE value="work with Suspended matches and added a field in Match" />
@@ -820,7 +820,8 @@
     <MESSAGE value="changed filling match scores when finding READE_TO_FINISH matches" />
     <MESSAGE value="added returning Bet amount for retired Matches" />
     <MESSAGE value="refactored" />
-    <option name="LAST_COMMIT_MESSAGE" value="refactored" />
+    <MESSAGE value="changed Match entity" />
+    <option name="LAST_COMMIT_MESSAGE" value="changed Match entity" />
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
   </component>
   <component name="antWorkspaceConfiguration">

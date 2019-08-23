@@ -36,7 +36,7 @@
                 <constraints nullable="true" />
             </column>
 
-            <column name="winner" type="varchar(255)">
+            <column name="is_bet_won" type="boolean">
                 <constraints nullable="true"/>
             </column>
 

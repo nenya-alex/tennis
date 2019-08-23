@@ -27,7 +27,7 @@ public class BetDTO implements Serializable {
 
     private Long matchId;
 
-    private Winner winner;
+    private boolean isBetWon;
 
     private Double countedProbability;
 
@@ -103,12 +103,12 @@ public class BetDTO implements Serializable {
         this.accountDetailDTOs = accountDetailDTOs;
     }
 
-    public Winner getWinner() {
-        return winner;
+    public boolean getIsBetWon() {
+        return isBetWon;
     }
 
-    public void setWinner(Winner winner) {
-        this.winner = winner;
+    public void setIsBetWon(boolean isBetWon) {
+        this.isBetWon = isBetWon;
     }
 
     public Double getCountedProbability() {

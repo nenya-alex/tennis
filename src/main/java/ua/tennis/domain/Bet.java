@@ -32,9 +32,8 @@ public class Bet implements Serializable {
     @Column(name = "bet_side")
     private BetSide betSide;
 
-    @Enumerated(EnumType.STRING)
-    @Column(name = "winner")
-    private Winner winner;
+    @Column(name = "is_bet_won")
+    private boolean isBetWon;
 
     @Enumerated(EnumType.STRING)
     @Column(name = "status")
@@ -150,16 +149,16 @@ public class Bet implements Serializable {
         this.accountDetails = accountDetails;
     }
 
-    public Winner getWinner() {
-        return winner;
+    public boolean getIsBetWon() {
+        return isBetWon;
     }
 
-    public void setWinner(Winner winner) {
-        this.winner = winner;
+    public void setIsBetWon(boolean isBetWon) {
+        this.isBetWon = isBetWon;
     }
 
-    public Bet winner(Winner winner) {
-        this.winner = winner;
+    public Bet isBetWon(boolean isBetWon) {
+        this.isBetWon = isBetWon;
         return this;
     }
 
