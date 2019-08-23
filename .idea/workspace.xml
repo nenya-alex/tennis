@@ -3,8 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="1134ab4c-b41f-4cdb-9270-7db41128e82a" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/ua/tennis/scheduler/MatchScheduler.java" afterPath="$PROJECT_DIR$/src/main/java/ua/tennis/scheduler/MatchScheduler.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/ua/tennis/service/ScheduledService.java" afterPath="$PROJECT_DIR$/src/main/java/ua/tennis/service/ScheduledService.java" />
     </list>
     <ignored path="$PROJECT_DIR$/.gradle/" />
     <ignored path="$PROJECT_DIR$/build/classes/" />
@@ -124,7 +122,7 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ScheduledService.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="ScheduledService.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/ua/tennis/service/ScheduledService.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="1186">
@@ -137,7 +135,7 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="tennis.public.match" pinned="false" current-in-tab="false">
+      <file leaf-file-name="tennis.public.match" pinned="false" current-in-tab="true">
         <entry file="dbDummy://dbtable:/82fd9b07/f3ae0290-573f-4ae7-93c9-7e5a237698b4/tennis.public.match">
           <provider editor-type-id="text-editor">
             <state relative-caret-position="0">
@@ -147,7 +145,7 @@
           </provider>
           <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
             <state>
-              <filtering enabled="true" text="id = 8974817">
+              <filtering enabled="true">
                 <filter text="id = 8974817" />
                 <filter text="id = 8974844" />
                 <filter text="id = 8974656" />
@@ -203,6 +201,7 @@
           <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
             <state>
               <filtering enabled="true">
+                <filter text="id=2644" />
                 <filter text="match_id = 8969543" />
                 <filter text="match_id = 8969541" />
                 <filter text="match_id = 8959822" />
@@ -1525,14 +1524,7 @@
       <workItem from="1566320064054" duration="68000" />
       <workItem from="1566320169353" duration="7782000" />
       <workItem from="1566411152471" duration="302000" />
-      <workItem from="1566411503714" duration="14629000" />
-    </task>
-    <task id="LOCAL-00003" summary="getting homeProbability from DB">
-      <created>1563425004517</created>
-      <option name="number" value="00003" />
-      <option name="presentableId" value="LOCAL-00003" />
-      <option name="project" value="LOCAL" />
-      <updated>1563425004517</updated>
+      <workItem from="1566411503714" duration="17274000" />
     </task>
     <task id="LOCAL-00004" summary="added Bet entity">
       <created>1563425645318</created>
@@ -1870,11 +1862,18 @@
       <option name="project" value="LOCAL" />
       <updated>1566497737202</updated>
     </task>
-    <option name="localTasksCounter" value="52" />
+    <task id="LOCAL-00052" summary="refactored">
+      <created>1566499313181</created>
+      <option name="number" value="00052" />
+      <option name="presentableId" value="LOCAL-00052" />
+      <option name="project" value="LOCAL" />
+      <updated>1566499313181</updated>
+    </task>
+    <option name="localTasksCounter" value="53" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="115478000" />
+    <option name="totallyTimeSpent" value="118123000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
@@ -1890,7 +1889,7 @@
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.29464287" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.34375" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.23549107" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -1975,11 +1974,11 @@
     <MESSAGE value="added working with FINISHED Matches" />
     <MESSAGE value="fixed NPE error" />
     <MESSAGE value="after pulling" />
-    <MESSAGE value="refactored" />
     <MESSAGE value="changed time of READE_TO_FINISH Scheduler and added filling match scires there" />
     <MESSAGE value="changed filling match scores when finding READE_TO_FINISH matches" />
     <MESSAGE value="added returning Bet amount for retired Matches" />
-    <option name="LAST_COMMIT_MESSAGE" value="added returning Bet amount for retired Matches" />
+    <MESSAGE value="refactored" />
+    <option name="LAST_COMMIT_MESSAGE" value="refactored" />
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
   </component>
   <component name="XDebuggerManager">
@@ -2327,26 +2326,25 @@
         </state>
       </provider>
     </entry>
-    <entry file="dbDummy://dbtable:/82fd9b07/f3ae0290-573f-4ae7-93c9-7e5a237698b4/tennis.public.match">
-      <provider editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
+    <entry file="file://$PROJECT_DIR$/src/main/java/ua/tennis/scheduler/MatchScheduler.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="422">
+          <caret line="32" column="50" lean-forward="false" selection-start-line="32" selection-start-column="50" selection-end-line="32" selection-end-column="50" />
+          <folding>
+            <element signature="e#882#883#0" expanded="true" />
+            <element signature="e#939#940#0" expanded="true" />
+          </folding>
         </state>
       </provider>
-      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
-        <state>
-          <filtering enabled="true" text="id = 8974817">
-            <filter text="id = 8974817" />
-            <filter text="id = 8974844" />
-            <filter text="id = 8974656" />
-            <filter text="id = 8970419" />
-            <filter text="id = 8970868" />
-            <filter text="id = 8969541" />
-            <filter text="status = 'READY_TO_FINISH'" />
-            <filter text="status = 'SUSPENDED'" />
-            <filter text="id = 8959849" />
-          </filtering>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/ua/tennis/service/ScheduledService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1186">
+          <caret line="436" column="12" lean-forward="false" selection-start-line="436" selection-start-column="12" selection-end-line="436" selection-end-column="12" />
+          <folding>
+            <element signature="e#17981#17982#0" expanded="true" />
+            <element signature="e#18046#18047#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -2360,6 +2358,7 @@
       <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
         <state>
           <filtering enabled="true">
+            <filter text="id=2644" />
             <filter text="match_id = 8969543" />
             <filter text="match_id = 8969541" />
             <filter text="match_id = 8959822" />
@@ -2393,25 +2392,26 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/ua/tennis/scheduler/MatchScheduler.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="422">
-          <caret line="32" column="50" lean-forward="false" selection-start-line="32" selection-start-column="50" selection-end-line="32" selection-end-column="50" />
-          <folding>
-            <element signature="e#882#883#0" expanded="true" />
-            <element signature="e#939#940#0" expanded="true" />
-          </folding>
+    <entry file="dbDummy://dbtable:/82fd9b07/f3ae0290-573f-4ae7-93c9-7e5a237698b4/tennis.public.match">
+      <provider editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/ua/tennis/service/ScheduledService.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1186">
-          <caret line="436" column="12" lean-forward="false" selection-start-line="436" selection-start-column="12" selection-end-line="436" selection-end-column="12" />
-          <folding>
-            <element signature="e#17981#17982#0" expanded="true" />
-            <element signature="e#18046#18047#0" expanded="true" />
-          </folding>
+      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+        <state>
+          <filtering enabled="true">
+            <filter text="id = 8974817" />
+            <filter text="id = 8974844" />
+            <filter text="id = 8974656" />
+            <filter text="id = 8970419" />
+            <filter text="id = 8970868" />
+            <filter text="id = 8969541" />
+            <filter text="status = 'READY_TO_FINISH'" />
+            <filter text="status = 'SUSPENDED'" />
+            <filter text="id = 8959849" />
+          </filtering>
         </state>
       </provider>
     </entry>
