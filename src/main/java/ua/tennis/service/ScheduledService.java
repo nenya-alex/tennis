@@ -252,7 +252,7 @@ public class ScheduledService {
 
                     saveAccount(account, account.getAmount().subtract(stakeAmount), account.getPlacedAmount().add(stakeAmount));
 
-                    saveAccountDetail(account.getAmount(), account.getId(), stakeAmount, savedBet.getId());
+                    saveAccountDetail(account.getId(), savedBet.getId(), account.getAmount(),  stakeAmount, BigDecimal.ZERO);
 
                 } else {
 //            saveBet(betDTO, BetStatus.POTENTIAL);
@@ -274,16 +274,20 @@ public class ScheduledService {
         log.debug("\nSaved Account after action: {}", account);
     }
 
-    private void saveAccountDetail(BigDecimal amount,
-                                   Long accountId,
+    private void saveAccountDetail(Long accountId,
+                                   Long betId,
+                                   BigDecimal amount,
                                    BigDecimal placedAmount,
-                                   Long betId) {
+                                   BigDecimal profit) {
+
         AccountDetailDTO accountDetailDTO = new AccountDetailDTO();
         accountDetailDTO.setAmount(amount);
         accountDetailDTO.setBetId(betId);
         accountDetailDTO.setAccountId(accountId);
         accountDetailDTO.setCreatedDate(Instant.now());
         accountDetailDTO.setPlacedAmount(placedAmount);
+        accountDetailDTO.setProfit(profit);
+
         AccountDetail accountDetail = accountDetailRepository.saveAndFlush(accountDetailMapper.toEntity(accountDetailDTO));
 
         log.debug("\nSaved AccountDetail : {}", accountDetail);
@@ -411,7 +415,7 @@ public class ScheduledService {
 
             saveAccount(account, account.getAmount().add(bet.getAmount()), account.getPlacedAmount().subtract(bet.getAmount()));
 
-            saveAccountDetail(account.getAmount(), account.getId(), BigDecimal.ZERO, bet.getId());
+            saveAccountDetail(account.getId(), bet.getId(), account.getAmount(),  BigDecimal.ZERO, bet.getAmount());
         }
     }
 
@@ -421,11 +425,14 @@ public class ScheduledService {
             log.debug("\nSETTLE BET: Bet before settlement : {}", bet);
 
             BigDecimal amount;
+            BigDecimal profit;
             boolean isBetWon = isBetWon(bet, winner.name());
 
             if (isBetWon) {
-                amount = account.getAmount().add(bet.getAmount().multiply(BigDecimal.valueOf(bet.getOdds())));
+                profit = bet.getAmount().multiply(BigDecimal.valueOf(bet.getOdds()));
+                amount = account.getAmount().add(profit);
             } else {
+                profit = bet.getAmount().negate();
                 amount = account.getAmount();
             }
 
@@ -434,7 +441,7 @@ public class ScheduledService {
 
             saveAccount(account, amount, account.getPlacedAmount().subtract(bet.getAmount()));
 
-            saveAccountDetail(account.getAmount(), account.getId(), BigDecimal.ZERO, bet.getId());
+            saveAccountDetail(account.getId(), bet.getId(), account.getAmount(),  BigDecimal.ZERO, profit);
         }
     }
 

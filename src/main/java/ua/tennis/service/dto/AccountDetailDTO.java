@@ -18,6 +18,8 @@ public class AccountDetailDTO implements Serializable {
 
     private BigDecimal placedAmount;
 
+    private BigDecimal profit;
+
     public Long getId() {
         return id;
     }
@@ -64,5 +66,13 @@ public class AccountDetailDTO implements Serializable {
 
     public void setAccountId(Long accountId) {
         this.accountId = accountId;
+    }
+
+    public BigDecimal getProfit() {
+        return profit;
+    }
+
+    public void setProfit(BigDecimal profit) {
+        this.profit = profit;
     }
 }
