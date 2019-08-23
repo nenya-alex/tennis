@@ -167,7 +167,7 @@ public class ScheduledService {
                 match.setNumberOfSetsToWin(matchDTO.getNumberOfSetsToWin());
                 updateMatch(match, matchDTO);
 
-                log.debug("\nPLACE BET: \n Request for MatchDTO with \n POTENTIAL ERROR : {}", matchDTO);
+//                log.debug("\nPLACE BET: \n Request for MatchDTO with \n POTENTIAL ERROR : {}", matchDTO);
 
                 List<GameDTO> gameDTOs = matchDTO.getSetts().get(matchDTO.getCurrentSetNumber() - 1).getGames();
                 if (!gameDTOs.isEmpty()) {
@@ -178,9 +178,9 @@ public class ScheduledService {
                     double bookmakersHomeProbability = calculatorService.getRoundedDoubleNumber(awayOdds / (homeOdds + awayOdds));
                     double homeProbability = gameDTO.getHomeProbability();
 
-                    if (gameDTO.getHomeProbability() > bookmakersHomeProbability * multiplier) {
+                    if (homeProbability > bookmakersHomeProbability * multiplier) {
                         place(match, homeOdds, calculatorService.getRoundedDoubleNumber((homeOdds + awayOdds) / awayOdds), homeProbability, BetSide.HOME);
-                    } else if ((1 - gameDTO.getHomeProbability()) > (1 - bookmakersHomeProbability) * multiplier) {
+                    } else if ((1 - homeProbability) > (1 - bookmakersHomeProbability) * multiplier) {
                         place(match, awayOdds, calculatorService.getRoundedDoubleNumber((homeOdds + awayOdds) / homeOdds), 1 - homeProbability, BetSide.AWAY);
                     }
                 }
@@ -341,13 +341,13 @@ public class ScheduledService {
     }
 
     private void saveMatchAsReadyToFinish(Match match) {
-        log.debug("\nPREPARE TO FINISH: Match : {}", match);
+//        log.debug("\nPREPARE TO FINISH: Match : {}", match);
         match.setStatus(MatchStatus.READY_TO_FINISH);
-//        fillMatchByScores(match);
+        fillMatchByScores(match);
         setMatchWinner(match);
 
         matchRepository.save(match);
-        log.debug("\nPREPARE TO FINISH: Saved Match : {}", match);
+//        log.debug("\nPREPARE TO FINISH: Saved Match : {}", match);
 
         matchCache.deleteFromCache(match.getId());
     }
@@ -363,41 +363,54 @@ public class ScheduledService {
         }
     }
 
-//    private void fillMatchByScores(Match match) {
-//        Integer matchHomeScore = 0;
-//        Integer matchAwayScore = 0;
-//
-//        List<Sett> setts = match.getSetts().stream().sorted(Comparator.comparingInt(Sett::getSetNumber))
-//            .collect(Collectors.toList());
-//
-//        for (Sett sett : setts) {
-//            Integer setHomeScore = sett.getHomeScore();
-//            Integer setAwayScore = sett.getAwayScore();
-//            if (isReadyToCountMatchScores(setHomeScore, setAwayScore)) {
-//                if (setHomeScore.compareTo(setAwayScore) > 0) {
-//                    matchHomeScore = matchHomeScore + 1;
-//                } else {
-//                    matchAwayScore = matchAwayScore + 1;
-//                }
-//            }
-//        }
-//        match.setHomeScore(matchHomeScore);
-//        match.setAwayScore(matchAwayScore);
-//    }
+    private void fillMatchByScores(Match match) {
+        Integer matchHomeScore = 0;
+        Integer matchAwayScore = 0;
 
-//    private boolean isReadyToCountMatchScores(Integer setHomeScore, Integer setAwayScore) {
-//        return Math.max(setHomeScore, setAwayScore) >= 6 && Math.abs(setHomeScore - setAwayScore) >= 1;
-//    }
+        List<Sett> setts = match.getSetts().stream().sorted(Comparator.comparingInt(Sett::getSetNumber))
+            .collect(Collectors.toList());
+
+        for (Sett sett : setts) {
+            Integer setHomeScore = sett.getHomeScore();
+            Integer setAwayScore = sett.getAwayScore();
+            if (setHomeScore.compareTo(setAwayScore) > 0) {
+                matchHomeScore = matchHomeScore + 1;
+            } else if (setHomeScore.compareTo(setAwayScore) < 0) {
+                matchAwayScore = matchAwayScore + 1;
+            }
+        }
+        match.setHomeScore(matchHomeScore);
+        match.setAwayScore(matchAwayScore);
+    }
 
     public void finishMatchesAndSettleBets() {
         List<Match> matchesToFinish = matchRepository.findByStatus(MatchStatus.READY_TO_FINISH);
         for (Match match : matchesToFinish) {
-            if (match.isScoreCorrect()) {
-                matchRepository.save(match.status(MatchStatus.FINISHED));
-                log.debug("\nFINISH MATCH: Saved Match : {}", match);
 
+            matchRepository.save(match.status(MatchStatus.FINISHED).updatedDate(Instant.now()));
+            log.debug("\nFINISH MATCH: Saved Match : {}", match);
+
+            if (match.isScoreCorrect()) {
                 settleBets(betRepository.findByMatchIdAndStatus(match.getId(), BetStatus.OPENED), match.getWinner());
+            } else {
+                returnBetAmount(betRepository.findByMatchIdAndStatus(match.getId(), BetStatus.OPENED), match.getWinner());
             }
+        }
+    }
+
+    private void returnBetAmount(Set<Bet> bets, Winner winner) {
+        Account account = accountRepository.findOne(1L);
+        log.debug("\nRETURN BET: Account before returning: {}", account);
+
+        for (Bet bet : bets) {
+            log.debug("\nRETURN BET: Bet before returning : {}", bet);
+
+            betRepository.saveAndFlush(bet.status(BetStatus.CLOSED).winner(winner).settledDate(Instant.now()));
+            log.debug("\nRETURN BET: Bet after returning : {}", bet);
+
+            saveAccount(account, account.getAmount().add(bet.getAmount()), account.getPlacedAmount().subtract(bet.getAmount()));
+
+            saveAccountDetail(account.getAmount(), account.getId(), BigDecimal.ZERO, bet.getId());
         }
     }
 

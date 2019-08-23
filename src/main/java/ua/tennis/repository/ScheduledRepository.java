@@ -148,6 +148,7 @@ public class ScheduledRepository {
         SettDTO settDTO = matchDTO.getSetts().get(matchDTO.getCurrentSetNumber() - 1);
         settDTO.setHomeOdds(matchDTO.getOdds().get(0).getHomeOdds());
         settDTO.setAwayOdds(matchDTO.getOdds().get(0).getAwayOdds());
+        //TODO remove next line?
         settDTO.setHomeProbability(cachedSettDTO.getHomeProbability());
 
         GameDTO clonedGameDTO = cloneGameDTO(cachedGameDTO);
