@@ -35,6 +35,8 @@ public class ScheduledService {
 
     private static final String IS_BET_PLACEMENT_ENABLE = "IS_BET_PLACEMENT_ENABLE";
 
+    private static final String MAX_ODDS = "MAX_ODDS";
+
     private final RestTemplate restTemplate;
 
     private final ScheduledRepository scheduledRepository;
@@ -159,6 +161,7 @@ public class ScheduledService {
 
         double multiplier = Double.parseDouble(settingsRepository.findByKey(PROBABILITY_MULTIPLIER).getValue());
         boolean isBetPlacementEnable = Boolean.valueOf(settingsRepository.findByKey(IS_BET_PLACEMENT_ENABLE).getValue());
+        double maxOdds = Double.parseDouble(settingsRepository.findByKey(MAX_ODDS).getValue());
 
         for (MatchDTO matchDTO : matchDTOs) {
 
