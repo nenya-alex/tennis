@@ -35,9 +35,15 @@ public class Bet implements Serializable {
     @Column(name = "is_bet_won")
     private boolean isBetWon;
 
+    @Column(name = "set_number")
+    private Integer setNumber;
+
     @Enumerated(EnumType.STRING)
     @Column(name = "status")
     private BetStatus status;
+
+    @Column(name = "profit", precision = 21, scale = 2)
+    private BigDecimal profit;
 
     @Column(name = "counted_probability")
     private Double countedProbability;
@@ -113,6 +119,19 @@ public class Bet implements Serializable {
 
     public void setStatus(BetStatus status) {
         this.status = status;
+    }
+
+    public BigDecimal getProfit() {
+        return profit;
+    }
+
+    public void setProfit(BigDecimal profit) {
+        this.profit = profit;
+    }
+
+    public Bet profit(BigDecimal profit) {
+        this.profit = profit;
+        return this;
     }
 
     public Instant getPlacedDate() {
@@ -197,6 +216,14 @@ public class Bet implements Serializable {
     public Bet settledDate(Instant settledDate) {
         this.settledDate = settledDate;
         return this;
+    }
+
+    public Integer getSetNumber() {
+        return setNumber;
+    }
+
+    public void setSetNumber(Integer setNumber) {
+        this.setNumber = setNumber;
     }
 
     @Override
