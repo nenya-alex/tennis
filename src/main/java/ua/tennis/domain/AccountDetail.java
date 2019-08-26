@@ -23,6 +23,9 @@ public class AccountDetail implements Serializable {
     @Column(name = "placed_amount", precision = 21, scale = 2)
     private BigDecimal placedAmount;
 
+    @Column(name = "profit", precision = 21, scale = 2)
+    private BigDecimal profit;
+
     @Column(name = "created_date")
     private Instant createdDate;
 
@@ -70,6 +73,14 @@ public class AccountDetail implements Serializable {
 
     public void setPlacedAmount(BigDecimal placedAmount) {
         this.placedAmount = placedAmount;
+    }
+
+    public BigDecimal getProfit() {
+        return profit;
+    }
+
+    public void setProfit(BigDecimal profit) {
+        this.profit = profit;
     }
 
     public Account getAccount() {

@@ -2,7 +2,18 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="1134ab4c-b41f-4cdb-9270-7db41128e82a" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/ua/tennis/domain/AccountDetail.java" afterPath="$PROJECT_DIR$/src/main/java/ua/tennis/domain/AccountDetail.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/ua/tennis/domain/Bet.java" afterPath="$PROJECT_DIR$/src/main/java/ua/tennis/domain/Bet.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/ua/tennis/domain/Match.java" afterPath="$PROJECT_DIR$/src/main/java/ua/tennis/domain/Match.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/ua/tennis/domain/enumeration/BetStatus.java" afterPath="$PROJECT_DIR$/src/main/java/ua/tennis/domain/enumeration/BetStatus.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/ua/tennis/repository/ScheduledRepository.java" afterPath="$PROJECT_DIR$/src/main/java/ua/tennis/repository/ScheduledRepository.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/ua/tennis/service/ScheduledService.java" afterPath="$PROJECT_DIR$/src/main/java/ua/tennis/service/ScheduledService.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/ua/tennis/service/dto/AccountDetailDTO.java" afterPath="$PROJECT_DIR$/src/main/java/ua/tennis/service/dto/AccountDetailDTO.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/ua/tennis/service/dto/BetDTO.java" afterPath="$PROJECT_DIR$/src/main/java/ua/tennis/service/dto/BetDTO.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/ua/tennis/service/dto/MatchDTO.java" afterPath="$PROJECT_DIR$/src/main/java/ua/tennis/service/dto/MatchDTO.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/config/liquibase/changelog/20190609131945_added_entity_Match.xml" afterPath="$PROJECT_DIR$/src/main/resources/config/liquibase/changelog/20190609131945_added_entity_Match.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/config/liquibase/changelog/20190718045016_added_entity_Bet.xml" afterPath="$PROJECT_DIR$/src/main/resources/config/liquibase/changelog/20190718045016_added_entity_Bet.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/config/liquibase/changelog/20190722140000_added_entity_AccountDetail.xml" afterPath="$PROJECT_DIR$/src/main/resources/config/liquibase/changelog/20190722140000_added_entity_AccountDetail.xml" />
     </list>
     <ignored path="$PROJECT_DIR$/.gradle/" />
     <ignored path="$PROJECT_DIR$/build/classes/" />
@@ -122,6 +133,8 @@
                 <element signature="e#581#582#0" expanded="false" />
                 <element signature="e#729#730#0" expanded="false" />
                 <element signature="e#779#780#0" expanded="false" />
+                <element signature="e#882#883#0" expanded="false" />
+                <element signature="e#939#940#0" expanded="false" />
                 <element signature="e#1046#1047#0" expanded="false" />
                 <element signature="e#1107#1108#0" expanded="false" />
               </folding>
@@ -129,12 +142,38 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ScheduledService.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="ScheduledService.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/ua/tennis/service/ScheduledService.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="504">
               <caret line="436" column="12" lean-forward="false" selection-start-line="436" selection-start-column="12" selection-end-line="436" selection-end-column="12" />
               <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="AccountDetail.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/ua/tennis/domain/AccountDetail.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="484">
+              <caret line="83" column="5" lean-forward="true" selection-start-line="77" selection-start-column="4" selection-end-line="83" selection-end-column="5" />
+              <folding>
+                <element signature="e#2423#2424#0" expanded="true" />
+                <element signature="e#2497#2498#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Bet.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/main/java/ua/tennis/domain/Bet.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="682">
+              <caret line="126" column="5" lean-forward="false" selection-start-line="126" selection-start-column="5" selection-end-line="126" selection-end-column="5" />
+              <folding>
+                <element signature="e#3591#3592#0" expanded="true" />
+                <element signature="e#3631#3632#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -735,7 +774,6 @@
         <option value="$PROJECT_DIR$/src/main/java/ua/tennis/domain/enumeration/MatchWinner.java" />
         <option value="$PROJECT_DIR$/src/main/java/ua/tennis/domain/enumeration/Winner.java" />
         <option value="$PROJECT_DIR$/src/main/java/ua/tennis/service/dto/BetDTO.java" />
-        <option value="$PROJECT_DIR$/src/main/java/ua/tennis/domain/Bet.java" />
         <option value="$PROJECT_DIR$/.gitignore" />
         <option value="$PROJECT_DIR$/src/main/resources/config/liquibase/changelog/20190609131945_added_entity_Match.xml" />
         <option value="$PROJECT_DIR$/src/main/java/ua/tennis/repository/SettRepository.java" />
@@ -754,6 +792,7 @@
         <option value="$PROJECT_DIR$/logFile.2019-08-22.log" />
         <option value="$PROJECT_DIR$/src/main/java/ua/tennis/scheduler/MatchScheduler.java" />
         <option value="$PROJECT_DIR$/src/main/java/ua/tennis/service/ScheduledService.java" />
+        <option value="$PROJECT_DIR$/src/main/java/ua/tennis/domain/Bet.java" />
       </list>
     </option>
   </component>
@@ -787,8 +826,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="PackagesPane" />
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -815,9 +852,85 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="tennis" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Tennis" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="main" />
+              <option name="myItemType" value="org.jetbrains.plugins.gradle.projectView.GradleTreeStructureProvider$GradleSourceSetDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="tennis" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Tennis" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="main" />
+              <option name="myItemType" value="org.jetbrains.plugins.gradle.projectView.GradleTreeStructureProvider$GradleSourceSetDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="java" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="tennis" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="tennis" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Tennis" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="main" />
+              <option name="myItemType" value="org.jetbrains.plugins.gradle.projectView.GradleTreeStructureProvider$GradleSourceSetDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="java" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="tennis" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="domain" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
         </subPane>
       </pane>
       <pane id="Scratches" />
+      <pane id="PackagesPane" />
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -1317,6 +1430,7 @@
       <workItem from="1566411152471" duration="302000" />
       <workItem from="1566411503714" duration="17297000" />
       <workItem from="1566831307249" duration="37000" />
+      <workItem from="1566831385631" duration="134000" />
     </task>
     <task id="LOCAL-00005" summary="working version">
       <created>1563473533021</created>
@@ -1665,7 +1779,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="118183000" />
+    <option name="totallyTimeSpent" value="118317000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
@@ -1691,7 +1805,7 @@
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.21205357" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Spring" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3560268" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24704619" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2508056" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Bean Validation" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Web" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="true" content_ui="tabs" />
       <window_info id="Gradle" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.18689582" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
@@ -1919,13 +2033,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/ua/tennis/domain/AccountDetail.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1650">
-          <caret line="105" column="28" lean-forward="false" selection-start-line="105" selection-start-column="28" selection-end-line="105" selection-end-column="28" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/ua/tennis/repository/SettRepository.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="154">
@@ -2057,13 +2164,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/ua/tennis/domain/Bet.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1989">
-          <caret line="156" column="32" lean-forward="false" selection-start-line="156" selection-start-column="32" selection-end-line="156" selection-end-column="32" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/ua/tennis/service/CalculatorService.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1584">
@@ -2119,6 +2219,8 @@
             <element signature="e#581#582#0" expanded="false" />
             <element signature="e#729#730#0" expanded="false" />
             <element signature="e#779#780#0" expanded="false" />
+            <element signature="e#882#883#0" expanded="false" />
+            <element signature="e#939#940#0" expanded="false" />
             <element signature="e#1046#1047#0" expanded="false" />
             <element signature="e#1107#1108#0" expanded="false" />
           </folding>
@@ -2129,7 +2231,6 @@
       <provider editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
       <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
@@ -2147,7 +2248,6 @@
       <provider editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
       <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
@@ -2160,7 +2260,6 @@
       <provider editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
       <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
@@ -2173,7 +2272,6 @@
       <provider editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
       <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
@@ -2192,11 +2290,33 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/ua/tennis/domain/AccountDetail.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="484">
+          <caret line="83" column="5" lean-forward="true" selection-start-line="77" selection-start-column="4" selection-end-line="83" selection-end-column="5" />
+          <folding>
+            <element signature="e#2423#2424#0" expanded="true" />
+            <element signature="e#2497#2498#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/ua/tennis/service/ScheduledService.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="504">
           <caret line="436" column="12" lean-forward="false" selection-start-line="436" selection-start-column="12" selection-end-line="436" selection-end-column="12" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/ua/tennis/domain/Bet.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="682">
+          <caret line="126" column="5" lean-forward="false" selection-start-line="126" selection-start-column="5" selection-end-line="126" selection-end-column="5" />
+          <folding>
+            <element signature="e#3591#3592#0" expanded="true" />
+            <element signature="e#3631#3632#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

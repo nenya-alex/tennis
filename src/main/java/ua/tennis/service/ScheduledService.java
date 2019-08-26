@@ -252,7 +252,7 @@ public class ScheduledService {
 
                     saveAccount(account, account.getAmount().subtract(stakeAmount), account.getPlacedAmount().add(stakeAmount));
 
-                    saveAccountDetail(account.getAmount(), account.getId(), stakeAmount, savedBet.getId());
+                    saveAccountDetail(account.getId(), savedBet.getId(), account.getAmount(),  stakeAmount, BigDecimal.ZERO);
 
                 } else {
 //            saveBet(betDTO, BetStatus.POTENTIAL);
@@ -274,16 +274,20 @@ public class ScheduledService {
         log.debug("\nSaved Account after action: {}", account);
     }
 
-    private void saveAccountDetail(BigDecimal amount,
-                                   Long accountId,
+    private void saveAccountDetail(Long accountId,
+                                   Long betId,
+                                   BigDecimal amount,
                                    BigDecimal placedAmount,
-                                   Long betId) {
+                                   BigDecimal profit) {
+
         AccountDetailDTO accountDetailDTO = new AccountDetailDTO();
         accountDetailDTO.setAmount(amount);
         accountDetailDTO.setBetId(betId);
         accountDetailDTO.setAccountId(accountId);
         accountDetailDTO.setCreatedDate(Instant.now());
         accountDetailDTO.setPlacedAmount(placedAmount);
+        accountDetailDTO.setProfit(profit);
+
         AccountDetail accountDetail = accountDetailRepository.saveAndFlush(accountDetailMapper.toEntity(accountDetailDTO));
 
         log.debug("\nSaved AccountDetail : {}", accountDetail);
@@ -390,6 +394,9 @@ public class ScheduledService {
             matchRepository.save(match.status(MatchStatus.FINISHED).updatedDate(Instant.now()));
             log.debug("\nFINISH MATCH: Saved Match : {}", match);
 
+            Account account = accountRepository.findOne(1L);
+            log.debug("\nSETTLE/RETURN BET: Account before settlement/returning: {}", account);
+
             if (match.isScoreCorrect()) {
                 settleBets(betRepository.findByMatchIdAndStatus(match.getId(), BetStatus.OPENED), match.getWinner());
             } else {
@@ -399,44 +406,42 @@ public class ScheduledService {
     }
 
     private void returnBetAmount(Set<Bet> bets, Winner winner) {
-        Account account = accountRepository.findOne(1L);
-        log.debug("\nRETURN BET: Account before returning: {}", account);
 
         for (Bet bet : bets) {
             log.debug("\nRETURN BET: Bet before returning : {}", bet);
 
-            betRepository.saveAndFlush(bet.status(BetStatus.CLOSED).winner(winner).settledDate(Instant.now()));
+            betRepository.saveAndFlush(bet.status(BetStatus.RETURNED).settledDate(Instant.now()));
             log.debug("\nRETURN BET: Bet after returning : {}", bet);
 
             saveAccount(account, account.getAmount().add(bet.getAmount()), account.getPlacedAmount().subtract(bet.getAmount()));
 
-            saveAccountDetail(account.getAmount(), account.getId(), BigDecimal.ZERO, bet.getId());
+            saveAccountDetail(account.getId(), bet.getId(), account.getAmount(),  BigDecimal.ZERO, bet.getAmount());
         }
     }
 
     private void settleBets(Set<Bet> bets, Winner winner) {
 
-        Account account = accountRepository.findOne(1L);
-        log.debug("\nSETTLE BET: Account before settlement: {}", account);
-
         for (Bet bet : bets) {
             log.debug("\nSETTLE BET: Bet before settlement : {}", bet);
 
             BigDecimal amount;
-            BigDecimal placedAmount = account.getPlacedAmount().subtract(bet.getAmount());
+            BigDecimal profit;
+            boolean isBetWon = isBetWon(bet, winner.name());
 
-            if (isBetWon(bet, winner.name())) {
-                amount = account.getAmount().add(bet.getAmount().multiply(BigDecimal.valueOf(bet.getOdds())));
+            if (isBetWon) {
+                profit = bet.getAmount().multiply(BigDecimal.valueOf(bet.getOdds()));
+                amount = account.getAmount().add(profit);
             } else {
+                profit = bet.getAmount().negate();
                 amount = account.getAmount();
             }
 
-            betRepository.saveAndFlush(bet.status(BetStatus.CLOSED).winner(winner).settledDate(Instant.now()));
+            betRepository.saveAndFlush(bet.status(BetStatus.CLOSED).isBetWon(isBetWon).settledDate(Instant.now()));
             log.debug("\nSETTLE BET: Bet after settlement : {}", bet);
 
-            saveAccount(account, amount, placedAmount);
+            saveAccount(account, amount, account.getPlacedAmount().subtract(bet.getAmount()));
 
-            saveAccountDetail(account.getAmount(), account.getId(), BigDecimal.ZERO, bet.getId());
+            saveAccountDetail(account.getId(), bet.getId(), account.getAmount(),  BigDecimal.ZERO, profit);
         }
     }
 

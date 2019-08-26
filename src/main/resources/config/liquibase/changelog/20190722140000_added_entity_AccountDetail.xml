@@ -20,6 +20,10 @@
                 <constraints nullable="true"/>
             </column>
 
+            <column name="profit" type="decimal(21,2)">
+                <constraints nullable="true"/>
+            </column>
+
             <column name="created_date" type="datetime">
                 <constraints nullable="true"/>
             </column>

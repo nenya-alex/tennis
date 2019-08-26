@@ -1,5 +1,5 @@
 package ua.tennis.domain.enumeration;
 
 public enum BetStatus {
-    OPENED, CLOSED, POTENTIAL
+    OPENED, CLOSED, POTENTIAL, RETURNED
 }

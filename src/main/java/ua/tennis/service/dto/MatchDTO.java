@@ -13,10 +13,6 @@ public class MatchDTO implements Serializable {
 
     private Long id;
 
-    private String homeName;
-
-    private String awayName;
-
     private Integer homeScore;
 
     private Integer awayScore;
@@ -25,7 +21,7 @@ public class MatchDTO implements Serializable {
 
     private String name;
 
-    private Instant openDate;
+    private String leagueName;
 
     private Instant updatedDate;
 
@@ -52,16 +48,12 @@ public class MatchDTO implements Serializable {
 
     public MatchDTO(Long id,
                     String name,
-                    Instant openDate,
                     Instant startDate,
-                    String homeName,
-                    String awayName) {
+                    String leagueName;) {
         this.id = id;
-        this.homeName = homeName;
-        this.awayName = awayName;
-        this.startDate = startDate;
         this.name = name;
-        this.openDate = openDate;
+        this.startDate = startDate;
+        this.leagueName = leagueName;
     }
 
     public MatchDTO(double homeMatchProbability, List<SettDTO> setts) {
@@ -125,12 +117,12 @@ public class MatchDTO implements Serializable {
         this.name = name;
     }
 
-    public Instant getOpenDate() {
-        return openDate;
+    public String getLeagueName() {
+        return leagueName;
     }
 
-    public void setOpenDate(Instant openDate) {
-        this.openDate = openDate;
+    public void setLeagueName(String leagueName) {
+        this.leagueName = leagueName;
     }
 
     public Instant getUpdatedDate() {
@@ -243,13 +235,11 @@ public class MatchDTO implements Serializable {
     public String toString() {
         return "\n" +"MatchDTO{" +
             "id=" + id +"\n" +
-            ", homeName='" + homeName + '\'' +"\n" +
-            ", awayName='" + awayName + '\'' +"\n" +
+            ", name='" + name + '\'' +"\n" +
             ", homeScore=" + homeScore +"\n" +
             ", awayScore=" + awayScore +"\n" +
             ", startDate=" + startDate +"\n" +
-            ", name='" + name + '\'' +"\n" +
-            ", openDate=" + openDate +"\n" +
+            ", leagueName='" + leagueName + '\'' +"\n" +
             ", updatedDate=" + updatedDate + "\n" +
             ", homeMatchProbability=" + homeMatchProbability +"\n" +
             ", status=" + status +"\n" +
