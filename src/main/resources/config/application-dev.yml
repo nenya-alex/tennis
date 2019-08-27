@@ -51,15 +51,13 @@ spring:
         port: 587
         username: alexander.nenya@gmail.com
         password: 27111977
-            properties:
-                mail:
-                    smtp:
-                        auth: true
-                        connectiontimeout: 5000
-                        timeout: 5000
-                        writetimeout: 5000
-                        starttls:
-                            enable: true
+        smtp:
+            auth: true
+            connectiontimeout: 5000
+            timeout: 5000
+            writetimeout: 5000
+            starttls:
+                enable: true
     messages:
         cache-seconds: 1
     thymeleaf:
