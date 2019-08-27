@@ -28,6 +28,10 @@
                 <constraints nullable="true"/>
             </column>
 
+            <column name="probabilities_ratio" type="double">
+                <constraints nullable="true"/>
+            </column>
+
             <column name="kelly_coefficient" type="double">
                 <constraints nullable="true"/>
             </column>

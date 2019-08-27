@@ -41,6 +41,8 @@ public class BetDTO implements Serializable {
 
     private BigDecimal profit;
 
+    private double probabilitiesRatio;
+
     private Set<AccountDetailDTO> accountDetailDTOs = new HashSet<>();
 
     public Long getId() {
@@ -161,6 +163,14 @@ public class BetDTO implements Serializable {
 
     public void setProfit(BigDecimal profit) {
         this.profit = profit;
+    }
+
+    public double getProbabilitiesRatio() {
+        return probabilitiesRatio;
+    }
+
+    public void setProbabilitiesRatio(double probabilitiesRatio) {
+        this.probabilitiesRatio = probabilitiesRatio;
     }
 
     @Override

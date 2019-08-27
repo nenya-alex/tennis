@@ -187,11 +187,15 @@ public class ScheduledService {
                         double homeProbability = gameDTO.getHomeProbability();
 
                         if (homeProbability > bookmakersHomeProbability * multiplier) {
-                            place(match, homeOdds, calculatorService.getRoundedDoubleNumber((homeOdds + awayOdds) / awayOdds),
-                                homeProbability, BetSide.HOME, currentSetNumber);
+                            if (homeOdds > maxOdds) {
+                                place(match, homeOdds, calculatorService.getRoundedDoubleNumber((homeOdds + awayOdds) / awayOdds),
+                                    homeProbability, BetSide.HOME, currentSetNumber);
+                            }
                         } else if ((1 - homeProbability) > (1 - bookmakersHomeProbability) * multiplier) {
-                            place(match, awayOdds, calculatorService.getRoundedDoubleNumber((homeOdds + awayOdds) / homeOdds),
-                                1 - homeProbability, BetSide.AWAY, currentSetNumber);
+                            if (awayOdds > maxOdds) {
+                                place(match, awayOdds, calculatorService.getRoundedDoubleNumber((homeOdds + awayOdds) / homeOdds),
+                                    1 - homeProbability, BetSide.AWAY, currentSetNumber);
+                            }
                         }
                     }
 
@@ -250,6 +254,9 @@ public class ScheduledService {
 
 //        log.debug("\nPLACE BET: stakeAmount = {} ", stakeAmount);
 
+                double bookmakerProbability = calculatorService.getRoundedDoubleNumber(1 / bookmakerOddsWithoutMarge);
+                double probabilitiesRatio  = calculatorService.getRoundedDoubleNumber(probability / bookmakerProbability);
+
                 BetDTO betDTO = new BetDTO();
                 betDTO.setAmount(stakeAmount);
                 betDTO.setOdds(odds);
@@ -258,8 +265,9 @@ public class ScheduledService {
                 betDTO.setMatchId(match.getId());
                 betDTO.setKellyCoefficient(kellyCoefficient);
                 betDTO.setCountedProbability(probability);
-                betDTO.setBookmakerProbability(calculatorService.getRoundedDoubleNumber(1 / bookmakerOddsWithoutMarge));
+                betDTO.setBookmakerProbability(bookmakerProbability);
                 betDTO.setSetNumber(currentSetNumber);
+                betDTO.setProbabilitiesRatio(probabilitiesRatio);
 
                 if (match.getBets().stream().noneMatch(bet -> bet.getStatus() == BetStatus.OPENED)) {
                     Bet savedBet = saveBet(betDTO, BetStatus.OPENED);
@@ -462,5 +470,16 @@ public class ScheduledService {
 
     private boolean isBetWon(Bet bet, String winnerName) {
         return bet.getBetSide().name().equals(winnerName);
+    }
+
+    public void sendEmail(){
+        SimpleMailMessage msg = new SimpleMailMessage();
+        msg.setTo("nenya.alex@gmail.com");
+
+        msg.setSubject("Account from: " + Instant.now());
+        Account account = accountRepository.findOne(1L);
+        msg.setText("Ammount = " + account.getAmount() + ", PlacedAmount = " + account.getPlacedAmount());
+
+        javaMailSender.send(msg);
     }
 }
