@@ -36,7 +36,15 @@
                 <constraints nullable="true" />
             </column>
 
+            <column name="set_number" type="int">
+                <constraints nullable="true"/>
+            </column>
+
             <column name="is_bet_won" type="boolean">
+                <constraints nullable="true"/>
+            </column>
+
+            <column name="profit" type="decimal(21,2)">
                 <constraints nullable="true"/>
             </column>
 

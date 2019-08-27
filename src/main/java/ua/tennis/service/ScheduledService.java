@@ -33,6 +33,10 @@ public class ScheduledService {
 
     private static final String PROBABILITY_MULTIPLIER = "PROBABILITY_MULTIPLIER";
 
+    private static final String IS_BET_PLACEMENT_ENABLE = "IS_BET_PLACEMENT_ENABLE";
+
+    private static final String MAX_ODDS = "MAX_ODDS";
+
     private final RestTemplate restTemplate;
 
     private final ScheduledRepository scheduledRepository;
@@ -156,6 +160,8 @@ public class ScheduledService {
     private void saveLiveMatches(List<MatchDTO> matchDTOs) {
 
         double multiplier = Double.parseDouble(settingsRepository.findByKey(PROBABILITY_MULTIPLIER).getValue());
+        boolean isBetPlacementEnable = Boolean.valueOf(settingsRepository.findByKey(IS_BET_PLACEMENT_ENABLE).getValue());
+        double maxOdds = Double.parseDouble(settingsRepository.findByKey(MAX_ODDS).getValue());
 
         for (MatchDTO matchDTO : matchDTOs) {
 
@@ -168,21 +174,27 @@ public class ScheduledService {
                 updateMatch(match, matchDTO);
 
 //                log.debug("\nPLACE BET: \n Request for MatchDTO with \n POTENTIAL ERROR : {}", matchDTO);
+                if (isBetPlacementEnable) {
 
-                List<GameDTO> gameDTOs = matchDTO.getSetts().get(matchDTO.getCurrentSetNumber() - 1).getGames();
-                if (!gameDTOs.isEmpty()) {
-                    GameDTO gameDTO = gameDTOs.get(0);
+                    int currentSetNumber = matchDTO.getCurrentSetNumber();
+                    List<GameDTO> gameDTOs = matchDTO.getSetts().get(currentSetNumber - 1).getGames();
+                    if (!gameDTOs.isEmpty()) {
+                        GameDTO gameDTO = gameDTOs.get(0);
 
-                    double homeOdds = gameDTO.getOddsDTO().getHomeOdds();
-                    double awayOdds = gameDTO.getOddsDTO().getAwayOdds();
-                    double bookmakersHomeProbability = calculatorService.getRoundedDoubleNumber(awayOdds / (homeOdds + awayOdds));
-                    double homeProbability = gameDTO.getHomeProbability();
+                        double homeOdds = gameDTO.getOddsDTO().getHomeOdds();
+                        double awayOdds = gameDTO.getOddsDTO().getAwayOdds();
+                        double bookmakersHomeProbability = calculatorService.getRoundedDoubleNumber(awayOdds / (homeOdds + awayOdds));
+                        double homeProbability = gameDTO.getHomeProbability();
 
-                    if (homeProbability > bookmakersHomeProbability * multiplier) {
-                        place(match, homeOdds, calculatorService.getRoundedDoubleNumber((homeOdds + awayOdds) / awayOdds), homeProbability, BetSide.HOME);
-                    } else if ((1 - homeProbability) > (1 - bookmakersHomeProbability) * multiplier) {
-                        place(match, awayOdds, calculatorService.getRoundedDoubleNumber((homeOdds + awayOdds) / homeOdds), 1 - homeProbability, BetSide.AWAY);
+                        if (homeProbability > bookmakersHomeProbability * multiplier) {
+                            place(match, homeOdds, calculatorService.getRoundedDoubleNumber((homeOdds + awayOdds) / awayOdds),
+                                homeProbability, BetSide.HOME, currentSetNumber);
+                        } else if ((1 - homeProbability) > (1 - bookmakersHomeProbability) * multiplier) {
+                            place(match, awayOdds, calculatorService.getRoundedDoubleNumber((homeOdds + awayOdds) / homeOdds),
+                                1 - homeProbability, BetSide.AWAY, currentSetNumber);
+                        }
                     }
+
                 }
             }
         }
@@ -219,7 +231,8 @@ public class ScheduledService {
                        double odds,
                        double bookmakerOddsWithoutMarge,
                        double probability,
-                       BetSide betSide) {
+                       BetSide betSide,
+                       int currentSetNumber) {
         double kellyCoefficient = calculatorService.getRoundedDoubleNumber(
             (bookmakerOddsWithoutMarge * probability - 1) / (bookmakerOddsWithoutMarge - 1));
 
@@ -246,13 +259,14 @@ public class ScheduledService {
                 betDTO.setKellyCoefficient(kellyCoefficient);
                 betDTO.setCountedProbability(probability);
                 betDTO.setBookmakerProbability(calculatorService.getRoundedDoubleNumber(1 / bookmakerOddsWithoutMarge));
+                betDTO.setSetNumber(currentSetNumber);
 
                 if (match.getBets().stream().noneMatch(bet -> bet.getStatus() == BetStatus.OPENED)) {
                     Bet savedBet = saveBet(betDTO, BetStatus.OPENED);
 
                     saveAccount(account, account.getAmount().subtract(stakeAmount), account.getPlacedAmount().add(stakeAmount));
 
-                    saveAccountDetail(account.getId(), savedBet.getId(), account.getAmount(),  stakeAmount, BigDecimal.ZERO);
+                    saveAccountDetail(account.getId(), savedBet.getId(), account.getAmount(), stakeAmount, BigDecimal.ZERO);
 
                 } else {
 //            saveBet(betDTO, BetStatus.POTENTIAL);
@@ -398,14 +412,14 @@ public class ScheduledService {
             log.debug("\nSETTLE/RETURN BET: Account before settlement/returning: {}", account);
 
             if (match.isScoreCorrect()) {
-                settleBets(betRepository.findByMatchIdAndStatus(match.getId(), BetStatus.OPENED), match.getWinner());
+                settleBets(betRepository.findByMatchIdAndStatus(match.getId(), BetStatus.OPENED), match.getWinner(), account);
             } else {
-                returnBetAmount(betRepository.findByMatchIdAndStatus(match.getId(), BetStatus.OPENED), match.getWinner());
+                returnBetAmount(betRepository.findByMatchIdAndStatus(match.getId(), BetStatus.OPENED), account);
             }
         }
     }
 
-    private void returnBetAmount(Set<Bet> bets, Winner winner) {
+    private void returnBetAmount(Set<Bet> bets, Account account) {
 
         for (Bet bet : bets) {
             log.debug("\nRETURN BET: Bet before returning : {}", bet);
@@ -415,11 +429,11 @@ public class ScheduledService {
 
             saveAccount(account, account.getAmount().add(bet.getAmount()), account.getPlacedAmount().subtract(bet.getAmount()));
 
-            saveAccountDetail(account.getId(), bet.getId(), account.getAmount(),  BigDecimal.ZERO, bet.getAmount());
+            saveAccountDetail(account.getId(), bet.getId(), account.getAmount(), BigDecimal.ZERO, bet.getAmount());
         }
     }
 
-    private void settleBets(Set<Bet> bets, Winner winner) {
+    private void settleBets(Set<Bet> bets, Winner winner, Account account) {
 
         for (Bet bet : bets) {
             log.debug("\nSETTLE BET: Bet before settlement : {}", bet);
@@ -436,12 +450,13 @@ public class ScheduledService {
                 amount = account.getAmount();
             }
 
-            betRepository.saveAndFlush(bet.status(BetStatus.CLOSED).isBetWon(isBetWon).settledDate(Instant.now()));
+            betRepository.saveAndFlush(bet.status(BetStatus.CLOSED).isBetWon(isBetWon)
+                .settledDate(Instant.now()).profit(profit));
             log.debug("\nSETTLE BET: Bet after settlement : {}", bet);
 
             saveAccount(account, amount, account.getPlacedAmount().subtract(bet.getAmount()));
 
-            saveAccountDetail(account.getId(), bet.getId(), account.getAmount(),  BigDecimal.ZERO, profit);
+            saveAccountDetail(account.getId(), bet.getId(), account.getAmount(), BigDecimal.ZERO, profit);
         }
     }
 

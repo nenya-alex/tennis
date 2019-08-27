@@ -37,6 +37,10 @@ public class BetDTO implements Serializable {
 
     private Instant settledDate;
 
+    private Integer setNumber;
+
+    private BigDecimal profit;
+
     private Set<AccountDetailDTO> accountDetailDTOs = new HashSet<>();
 
     public Long getId() {
@@ -141,6 +145,22 @@ public class BetDTO implements Serializable {
 
     public void setSettledDate(Instant settledDate) {
         this.settledDate = settledDate;
+    }
+
+    public Integer getSetNumber() {
+        return setNumber;
+    }
+
+    public void setSetNumber(Integer setNumber) {
+        this.setNumber = setNumber;
+    }
+
+    public BigDecimal getProfit() {
+        return profit;
+    }
+
+    public void setProfit(BigDecimal profit) {
+        this.profit = profit;
     }
 
     @Override

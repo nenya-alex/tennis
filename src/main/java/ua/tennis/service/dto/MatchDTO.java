@@ -49,7 +49,7 @@ public class MatchDTO implements Serializable {
     public MatchDTO(Long id,
                     String name,
                     Instant startDate,
-                    String leagueName;) {
+                    String leagueName) {
         this.id = id;
         this.name = name;
         this.startDate = startDate;
@@ -67,22 +67,6 @@ public class MatchDTO implements Serializable {
 
     public void setId(Long id) {
         this.id = id;
-    }
-
-    public String getHomeName() {
-        return homeName;
-    }
-
-    public void setHomeName(String homeName) {
-        this.homeName = homeName;
-    }
-
-    public String getAwayName() {
-        return awayName;
-    }
-
-    public void setAwayName(String awayName) {
-        this.awayName = awayName;
     }
 
     public Integer getHomeScore() {
@@ -235,11 +219,11 @@ public class MatchDTO implements Serializable {
     public String toString() {
         return "\n" +"MatchDTO{" +
             "id=" + id +"\n" +
-            ", name='" + name + '\'' +"\n" +
+            ", name='" + name + '\'' + "\n" +
             ", homeScore=" + homeScore +"\n" +
             ", awayScore=" + awayScore +"\n" +
             ", startDate=" + startDate +"\n" +
-            ", leagueName='" + leagueName + '\'' +"\n" +
+            ", leagueName='" + leagueName + '\'' + "\n" +
             ", updatedDate=" + updatedDate + "\n" +
             ", homeMatchProbability=" + homeMatchProbability +"\n" +
             ", status=" + status +"\n" +
