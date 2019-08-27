@@ -1,12 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="1134ab4c-b41f-4cdb-9270-7db41128e82a" name="Default" comment="changed Bet entity">
+    <list default="true" id="1134ab4c-b41f-4cdb-9270-7db41128e82a" name="Default" comment="added profit field in AccountDetail entity">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ua/tennis/domain/AccountDetail.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ua/tennis/domain/AccountDetail.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ua/tennis/service/ScheduledService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ua/tennis/service/ScheduledService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ua/tennis/service/dto/AccountDetailDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ua/tennis/service/dto/AccountDetailDTO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/config/liquibase/changelog/20190722140000_added_entity_AccountDetail.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/config/liquibase/changelog/20190722140000_added_entity_AccountDetail.xml" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -129,23 +125,19 @@
     </option>
     <option name="RESET_MODE" value="MIXED" />
   </component>
-  <component name="ProjectFrameBounds">
-    <option name="x" value="-8" />
-    <option name="y" value="-8" />
-    <option name="width" value="1936" />
-    <option name="height" value="1056" />
-  </component>
+  <component name="ProjectId" id="1PpH9XT3swWj5n6oz8ypzGZmJjS" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
     <ConfirmationsSetting value="2" id="Add" />
   </component>
   <component name="PropertiesComponent">
+    <property name="Git.Branch.Popup.ShowAllRemotes" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/.gradle" />
-    <property name="settings.editor.selected.configurable" value="project.propVCSSupport.Ignored.Files" />
-    <property name="extract.method.default.visibility" value="private" />
     <property name="com.intellij.database.dataSource.DataSourceTemplate" value="PostgreSQL" />
-    <property name="Git.Branch.Popup.ShowAllRemotes" value="true" />
+    <property name="extract.method.default.visibility" value="private" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="nodejs_package_manager_path" value="yarn" />
+    <property name="settings.editor.selected.configurable" value="project.propVCSSupport.Ignored.Files" />
   </component>
   <component name="Push.Settings">
     <force-push-targets>
@@ -429,13 +421,7 @@
       <workItem from="1566320169353" duration="7782000" />
       <workItem from="1566411152471" duration="302000" />
       <workItem from="1566411503714" duration="17274000" />
-    </task>
-    <task id="LOCAL-00006" summary="changed Bet entity">
-      <created>1563477120512</created>
-      <option name="number" value="00006" />
-      <option name="presentableId" value="LOCAL-00006" />
-      <option name="project" value="LOCAL" />
-      <updated>1563477120512</updated>
+      <workItem from="1566563968079" duration="617000" />
     </task>
     <task id="LOCAL-00007" summary="added Account entity">
       <created>1563512164780</created>
@@ -773,8 +759,18 @@
       <option name="project" value="LOCAL" />
       <updated>1566561516471</updated>
     </task>
-    <option name="localTasksCounter" value="55" />
+    <task id="LOCAL-00055" summary="added profit field in AccountDetail entity">
+      <created>1566563101787</created>
+      <option name="number" value="00055" />
+      <option name="presentableId" value="LOCAL-00055" />
+      <option name="project" value="LOCAL" />
+      <updated>1566563101787</updated>
+    </task>
+    <option name="localTasksCounter" value="56" />
     <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="1" />
   </component>
   <component name="UnknownFeatures">
     <option featureType="com.intellij.fileTypeFactory" implementationName="*.log" />
@@ -795,7 +791,6 @@
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_NEW_TODO" value="false" />
-    <MESSAGE value="added new fields in Bet - 2" />
     <MESSAGE value="work with Suspended matches and added a field in Match" />
     <MESSAGE value="set setNumber" />
     <MESSAGE value="fixed errors" />
@@ -820,7 +815,8 @@
     <MESSAGE value="refactored" />
     <MESSAGE value="changed Match entity" />
     <MESSAGE value="changed Bet entity" />
-    <option name="LAST_COMMIT_MESSAGE" value="changed Bet entity" />
+    <MESSAGE value="added profit field in AccountDetail entity" />
+    <option name="LAST_COMMIT_MESSAGE" value="added profit field in AccountDetail entity" />
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
   </component>
   <component name="antWorkspaceConfiguration">
