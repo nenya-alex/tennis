@@ -473,6 +473,13 @@ public class ScheduledService {
     }
 
     public void sendEmail(){
+        SimpleMailMessage msg = new SimpleMailMessage();
+        msg.setTo("nenya.alex@gmail.com");
 
+        msg.setSubject("Account from: " + Instant.now());
+        Account account = accountRepository.findOne(1L);
+        msg.setText("Ammount = " + account.getAmount() + ", PlacedAmount = " + account.getPlacedAmount());
+
+        javaMailSender.send(msg);
     }
 }
