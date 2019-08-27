@@ -51,6 +51,9 @@ public class Bet implements Serializable {
     @Column(name = "bookmaker_probability")
     private Double bookmakerProbability;
 
+    @Column(name = "probabilities_ratio")
+    private Double probabilitiesRatio;
+
     @Column(name = "kelly_coefficient")
     private Double kellyCoefficient;
 
@@ -224,6 +227,19 @@ public class Bet implements Serializable {
 
     public void setSetNumber(Integer setNumber) {
         this.setNumber = setNumber;
+    }
+
+    public Double getProbabilitiesRatio() {
+        return probabilitiesRatio;
+    }
+
+    public void setProbabilitiesRatio(Double probabilitiesRatio) {
+        this.probabilitiesRatio = probabilitiesRatio;
+    }
+
+    public Bet probabilitiesRatio(Double probabilitiesRatio) {
+        this.probabilitiesRatio = probabilitiesRatio;
+        return this;
     }
 
     @Override

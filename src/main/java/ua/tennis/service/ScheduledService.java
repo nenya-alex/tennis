@@ -254,6 +254,9 @@ public class ScheduledService {
 
 //        log.debug("\nPLACE BET: stakeAmount = {} ", stakeAmount);
 
+                double bookmakerProbability = calculatorService.getRoundedDoubleNumber(1 / bookmakerOddsWithoutMarge);
+                double probabilitiesRatio  = calculatorService.getRoundedDoubleNumber(probability / bookmakerProbability);
+
                 BetDTO betDTO = new BetDTO();
                 betDTO.setAmount(stakeAmount);
                 betDTO.setOdds(odds);
@@ -262,8 +265,9 @@ public class ScheduledService {
                 betDTO.setMatchId(match.getId());
                 betDTO.setKellyCoefficient(kellyCoefficient);
                 betDTO.setCountedProbability(probability);
-                betDTO.setBookmakerProbability(calculatorService.getRoundedDoubleNumber(1 / bookmakerOddsWithoutMarge));
+                betDTO.setBookmakerProbability(bookmakerProbability);
                 betDTO.setSetNumber(currentSetNumber);
+                betDTO.setProbabilitiesRatio(probabilitiesRatio);
 
                 if (match.getBets().stream().noneMatch(bet -> bet.getStatus() == BetStatus.OPENED)) {
                     Bet savedBet = saveBet(betDTO, BetStatus.OPENED);
