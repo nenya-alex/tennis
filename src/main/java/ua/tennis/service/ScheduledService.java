@@ -187,11 +187,15 @@ public class ScheduledService {
                         double homeProbability = gameDTO.getHomeProbability();
 
                         if (homeProbability > bookmakersHomeProbability * multiplier) {
-                            place(match, homeOdds, calculatorService.getRoundedDoubleNumber((homeOdds + awayOdds) / awayOdds),
-                                homeProbability, BetSide.HOME, currentSetNumber);
+                            if (homeOdds > maxOdds) {
+                                place(match, homeOdds, calculatorService.getRoundedDoubleNumber((homeOdds + awayOdds) / awayOdds),
+                                    homeProbability, BetSide.HOME, currentSetNumber);
+                            }
                         } else if ((1 - homeProbability) > (1 - bookmakersHomeProbability) * multiplier) {
-                            place(match, awayOdds, calculatorService.getRoundedDoubleNumber((homeOdds + awayOdds) / homeOdds),
-                                1 - homeProbability, BetSide.AWAY, currentSetNumber);
+                            if (awayOdds > maxOdds) {
+                                place(match, awayOdds, calculatorService.getRoundedDoubleNumber((homeOdds + awayOdds) / homeOdds),
+                                    1 - homeProbability, BetSide.AWAY, currentSetNumber);
+                            }
                         }
                     }
 
