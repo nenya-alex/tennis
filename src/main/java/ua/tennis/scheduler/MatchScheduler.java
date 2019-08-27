@@ -14,12 +14,10 @@ public class MatchScheduler {
     }
 
     @Scheduled(cron = "0 0/1 * * * *") //every minute
-//    @Scheduled(fixedDelay = 30000)
     public void getUpcomingMatches() {
         scheduledService.saveUpcomingMatches();
     }
 
-    //    @Scheduled(cron = "0 0/1 * * * *") //every minute
     @Scheduled(fixedDelay = 2000) //every 2 seconds
     public void getLiveMatches() {
         scheduledService.saveLiveMatches();
@@ -34,4 +32,10 @@ public class MatchScheduler {
     public void finishMatchesAndSettleBets() {
         scheduledService.finishMatchesAndSettleBets();
     }
+
+    @Scheduled(cron = "0 0 0/3 * * *") //every 3 hours
+    public void sendEmail() {
+        scheduledService.sendEmail();
+    }
+
 }

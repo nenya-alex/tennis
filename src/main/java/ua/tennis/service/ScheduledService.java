@@ -471,4 +471,8 @@ public class ScheduledService {
     private boolean isBetWon(Bet bet, String winnerName) {
         return bet.getBetSide().name().equals(winnerName);
     }
+
+    public void sendEmail(){
+
+    }
 }
