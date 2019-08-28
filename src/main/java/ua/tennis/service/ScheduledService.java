@@ -485,6 +485,7 @@ public class ScheduledService {
         try {
             MimeMessage msg = javaMailSender.createMimeMessage();
             MimeMessageHelper helper = new MimeMessageHelper(msg, true);
+            helper.setFrom("alexander.nenya@gmail.com");
             helper.setTo("nenya.alex@gmail.com");
 
             helper.setSubject("Account from: " + Instant.now());
