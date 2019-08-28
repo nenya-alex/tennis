@@ -283,7 +283,7 @@ public class ScheduledService {
                     saveAccountDetail(account.getId(), savedBet.getId(), account.getAmount(), stakeAmount, BigDecimal.ZERO);
 
                 } else {
-//            saveBet(betDTO, BetStatus.POTENTIAL);
+                    saveBet(betDTO, BetStatus.POTENTIAL);
                 }
             }
         }
