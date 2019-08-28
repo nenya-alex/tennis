@@ -283,7 +283,7 @@ public class ScheduledService {
                     saveAccountDetail(account.getId(), savedBet.getId(), account.getAmount(), stakeAmount, BigDecimal.ZERO);
 
                 } else {
-//            saveBet(betDTO, BetStatus.POTENTIAL);
+                    saveBet(betDTO, BetStatus.POTENTIAL);
                 }
             }
         }
@@ -479,13 +479,23 @@ public class ScheduledService {
     }
 
     public void sendEmail(){
-        SimpleMailMessage msg = new SimpleMailMessage();
-        msg.setTo("nenya.alex@gmail.com");
+        try {
+            MimeMessage msg = javaMailSender.createMimeMessage();
+            MimeMessageHelper helper = new MimeMessageHelper(msg, true);
+            helper.setTo("nenya.alex@gmail.com");
 
-        msg.setSubject("Account from: " + Instant.now());
-        Account account = accountRepository.findOne(1L);
-        msg.setText("Amount = " + account.getAmount() + ", Placed Amount = " + account.getPlacedAmount());
+            helper.setSubject("Account from: " + Instant.now());
 
-        javaMailSender.send(msg);
+            Account account = accountRepository.findOne(1L);
+            helper.setText("Amount = " + account.getAmount() + ", Placed Amount = " + account.getPlacedAmount());
+
+//            FileSystemResource file = new FileSystemResource(new File("1.txt"));
+//            helper.addAttachment("test_file.txt", file);
+
+            javaMailSender.send(msg);
+
+        } catch (MessagingException e) {
+            e.printStackTrace();
+        }
     }
 }
