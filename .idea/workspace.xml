@@ -3,6 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="1134ab4c-b41f-4cdb-9270-7db41128e82a" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/ua/tennis/service/ScheduledService.java" afterPath="$PROJECT_DIR$/src/main/java/ua/tennis/service/ScheduledService.java" />
     </list>
     <ignored path="$PROJECT_DIR$/.gradle/" />
     <ignored path="$PROJECT_DIR$/build/classes/" />
@@ -118,6 +119,8 @@
                 <element signature="imports" expanded="false" />
                 <element signature="e#340#341#0" expanded="false" />
                 <element signature="e#396#397#0" expanded="false" />
+                <element signature="e#490#491#0" expanded="false" />
+                <element signature="e#544#545#0" expanded="false" />
                 <element signature="e#632#633#0" expanded="false" />
                 <element signature="e#682#683#0" expanded="false" />
                 <element signature="e#785#786#0" expanded="false" />
@@ -134,8 +137,8 @@
       <file leaf-file-name="ScheduledService.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/ua/tennis/service/ScheduledService.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="439">
-              <caret line="480" column="16" lean-forward="false" selection-start-line="480" selection-start-column="16" selection-end-line="480" selection-end-column="16" />
+            <state relative-caret-position="130">
+              <caret line="471" column="29" lean-forward="true" selection-start-line="471" selection-start-column="29" selection-end-line="471" selection-end-column="29" />
               <folding />
             </state>
           </provider>
@@ -754,8 +757,8 @@
         <option value="$PROJECT_DIR$/src/main/java/ua/tennis/service/dto/MatchDTO.java" />
         <option value="$PROJECT_DIR$/src/main/java/ua/tennis/domain/Bet.java" />
         <option value="$PROJECT_DIR$/src/main/resources/config/liquibase/data/settings.csv" />
-        <option value="$PROJECT_DIR$/src/main/java/ua/tennis/service/ScheduledService.java" />
         <option value="$PROJECT_DIR$/src/main/resources/config/application-dev.yml" />
+        <option value="$PROJECT_DIR$/src/main/java/ua/tennis/service/ScheduledService.java" />
       </list>
     </option>
   </component>
@@ -789,9 +792,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
-      <pane id="PackagesPane" />
-      <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -820,6 +820,9 @@
           </PATH>
         </subPane>
       </pane>
+      <pane id="Scratches" />
+      <pane id="PackagesPane" />
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -1322,13 +1325,7 @@
       <workItem from="1566831385631" duration="5720000" />
       <workItem from="1566925298536" duration="2051000" />
       <workItem from="1567013877369" duration="15000" />
-    </task>
-    <task id="LOCAL-00012" summary="refactored saveMatches() method">
-      <created>1563988219425</created>
-      <option name="number" value="00012" />
-      <option name="presentableId" value="LOCAL-00012" />
-      <option name="project" value="LOCAL" />
-      <updated>1563988219425</updated>
+      <workItem from="1567013939917" duration="749000" />
     </task>
     <task id="LOCAL-00013" summary="added logging">
       <created>1563991034081</created>
@@ -1666,11 +1663,18 @@
       <option name="project" value="LOCAL" />
       <updated>1566926052742</updated>
     </task>
-    <option name="localTasksCounter" value="61" />
+    <task id="LOCAL-00061" summary="Merge branch 'Last' of https://github.com/nenya-alex/tennis into Last&#10;&#10;# Conflicts:&#10;#&#9;.idea/workspace.xml">
+      <created>1567014694522</created>
+      <option name="number" value="00061" />
+      <option name="presentableId" value="LOCAL-00061" />
+      <option name="project" value="LOCAL" />
+      <updated>1567014694522</updated>
+    </task>
+    <option name="localTasksCounter" value="62" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="125969000" />
+    <option name="totallyTimeSpent" value="126718000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
@@ -1692,11 +1696,11 @@
       <window_info id="Image Layers" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Java Enterprise" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.27901787" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4497768" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.27901787" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Spring" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3671875" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.25832438" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3671875" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.26208377" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Bean Validation" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Web" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="true" content_ui="tabs" />
       <window_info id="Gradle" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.18689582" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
@@ -1768,14 +1772,14 @@
     <MESSAGE value="changed filling match scores when finding READE_TO_FINISH matches" />
     <MESSAGE value="added returning Bet amount for retired Matches" />
     <MESSAGE value="refactored" />
-    <MESSAGE value="Merge branch 'Last' of https://github.com/nenya-alex/tennis into Last&#10;&#10;# Conflicts:&#10;#&#9;.idea/workspace.xml" />
     <MESSAGE value="added fields in Bet and fixed errors" />
     <MESSAGE value="changed application file" />
     <MESSAGE value="added MAX_ODDS without realisation" />
     <MESSAGE value="smth" />
     <MESSAGE value="fixed an error" />
     <MESSAGE value="fixed an error in application-dev" />
-    <option name="LAST_COMMIT_MESSAGE" value="fixed an error in application-dev" />
+    <MESSAGE value="Merge branch 'Last' of https://github.com/nenya-alex/tennis into Last&#10;&#10;# Conflicts:&#10;#&#9;.idea/workspace.xml" />
+    <option name="LAST_COMMIT_MESSAGE" value="Merge branch 'Last' of https://github.com/nenya-alex/tennis into Last&#10;&#10;# Conflicts:&#10;#&#9;.idea/workspace.xml" />
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
   </component>
   <component name="XDebuggerManager">
@@ -2176,6 +2180,8 @@
             <element signature="imports" expanded="false" />
             <element signature="e#340#341#0" expanded="false" />
             <element signature="e#396#397#0" expanded="false" />
+            <element signature="e#490#491#0" expanded="false" />
+            <element signature="e#544#545#0" expanded="false" />
             <element signature="e#632#633#0" expanded="false" />
             <element signature="e#682#683#0" expanded="false" />
             <element signature="e#785#786#0" expanded="false" />
@@ -2197,8 +2203,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/ua/tennis/service/ScheduledService.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="439">
-          <caret line="480" column="16" lean-forward="false" selection-start-line="480" selection-start-column="16" selection-end-line="480" selection-end-column="16" />
+        <state relative-caret-position="130">
+          <caret line="471" column="29" lean-forward="true" selection-start-line="471" selection-start-column="29" selection-end-line="471" selection-end-column="29" />
           <folding />
         </state>
       </provider>
