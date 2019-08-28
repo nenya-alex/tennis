@@ -2,6 +2,8 @@ package ua.tennis.service;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.mail.SimpleMailMessage;
+import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.client.RestTemplate;
@@ -69,6 +71,8 @@ public class ScheduledService {
 
     private final SettingsRepository settingsRepository;
 
+    private final JavaMailSender javaMailSender;
+
     public ScheduledService(RestTemplate restTemplate,
                             ScheduledRepository scheduledRepository,
                             MatchMapper matchMapper,
@@ -84,7 +88,8 @@ public class ScheduledService {
                             SettRepository settRepository,
                             SettMapper settMapper,
                             MatchCache matchCache,
-                            SettingsRepository settingsRepository) {
+                            SettingsRepository settingsRepository,
+                            JavaMailSender javaMailSender) {
         this.restTemplate = restTemplate;
         this.scheduledRepository = scheduledRepository;
         this.matchMapper = matchMapper;
@@ -101,6 +106,7 @@ public class ScheduledService {
         this.settMapper = settMapper;
         this.matchCache = matchCache;
         this.settingsRepository = settingsRepository;
+        this.javaMailSender = javaMailSender;
     }
 
     public void saveUpcomingMatches() {
@@ -187,12 +193,12 @@ public class ScheduledService {
                         double homeProbability = gameDTO.getHomeProbability();
 
                         if (homeProbability > bookmakersHomeProbability * multiplier) {
-                            if (homeOdds > maxOdds) {
+                            if (homeOdds <= maxOdds) {
                                 place(match, homeOdds, calculatorService.getRoundedDoubleNumber((homeOdds + awayOdds) / awayOdds),
                                     homeProbability, BetSide.HOME, currentSetNumber);
                             }
                         } else if ((1 - homeProbability) > (1 - bookmakersHomeProbability) * multiplier) {
-                            if (awayOdds > maxOdds) {
+                            if (awayOdds <= maxOdds) {
                                 place(match, awayOdds, calculatorService.getRoundedDoubleNumber((homeOdds + awayOdds) / homeOdds),
                                     1 - homeProbability, BetSide.AWAY, currentSetNumber);
                             }
@@ -478,7 +484,7 @@ public class ScheduledService {
 
         msg.setSubject("Account from: " + Instant.now());
         Account account = accountRepository.findOne(1L);
-        msg.setText("Ammount = " + account.getAmount() + ", PlacedAmount = " + account.getPlacedAmount());
+        msg.setText("Amount = " + account.getAmount() + ", Placed Amount = " + account.getPlacedAmount());
 
         javaMailSender.send(msg);
     }
