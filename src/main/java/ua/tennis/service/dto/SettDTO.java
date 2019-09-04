@@ -159,16 +159,15 @@ public class SettDTO implements Serializable {
         return Objects.hashCode(getId());
     }
 
-    @Override
-    public String toString() {
-        return "\nSettDTO{" +
-            "id=" + getId() + "\n" +
-            ", homeScore=" + getHomeScore() + "\n" +
-            ", awayScore=" + getAwayScore() + "\n" +
-            ", homeProbability=" + getHomeProbability() + "\n" +
-            ", awayProbability=" + getAwayProbability() + "\n" +
-            ", setNumber=" + setNumber + "\n" +
-//            ", games=" + games +
-            "}";
-    }
+//    @Override
+//    public String toString() {
+//        return "\nSettDTO{" +
+//            "id=" + getId() + "\n" +
+//            ", homeScore=" + getHomeScore() + "\n" +
+//            ", awayScore=" + getAwayScore() + "\n" +
+//            ", homeProbability=" + getHomeProbability() + "\n" +
+//            ", awayProbability=" + getAwayProbability() + "\n" +
+//            ", setNumber=" + setNumber + "\n" +
+//            "}";
+//    }
 }

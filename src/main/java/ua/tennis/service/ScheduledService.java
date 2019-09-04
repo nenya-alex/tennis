@@ -4,6 +4,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
+import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.client.RestTemplate;
@@ -16,6 +17,8 @@ import ua.tennis.repository.*;
 import ua.tennis.service.dto.*;
 import ua.tennis.service.mapper.*;
 
+import javax.mail.MessagingException;
+import javax.mail.internet.MimeMessage;
 import java.math.BigDecimal;
 import java.time.Instant;
 import java.util.*;
@@ -283,7 +286,7 @@ public class ScheduledService {
                     saveAccountDetail(account.getId(), savedBet.getId(), account.getAmount(), stakeAmount, BigDecimal.ZERO);
 
                 } else {
-                    saveBet(betDTO, BetStatus.POTENTIAL);
+//                    saveBet(betDTO, BetStatus.POTENTIAL);
                 }
             }
         }
@@ -482,6 +485,7 @@ public class ScheduledService {
         try {
             MimeMessage msg = javaMailSender.createMimeMessage();
             MimeMessageHelper helper = new MimeMessageHelper(msg, true);
+            helper.setFrom("alexander.nenya@gmail.com");
             helper.setTo("nenya.alex@gmail.com");
 
             helper.setSubject("Account from: " + Instant.now());
