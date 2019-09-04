@@ -156,7 +156,7 @@ public class ScheduledService {
             Match match = matchRepository.findOne(matchDTO.getId());
 
             if (match != null && match.getStatus() != MatchStatus.FINISHED) {
-                createOrUpdateSetts(matchDTO);
+                createOrUpdateSetts(matchDTO, match);
                 updateMatch(match, matchDTO);
             }
         }
@@ -177,7 +177,7 @@ public class ScheduledService {
             Match match = matchRepository.findOne(matchDTO.getId());
 
             if (match != null) {
-                createOrUpdateSetts(matchDTO);
+                createOrUpdateSetts(matchDTO, match);
 
                 match.setNumberOfSetsToWin(matchDTO.getNumberOfSetsToWin());
                 updateMatch(match, matchDTO);
@@ -226,16 +226,19 @@ public class ScheduledService {
 //        log.debug("\nPLACE BET: Saved LIVE Match : {}", match);
     }
 
-    private void createOrUpdateSetts(MatchDTO matchDTO) {
+    private void createOrUpdateSetts(MatchDTO matchDTO, Match match) {
         for (SettDTO settDTO : matchDTO.getSetts()) {
 //        log.debug("\nPLACE BET: Request for saving SettDTO : {}", settDTO);
             Sett sett = settRepository.findBySetNumberAndMatchId(settDTO.getSetNumber(), matchDTO.getId());
+            Sett savedSett;
 
             if (sett == null) {
-                settRepository.save(settMapper.toEntity(settDTO));
+                savedSett = settRepository.save(settMapper.toEntity(settDTO));
             } else {
-                settRepository.save(sett.homeScore(settDTO.getHomeScore()).awayScore(settDTO.getAwayScore()));
+                savedSett = settRepository.save(sett.homeScore(settDTO.getHomeScore()).awayScore(settDTO.getAwayScore()));
             }
+
+            match.getSetts().add(savedSett);
 //        log.debug("\nPLACE BET: Saved Sett : {}", sett);
         }
     }
@@ -277,6 +280,12 @@ public class ScheduledService {
                 betDTO.setBookmakerProbability(bookmakerProbability);
                 betDTO.setSetNumber(currentSetNumber);
                 betDTO.setProbabilitiesRatio(probabilitiesRatio);
+                betDTO.setMatchScore(match.getHomeScore() + " : " + match.getAwayScore());
+
+                Sett currentSett = match.getSetts().stream().filter(set -> set.getSetNumber().equals(currentSetNumber))
+                    .findFirst().get();
+                String setScore = currentSett.getHomeScore() + " : " + currentSett.getAwayScore();
+                betDTO.setSetScore(setScore);
 
                 if (match.getBets().stream().noneMatch(bet -> bet.getStatus() == BetStatus.OPENED)) {
                     Bet savedBet = saveBet(betDTO, BetStatus.OPENED);
@@ -286,7 +295,11 @@ public class ScheduledService {
                     saveAccountDetail(account.getId(), savedBet.getId(), account.getAmount(), stakeAmount, BigDecimal.ZERO);
 
                 } else {
-//                    saveBet(betDTO, BetStatus.POTENTIAL);
+                    Bet existedBet = betRepository.findByMatchIdAndStatusAndOddsAndSetNumberAndSetScore(match.getId(),
+                        BetStatus.POTENTIAL, odds, currentSetNumber, setScore);
+                    if (existedBet == null) {
+                        saveBet(betDTO, BetStatus.POTENTIAL);
+                    }
                 }
             }
         }

@@ -48,6 +48,14 @@
                 <constraints nullable="true"/>
             </column>
 
+            <column name="match_score" type="varchar(255)">
+                <constraints nullable="true"/>
+            </column>
+
+            <column name="set_score" type="varchar(255)">
+                <constraints nullable="true"/>
+            </column>
+
             <column name="profit" type="decimal(21,2)">
                 <constraints nullable="true"/>
             </column>

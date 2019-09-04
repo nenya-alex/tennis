@@ -35,6 +35,12 @@ public class Bet implements Serializable {
     @Column(name = "is_bet_won")
     private boolean isBetWon;
 
+    @Column(name = "match_score")
+    private String matchScore;
+
+    @Column(name = "set_score")
+    private String setScore;
+
     @Column(name = "set_number")
     private Integer setNumber;
 
@@ -240,6 +246,22 @@ public class Bet implements Serializable {
     public Bet probabilitiesRatio(Double probabilitiesRatio) {
         this.probabilitiesRatio = probabilitiesRatio;
         return this;
+    }
+
+    public String getMatchScore() {
+        return matchScore;
+    }
+
+    public void setMatchScore(String matchScore) {
+        this.matchScore = matchScore;
+    }
+
+    public String getSetScore() {
+        return setScore;
+    }
+
+    public void setSetScore(String setScore) {
+        this.setScore = setScore;
     }
 
     @Override
