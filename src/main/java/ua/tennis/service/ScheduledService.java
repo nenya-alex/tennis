@@ -256,7 +256,7 @@ public class ScheduledService {
 
         if (kellyCoefficient != 1.0) {
 
-            Account account = accountRepository.findOne(1L);
+            Account account = accountRepository.findByType(AccountType.FRONT);
 
             if (account.getAmount().compareTo(BigDecimal.ZERO) > 0) {
 
@@ -301,8 +301,17 @@ public class ScheduledService {
                         saveBet(betDTO, BetStatus.POTENTIAL);
                     }
                 }
+
+                boolean isOppositeBetPlacementEnable = Boolean.valueOf(settingsRepository.findByKey(IS_OPPOSITE_BET_PLACEMENT_ENABLE).getValue());
+                if (isOppositeBetPlacementEnable) {
+                    placeOppisiteBet();
+                }
             }
         }
+    }
+
+    private void placeOppisiteBet(){
+
     }
 
     private Bet saveBet(BetDTO betDTO, BetStatus betStatus) {

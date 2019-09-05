@@ -24,6 +24,10 @@
                 <constraints nullable="true"/>
             </column>
 
+            <column name="type" type="varchar(255)">
+                <constraints nullable="true"/>
+            </column>
+
         </createTable>
 
         <dropDefaultValue tableName="account" columnName="updated_date" columnDataType="datetime"/>

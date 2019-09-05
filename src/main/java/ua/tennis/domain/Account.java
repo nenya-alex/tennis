@@ -28,6 +28,10 @@ public class Account implements Serializable {
     @Column(name = "updated_date")
     private Instant updatedDate;
 
+    @Enumerated(EnumType.STRING)
+    @Column(name = "type")
+    private AccountType type;
+
     @OneToMany(mappedBy = "account")
     private Set<AccountDetail> accountDetails = new HashSet<>();
 
@@ -84,6 +88,14 @@ public class Account implements Serializable {
 
     public void setAccountDetails(Set<AccountDetail> accountDetails) {
         this.accountDetails = accountDetails;
+    }
+
+    public AccountType getType() {
+        return type;
+    }
+
+    public void setType(AccountType type) {
+        this.type = type;
     }
 
     @Override

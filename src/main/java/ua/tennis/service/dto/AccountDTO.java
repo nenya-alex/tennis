@@ -18,6 +18,8 @@ public class AccountDTO implements Serializable {
 
     private BigDecimal placedAmount;
 
+    private AccountType type;
+
     private Set<AccountDetailDTO> accountDetailDTOs = new HashSet<>();
 
     public Long getId() {
@@ -66,5 +68,13 @@ public class AccountDTO implements Serializable {
 
     public void setAccountDetailDTOs(Set<AccountDetailDTO> accountDetailDTOs) {
         this.accountDetailDTOs = accountDetailDTOs;
+    }
+
+    public AccountType getType() {
+        return type;
+    }
+
+    public void setType(AccountType type) {
+        this.type = type;
     }
 }
