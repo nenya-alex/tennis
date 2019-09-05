@@ -290,7 +290,7 @@ public class ScheduledService {
                 if (match.getBets().stream().noneMatch(bet -> bet.getStatus() == BetStatus.OPENED)) {
                     Bet savedBet = saveBet(betDTO, BetStatus.OPENED);
 
-                    saveAccount(account, account.getAmount().subtract(stakeAmount), account.getPlacedAmount().add(stakeAmount));
+                    saveAccount(account.updatedDate(Instant.now()), account.getAmount().subtract(stakeAmount), account.getPlacedAmount().add(stakeAmount));
 
                     saveAccountDetail(account.getId(), savedBet.getId(), account.getAmount(), stakeAmount, BigDecimal.ZERO);
 
@@ -331,7 +331,7 @@ public class ScheduledService {
 
             Bet savedBet = saveBet(betDTO, BetStatus.OPENED);
 
-            saveAccount(account, account.getAmount().subtract(backStakeAmount), account.getPlacedAmount().add(backStakeAmount));
+            saveAccount(account.updatedDate(Instant.now()), account.getAmount().subtract(backStakeAmount), account.getPlacedAmount().add(backStakeAmount));
 
             saveAccountDetail(account.getId(), savedBet.getId(), account.getAmount(), backStakeAmount, BigDecimal.ZERO);
 
@@ -347,7 +347,7 @@ public class ScheduledService {
     }
 
     private void saveAccount(Account account, BigDecimal amount, BigDecimal placedAmount) {
-        accountRepository.saveAndFlush(account.amount(amount).updatedDate(Instant.now()).placedAmount(placedAmount));
+        accountRepository.saveAndFlush(account.amount(amount).placedAmount(placedAmount));
         log.debug("\nSaved Account after action: {}", account);
     }
 
@@ -471,18 +471,15 @@ public class ScheduledService {
             matchRepository.save(match.status(MatchStatus.FINISHED).updatedDate(Instant.now()));
             log.debug("\nFINISH MATCH: Saved Match : {}", match);
 
-            Account account = accountRepository.findOne(1L);
-            log.debug("\nSETTLE/RETURN BET: Account before settlement/returning: {}", account);
-
             if (match.isScoreCorrect()) {
-                settleBets(betRepository.findByMatchIdAndStatus(match.getId(), BetStatus.OPENED), match.getWinner(), account);
+                settleBets(betRepository.findByMatchIdAndStatus(match.getId(), BetStatus.OPENED), match.getWinner());
             } else {
-                returnBetAmount(betRepository.findByMatchIdAndStatus(match.getId(), BetStatus.OPENED), account);
+                returnBetAmount(betRepository.findByMatchIdAndStatus(match.getId(), BetStatus.OPENED));
             }
         }
     }
 
-    private void returnBetAmount(Set<Bet> bets, Account account) {
+    private void returnBetAmount(Set<Bet> bets) {
 
         for (Bet bet : bets) {
             log.debug("\nRETURN BET: Bet before returning : {}", bet);
@@ -490,13 +487,15 @@ public class ScheduledService {
             betRepository.saveAndFlush(bet.status(BetStatus.RETURNED).settledDate(Instant.now()));
             log.debug("\nRETURN BET: Bet after returning : {}", bet);
 
-            saveAccount(account, account.getAmount().add(bet.getAmount()), account.getPlacedAmount().subtract(bet.getAmount()));
+            Account account = bet.getAccountDetails().stream().findFirst().get().getAccount();
+
+            saveAccount(account.updatedDate(Instant.now()), account.getAmount().add(bet.getAmount()), account.getPlacedAmount().subtract(bet.getAmount()));
 
             saveAccountDetail(account.getId(), bet.getId(), account.getAmount(), BigDecimal.ZERO, bet.getAmount());
         }
     }
 
-    private void settleBets(Set<Bet> bets, Winner winner, Account account) {
+    private void settleBets(Set<Bet> bets, Winner winner) {
 
         for (Bet bet : bets) {
             log.debug("\nSETTLE BET: Bet before settlement : {}", bet);
@@ -504,6 +503,7 @@ public class ScheduledService {
             BigDecimal amount;
             BigDecimal profit;
             boolean isBetWon = isBetWon(bet, winner.name());
+            Account account = bet.getAccountDetails().stream().findFirst().get().getAccount();
 
             if (isBetWon) {
                 profit = bet.getAmount().multiply(BigDecimal.valueOf(bet.getOdds()));
@@ -517,7 +517,7 @@ public class ScheduledService {
                 .settledDate(Instant.now()).profit(profit));
             log.debug("\nSETTLE BET: Bet after settlement : {}", bet);
 
-            saveAccount(account, amount, account.getPlacedAmount().subtract(bet.getAmount()));
+            saveAccount(account.updatedDate(Instant.now()), amount, account.getPlacedAmount().subtract(bet.getAmount()));
 
             saveAccountDetail(account.getId(), bet.getId(), account.getAmount(), BigDecimal.ZERO, profit);
         }
