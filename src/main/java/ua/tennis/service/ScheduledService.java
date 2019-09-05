@@ -536,8 +536,11 @@ public class ScheduledService {
 
             helper.setSubject("Account from: " + Instant.now());
 
-            Account account = accountRepository.findOne(1L);
-            helper.setText("Amount = " + account.getAmount() + ", Placed Amount = " + account.getPlacedAmount());
+            Account frontAccount = accountRepository.findByType(AccountType.FRONT);
+            Account backAccount = accountRepository.findByType(AccountType.BACK);
+
+            helper.setText("FRONT: Amount = " + frontAccount.getAmount() + ", Placed Amount = " + frontAccount.getPlacedAmount()+
+                "\n BACK: Amount = " + backAccount.getAmount() + ", Placed Amount = " + backAccount.getPlacedAmount();
 
 //            FileSystemResource file = new FileSystemResource(new File("1.txt"));
 //            helper.addAttachment("test_file.txt", file);
