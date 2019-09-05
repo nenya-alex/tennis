@@ -317,9 +317,9 @@ public class ScheduledService {
     private void placeBackBet(BigDecimal stakeAmount, double oppositeOdds, BetDTO betDTO){
 
         Account account = accountRepository.findByType(AccountType.BACK);
+        BigDecimal backStakeAmount = stakeAmount.divide(BigDecimal.valueOf(oppositeOdds - 1), RoundingMode.HALF_EVEN);
 
-        if (account.getAmount().compareTo(BigDecimal.ZERO) > 0) {
-            BigDecimal backStakeAmount = stakeAmount.divide(BigDecimal.valueOf(oppositeOdds - 1), RoundingMode.HALF_EVEN);
+        if (account.getAmount().compareTo(backStakeAmount) > 0) {
 
             betDTO.setAmount(backStakeAmount);
             betDTO.setOdds(oppositeOdds);
