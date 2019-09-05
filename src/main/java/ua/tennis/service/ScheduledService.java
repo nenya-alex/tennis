@@ -197,13 +197,11 @@ public class ScheduledService {
 
                         if (homeProbability > bookmakersHomeProbability * multiplier) {
                             if (homeOdds <= maxOdds) {
-                                place(match, homeOdds, calculatorService.getRoundedDoubleNumber((homeOdds + awayOdds) / awayOdds),
-                                    homeProbability, BetSide.HOME, currentSetNumber);
+                                place(match, homeOdds, awayOdds, homeProbability, BetSide.HOME, currentSetNumber);
                             }
                         } else if ((1 - homeProbability) > (1 - bookmakersHomeProbability) * multiplier) {
                             if (awayOdds <= maxOdds) {
-                                place(match, awayOdds, calculatorService.getRoundedDoubleNumber((homeOdds + awayOdds) / homeOdds),
-                                    1 - homeProbability, BetSide.AWAY, currentSetNumber);
+                                place(match, awayOdds, homeOdds, 1 - homeProbability, BetSide.AWAY, currentSetNumber);
                             }
                         }
                     }
@@ -245,10 +243,12 @@ public class ScheduledService {
 
     private void place(Match match,
                        double odds,
-                       double bookmakerOddsWithoutMarge,
+                       double oppositeOdds,
                        double probability,
                        BetSide betSide,
                        int currentSetNumber) {
+
+        double bookmakerOddsWithoutMarge = calculatorService.getRoundedDoubleNumber((odds + oppositeOdds) / oppositeOdds);
         double kellyCoefficient = calculatorService.getRoundedDoubleNumber(
             (bookmakerOddsWithoutMarge * probability - 1) / (bookmakerOddsWithoutMarge - 1));
 
@@ -294,6 +294,8 @@ public class ScheduledService {
 
                     saveAccountDetail(account.getId(), savedBet.getId(), account.getAmount(), stakeAmount, BigDecimal.ZERO);
 
+                    placeOppositeBet(stakeAmount, oppositeOdds, betDTO);
+
                 } else {
                     Bet existedBet = betRepository.findByMatchIdAndStatusAndOddsAndSetNumberAndSetScore(match.getId(),
                         BetStatus.POTENTIAL, odds, currentSetNumber, setScore);
@@ -301,17 +303,39 @@ public class ScheduledService {
                         saveBet(betDTO, BetStatus.POTENTIAL);
                     }
                 }
-
-                boolean isOppositeBetPlacementEnable = Boolean.valueOf(settingsRepository.findByKey(IS_OPPOSITE_BET_PLACEMENT_ENABLE).getValue());
-                if (isOppositeBetPlacementEnable) {
-                    placeOppisiteBet();
-                }
             }
         }
     }
 
-    private void placeOppisiteBet(){
+    private void placeOppositeBet(BigDecimal stakeAmount, double oppositeOdds, BetDTO betDTO){
+        boolean isOppositeBetPlacementEnable = Boolean.valueOf(settingsRepository.findByKey(IS_OPPOSITE_BET_PLACEMENT_ENABLE).getValue());
+        if (isOppositeBetPlacementEnable) {
+            placeBackBet(stakeAmount, oppositeOdds, betDTO);
+        }
+    }
 
+    private void placeBackBet(BigDecimal stakeAmount, double oppositeOdds, BetDTO betDTO){
+
+        Account account = accountRepository.findByType(AccountType.BACK);
+
+        if (account.getAmount().compareTo(BigDecimal.ZERO) > 0) {
+            BigDecimal backStakeAmount = stakeAmount.divide(BigDecimal.valueOf(oppositeOdds - 1), RoundingMode.HALF_EVEN);
+
+            betDTO.setAmount(backStakeAmount);
+            betDTO.setOdds(oppositeOdds);
+            betDTO.setBetSide(betDTO.getBetSide().getOppositeBetSide());
+            betDTO.setKellyCoefficient(null);
+            betDTO.setCountedProbability(null);
+            betDTO.setBookmakerProbability(null);
+            betDTO.setProbabilitiesRatio(0.0);
+
+            Bet savedBet = saveBet(betDTO, BetStatus.OPENED);
+
+            saveAccount(account, account.getAmount().subtract(backStakeAmount), account.getPlacedAmount().add(backStakeAmount));
+
+            saveAccountDetail(account.getId(), savedBet.getId(), account.getAmount(), backStakeAmount, BigDecimal.ZERO);
+
+        }
     }
 
     private Bet saveBet(BetDTO betDTO, BetStatus betStatus) {
