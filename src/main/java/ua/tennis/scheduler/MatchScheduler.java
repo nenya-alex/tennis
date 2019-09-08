@@ -34,7 +34,7 @@ public class MatchScheduler {
     }
 
     //    @Scheduled(cron = "0 0/1 * * * *") //every minutes
-    @Scheduled(cron = "0 0 0/4 * * *") //every 4 hours
+    @Scheduled(cron = "0 0 0/2 * * *") //every 2 hours
     public void sendEmail() {
         scheduledService.sendEmail();
     }
