@@ -7,4 +7,6 @@ import ua.tennis.domain.Account;
 @SuppressWarnings("unused")
 @Repository
 public interface AccountRepository extends JpaRepository<Account, Long> {
+
+    Account findByType(AccountType accountType);
 }

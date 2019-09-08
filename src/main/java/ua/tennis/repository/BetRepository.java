@@ -12,4 +12,7 @@ import java.util.Set;
 public interface BetRepository extends JpaRepository<Bet, Long> {
 
     Set<Bet> findByMatchIdAndStatus(Long id, BetStatus status);
+
+    Bet findByMatchIdAndStatusAndOddsAndSetNumberAndSetScore(Long id, BetStatus status, double odds, int setNumber, String setScore);
+
 }

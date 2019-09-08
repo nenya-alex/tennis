@@ -29,6 +29,10 @@ public class BetDTO implements Serializable {
 
     private boolean isBetWon;
 
+    private String matchScore;
+
+    private String setScore;
+
     private Double countedProbability;
 
     private Double bookmakerProbability;
@@ -171,6 +175,22 @@ public class BetDTO implements Serializable {
 
     public void setProbabilitiesRatio(double probabilitiesRatio) {
         this.probabilitiesRatio = probabilitiesRatio;
+    }
+
+    public String getMatchScore() {
+        return matchScore;
+    }
+
+    public void setMatchScore(String matchScore) {
+        this.matchScore = matchScore;
+    }
+
+    public String getSetScore() {
+        return setScore;
+    }
+
+    public void setSetScore(String setScore) {
+        this.setScore = setScore;
     }
 
     @Override
