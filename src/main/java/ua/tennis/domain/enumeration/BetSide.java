@@ -2,12 +2,12 @@ package ua.tennis.domain.enumeration;
 
 public enum BetSide {
     HOME,
-    AWAY
+    AWAY;
 
-    public BetSide getOppositeBetSide(){
-        if (this == HOME){
+    public BetSide getOppositeBetSide() {
+        if (this == HOME) {
             return AWAY;
-        }else{
+        } else {
             return HOME;
         }
     }
