@@ -532,7 +532,7 @@ public class ScheduledService {
             helper.setFrom("alexander.nenya@gmail.com");
             helper.setTo("nenya.alex@gmail.com");
 
-            helper.setSubject("Account from: " + Instant.now());
+            helper.setSubject("Account from: " + ZonedDateTime.now().toLocalDateTime());
 
             Account frontAccount = accountRepository.findByType(AccountType.FRONT);
             Account backAccount = accountRepository.findByType(AccountType.BACK);
