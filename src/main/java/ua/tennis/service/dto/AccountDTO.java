@@ -1,5 +1,7 @@
 package ua.tennis.service.dto;
 
+import ua.tennis.domain.enumeration.AccountType;
+
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.time.Instant;

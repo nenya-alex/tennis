@@ -2,17 +2,13 @@ package ua.tennis.service;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.client.RestTemplate;
 import ua.tennis.domain.*;
-import ua.tennis.domain.enumeration.BetSide;
-import ua.tennis.domain.enumeration.BetStatus;
-import ua.tennis.domain.enumeration.MatchStatus;
-import ua.tennis.domain.enumeration.Winner;
+import ua.tennis.domain.enumeration.*;
 import ua.tennis.repository.*;
 import ua.tennis.service.dto.*;
 import ua.tennis.service.mapper.*;
@@ -20,6 +16,7 @@ import ua.tennis.service.mapper.*;
 import javax.mail.MessagingException;
 import javax.mail.internet.MimeMessage;
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.time.Instant;
 import java.util.*;
 import java.util.stream.Collectors;
@@ -28,6 +25,7 @@ import java.util.stream.Collectors;
 @Transactional
 public class ScheduledService {
 
+    private static final String IS_OPPOSITE_BET_PLACEMENT_ENABLE = "IS_OPPOSITE_BET_PLACEMENT_ENABLE";
     private final Logger log = LoggerFactory.getLogger(ScheduledService.class);
 
     private static final String UPCOMING_MATCHES_URL = "https://bcdapi.itsfogo.com/v1/bettingoffer/grid/upcomingEventsBySport"
@@ -307,14 +305,14 @@ public class ScheduledService {
         }
     }
 
-    private void placeOppositeBet(BigDecimal stakeAmount, double oppositeOdds, BetDTO betDTO){
+    private void placeOppositeBet(BigDecimal stakeAmount, double oppositeOdds, BetDTO betDTO) {
         boolean isOppositeBetPlacementEnable = Boolean.valueOf(settingsRepository.findByKey(IS_OPPOSITE_BET_PLACEMENT_ENABLE).getValue());
         if (isOppositeBetPlacementEnable) {
             placeBackBet(stakeAmount, oppositeOdds, betDTO);
         }
     }
 
-    private void placeBackBet(BigDecimal stakeAmount, double oppositeOdds, BetDTO betDTO){
+    private void placeBackBet(BigDecimal stakeAmount, double oppositeOdds, BetDTO betDTO) {
 
         Account account = accountRepository.findByType(AccountType.BACK);
         BigDecimal backStakeAmount = stakeAmount.divide(BigDecimal.valueOf(oppositeOdds - 1), RoundingMode.HALF_EVEN);
@@ -539,8 +537,8 @@ public class ScheduledService {
             Account frontAccount = accountRepository.findByType(AccountType.FRONT);
             Account backAccount = accountRepository.findByType(AccountType.BACK);
 
-            helper.setText("FRONT: Amount = " + frontAccount.getAmount() + ", Placed Amount = " + frontAccount.getPlacedAmount()+
-                "\n BACK: Amount = " + backAccount.getAmount() + ", Placed Amount = " + backAccount.getPlacedAmount();
+            helper.setText("FRONT: Amount = " + frontAccount.getAmount() + ", Placed Amount = " + frontAccount.getPlacedAmount() +
+                "\n BACK: Amount = " + backAccount.getAmount() + ", Placed Amount = " + backAccount.getPlacedAmount());
 
 //            FileSystemResource file = new FileSystemResource(new File("1.txt"));
 //            helper.addAttachment("test_file.txt", file);

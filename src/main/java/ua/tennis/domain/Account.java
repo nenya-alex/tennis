@@ -1,5 +1,7 @@
 package ua.tennis.domain;
 
+import ua.tennis.domain.enumeration.AccountType;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.math.BigDecimal;
