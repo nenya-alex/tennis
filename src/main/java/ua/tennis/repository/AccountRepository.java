@@ -10,4 +10,7 @@ import ua.tennis.domain.enumeration.AccountType;
 public interface AccountRepository extends JpaRepository<Account, Long> {
 
     Account findByType(AccountType accountType);
+
+    Account findFirstByTypeAndStatus(AccountType accountType, AccountStatus accountStatus);
+
 }

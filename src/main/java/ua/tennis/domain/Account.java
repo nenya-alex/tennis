@@ -104,12 +104,22 @@ public class Account implements Serializable {
         this.type = type;
     }
 
+    public Account type(AccountType type) {
+        this.type = type;
+        return this;
+    }
+
     public AccountStatus getStatus() {
         return status;
     }
 
     public void setStatus(AccountStatus status) {
         this.status = status;
+    }
+
+    public Account status(AccountStatus status) {
+        this.status = status;
+        return this;
     }
 
     @Override
