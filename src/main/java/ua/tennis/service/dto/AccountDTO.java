@@ -22,6 +22,8 @@ public class AccountDTO implements Serializable {
 
     private AccountType type;
 
+    private AccountStatus status;
+
     private Set<AccountDetailDTO> accountDetailDTOs = new HashSet<>();
 
     public Long getId() {
@@ -78,5 +80,13 @@ public class AccountDTO implements Serializable {
 
     public void setType(AccountType type) {
         this.type = type;
+    }
+
+    public AccountStatus getStatus() {
+        return status;
+    }
+
+    public void setStatus(AccountStatus status) {
+        this.status = status;
     }
 }
