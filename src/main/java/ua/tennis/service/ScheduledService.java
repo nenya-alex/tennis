@@ -18,6 +18,7 @@ import javax.mail.internet.MimeMessage;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.time.Instant;
+import java.time.ZonedDateTime;
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -295,7 +296,7 @@ public class ScheduledService {
 //        log.debug("\nPLACE BET: stakeAmount = {} ", stakeAmount);
 
             double bookmakerProbability = calculatorService.getRoundedDoubleNumber(1 / bookmakerOddsWithoutMarge);
-            double probabilitiesRatio  = calculatorService.getRoundedDoubleNumber(probability / bookmakerProbability);
+            double probabilitiesRatio = calculatorService.getRoundedDoubleNumber(probability / bookmakerProbability);
 
             BetDTO betDTO = new BetDTO();
             betDTO.setAmount(stakeAmount);
@@ -340,17 +341,17 @@ public class ScheduledService {
         }
     }
 
-    private Account getMultiAccount(boolean isMultiBetPlacementEnable){
+    private Account getMultiAccount(boolean isMultiBetPlacementEnable) {
         Account account = accountRepository.findFirstByTypeAndStatus(AccountType.MULTI, AccountStatus.FREE);
-            if (account == null){
-                account = accountRepository.save(
-                    new Account()
-                        .amount(BigDecimal.valueOf("100"))
-                        .placedAmount(BigDecimal.ZERO)
-                        .type(AccountType.MULTI)
-                        .status(AccountStatus.FREE);
-                );
-            }
+        if (account == null) {
+            account = accountRepository.save(
+                new Account()
+                    .amount(BigDecimal.valueOf(100))
+                    .placedAmount(BigDecimal.ZERO)
+                    .type(AccountType.MULTI)
+                    .status(AccountStatus.FREE)
+            );
+        }
         return account;
     }
 
@@ -593,39 +594,39 @@ public class ScheduledService {
         }
     }
 
-    private String getContent(){
+    private String getContent() {
         String content;
 
         boolean isMultiBetPlacementEnable = Boolean.valueOf(settingsRepository.findByKey(IS_MULTI_BET_PLACEMENT_ENABLE).getValue());
 
-        if (isMultiBetPlacementEnable){
+        if (isMultiBetPlacementEnable) {
             List<Account> accounts = accountRepository.findAllByType(AccountType.MULTI);
             BigDecimal amount = BigDecimal.ZERO;
             BigDecimal placedAmount = BigDecimal.ZERO;
 
             Account frontAccount = accountRepository.findByType(AccountType.FRONT);
 
-            for (Account account: accounts){
+            for (Account account : accounts) {
                 amount.add(account.getAmount());
                 placedAmount.add(account.getPlacedAmount());
             }
-            String content = "FRONT: Amount = " + frontAccount.getAmount() + ", Placed Amount = " + frontAccount.getPlacedAmount() +
+            content = "FRONT: Amount = " + frontAccount.getAmount() + ", Placed Amount = " + frontAccount.getPlacedAmount() +
                 " \n MULTI: Number Accounts : " + accounts.size() + " Amount = " + amount + ", Placed Amount = " + placedAmount;
-        }else {
+        } else {
             Account frontAccount = accountRepository.findByType(AccountType.FRONT);
             Account backAccount = accountRepository.findByType(AccountType.BACK);
             content = "FRONT: Amount = " + frontAccount.getAmount() + ", Placed Amount = " + frontAccount.getPlacedAmount() +
                 "\n BACK: Amount = " + backAccount.getAmount() + ", Placed Amount = " + backAccount.getPlacedAmount();
         }
 
-        return  content;
+        return content;
     }
 
     private void sendEmailByApplication(String to, String subject, String content) {
         mailService.sendEmail(to, subject, content, true, false);
     }
 
-    private void sendEmailManually(String to, String subject, String content) {
+    private void sendEmailManually(String to, String subject, String content) throws MessagingException {
         MimeMessage msg = javaMailSender.createMimeMessage();
         MimeMessageHelper helper = new MimeMessageHelper(msg, true);
         helper.setFrom("alexander.nenya@gmail.com");

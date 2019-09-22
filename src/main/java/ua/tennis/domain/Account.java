@@ -1,5 +1,6 @@
 package ua.tennis.domain;
 
+import ua.tennis.domain.enumeration.AccountStatus;
 import ua.tennis.domain.enumeration.AccountType;
 
 import javax.persistence.*;

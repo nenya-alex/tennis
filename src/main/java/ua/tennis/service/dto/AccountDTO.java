@@ -1,5 +1,6 @@
 package ua.tennis.service.dto;
 
+import ua.tennis.domain.enumeration.AccountStatus;
 import ua.tennis.domain.enumeration.AccountType;
 
 import java.io.Serializable;
