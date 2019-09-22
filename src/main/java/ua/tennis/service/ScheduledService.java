@@ -578,45 +578,36 @@ public class ScheduledService {
         return bet.getBetSide().name().equals(winnerName);
     }
 
-    public void sendEmail(){
-        try {
-            String to = "nenya.alex@gmail.com";
-            String subject = "Account from: " + ZonedDateTime.now().toLocalDateTime();
+    public void sendEmail() {
+        String to = "nenya.alex@gmail.com";
+        String subject = "Account from: " + ZonedDateTime.now().toLocalDateTime();
 
-            String content = getContent();
+        String content = getContent();
 
-            sendEmailManually(to, subject, content);
+//        sendEmailManually(to, subject, content);
 
-            sendEmailByApplication(to, subject, content);
-
-        } catch (MessagingException e) {
-            e.printStackTrace();
-        }
+        sendEmailByApplication(to, subject, content);
     }
 
     private String getContent() {
-        String content;
 
         boolean isMultiBetPlacementEnable = Boolean.valueOf(settingsRepository.findByKey(IS_MULTI_BET_PLACEMENT_ENABLE).getValue());
+        Account frontAccount = accountRepository.findByType(AccountType.FRONT);
+        Account backAccount = accountRepository.findByType(AccountType.BACK);
+
+        String content = "FRONT: Amount = " + frontAccount.getAmount() + ", Placed Amount = " + frontAccount.getPlacedAmount() +
+            "\n BACK: Amount = " + backAccount.getAmount() + ", Placed Amount = " + backAccount.getPlacedAmount();
 
         if (isMultiBetPlacementEnable) {
             List<Account> accounts = accountRepository.findAllByType(AccountType.MULTI);
             BigDecimal amount = BigDecimal.ZERO;
             BigDecimal placedAmount = BigDecimal.ZERO;
 
-            Account frontAccount = accountRepository.findByType(AccountType.FRONT);
-
             for (Account account : accounts) {
                 amount.add(account.getAmount());
                 placedAmount.add(account.getPlacedAmount());
             }
-            content = "FRONT: Amount = " + frontAccount.getAmount() + ", Placed Amount = " + frontAccount.getPlacedAmount() +
-                " \n MULTI: Number Accounts : " + accounts.size() + " Amount = " + amount + ", Placed Amount = " + placedAmount;
-        } else {
-            Account frontAccount = accountRepository.findByType(AccountType.FRONT);
-            Account backAccount = accountRepository.findByType(AccountType.BACK);
-            content = "FRONT: Amount = " + frontAccount.getAmount() + ", Placed Amount = " + frontAccount.getPlacedAmount() +
-                "\n BACK: Amount = " + backAccount.getAmount() + ", Placed Amount = " + backAccount.getPlacedAmount();
+            content = content + " \n MULTI: Number Accounts : " + accounts.size() + " Amount = " + amount + ", Placed Amount = " + placedAmount;
         }
 
         return content;
@@ -626,17 +617,22 @@ public class ScheduledService {
         mailService.sendEmail(to, subject, content, true, false);
     }
 
-    private void sendEmailManually(String to, String subject, String content) throws MessagingException {
-        MimeMessage msg = javaMailSender.createMimeMessage();
-        MimeMessageHelper helper = new MimeMessageHelper(msg, true);
-        helper.setFrom("alexander.nenya@gmail.com");
-        helper.setTo(to);
-        helper.setSubject(subject);
-        helper.setText(content);
+    private void sendEmailManually(String to, String subject, String content) {
+        try {
+
+            MimeMessage msg = javaMailSender.createMimeMessage();
+            MimeMessageHelper helper = new MimeMessageHelper(msg, true);
+            helper.setFrom("alexander.nenya@gmail.com");
+            helper.setTo(to);
+            helper.setSubject(subject);
+            helper.setText(content);
 
 //            FileSystemResource file = new FileSystemResource(new File("1.txt"));
 //            helper.addAttachment("test_file.txt", file);
 
-        javaMailSender.send(msg);
+            javaMailSender.send(msg);
+        } catch (MessagingException e) {
+            e.printStackTrace();
+        }
     }
 }

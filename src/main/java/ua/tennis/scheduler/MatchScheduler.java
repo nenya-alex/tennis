@@ -33,7 +33,7 @@ public class MatchScheduler {
         scheduledService.finishMatchesAndSettleBets();
     }
 
-    //    @Scheduled(cron = "0 0/1 * * * *") //every minutes
+    //        @Scheduled(cron = "0 0/1 * * * *") //every minutes
     @Scheduled(cron = "0 0 0/2 * * *") //every 2 hours
     public void sendEmail() {
         scheduledService.sendEmail();
