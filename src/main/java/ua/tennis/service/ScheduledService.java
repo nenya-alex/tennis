@@ -26,6 +26,8 @@ import java.util.stream.Collectors;
 public class ScheduledService {
 
     private static final String IS_OPPOSITE_BET_PLACEMENT_ENABLE = "IS_OPPOSITE_BET_PLACEMENT_ENABLE";
+    private static final String IS_MULTI_BET_PLACEMENT_ENABLE = "IS_MULTI_BET_PLACEMENT_ENABLE";
+    private static final String IS_POTENTIAL_BET_SAVING_ENABLE = "IS_POTENTIAL_BET_SAVING_ENABLE";
     private final Logger log = LoggerFactory.getLogger(ScheduledService.class);
 
     private static final String UPCOMING_MATCHES_URL = "https://bcdapi.itsfogo.com/v1/bettingoffer/grid/upcomingEventsBySport"
@@ -74,6 +76,8 @@ public class ScheduledService {
 
     private final JavaMailSender javaMailSender;
 
+    private final MailService mailService;
+
     public ScheduledService(RestTemplate restTemplate,
                             ScheduledRepository scheduledRepository,
                             MatchMapper matchMapper,
@@ -90,7 +94,8 @@ public class ScheduledService {
                             SettMapper settMapper,
                             MatchCache matchCache,
                             SettingsRepository settingsRepository,
-                            JavaMailSender javaMailSender) {
+                            JavaMailSender javaMailSender,
+                            MailService mailService) {
         this.restTemplate = restTemplate;
         this.scheduledRepository = scheduledRepository;
         this.matchMapper = matchMapper;
@@ -108,6 +113,7 @@ public class ScheduledService {
         this.matchCache = matchCache;
         this.settingsRepository = settingsRepository;
         this.javaMailSender = javaMailSender;
+        this.mailService = mailService;
     }
 
     public void saveUpcomingMatches() {
@@ -256,45 +262,74 @@ public class ScheduledService {
 
             Account account = accountRepository.findByType(AccountType.FRONT);
 
-            if (account.getAmount().compareTo(BigDecimal.ZERO) > 0) {
+            placeBet(match, odds, oppositeOdds, probability, betSide, currentSetNumber,
+                bookmakerOddsWithoutMarge, kellyCoefficient, AccountStatus.FREE, account);
+
+            boolean isMultiBetPlacementEnable = Boolean.valueOf(settingsRepository.findByKey(IS_MULTI_BET_PLACEMENT_ENABLE).getValue());
+
+            if (isMultiBetPlacementEnable) {
+                Account multiAccount = getMultiAccount(isMultiBetPlacementEnable);
+
+                placeBet(match, odds, oppositeOdds, probability, betSide, currentSetNumber,
+                    bookmakerOddsWithoutMarge, kellyCoefficient, AccountStatus.LOCKED, multiAccount);
+            }
+        }
+    }
+
+    private void placeBet(Match match,
+                          double odds,
+                          double oppositeOdds,
+                          double probability,
+                          BetSide betSide,
+                          int currentSetNumber,
+                          double bookmakerOddsWithoutMarge,
+                          double kellyCoefficient,
+                          AccountStatus status,
+                          Account account) {
+        if (account.getAmount().compareTo(BigDecimal.ZERO) > 0) {
 
 //        log.debug("\nPLACE BET: Account before placing : {} ", account);
 
-                BigDecimal stakeAmount = account.getAmount().multiply(BigDecimal.valueOf(kellyCoefficient));
+            BigDecimal stakeAmount = account.getAmount().multiply(BigDecimal.valueOf(kellyCoefficient));
 
 //        log.debug("\nPLACE BET: stakeAmount = {} ", stakeAmount);
 
-                double bookmakerProbability = calculatorService.getRoundedDoubleNumber(1 / bookmakerOddsWithoutMarge);
-                double probabilitiesRatio  = calculatorService.getRoundedDoubleNumber(probability / bookmakerProbability);
+            double bookmakerProbability = calculatorService.getRoundedDoubleNumber(1 / bookmakerOddsWithoutMarge);
+            double probabilitiesRatio  = calculatorService.getRoundedDoubleNumber(probability / bookmakerProbability);
 
-                BetDTO betDTO = new BetDTO();
-                betDTO.setAmount(stakeAmount);
-                betDTO.setOdds(odds);
-                betDTO.setBetSide(betSide);
-                betDTO.setPlacedDate(Instant.now());
-                betDTO.setMatchId(match.getId());
-                betDTO.setKellyCoefficient(kellyCoefficient);
-                betDTO.setCountedProbability(probability);
-                betDTO.setBookmakerProbability(bookmakerProbability);
-                betDTO.setSetNumber(currentSetNumber);
-                betDTO.setProbabilitiesRatio(probabilitiesRatio);
-                betDTO.setMatchScore(match.getHomeScore() + " : " + match.getAwayScore());
+            BetDTO betDTO = new BetDTO();
+            betDTO.setAmount(stakeAmount);
+            betDTO.setOdds(odds);
+            betDTO.setBetSide(betSide);
+            betDTO.setPlacedDate(Instant.now());
+            betDTO.setMatchId(match.getId());
+            betDTO.setKellyCoefficient(kellyCoefficient);
+            betDTO.setCountedProbability(probability);
+            betDTO.setBookmakerProbability(bookmakerProbability);
+            betDTO.setSetNumber(currentSetNumber);
+            betDTO.setProbabilitiesRatio(probabilitiesRatio);
+            betDTO.setMatchScore(match.getHomeScore() + " : " + match.getAwayScore());
 
-                Sett currentSett = match.getSetts().stream().filter(set -> set.getSetNumber().equals(currentSetNumber))
-                    .findFirst().get();
-                String setScore = currentSett.getHomeScore() + " : " + currentSett.getAwayScore();
-                betDTO.setSetScore(setScore);
+            Sett currentSett = match.getSetts().stream().filter(set -> set.getSetNumber().equals(currentSetNumber))
+                .findFirst().get();
+            String setScore = currentSett.getHomeScore() + " : " + currentSett.getAwayScore();
+            betDTO.setSetScore(setScore);
 
-                if (match.getBets().stream().noneMatch(bet -> bet.getStatus() == BetStatus.OPENED)) {
-                    Bet savedBet = saveBet(betDTO, BetStatus.OPENED);
+            if (match.getBets().stream().noneMatch(bet -> bet.getStatus() == BetStatus.OPENED)) {
+                Bet savedBet = saveBet(betDTO, BetStatus.OPENED);
 
-                    saveAccount(account.updatedDate(Instant.now()), account.getAmount().subtract(stakeAmount), account.getPlacedAmount().add(stakeAmount));
+                saveAccount(account.updatedDate(Instant.now()), account.getAmount().subtract(stakeAmount),
+                    account.getPlacedAmount().add(stakeAmount), status);
 
-                    saveAccountDetail(account.getId(), savedBet.getId(), account.getAmount(), stakeAmount, BigDecimal.ZERO);
+                saveAccountDetail(account.getId(), savedBet.getId(), account.getAmount(), stakeAmount, BigDecimal.ZERO);
 
-                    placeOppositeBet(stakeAmount, oppositeOdds, betDTO);
+                placeOppositeBet(stakeAmount, oppositeOdds, betDTO);
 
-                } else {
+            } else {
+
+                boolean isPotentialBetSavingEnable = Boolean.valueOf(settingsRepository.findByKey(IS_POTENTIAL_BET_SAVING_ENABLE).getValue());
+
+                if (isPotentialBetSavingEnable) {
                     Bet existedBet = betRepository.findByMatchIdAndStatusAndOddsAndSetNumberAndSetScore(match.getId(),
                         BetStatus.POTENTIAL, odds, currentSetNumber, setScore);
                     if (existedBet == null) {
@@ -303,6 +338,20 @@ public class ScheduledService {
                 }
             }
         }
+    }
+
+    private Account getMultiAccount(boolean isMultiBetPlacementEnable){
+        Account account = accountRepository.findFirstByTypeAndStatus(AccountType.MULTI, AccountStatus.FREE);
+            if (account == null){
+                account = accountRepository.save(
+                    new Account()
+                        .amount(BigDecimal.valueOf("100"))
+                        .placedAmount(BigDecimal.ZERO)
+                        .type(AccountType.MULTI)
+                        .status(AccountStatus.FREE);
+                );
+            }
+        return account;
     }
 
     private void placeOppositeBet(BigDecimal stakeAmount, double oppositeOdds, BetDTO betDTO) {
@@ -329,7 +378,8 @@ public class ScheduledService {
 
             Bet savedBet = saveBet(betDTO, BetStatus.OPENED);
 
-            saveAccount(account.updatedDate(Instant.now()), account.getAmount().subtract(backStakeAmount), account.getPlacedAmount().add(backStakeAmount));
+            saveAccount(account.updatedDate(Instant.now()), account.getAmount().subtract(backStakeAmount),
+                account.getPlacedAmount().add(backStakeAmount), AccountStatus.FREE);
 
             saveAccountDetail(account.getId(), savedBet.getId(), account.getAmount(), backStakeAmount, BigDecimal.ZERO);
 
@@ -344,8 +394,8 @@ public class ScheduledService {
 
     }
 
-    private void saveAccount(Account account, BigDecimal amount, BigDecimal placedAmount) {
-        accountRepository.saveAndFlush(account.amount(amount).placedAmount(placedAmount));
+    private void saveAccount(Account account, BigDecimal amount, BigDecimal placedAmount, AccountStatus status) {
+        accountRepository.saveAndFlush(account.amount(amount).placedAmount(placedAmount).status(status));
         log.debug("\nSaved Account after action: {}", account);
     }
 
@@ -487,7 +537,8 @@ public class ScheduledService {
 
             Account account = bet.getAccountDetails().stream().findFirst().get().getAccount();
 
-            saveAccount(account.updatedDate(Instant.now()), account.getAmount().add(bet.getAmount()), account.getPlacedAmount().subtract(bet.getAmount()));
+            saveAccount(account.updatedDate(Instant.now()), account.getAmount().add(bet.getAmount()),
+                account.getPlacedAmount().subtract(bet.getAmount()), AccountStatus.FREE);
 
             saveAccountDetail(account.getId(), bet.getId(), account.getAmount(), BigDecimal.ZERO, bet.getAmount());
         }
@@ -515,7 +566,8 @@ public class ScheduledService {
                 .settledDate(Instant.now()).profit(profit));
             log.debug("\nSETTLE BET: Bet after settlement : {}", bet);
 
-            saveAccount(account.updatedDate(Instant.now()), amount, account.getPlacedAmount().subtract(bet.getAmount()));
+            saveAccount(account.updatedDate(Instant.now()), amount,
+                account.getPlacedAmount().subtract(bet.getAmount()), AccountStatus.FREE);
 
             saveAccountDetail(account.getId(), bet.getId(), account.getAmount(), BigDecimal.ZERO, profit);
         }
@@ -527,26 +579,63 @@ public class ScheduledService {
 
     public void sendEmail(){
         try {
-            MimeMessage msg = javaMailSender.createMimeMessage();
-            MimeMessageHelper helper = new MimeMessageHelper(msg, true);
-            helper.setFrom("alexander.nenya@gmail.com");
-            helper.setTo("nenya.alex@gmail.com");
+            String to = "nenya.alex@gmail.com";
+            String subject = "Account from: " + ZonedDateTime.now().toLocalDateTime();
 
-            helper.setSubject("Account from: " + Instant.now());
+            String content = getContent();
 
-            Account frontAccount = accountRepository.findByType(AccountType.FRONT);
-            Account backAccount = accountRepository.findByType(AccountType.BACK);
+            sendEmailManually(to, subject, content);
 
-            helper.setText("FRONT: Amount = " + frontAccount.getAmount() + ", Placed Amount = " + frontAccount.getPlacedAmount() +
-                "\n BACK: Amount = " + backAccount.getAmount() + ", Placed Amount = " + backAccount.getPlacedAmount());
-
-//            FileSystemResource file = new FileSystemResource(new File("1.txt"));
-//            helper.addAttachment("test_file.txt", file);
-
-            javaMailSender.send(msg);
+            sendEmailByApplication(to, subject, content);
 
         } catch (MessagingException e) {
             e.printStackTrace();
         }
+    }
+
+    private String getContent(){
+        String content;
+
+        boolean isMultiBetPlacementEnable = Boolean.valueOf(settingsRepository.findByKey(IS_MULTI_BET_PLACEMENT_ENABLE).getValue());
+
+        if (isMultiBetPlacementEnable){
+            List<Account> accounts = accountRepository.findAllByType(AccountType.MULTI);
+            BigDecimal amount = BigDecimal.ZERO;
+            BigDecimal placedAmount = BigDecimal.ZERO;
+
+            Account frontAccount = accountRepository.findByType(AccountType.FRONT);
+
+            for (Account account: accounts){
+                amount.add(account.getAmount());
+                placedAmount.add(account.getPlacedAmount());
+            }
+            String content = "FRONT: Amount = " + frontAccount.getAmount() + ", Placed Amount = " + frontAccount.getPlacedAmount() +
+                " \n MULTI: Number Accounts : " + accounts.size() + " Amount = " + amount + ", Placed Amount = " + placedAmount;
+        }else {
+            Account frontAccount = accountRepository.findByType(AccountType.FRONT);
+            Account backAccount = accountRepository.findByType(AccountType.BACK);
+            content = "FRONT: Amount = " + frontAccount.getAmount() + ", Placed Amount = " + frontAccount.getPlacedAmount() +
+                "\n BACK: Amount = " + backAccount.getAmount() + ", Placed Amount = " + backAccount.getPlacedAmount();
+        }
+
+        return  content;
+    }
+
+    private void sendEmailByApplication(String to, String subject, String content) {
+        mailService.sendEmail(to, subject, content, true, false);
+    }
+
+    private void sendEmailManually(String to, String subject, String content) {
+        MimeMessage msg = javaMailSender.createMimeMessage();
+        MimeMessageHelper helper = new MimeMessageHelper(msg, true);
+        helper.setFrom("alexander.nenya@gmail.com");
+        helper.setTo(to);
+        helper.setSubject(subject);
+        helper.setText(content);
+
+//            FileSystemResource file = new FileSystemResource(new File("1.txt"));
+//            helper.addAttachment("test_file.txt", file);
+
+        javaMailSender.send(msg);
     }
 }
