@@ -604,8 +604,8 @@ public class ScheduledService {
             BigDecimal placedAmount = BigDecimal.ZERO;
 
             for (Account account : accounts) {
-                amount.add(account.getAmount());
-                placedAmount.add(account.getPlacedAmount());
+                amount = amount.add(account.getAmount());
+                placedAmount = placedAmount.add(account.getPlacedAmount());
             }
             content = content + " \n MULTI: Number Accounts : " + accounts.size() + " Amount = " + amount + ", Placed Amount = " + placedAmount;
         }
